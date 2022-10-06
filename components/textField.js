@@ -13,10 +13,6 @@ export function InputText(props){
                 backgroundColor : colorPalette.Orange,
                 padding : 10
             }}
-            containerStyle={{
-                marginTop : 10
-            }}
-            
             >
         </Input>
     )
