@@ -1,13 +1,23 @@
 import { Input } from "@rneui/themed";
 import {colorPalette} from "../styles/colors";
 
-export default function InputText(props){
+export function InputText(props){
     return (
         <Input 
             props={props}
             placeholder={props.placeholder}
             placeholderTextColor = {colorPalette.White}
-            style={{borderRadius : 30, backgroundColor : colorPalette.Orange}}>
+            inputStyle={{color : colorPalette.White}}
+            style={{
+                borderRadius : 30, 
+                backgroundColor : colorPalette.Orange,
+                padding : 10
+            }}
+            containerStyle={{
+                marginTop : 10
+            }}
+            
+            >
         </Input>
     )
 }
