@@ -14,7 +14,7 @@ export function EmailSentScreen(props){
                 centerText = 'Email Enviado'
                 leftIcon = 'arrow-back'
             ></NavBar>
-            <View style={{height : '35%', backgroundColor : colorPalette.White}}></View>
+            <View style={{width : '100%', height : '35%', backgroundColor: colorPalette.White}}></View>
             <Icon name = 'outgoing-mail' size={96} color={colorPalette.Orange}></Icon>
             <Text
                 h4
