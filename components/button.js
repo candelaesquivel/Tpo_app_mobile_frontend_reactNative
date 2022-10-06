@@ -1,12 +1,23 @@
 import { Button } from "@rneui/themed";
+import { colorPalette } from "../styles/colors";
 
-export default function MyButton(props) {
+export function MyButton(props) {
     return (
         <Button
             title={props.title}
             buttonStyle={{
                 borderRadius : 30,
-                backgroundColor : '#FF511B'
+                backgroundColor : colorPalette.Orange
+            }}
+
+            containerStyle={{
+                width : props.width,
+                height : props.height
+            }}
+
+            titleStyle={{
+                fontSize : 20,
+                fontFamily : 'Roboto'
             }}
         >
         </Button>
