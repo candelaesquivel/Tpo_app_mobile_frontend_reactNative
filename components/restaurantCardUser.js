@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
-
+import { colorPalette } from '../styles/colors';
 export default function RestaurantCardUser(props) {
 
   return (
@@ -18,14 +18,14 @@ export default function RestaurantCardUser(props) {
          <Text>{props.address}</Text>
          <View style={{flexDirection: 'row',alignItems: 'center'}}>
             <Text marginBottom={30}>{props.score} </Text>
-            <Icon  name="star" color="#FF511B" size={20}></Icon>
+            <Icon  name="star" color={colorPalette.Orange} size={20}></Icon>
          </View>
        
        </View>
        <View  style= {{flexDirection:'column-reverse'}}>
         {
             props.favorite ? <Icon  name="favorite" color="red"  marginBottom={7}></Icon >
-            : <Icon  name="favorite-border" color="#404040"  marginBottom={7}></Icon >
+            : <Icon  name="favorite-border" color={colorPalette.Black}  marginBottom={7}></Icon >
         }
        </View>
       
