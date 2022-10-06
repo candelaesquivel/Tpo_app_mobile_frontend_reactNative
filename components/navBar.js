@@ -1,11 +1,12 @@
 import { Header } from "@rneui/themed";
+import { colorPalette } from "../styles/colors";
 
 export default function NavBar(props) {
     return (
         <Header
-            backgroundColor="#FF511B"
-            centerComponent={{text : props.centerText, style : {color : '#404040', fontFamily : 'Roboto'}}}
-            leftComponent={{icon : props.leftIcon, color : '#404040', type : 'material'}}
+            backgroundColor={colorPalette.Orange}
+            centerComponent={{text : props.centerText, style : {color : colorPalette.Black, fontFamily : 'Roboto'}}}
+            leftComponent={{icon : props.leftIcon, color : colorPalette.Black, type : 'material'}}
         >
         </Header>
     )
