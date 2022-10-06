@@ -6,8 +6,17 @@ export function NavBar(props) {
         <Header
             containerStyle={{borderWidth : 1}}
             backgroundColor={colorPalette.Orange}
-            centerComponent={{text : props.centerText, style : {color : colorPalette.Black, fontFamily : 'Roboto'}}}
-            leftComponent={{icon : props.leftIcon, color : colorPalette.Black, type : 'material'}}
+            placement = 'left'
+            barStyle='light-content'
+            centerComponent={{
+                text : props.centerText,
+                style : {color : colorPalette.Black, fontFamily : 'Roboto'}
+            }}
+            leftComponent={{
+                textBreakStrategy : 'highQuality',
+                icon : props.leftIcon, 
+                color : colorPalette.Black, 
+                type : 'material'}}
         >
         </Header>
     )
