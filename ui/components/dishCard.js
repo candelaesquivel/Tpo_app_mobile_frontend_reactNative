@@ -42,7 +42,7 @@ export default function DishCard(props) {
         }
           <View width='10%' height= '10%'></View>
         {
-            props.ingredients.map((l, i) => (
+            props.ingredients.map((l) => (
                
            <View style={{alignItems: 'center',flexDirection: 'row' }}>
                 <Icon name="circle"  color={colorPalette.Black} size={7}></Icon>
