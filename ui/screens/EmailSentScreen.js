@@ -6,6 +6,7 @@ import { MyButton } from "../components/button";
 import { Icon } from "@rneui/themed";
 import { InputText } from "../components/textField";
 import { color } from "@rneui/base/dist";
+import I18n from "../../assets/localization/I18n";
 
 export function EmailSentScreen(props){
     return (
@@ -21,7 +22,7 @@ export function EmailSentScreen(props){
                 h4Style={{textAlign:'center'}}
                 style={{marginBottom : 10}}
             >
-                Se ha enviado a el email las instrucciones de recuperación
+             {I18n.t('messageEmailSent')}  
             </Text>
         </View>
     )

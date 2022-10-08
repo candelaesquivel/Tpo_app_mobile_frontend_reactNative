@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
+import I18n from "../../assets/localization/I18n";
 
 export default function RestaurantCardOwner(props) {
 
@@ -22,7 +23,7 @@ export default function RestaurantCardOwner(props) {
             <Icon  name="star" color={colorPalette.Orange} size={20}></Icon>
          </View>
          <View style={{direction: 'RLT',alignItems: 'flex-end'}} >
-                <Text  style={{fontWeight: 'bold', fontSize:18 }} >Menú </Text>
+                <Text  style={{fontWeight: 'bold', fontSize:18 }} >{I18n.t('menu')}</Text>
             </View>
        
        </View>

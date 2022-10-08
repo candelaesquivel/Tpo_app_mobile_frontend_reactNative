@@ -4,6 +4,7 @@ import { NavBar } from "../components/navBar";
 import { colorPalette } from "../styles/colors";
 import { Text } from "@rneui/themed";
 import { MyButton } from "../components/button";
+import I18n from "../../assets/localization/I18n";
 
 export function LoginUserScreen(props){
     return (
@@ -15,7 +16,7 @@ export function LoginUserScreen(props){
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
             <Logo></Logo>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
-            <Text h2 h2Style={{color : colorPalette.Orange}}>Iniciar sesión</Text>
+            <Text h2 h2Style={{color : colorPalette.Orange}}> {I18n.t('logIn')} </Text>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
             <MyButton title = 'Placeholder Google Sign In'></MyButton>
         </View>

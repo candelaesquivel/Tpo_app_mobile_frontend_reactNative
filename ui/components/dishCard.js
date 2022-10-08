@@ -2,14 +2,15 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
-import i18n from '../../assets/localization/i18n'
+import I18n from "../../assets/localization/I18n";
+
 export default function DishCard(props) {
 
     const VeganComponent = () => {
         return (
             <View style={{flexDirection: 'row',alignItems: 'center'}}>
                  <Icon name="leaf" type='font-awesome-5' color={colorPalette.Black} size={20}></Icon>
-                <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> i18n. </Text>
+                <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> {I18n.t('vegan')} </Text>
             </View>
 
         )
@@ -19,7 +20,7 @@ export default function DishCard(props) {
         return(
             <View style={{flexDirection: 'row',alignItems: 'center'}}>
                  <Icon name="leaf" type='font-awesome-5' color={colorPalette.Black} size={20}></Icon>
-                <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> Libre de gluten </Text>
+                <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}>  {I18n.t('celiac')} </Text>
             </View>
             
         )
@@ -54,7 +55,7 @@ export default function DishCard(props) {
         }
          
         <View width={300} style={{ alignItems: 'center'}}>
-         <Text h4 style={{flexDirection: 'column',color: colorPalette.Orange}}>${props.price}</Text>  
+         <Text h4 style={{flexDirection: 'column',color: colorPalette.Orange}}>{I18n.t('priceSymbol')}{props.price}</Text>  
        </View>
        </View>
          </Card>

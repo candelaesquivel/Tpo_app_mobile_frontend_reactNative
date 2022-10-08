@@ -7,6 +7,7 @@ import { Icon } from "@rneui/themed";
 import { InputText } from "../components/textField";
 import { color } from "@rneui/base/dist";
 import { Input } from "@rneui/themed";
+import I18n from "../../assets/localization/I18n";
 
 export function SentCommentScreen(props){
     return (
@@ -16,7 +17,7 @@ export function SentCommentScreen(props){
                 leftIcon = 'arrow-back'
             ></NavBar>
             <View style={{width : '100%', height : '10%', backgroundColor: colorPalette.White}}></View>
-            <Text h3>Calificación</Text>
+            <Text h3>{I18n.t('calification')}</Text>
             <AirbnbRating 
                 defaultRating={3}
                 reviews = {[]}
@@ -26,7 +27,7 @@ export function SentCommentScreen(props){
             <View style={{flexDirection : 'row'}}>
 
             </View>
-            <Text>Comentario (opcional)</Text>
+            <Text>{I18n.t('comment')}</Text>
             <Input
                 inputContainerStyle={{
                     padding : 10,

@@ -16,7 +16,7 @@ export function Logo(props) {
             >
             </Image>
             <Text h2 h2Style={{color : colorPalette.Black}}>
-                Morfando
+            {I18n.t('appName')}
             </Text>
         </View>
         )

@@ -6,6 +6,7 @@ import { MyButton } from "../components/button";
 import { Icon } from "@rneui/themed";
 import { InputText } from "../components/textField";
 import { color } from "@rneui/base/dist";
+import I18n from "../../assets/localization/I18n";
 
 export function DeleteAccountScreenUser(props){
     return (
@@ -21,7 +22,7 @@ export function DeleteAccountScreenUser(props){
                 h4Style={{textAlign:'center'}}
                 style={{marginBottom : 10}}
             >
-                Valide el siguiente formulario para proceder a la eliminación de la cuenta
+                {I18n.t('messageDeleteAccount')}
             </Text>
             <View style = {{
                 borderRadius : 30,

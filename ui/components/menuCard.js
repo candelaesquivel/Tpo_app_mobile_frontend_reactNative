@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
-
-
+import I18n from "../../assets/localization/I18n";
 
 
 export default function MenuCard(props) {
@@ -19,9 +18,9 @@ export default function MenuCard(props) {
        </Image>
        <View width={200}  style={{justifyContent : 'space-evenly'}} >
          <Text h4 >{props.name}</Text>
-         <Text style={{color: colorPalette.Orange ,textDecorationLine: 'line-through' , fontSize: 18}}> ${props.price}</Text>
+         <Text style={{color: colorPalette.Orange ,textDecorationLine: 'line-through' , fontSize: 18}}> {I18n.t('priceSymbol')}{props.price}</Text>
          <View style={{flexDirection: 'row',alignItems: 'center'}}>
-            <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> ${priceDescount} </Text>
+            <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> {priceDescount} </Text>
             <Icon  name="local-offer" color={colorPalette.Orange} size={20}></Icon>
             <Text style={{color: colorPalette.Orange , fontSize: 15}} marginBottom={30}>%{10}</Text>
             
