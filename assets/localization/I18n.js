@@ -1,18 +1,14 @@
-import es from './es';
-import * as RNLocalize from 'react-native-localize';
-import { I18n } from "i18n-js";
+import {I18n as i18n} from "i18n-js";
+import es from "./es";
 
+translations = {
+    es
+};
 
-const locales = RNLocalize.getLocales();
+var I18n = new i18n(translations);
 
-translations= {es};
-const i18n = new I18n(translations);
+I18n.defaultLocale = 'es';
+I18n.enableFallback = true;
 
-I18n.locale= locales[0].languageCode;
-
-I18n.fallbacks = true;
 
 export default I18n;
-
-
-
