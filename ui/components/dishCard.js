@@ -2,15 +2,14 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
-import { ListItem } from '@rneui/themed'
-
+import i18n from '../../assets/localization/i18n'
 export default function DishCard(props) {
 
     const VeganComponent = () => {
         return (
             <View style={{flexDirection: 'row',alignItems: 'center'}}>
                  <Icon name="leaf" type='font-awesome-5' color={colorPalette.Black} size={20}></Icon>
-                <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> Vegano </Text>
+                <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> i18n. </Text>
             </View>
 
         )
