@@ -13,7 +13,10 @@ export function InputText(props){
                 backgroundColor : colorPalette.Orange,
                 padding : 10
             }}
-            underlineColorAndroid = 'transparent'
+            inputContainerStyle={{
+                borderBottomColor : 'transparent',
+                borderRadius : 5
+              }}
             >
         </Input>
     )
