@@ -1,8 +1,8 @@
-import { Image } from "@rneui/themed"
 import { Text } from "@rneui/themed"
 import { View } from "react-native"
 import { colorPalette } from "../styles/colors"
 import Images from '../../assets/images/index';
+import I18n from "../../assets/localization/I18n";
 
 export function Logo(props) {
     return (
