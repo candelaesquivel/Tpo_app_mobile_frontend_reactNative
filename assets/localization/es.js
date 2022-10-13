@@ -26,7 +26,9 @@ export  default{
     passInput : 'Ingrese contraseña',
     validPassInput : 'Repita contraseña',
     recoverPassword : 'Recuperar contraseña',
-    recoverPasswordBtn : 'Recuperar Contraseña'
+    recoverPasswordBtn : 'Recuperar Contraseña',
     restaurants : 'Mis Restaurantes',
+    menuRestaurant : 'Menú del restaurante',
+   profileUser : 'Perfil del usuario',
 
 };
