@@ -4,7 +4,7 @@ import { NavBar } from '../components/navBar'
 import { Icon, Switch } from '@rneui/base'
 import { colorPalette } from '../styles/colors'
 import I18n from "../../assets/localization/I18n";
-import { InputText } from '../components/textField'
+import { InputText } from '../components/InputText'
 import { MyButton } from '../components/button'
 
 
