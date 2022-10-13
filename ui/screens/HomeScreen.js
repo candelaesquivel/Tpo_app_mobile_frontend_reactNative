@@ -1,15 +1,35 @@
 import {MyButton} from '../components/button';
 import { View } from 'react-native';
 import {Logo} from "../components/Logo";
+import { colorPalette } from '../styles/colors';
+import { useEffect } from 'react';
 
-export function HomeScreen(props){
+export function HomeScreen({navigation, props}){
+
+    useEffect(() => {
+        navigation.setOptions({
+            headerShown: false,
+        })
+    }, [navigation])
+
+    const onUserBtnTouch = (e) => {
+        console.log("Btn User Touched");
+    }
+    
+    const onRestaurantOwnerTouch = (e) => {
+        console.log("Btn Restaurant Owner Touched");
+        navigation.navigate('DeleteAccountUser');
+    }
+
     return (
-        <View style={{flexDirection : 'column', alignItems : 'center', }}>
-            <View style={{width : 360, height : 120, backgroundColor : 'white'}}></View>
+        <View style={{flexDirection : 'column', 
+        height : '100%',
+        alignItems : 'center', backgroundColor : colorPalette.White}}>
+            <View style={{width : '100%', height : '15%', backgroundColor : colorPalette.White}}></View>
             <Logo></Logo>
-            <View style={{width : 360, height : 60, backgroundColor : 'white'}}></View>
-            <MyButton title = 'Usuario' width = {286} height = {80}></MyButton>
-            <MyButton title = 'Dueño de Restaurante' width = {286} height = {80}></MyButton>
+            <View style={{width : '100%', height : '15%', backgroundColor : colorPalette.White}}></View>
+            <MyButton title = 'Usuario' width = '70%' height = '15%' onPress = {onUserBtnTouch}></MyButton>
+            <MyButton title = 'Dueño de Restaurante' width = '70%' height = '15%' onPress = {onRestaurantOwnerTouch}></MyButton>
         </View>
     )
 }
