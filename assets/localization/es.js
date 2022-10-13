@@ -8,6 +8,14 @@ export  default{
     messageEmailSent : ' Se ha enviado a el email las instrucciones de recuperación',
     logIn :'Iniciar sesión',
     calification : 'Calificación',
-    comment : 'Comentario (opcional)'
+    comment : 'Comentario (opcional)',
+    name : 'Nombre :',
+    price : 'Precio :',
+    ingredients: 'Ingredientes :',
+    discount : 'Descuento :',
+    addPicture : 'Agregar fotos :',
+    category: 'Categoria :',
+    chose : 'Elegir',
+    addNewCategory: 'Agregar Nueva'
 
 };

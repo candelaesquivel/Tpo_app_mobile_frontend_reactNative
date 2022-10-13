@@ -10,8 +10,9 @@ export function InputText(props){
             inputStyle={{color : colorPalette.White}}
             style={{
                 borderRadius : 30, 
-                backgroundColor : colorPalette.Orange,
-                padding : 10
+                backgroundColor : props.color,
+                padding : 10,
+        /**arreglar barra que aparece por debajo */
             }}
             >
         </Input>
