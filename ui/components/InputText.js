@@ -13,10 +13,15 @@ export function InputText(props){
                 borderWidth : props.borderWidth,
                 borderColor : props.borderColor,
                 backgroundColor : props.color,
-                borderColor: colorPalette.Black,
-                padding : 10
+                borderColor : props.borderColor,
+                padding : 10,
+                marginTop : props.marginTop,
+                marginRight : props.marginRight,
+                marginLeft : props.marginLeft,
+                marginBottom : props.marginBottom,
             }}
             inputContainerStyle={{
+                borderColor : props.borderColor,
                 borderBottomColor : 'transparent',
                 borderRadius : 0
               }}
