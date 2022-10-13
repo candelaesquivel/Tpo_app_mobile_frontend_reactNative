@@ -19,8 +19,9 @@ export  default{
     addNewCategory: 'Agregar Nueva',
     okey : 'Ok',
     yes : 'Si',
-    no : 'No'
+    no : 'No',
     forgotPassword : '¿Has olvidado tu contraseña?',
-    createAccount : 'Crear cuenta'
+    createAccount : 'Crear cuenta',
+    restaurants : 'Mis Restaurantes',
 
 };
