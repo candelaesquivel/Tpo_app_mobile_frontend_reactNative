@@ -4,6 +4,7 @@ import { colorPalette } from "../styles/colors";
 export function MyButton(props) {
     return (
         <Button
+        onPress={props.onPress}
             title={props.title}
             buttonStyle={{
                 borderRadius : 30,
