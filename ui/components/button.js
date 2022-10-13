@@ -18,7 +18,7 @@ export function MyButton(props) {
 
             titleStyle={{
                 fontSize : 20,
-                fontFamily : 'Roboto'
+              
             }}
         >
         </Button>

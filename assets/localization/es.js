@@ -17,6 +17,9 @@ export  default{
     category: 'Categoria :',
     chose : 'Elegir',
     addNewCategory: 'Agregar Nueva',
+    okey : 'Ok',
+    yes : 'Si',
+    no : 'No'
     forgotPassword : '¿Has olvidado tu contraseña?',
     createAccount : 'Crear cuenta'
 

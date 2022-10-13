@@ -13,6 +13,7 @@ export function InputText(props){
                 borderWidth : props.borderWidth,
                 borderColor : props.borderColor,
                 backgroundColor : props.color,
+                borderColor: colorPalette.Black,
                 padding : 10
             }}
             inputContainerStyle={{
