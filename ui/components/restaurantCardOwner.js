@@ -1,20 +1,17 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import I18n from "../../assets/localization/I18n";
+import Images from '../../assets/images/index';
 
 export default function RestaurantCardOwner(props) {
 
   return (
-    <View >
+    <View style={{width:'100%'}} >
     <Card>
       <View style={{flexDirection: 'row', justifyContent : 'space-between'}}>
-      <Image
-        style={{height:100, width:100, resizeMode:'stretch'}}
-         source={require('../assets/logo.png')}
-       >
-       </Image>
+      <Images.logo width={100} height={100}></Images.logo>
        <View width={200}  style={{justifyContent : 'space-evenly'}} >
          <Text h4 >{props.name}</Text>
          <Text>{props.address}</Text>
