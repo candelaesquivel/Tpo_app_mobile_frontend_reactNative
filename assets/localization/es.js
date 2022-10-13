@@ -16,6 +16,8 @@ export  default{
     addPicture : 'Agregar fotos :',
     category: 'Categoria :',
     chose : 'Elegir',
-    addNewCategory: 'Agregar Nueva'
+    addNewCategory: 'Agregar Nueva',
+    forgotPassword : '¿Has olvidado tu contraseña?',
+    createAccount : 'Crear cuenta'
 
 };

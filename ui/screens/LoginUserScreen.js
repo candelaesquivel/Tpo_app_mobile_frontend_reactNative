@@ -5,14 +5,18 @@ import { colorPalette } from "../styles/colors";
 import { Text } from "@rneui/themed";
 import { MyButton } from "../components/button";
 import I18n from '../../assets/localization/I18n'
+import { useEffect } from "react";
 
-export function LoginUserScreen(props){
+export function LoginUserScreen({navigation, props}){
+
+    useEffect(() => {
+        navigation.setOptions({
+            title : I18n.t('logIn')
+        })
+    })
+
     return (
         <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
-            <NavBar
-                centerText = 'Inicio de Sesión'
-                leftIcon = 'arrow-back'
-            ></NavBar>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
             <Logo></Logo>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
