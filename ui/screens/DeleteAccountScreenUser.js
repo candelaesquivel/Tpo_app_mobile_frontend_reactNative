@@ -32,9 +32,13 @@ export function DeleteAccountScreenUser(props){
             }}>
             <InputText
                 placeholder = 'Ingrese contraseña'
+                color = {colorPalette.Orange}
                 >
             </InputText>
-            <InputText placeholder = 'Repita contraseña'></InputText>
+            <InputText 
+                placeholder = 'Repita contraseña'
+                color = {colorPalette.Orange}
+            ></InputText>
             </View>
             <View style={{height : 15, backgroundColor : colorPalette.White}}></View>
             <MyButton title = 'Eliminar' width = {245}></MyButton>

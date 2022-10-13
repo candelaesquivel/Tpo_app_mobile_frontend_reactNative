@@ -2,10 +2,6 @@ import { View } from "react-native";
 import { NavBar } from "../components/navBar";
 import { colorPalette } from "../styles/colors";
 import { AirbnbRating, Text } from "@rneui/themed";
-import { MyButton } from "../components/button";
-import { Icon } from "@rneui/themed";
-import { InputText } from "../components/textField";
-import { color } from "@rneui/base/dist";
 import { Input } from "@rneui/themed";
 import I18n from "../../assets/localization/I18n";
 
