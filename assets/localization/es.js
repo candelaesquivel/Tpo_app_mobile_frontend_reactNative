@@ -22,6 +22,11 @@ export  default{
     no : 'No',
     forgotPassword : '¿Has olvidado tu contraseña?',
     createAccount : 'Crear cuenta',
+    emailInput : 'Ingrese mail',
+    passInput : 'Ingrese contraseña',
+    validPassInput : 'Repita contraseña',
+    recoverPassword : 'Recuperar contraseña',
+    recoverPasswordBtn : 'Recuperar Contraseña'
     restaurants : 'Mis Restaurantes',
 
 };

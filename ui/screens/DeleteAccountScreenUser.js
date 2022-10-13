@@ -6,14 +6,18 @@ import { MyButton } from "../components/button";
 import { Icon } from "@rneui/themed";
 import { InputText } from "../components/InputText";
 import I18n from "../../assets/localization/I18n";
+import { useEffect } from "react";
 
-export function DeleteAccountScreenUser(props){
+export function DeleteAccountScreenUser({navigation, props}){
+
+    useEffect( () => {
+        navigation.setOptions({
+            title : 'Eliminar Cuenta'
+        })
+    }, [navigation])
+
     return (
         <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
-            <NavBar
-                centerText = 'Eliminar Cuenta'
-                leftIcon = 'arrow-back'
-            ></NavBar>
             <View style={{height : 35, backgroundColor : colorPalette.White}}></View>
             <Icon name = 'admin-panel-settings' size={96} color={colorPalette.Orange}></Icon>
             <Text

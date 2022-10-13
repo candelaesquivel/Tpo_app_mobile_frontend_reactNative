@@ -6,6 +6,8 @@ import { LoginUserScreen } from './ui/screens/LoginUserScreen';
 import { DeleteAccountScreenUser } from './ui/screens/DeleteAccountScreenUser';
 import { colorPalette } from './ui/styles/colors';
 import { LoginRestaurantOwnerScreen } from './ui/screens/LoginRestaurantOwnerScreen';
+import {CreateAccountOwnerScreen} from './ui/screens/CreateAccountOwnerScreen';
+import {RecoveryPasswordScreen} from './ui/screens/RecoveryPasswordScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,14 +27,8 @@ export default function App() {
         screenOptions={HeaderDefaultOptions}
       >
         <Stack.Screen 
-          name = 'Home' 
-          component={HomeScreen}>
-          </Stack.Screen>
-          <Stack.Screen
           name={screenNames.HOME_SCREEN}
-          component={DeleteAccountScreenUser}
-          >
-
+          component={HomeScreen}>
           </Stack.Screen>
           <Stack.Screen
           name={screenNames.LOGIN_OWNER}
@@ -43,6 +39,18 @@ export default function App() {
           <Stack.Screen
           name={screenNames.LOGIN_NORMAL_USER}
           component={LoginUserScreen}
+          >
+          </Stack.Screen>
+
+          <Stack.Screen
+          name={screenNames.CREATE_ACCOUNT_OWNER}
+          component={CreateAccountOwnerScreen}
+          >
+          </Stack.Screen>
+
+          <Stack.Screen
+          name={screenNames.RECOVER_PASS_SCREEN}
+          component={RecoveryPasswordScreen}
           >
           </Stack.Screen>
       </Stack.Navigator>
