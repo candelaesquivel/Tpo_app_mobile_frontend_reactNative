@@ -7,7 +7,7 @@ export  default{
     messageDeleteAccount : 'Valide el siguiente formulario para proceder a la eliminación de la cuenta',
     messageEmailSent : ' Se ha enviado a el email las instrucciones de recuperación',
     logIn :'Iniciar sesión',
-    calification : 'Calificación',
+    calification : 'Calificación :',
     comment : 'Comentario (opcional)',
     name : 'Nombre :',
     price : 'Precio :',
@@ -29,7 +29,16 @@ export  default{
     recoverPasswordBtn : 'Recuperar Contraseña',
     restaurants : 'Mis Restaurantes',
     menuRestaurant : 'Menú del restaurante',
+    profileUser : 'Perfil del usuario',
+    filterMessage1 : 'Distancia respecto de su ubicación :  ',
+    km : 'km',
+    typeFood : 'Tipo de comida :',
+    $ : '$',
+    $$ : '$$',
+    $$$ : '$$$',
+    $$$$ : '$$$$',
    	profileUser : 'Perfil del usuario',
     restaurantUserView : 'Info. del Restaurante',
+
 
 };

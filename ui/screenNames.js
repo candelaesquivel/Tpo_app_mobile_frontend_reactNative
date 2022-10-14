@@ -6,8 +6,9 @@ export default {
     OWNER_RESTAURANTS: 'RestaurantsOwnerScreen',
     MENU_RESTAURANT: 'MenuRestaurantOwnerScreen',
     USER_PROFILE: 'UserProfileScreen',
-
     CREATE_ACCOUNT_OWNER : 'CreateAccountOwner',
+    RECOVER_PASS_SCREEN : 'RecoveryPasswordScreen',
+    FILTER : 'FilterScreen',
     RECOVER_PASS_SCREEN : 'RecoveryPasswordScreen',
     HOME_NORMAL_USER_SCREEN  : 'NormalUserScreenHome',
     RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
