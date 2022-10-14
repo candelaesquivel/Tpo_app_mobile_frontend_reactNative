@@ -29,6 +29,7 @@ export  default{
     recoverPasswordBtn : 'Recuperar Contraseña',
     restaurants : 'Mis Restaurantes',
     menuRestaurant : 'Menú del restaurante',
-   profileUser : 'Perfil del usuario',
+   	profileUser : 'Perfil del usuario',
+    restaurantUserView : 'Info. del Restaurante',
 
 };

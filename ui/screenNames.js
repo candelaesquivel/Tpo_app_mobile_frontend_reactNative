@@ -8,5 +8,7 @@ export default {
     USER_PROFILE: 'UserProfileScreen',
 
     CREATE_ACCOUNT_OWNER : 'CreateAccountOwner',
-    RECOVER_PASS_SCREEN : 'RecoveryPasswordScreen'
+    RECOVER_PASS_SCREEN : 'RecoveryPasswordScreen',
+    HOME_NORMAL_USER_SCREEN  : 'NormalUserScreenHome',
+    RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
 };

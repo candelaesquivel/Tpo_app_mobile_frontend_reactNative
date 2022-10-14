@@ -3,11 +3,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import screenNames from './ui/screenNames';
 import { HomeScreen } from './ui/screens/HomeScreen';
 import { LoginUserScreen } from './ui/screens/LoginUserScreen';
-import { DeleteAccountScreenUser } from './ui/screens/DeleteAccountScreenUser';
 import { colorPalette } from './ui/styles/colors';
 import { LoginRestaurantOwnerScreen } from './ui/screens/LoginRestaurantOwnerScreen';
 import {CreateAccountOwnerScreen} from './ui/screens/CreateAccountOwnerScreen';
 import {RecoveryPasswordScreen} from './ui/screens/RecoveryPasswordScreen';
+import { RestaurantsUserScreen } from './ui/screens/RestaurantsUserScreen';
+import { RestaurantUserViewScreen } from './ui/screens/RestaurantProfileViewScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,12 @@ export default function App() {
       <Stack.Navigator
         screenOptions={HeaderDefaultOptions}
       >
+        <Stack.Screen
+        name={screenNames.USER_RESTAURANTS}
+        component={RestaurantsUserScreen}
+        >
+
+        </Stack.Screen>
         <Stack.Screen 
           name={screenNames.HOME_SCREEN}
           component={HomeScreen}>
@@ -53,6 +60,14 @@ export default function App() {
           component={RecoveryPasswordScreen}
           >
           </Stack.Screen>
+
+          <Stack.Screen
+            name = {screenNames.RESTAURANT_VIEW_USER}
+            component={RestaurantUserViewScreen}
+          >
+
+          </Stack.Screen>
+
       </Stack.Navigator>
     </NavigationContainer>
   )
