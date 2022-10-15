@@ -11,4 +11,8 @@ export default {
     FORGET_PASSWORD : 'RecoveryPasswordScreen',
     HOME_NORMAL_USER_SCREEN  : 'NormalUserScreenHome',
     RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
+
+    // Owner Routes
+    OWNER_HOME : 'OwnerHome',
+    OWNER_HOME_DRAWER : 'OwnerHomeDrawer',
 };

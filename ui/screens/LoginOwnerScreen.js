@@ -27,6 +27,11 @@ function LoginOwnerScreen({navigation, props}){
         navigation.navigate(ROUTES.CREATE_ACCOUNT_OWNER);
     }
 
+    const onLoginPressed = (event) => {
+        console.log("On Login Pressed");
+        navigation.navigate(ROUTES.OWNER_HOME);
+    }
+
     return (
         <View style={{flexDirection : 'column', 
         height : '100%',
@@ -44,7 +49,7 @@ function LoginOwnerScreen({navigation, props}){
                 ></InputText>
                 <InputText color = {colorPalette.Orange} placeholder = 'Ingrese Contraseña'></InputText>
             </View>
-            <MyButton title = {I18n.t('logIn')}></MyButton>
+            <MyButton title = {I18n.t('logIn')} onPress={onLoginPressed}></MyButton>
             <Text style={{color : colorPalette.Orange, marginTop : 10}} onPress={onRecoverTouched}>{I18n.t('forgotPassword')}</Text>
             <Text style={{color : colorPalette.Orange, marginTop : 15}} onPress={onCreateTouched}>{I18n.t('createAccount')}</Text>
         </View>
