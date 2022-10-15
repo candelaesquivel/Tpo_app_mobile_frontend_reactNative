@@ -6,7 +6,8 @@ import { colorPalette } from "../styles/colors";
 import { MyButton } from "../components/button";
 import { Text } from "@rneui/themed";
 import { InputText } from "../components/InputText";
-import screenNames from "../screenNames";
+
+import { ROUTES } from "..";
 
 function LoginOwnerScreen({navigation, props}){
 
@@ -18,12 +19,12 @@ function LoginOwnerScreen({navigation, props}){
 
     const onRecoverTouched = (event) => {
         console.log("Recovery Password Link Touched");
-        navigation.navigate(screenNames.RECOVER_PASS_SCREEN);
+        navigation.navigate(ROUTES.FORGET_PASSWORD);
     }
 
     const onCreateTouched = (event) => {
         console.log("On Create Owner Account Touched");
-        navigation.navigate(screenNames.CREATE_ACCOUNT_OWNER);
+        navigation.navigate(ROUTES.CREATE_ACCOUNT_OWNER);
     }
 
     return (

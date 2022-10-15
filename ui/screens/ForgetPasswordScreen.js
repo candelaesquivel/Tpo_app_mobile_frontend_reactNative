@@ -8,7 +8,7 @@ import { TextInput } from "react-native"
 import { Input } from "@rneui/themed"
 import { InputText } from "../components/InputText"
 
-export function RecoveryPasswordScreen({navigation, props}) {
+function ForgetPasswordScreen({navigation, props}) {
 
     useEffect(() => {
         navigation.setOptions({title : I18n.t('recoverPassword')})
@@ -31,3 +31,5 @@ export function RecoveryPasswordScreen({navigation, props}) {
     )
 
 }
+
+export default ForgetPasswordScreen;

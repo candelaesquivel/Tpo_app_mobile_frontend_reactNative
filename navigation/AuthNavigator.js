@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Home, LoginNormalUser, LoginOwner} from "../ui/screens";
+import { CreateAccountOwner, ForgetPassword, Home, LoginNormalUser, LoginOwner} from "../ui/screens";
 import { ROUTES } from "../ui";
 
 const Stack = createNativeStackNavigator();
@@ -10,6 +10,8 @@ function AuthNavigator(props){
             <Stack.Screen name = {ROUTES.HOME_SCREEN} component = {Home}></Stack.Screen>
             <Stack.Screen name = {ROUTES.LOGIN_OWNER} component = {LoginOwner}></Stack.Screen>
             <Stack.Screen name = {ROUTES.LOGIN_NORMAL_USER} component = {LoginNormalUser}></Stack.Screen>
+            <Stack.Screen name = {ROUTES.CREATE_ACCOUNT_OWNER} component = {CreateAccountOwner}></Stack.Screen>
+            <Stack.Screen name = {ROUTES.FORGET_PASSWORD} component = {ForgetPassword}></Stack.Screen>
         </Stack.Navigator>
     )
 }

@@ -34,3 +34,5 @@ export function CreateAccountOwnerScreen({navigation, props}) {
     )
 
 }
+
+export default CreateAccountOwnerScreen;
