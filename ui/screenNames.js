@@ -19,5 +19,7 @@ export default {
     CREATE_RESTAURANT : 'OwnerCreateRestaurant',
     CREATE_RESTAURANT_DRAWER : 'OwnerCreateRestaurantDrawer',
     MENU_RESTAURANT_OWNER_STACK : 'MenuRestaurantOwnerStack',
+    CREATE_RESTAURANT_STACK : 'OwnerCreateRestaurantStack',
+    RESTAURANT_OWNER_PROFILE_STACK : 'OwnerRestaurantProfileStack',
 
 };

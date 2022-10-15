@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { CreateAccountOwner, ForgetPassword, Home, LoginNormalUser, LoginOwner, MenuRestaurantOwner} from "../ui/screens";
+import { CreateAccountOwner, CreateRestaurant, ForgetPassword, Home, LoginNormalUser, LoginOwner, MenuRestaurantOwner} from "../ui/screens";
+import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
-import StackNavigatorOwner from "./StackNavigatorOwner";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +20,8 @@ function MainNavigator(props){
             }}></Stack.Screen>
             {/* Owner Screens without Drawer */}
             <Stack.Screen name = {ROUTES.MENU_RESTAURANT_OWNER_STACK} component = {MenuRestaurantOwner}></Stack.Screen>
+            <Stack.Screen name = {ROUTES.CREATE_RESTAURANT_STACK} component = {CreateRestaurant}></Stack.Screen>
+            <Stack.Screen name = {ROUTES.RESTAURANT_OWNER_PROFILE_STACK} component = {OwnerRestaurantProfile}></Stack.Screen>
         </Stack.Navigator>
     )
 }

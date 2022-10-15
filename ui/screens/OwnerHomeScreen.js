@@ -8,7 +8,7 @@ function OwnerHomeScreen({navigation, props}) {
 
   const onCreateRestaurantPressed = (event) => {
     console.log('On Restaurant Create Press');
-    navigation.navigate(ROUTES.CREATE_RESTAURANT_DRAWER)
+    navigation.navigate(ROUTES.CREATE_RESTAURANT_STACK)
   }
 
   const onRestaurantMenuPressed = (event) => {
@@ -16,9 +16,16 @@ function OwnerHomeScreen({navigation, props}) {
     navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
   }
 
+  const onPhotoPresses = (event) => {
+    console.log('On Photo Pressed');
+    navigation.navigate(ROUTES.RESTAURANT_OWNER_PROFILE_STACK);
+  }
+
   return (
     <View style={{alignItems:'center'}}>
-      <RestaurantCardOwner onMenuPressed={onRestaurantMenuPressed}>
+      <RestaurantCardOwner onMenuPressed={onRestaurantMenuPressed}
+      onPhotoPress={onPhotoPresses}
+      >
 
       </RestaurantCardOwner>
       <Icon

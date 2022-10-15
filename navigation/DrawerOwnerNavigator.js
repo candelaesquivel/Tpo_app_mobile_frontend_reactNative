@@ -1,7 +1,7 @@
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { ROUTES } from '../ui';
-import { OwnerHome, CreateRestaurant, MenuRestaurantOwner} from '../ui/screens';
+import { OwnerHome} from '../ui/screens';
 
 const Drawer = createDrawerNavigator();
 
