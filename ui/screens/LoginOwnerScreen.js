@@ -8,7 +8,7 @@ import { Text } from "@rneui/themed";
 import { InputText } from "../components/InputText";
 import screenNames from "../screenNames";
 
-export function LoginRestaurantOwnerScreen({navigation, props}){
+function LoginOwnerScreen({navigation, props}){
 
     useEffect(() => {
         navigation.setOptions({
@@ -49,3 +49,5 @@ export function LoginRestaurantOwnerScreen({navigation, props}){
         </View>
     )
 }
+
+export default LoginOwnerScreen;

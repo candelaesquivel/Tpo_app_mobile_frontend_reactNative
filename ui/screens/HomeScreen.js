@@ -3,9 +3,9 @@ import { View } from 'react-native';
 import {Logo} from "../components/Logo";
 import { colorPalette } from '../styles/colors';
 import { useEffect } from 'react';
-import screenNames from '../screenNames';
+import { ROUTES } from '..';
 
-export function HomeScreen({navigation, props}){
+function HomeScreen({navigation, props}){
 
     useEffect(() => {
         navigation.setOptions({
@@ -15,12 +15,12 @@ export function HomeScreen({navigation, props}){
 
     const onUserBtnTouch = (e) => {
         console.log("Btn User Touched");
-        navigation.navigate(screenNames.LOGIN_NORMAL_USER)
+        navigation.navigate(ROUTES.LOGIN_NORMAL_USER)
     }
     
     const onRestaurantOwnerTouch = (e) => {
         console.log("Btn Restaurant Owner Touched");
-        navigation.navigate(screenNames.LOGIN_OWNER);
+        navigation.navigate(ROUTES.LOGIN_OWNER);
     }
 
     return (
@@ -35,3 +35,5 @@ export function HomeScreen({navigation, props}){
         </View>
     )
 }
+
+export default HomeScreen;
