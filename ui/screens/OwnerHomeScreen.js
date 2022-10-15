@@ -1,9 +1,15 @@
 import { View } from 'react-native'
 import React  from 'react'
 import { Icon } from "@rneui/themed";
-import RestaurantCardOwner from '../components/restaurantCardOwner';
+import RestaurantCardOwner from '../components/RestaurantCardOwner';
+import { ROUTES } from '..';
 
-function OwnerHomeScreen(props) {
+function OwnerHomeScreen({navigation, props}) {
+
+  const onCreateRestaurantPressed = (event) => {
+    console.log('On Restaurant Create Press');
+    navigation.navigate(ROUTES.CREATE_RESTAURANT_DRAWER)
+  }
 
   return (
     <View style={{alignItems:'center'}}>
@@ -14,6 +20,7 @@ function OwnerHomeScreen(props) {
         size={50}
         name = 'pluscircle'
         type = 'antdesign'
+        onPress={onCreateRestaurantPressed}
       >
       </Icon>
       {/*

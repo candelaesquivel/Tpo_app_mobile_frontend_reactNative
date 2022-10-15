@@ -15,4 +15,7 @@ export default {
     // Owner Routes
     OWNER_HOME : 'OwnerHome',
     OWNER_HOME_DRAWER : 'OwnerHomeDrawer',
+    CREATE_RESTAURANT : 'OwnerCreateRestaurant',
+    CREATE_RESTAURANT_DRAWER : 'OwnerCreateRestaurantDrawer'
+
 };
