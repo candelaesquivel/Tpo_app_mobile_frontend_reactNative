@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { CreateAccountOwner, ForgetPassword, Home, LoginNormalUser, LoginOwner} from "../ui/screens";
+import { CreateAccountOwner, ForgetPassword, Home, LoginNormalUser, LoginOwner, MenuRestaurantOwner} from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
+import StackNavigatorOwner from "./StackNavigatorOwner";
 
 const Stack = createNativeStackNavigator();
 
-function AuthNavigator(props){
+function MainNavigator(props){
     return (
         <Stack.Navigator>
             <Stack.Screen name = {ROUTES.HOME_SCREEN} component = {Home}></Stack.Screen>
@@ -17,8 +18,10 @@ function AuthNavigator(props){
             options={{
               headerShown : false
             }}></Stack.Screen>
+            {/* Owner Screens without Drawer */}
+            <Stack.Screen name = {ROUTES.MENU_RESTAURANT_OWNER_STACK} component = {MenuRestaurantOwner}></Stack.Screen>
         </Stack.Navigator>
     )
 }
 
-export default AuthNavigator;
+export default MainNavigator;

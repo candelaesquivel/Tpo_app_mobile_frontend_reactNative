@@ -13,9 +13,11 @@ export default {
     RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
 
     // Owner Routes
+    OWNER_STACK : 'OwnerStackScreens',
     OWNER_HOME : 'OwnerHome',
     OWNER_HOME_DRAWER : 'OwnerHomeDrawer',
     CREATE_RESTAURANT : 'OwnerCreateRestaurant',
-    CREATE_RESTAURANT_DRAWER : 'OwnerCreateRestaurantDrawer'
+    CREATE_RESTAURANT_DRAWER : 'OwnerCreateRestaurantDrawer',
+    MENU_RESTAURANT_OWNER_STACK : 'MenuRestaurantOwnerStack',
 
 };

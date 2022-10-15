@@ -11,9 +11,14 @@ function OwnerHomeScreen({navigation, props}) {
     navigation.navigate(ROUTES.CREATE_RESTAURANT_DRAWER)
   }
 
+  const onRestaurantMenuPressed = (event) => {
+    console.log("On Restaurant Menu Press");
+    navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
+  }
+
   return (
     <View style={{alignItems:'center'}}>
-      <RestaurantCardOwner>
+      <RestaurantCardOwner onMenuPressed={onRestaurantMenuPressed}>
 
       </RestaurantCardOwner>
       <Icon

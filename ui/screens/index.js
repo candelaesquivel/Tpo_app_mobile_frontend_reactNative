@@ -8,3 +8,4 @@ export {default as ForgetPassword} from './ForgetPasswordScreen';
 
 export {default as OwnerHome} from './OwnerHomeScreen';
 export {default as CreateRestaurant} from './CreateRestaurantScreen';
+export {default as MenuRestaurantOwner} from './MenuRestaurantOwnerScreen';

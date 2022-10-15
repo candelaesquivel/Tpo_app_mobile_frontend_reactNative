@@ -5,14 +5,13 @@ import { Icon } from "@rneui/themed";
 import { colorPalette } from '../styles/colors';
 import MenuCard from '../components/menuCard';
 
-export default function MenuRestaurantOwnerScreen({navigation,props}) {
+function MenuRestaurantOwnerScreen({navigation,props}) {
 
-    useEffect(() => {
-      navigation.setOptions({
-          title : I18n.t('menuRestaurant')
-      })
-  })
-
+  return (
+    <View>
+      <Text>Menu Restaurant</Text>
+    </View>
+  )
 
   return (
     <View style={{alignItems:'center'}}>
@@ -29,3 +28,5 @@ export default function MenuRestaurantOwnerScreen({navigation,props}) {
     </View>
   )
 }
+
+export default MenuRestaurantOwnerScreen;
