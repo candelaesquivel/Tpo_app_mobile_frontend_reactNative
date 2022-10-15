@@ -8,23 +8,21 @@ import MenuCard from '../components/menuCard';
 function MenuRestaurantOwnerScreen({navigation,props}) {
 
   return (
-    <View>
-      <Text>Menu Restaurant</Text>
-    </View>
-  )
-
-  return (
     <View style={{alignItems:'center'}}>
-      
      <Text style={{color: colorPalette.Black , fontSize: 18 ,marginTop :10, fontWeight: 'bold'}}>Category</Text>
-      <MenuCard
+        <MenuCard
             name='camarones'
             price={110}
             discount={110}>
-            </MenuCard>
-           
-            <Icon size={50} color={colorPalette.Black} name='pluscircle' type='antdesign' 
-            containerStyle={{position: 'fixed', bottom: -565, left: 170}}></Icon>
+        </MenuCard>
+
+        <Icon
+          size={50}
+          name = 'pluscircle'
+          type='antdesign'
+        />
+        {/* <Icon size={50} color={colorPalette.Black} name='pluscircle' type='antdesign' 
+        containerStyle={{position: 'fixed', bottom: -565, left: 170}}></Icon> */}
     </View>
   )
 }
