@@ -14,6 +14,8 @@ function RestaurantOwnerProfileScreen({navigation, props}){
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
             <Text h2 h2Style={{color : colorPalette.Orange}}> {"Pantalla de Perfil de Restaurante - Vista Owner"} </Text>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
+            <MyButton title='Guardar PH'></MyButton>
+            <MyButton title='Eliminar PH'></MyButton>
         </View>
     )
 }

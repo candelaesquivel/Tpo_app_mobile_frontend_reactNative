@@ -6,16 +6,16 @@ import I18n from "../../assets/localization/I18n";
 import Images from '../../assets/images/index';
 
 
-export default function MenuCard(props) {
-  const priceDescount =(props.price)* ((100-props.discount)/100)
+export default function MenuCard({name = '', discount = 10, price = 100, onPhotoPress={}, props}) {
+  const priceDescount =(price)* ((100-discount)/100)
   return (
     <View style={{width: '100%'}}>
     <Card>
       <View style={{flexDirection: 'row', justifyContent : 'space-between', marginEnd:30}}>
-      <Images.logo width={100} height={100} ></Images.logo>
+      <Images.logo onPress={onPhotoPress} width={100} height={100} ></Images.logo>
        <View width={200}  style={{justifyContent : 'center'}} >
-         <Text h4 >{props.name}</Text>
-         <Text style={{color: colorPalette.Orange ,textDecorationLine: 'line-through' , fontSize: 18}}> {I18n.t('priceSymbol')}{props.price}</Text>
+         <Text h4 >{name}</Text>
+         <Text style={{color: colorPalette.Orange ,textDecorationLine: 'line-through' , fontSize: 18}}> {I18n.t('priceSymbol')}{price}</Text>
          <View style={{flexDirection: 'row',alignItems: 'center'}}>
             <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> {priceDescount} </Text>
             <Icon  name="local-offer" color={colorPalette.Orange} size={20}></Icon>

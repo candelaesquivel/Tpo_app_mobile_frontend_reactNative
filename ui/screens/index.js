@@ -10,3 +10,5 @@ export {default as OwnerHome} from './OwnerHomeScreen';
 export {default as CreateRestaurant} from './CreateRestaurantScreen';
 export {default as MenuRestaurantOwner} from './MenuRestaurantOwnerScreen';
 export {default as OwnerRestaurantProfile} from './RestaurantProfileOwner';
+export {default as AddDish} from './AddDishScreen';
+export {default as ModifyDish} from './DishModifyScreen';

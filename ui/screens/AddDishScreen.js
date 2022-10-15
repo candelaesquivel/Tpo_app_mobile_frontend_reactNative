@@ -1,6 +1,5 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { NavBar } from '../components/navBar'
 import { Icon, Switch } from '@rneui/base'
 import { colorPalette } from '../styles/colors'
 import I18n from "../../assets/localization/I18n";
@@ -8,38 +7,33 @@ import { InputText } from '../components/InputText'
 import { MyButton } from '../components/button'
 
 
-export default function AddDishScreen() {
+function AddDishScreen() {
   return (
     <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
-            <NavBar
-                centerText = 'Agregar plato'
-                leftIcon = 'arrow-back'
-            ></NavBar>
-            <View style={{width:'85%', alignItems:'flex-start'}}>
+        <View style={{width:'85%', alignItems:'flex-start'}}>
+          <Text
+          style={{ fontSize: 20, color: colorPalette.Black}}
+          >
+              {I18n.t('name')}    
+          </Text>
+          <InputText color={colorPalette.White}></InputText>
 
             <Text
-            style={{ fontSize:'20', color: colorPalette.Black}}
-            >
-               {I18n.t('name')}    
-            </Text>
-            <InputText color={colorPalette.White}></InputText>
-
-            <Text
-            style={{ fontSize:'20', color: colorPalette.Black}}
+            style={{ fontSize: 20, color: colorPalette.Black}}
             >
                {I18n.t('price')}    
             </Text>
             <InputText color={colorPalette.White}></InputText>
 
             <Text
-            style={{ fontSize:'20', color: colorPalette.Black}}
+            style={{ fontSize: 20, color: colorPalette.Black}}
             >
                {I18n.t('ingredients')}    
             </Text>
             <InputText color={colorPalette.White}></InputText>
 
             <Text
-            style={{ fontSize:'20', color: colorPalette.Black}}
+            style={{ fontSize: 20, color: colorPalette.Black}}
             >
                {I18n.t('discount')}    
             </Text>
@@ -47,7 +41,7 @@ export default function AddDishScreen() {
 
              <View style={{flexDirection:'row' }}>
             <Text
-            style={{ fontSize:'20', color: colorPalette.Black, width:'45%'}}
+            style={{ fontSize: 20, color: colorPalette.Black, width:'45%'}}
             >
                {I18n.t('vegan')}    
             </Text>
@@ -57,7 +51,7 @@ export default function AddDishScreen() {
             <View style={{height:'3%'}}></View>
             <View style={{flexDirection:'row' }}>
             <Text
-                    style={{fontSize:'20', color: colorPalette.Black, width:'45%'}}
+                    style={{fontSize: 20, color: colorPalette.Black, width:'45%'}}
                     >
                     {I18n.t('celiac')}    
                     </Text>
@@ -66,7 +60,7 @@ export default function AddDishScreen() {
             <View style={{height:'3%'}}></View>  
             <View style={{flexDirection:'row' }}>
             <Text
-                    style={{fontSize:'20', color: colorPalette.Black, width:'45%'}}
+                    style={{fontSize: 20, color: colorPalette.Black, width:'45%'}}
                     >
                     {I18n.t('addPicture')}    
                     </Text>
@@ -74,7 +68,7 @@ export default function AddDishScreen() {
             </View>
 
             <Text
-            style={{ fontSize:'20', color: colorPalette.Black}}
+            style={{ fontSize: 20, color: colorPalette.Black}}
             >
                {I18n.t('category')}    
             </Text>
@@ -92,12 +86,9 @@ export default function AddDishScreen() {
             ></MyButton>
 
             </View>
-            
-            
-
-
-
             </View>
     </View>
   )
 }
+
+export default AddDishScreen;

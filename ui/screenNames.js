@@ -21,5 +21,7 @@ export default {
     MENU_RESTAURANT_OWNER_STACK : 'MenuRestaurantOwnerStack',
     CREATE_RESTAURANT_STACK : 'OwnerCreateRestaurantStack',
     RESTAURANT_OWNER_PROFILE_STACK : 'OwnerRestaurantProfileStack',
+    ADD_DISH_STACK : 'AddDishToMenuStack',
+    DISH_DETAILS_OWNER_STACK : 'DishModifyStack',
 
 };
