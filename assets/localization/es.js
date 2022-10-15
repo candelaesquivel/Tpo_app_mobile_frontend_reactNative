@@ -39,6 +39,6 @@ export  default{
     $$$$ : '$$$$',
    	profileUser : 'Perfil del usuario',
     restaurantUserView : 'Info. del Restaurante',
-
-
+    logout : 'Cerrar Sesión',
+    deleteAccount : 'Eliminar Cuenta'
 };

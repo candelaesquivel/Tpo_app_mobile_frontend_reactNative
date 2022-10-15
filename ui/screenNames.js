@@ -23,5 +23,6 @@ export default {
     RESTAURANT_OWNER_PROFILE_STACK : 'OwnerRestaurantProfileStack',
     ADD_DISH_STACK : 'AddDishToMenuStack',
     DISH_DETAILS_OWNER_STACK : 'DishModifyStack',
+    DELETE_ACCOUNT_OWNER_STACK : 'DeleteAccountOwnerStack'
 
 };

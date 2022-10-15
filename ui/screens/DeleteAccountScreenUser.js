@@ -8,7 +8,7 @@ import { InputText } from "../components/InputText";
 import I18n from "../../assets/localization/I18n";
 import { useEffect } from "react";
 
-export function DeleteAccountScreenUser({navigation, props}){
+function DeleteAccountScreenUser({navigation, props}){
 
     useEffect( () => {
         navigation.setOptions({
@@ -49,3 +49,5 @@ export function DeleteAccountScreenUser({navigation, props}){
         </View>
     )
 }
+
+export default DeleteAccountScreenUser;
