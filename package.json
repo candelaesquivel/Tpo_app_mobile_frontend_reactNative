@@ -11,6 +11,7 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
+    "@expo/ngrok": "^4.1.0",
     "@react-native-community/datetimepicker": "6.2.0",
     "@react-navigation/drawer": "^6.5.0",
     "@react-navigation/native": "^6.0.13",
