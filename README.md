@@ -9,4 +9,12 @@ Run in command line the following commands
     1. For IOS : [Expo Go](https://apps.apple.com/us/app/expo-go/id982107779)
     2. Android: [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent)
 
+## Dev only instructions:
+
+### To run the linter
+
+```bash
+npm run lint
+```
+
 Enjoy your app
