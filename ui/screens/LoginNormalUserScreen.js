@@ -5,6 +5,7 @@ import { Text } from "@rneui/themed";
 import { MyButton } from "../components/button";
 import I18n from '../../assets/localization/I18n'
 import { useEffect } from "react";
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 function LoginUserScreen({navigation, props}){
 
@@ -21,7 +22,13 @@ function LoginUserScreen({navigation, props}){
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
             <Text h2 h2Style={{color : colorPalette.Orange}}> {I18n.t('logIn')} </Text>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
-            <MyButton title = 'Placeholder Google Sign In'></MyButton>
+            <GoogleSigninButton
+            style={{ width: 192, height: 48 }}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={this._signIn}
+            disabled={this.state.isSigninInProgress}
+            />;
         </View>
     )
 }
