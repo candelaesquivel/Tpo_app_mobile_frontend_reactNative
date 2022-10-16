@@ -7,6 +7,7 @@ import I18n from '../../assets/localization/I18n'
 import { useEffect } from "react";
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
+
 function LoginUserScreen({navigation, props}){
 
     useEffect(() => {
@@ -23,12 +24,11 @@ function LoginUserScreen({navigation, props}){
             <Text h2 h2Style={{color : colorPalette.Orange}}> {I18n.t('logIn')} </Text>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
             <GoogleSigninButton
-            style={{ width: 192, height: 48 }}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={this._signIn}
-            disabled={this.state.isSigninInProgress}
-            />;
+                style={{ width: 192, height: 48 }}
+                size={GoogleSigninButton.Size.Wide}
+                color={GoogleSigninButton.Color.Dark}
+                onPress={this._signIn}
+            />
         </View>
     )
 }
