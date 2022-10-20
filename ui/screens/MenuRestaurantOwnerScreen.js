@@ -1,10 +1,12 @@
-import { View, Text } from 'react-native'
+import { View, Text , FlatList} from 'react-native'
 import React, { useEffect } from 'react'
 import I18n from "../../assets/localization/I18n";
 import { Icon } from "@rneui/themed";
 import { colorPalette } from '../styles/colors';
 import MenuCard from '../components/menuCard';
 import { ROUTES } from '..';
+import { FAB } from 'react-native-elements';
+import { colors } from 'react-native-swiper-flatlist/src/themes';
 
 function MenuRestaurantOwnerScreen({navigation,props}) {
 
@@ -18,24 +20,84 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
     navigation.navigate(ROUTES.DISH_DETAILS_OWNER_STACK);
   }
 
-  return (
-    <View style={{alignItems:'center'}}>
-     <Text style={{color: colorPalette.Black , fontSize: 18 ,marginTop :10, fontWeight: 'bold'}}>Category</Text>
-        <MenuCard
-            onPhotoPress={onDishPhotoPress}
-            name='camarones'
-            price={110}
-            discount={110}>
+  const renderItem = ({ item }) => (
+    <View >
+    <Text style={{color: colorPalette.Black , fontSize: 18 ,marginTop :10, fontWeight: 'bold'}}>{item.category}</Text>
+         <MenuCard
+            onPhotoPress={item.onDishPhotoPress}
+            name={item.name}
+            price={item.price}
+            discount={item.discount}>
         </MenuCard>
 
-        <Icon
+    </View>
+    ); 
+
+   const MENU = [
+    {
+    name : 'Camarones',
+    category : 'Promocion',
+    price : 4000,
+    discount : 10,
+    onPhotoPress : false,
+    onCreateDishPress : false,
+
+    },
+    {
+      name : 'Camarones',
+      category : 'Promocion',
+      price : 4000,
+      discount : 10,
+      onPhotoPress : false,
+      onCreateDishPress : false,
+  
+      },
+      {
+        name : 'Camarones',
+        category : 'Promocion',
+        price : 4000,
+        discount : 10,
+        onPhotoPress : false,
+        onCreateDishPress : false,
+    
+        },
+        {
+          name : 'Camarones',
+          category : 'Promocion',
+          price : 4000,
+          discount : 10,
+          onPhotoPress : false,
+          onCreateDishPress : false,
+      
+          },
+    
+   ];
+
+  return (
+
+    <View style={{alignItems:'center'}}>
+          <Icon
           size={50}
           name = 'pluscircle'
           type='antdesign'
           onPress={onCreateDishPress}
+          containerStyle={{        
+           left : '40%',
+           bottom: 0,
+           }}
         />
+         <FlatList
+              data={MENU}
+              renderItem={renderItem}
+              keyExtractor ={item => item.name}
+              /> 
+
+      
+      
         {/* <Icon size={50} color={colorPalette.Black} name='pluscircle' type='antdesign' 
         containerStyle={{position: 'fixed', bottom: -565, left: 170}}></Icon> */}
+
+    
     </View>
   )
 }
