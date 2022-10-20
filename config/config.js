@@ -17,6 +17,9 @@ const URL_SERVICES = {
   FAVORITE_RESTAURANTS_NORMAL_USER : USER_ROUTE + 'favorites',
   RESTAURANTS_OWNER : USER_ROUTE + 'restaurants',
 
+  // Restaurants
+  RESTAURANTS_LIST : USER_ROUTE + '/',
+
   // Status Server check
   HEALTH_CHECK : URL_API + 'health',
 }
