@@ -82,29 +82,9 @@ function RestaurantsUserScreen({navigation , props}) {
               />
 
       
-      {/* <RestaurantCardUser
-            name='Rodizio'
-            address='honduras 50000'
-            score={10}
-            favorite={isFavorite}
-            onFavoriteTouched = {onFavoriteTouched}
-            onRestaurantNameTouched={onRestaurantNameTouched}
-
-            ></RestaurantCardUser> */}
 
       
-     {/* {
-       resto.map((restaurant,i) => (
-
-            <restaurantCardUser
-            name={restaurant.name}
-            address={restaurant.address}
-            score={restaurant.score}
-            favorite={restaurant.favorite}
-
-            ></restaurantCardUser>
-
-        ))
+     {/*
 
       crtl+k+c} */}
   
