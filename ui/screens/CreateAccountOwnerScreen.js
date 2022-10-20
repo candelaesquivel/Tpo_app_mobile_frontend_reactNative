@@ -1,5 +1,5 @@
 import { color, Icon } from "@rneui/base"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import I18n from "../../assets/localization/I18n"
 import { View } from "react-native"
 import { colorPalette } from "../styles/colors"
@@ -7,8 +7,18 @@ import { MyButton } from "../components/button"
 import { TextInput } from "react-native"
 import { Input } from "@rneui/themed"
 import { InputText } from "../components/InputText"
+import createAccountOwner from "../../networking/createAccount"
 
 export function CreateAccountOwnerScreen({navigation, props}) {
+
+    const [email, setEmail] = useState('tplaza15@gmail.com');
+    const [password, setPassword] = useState('1234');
+    const [repeatPassword, setRepeatPassword] = useState('');
+
+    const onRegisterPress = async (e) => {
+      const result = await createAccountOwner({email, password});
+      console.log("Result Register: ", result);
+    }
 
     useEffect(() => {
         navigation.setOptions({title : I18n.t('createAccount')})
@@ -29,7 +39,7 @@ export function CreateAccountOwnerScreen({navigation, props}) {
 
             </View>
             <View style={{width : '100%', height : '5%', backgroundColor : colorPalette.White}}></View>
-            <MyButton title = {I18n.t('createAccount')}></MyButton>
+            <MyButton title = {I18n.t('createAccount')} onPress = {onRegisterPress}></MyButton>
         </View>
     )
 
