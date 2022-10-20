@@ -1,10 +1,58 @@
-import { View } from 'react-native'
+import { View , FlatList } from 'react-native'
 import React  from 'react'
 import { Icon } from "@rneui/themed";
 import RestaurantCardOwner from '../components/RestaurantCardOwner';
+import MySearchBar from '../components/MySearchBar';
 import { ROUTES } from '..';
 
 function OwnerHomeScreen({navigation, props}) {
+
+  const renderItem = ({ item }) => (
+    <View >
+    <RestaurantCardOwner 
+      name ={item.name}
+      address = {item.address}
+      score = {item.score}
+      onMenuPressed={onRestaurantMenuPressed}
+      onPhotoPress={onPhotoPresses}
+      >
+      </RestaurantCardOwner>
+    </View>
+    ); 
+
+    const RESTAURANTS_OWNER = [
+      {
+      name : 'Rodizio' ,
+      address : 'Honduras 5000',
+      score : 5 ,
+      onMenuPressed : true ,
+      onPhotoPress:false,
+      },
+      {
+        name : 'Rodizio' ,
+        address : 'Honduras 5000',
+        score : 5 ,
+        onMenuPressed : true ,
+        onPhotoPress:false,
+        },
+        {
+          name : 'Rodizio' ,
+          address : 'Honduras 5000',
+          score : 5 ,
+          onMenuPressed : true ,
+          onPhotoPress:false,
+          },
+          {
+            name : 'Rodizio' ,
+            address : 'Honduras 5000',
+            score : 5 ,
+            onMenuPressed : true ,
+            onPhotoPress:false,
+            },
+     
+     ];
+
+
 
   const onCreateRestaurantPressed = (event) => {
     console.log('On Restaurant Create Press');
@@ -23,11 +71,7 @@ function OwnerHomeScreen({navigation, props}) {
 
   return (
     <View style={{alignItems:'center'}}>
-      <RestaurantCardOwner onMenuPressed={onRestaurantMenuPressed}
-      onPhotoPress={onPhotoPresses}
-      >
-
-      </RestaurantCardOwner>
+       <MySearchBar ></MySearchBar>
       <Icon
         size={50}
         name = 'pluscircle'
@@ -35,15 +79,15 @@ function OwnerHomeScreen({navigation, props}) {
         onPress={onCreateRestaurantPressed}
       >
       </Icon>
-      {/*
-        Tira error en el drawer
-        <RestaurantCardOwner
-                    name='Rodizio'
-                    address='honduras 50000'
-                    score={10}
 
-                    ></RestaurantCardOwner>
-            <Icon size={50} color={colorPalette.Black} name='pluscircle' type='antdesign' containerStyle={{position: 'fixed', bottom: -600, left: 170}}></Icon> */}
+     
+
+      <FlatList
+          data={RESTAURANTS_OWNER}
+          renderItem={renderItem}
+          keyExtractor ={item => item.name}
+          />
+ 
     </View>
   )
 }
