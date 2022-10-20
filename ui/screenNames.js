@@ -9,7 +9,7 @@ export default {
     CREATE_ACCOUNT_OWNER : 'CreateAccountOwner',
     FILTER : 'FilterScreen',
     FORGET_PASSWORD : 'RecoveryPasswordScreen',
-    HOME_NORMAL_USER_SCREEN  : 'NormalUserScreenHome',
+   
     RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
 
     // Owner Routes
@@ -23,6 +23,9 @@ export default {
     RESTAURANT_OWNER_PROFILE_STACK : 'OwnerRestaurantProfileStack',
     ADD_DISH_STACK : 'AddDishToMenuStack',
     DISH_DETAILS_OWNER_STACK : 'DishModifyStack',
-    DELETE_ACCOUNT_OWNER_STACK : 'DeleteAccountOwnerStack'
+    DELETE_ACCOUNT_OWNER_STACK : 'DeleteAccountOwnerStack',
+    // User Routes
+    HOME_NORMAL_USER_SCREEN  : 'NormalUserScreenHome',
+
 
 };

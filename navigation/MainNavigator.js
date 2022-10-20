@@ -3,6 +3,7 @@ import { AddDish, CreateAccountOwner, CreateRestaurant, DeleteAccountOwner, Forg
 import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
+import { HomeNormalUser } from "../ui/screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ function MainNavigator(props){
             <Stack.Screen name = {ROUTES.ADD_DISH_STACK} component = {AddDish}></Stack.Screen>
             <Stack.Screen name = {ROUTES.DISH_DETAILS_OWNER_STACK} component = {ModifyDish}></Stack.Screen>
             <Stack.Screen name = {ROUTES.DELETE_ACCOUNT_OWNER_STACK} component = {DeleteAccountOwner}></Stack.Screen>
+            <Stack.Screen name = {ROUTES.HOME_NORMAL_USER_SCREEN} component = {HomeNormalUser}></Stack.Screen>
         </Stack.Navigator>
     )
 }
