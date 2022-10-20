@@ -9,7 +9,7 @@ import { Input } from '@rneui/base';
 export default function MySearchBar() {
 
   return (
-    <View style={{alignItems : 'center' , width: '100%' , marginTop: 30}}>
+    <View style={{alignItems : 'center' , width: '100%' , marginTop: 20}}>
 
       <Input
         leftIcon={<Icon name = 'search' color={colorPalette.White}></Icon>}
