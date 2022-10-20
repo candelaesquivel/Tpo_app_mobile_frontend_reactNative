@@ -1,8 +1,8 @@
 const URL_API = "http://10.0.2.2:8080/api/v1/";
 console.log("url",URL_API);
 
-const RESTAURANT_ROUTE = URL_API + '/restaurants/';
-const USER_ROUTE = URL_API + '/users/'
+const RESTAURANT_ROUTE = URL_API + 'restaurants/';
+const USER_ROUTE = URL_API + 'users/'
 
 const URL_SERVICES = {
   // AUTH
@@ -18,7 +18,7 @@ const URL_SERVICES = {
   RESTAURANTS_OWNER : USER_ROUTE + 'restaurants',
 
   // Restaurants
-  RESTAURANTS_LIST : USER_ROUTE + '/',
+  RESTAURANTS_LIST : RESTAURANT_ROUTE + '',
 
   // Status Server check
   HEALTH_CHECK : URL_API + 'health',

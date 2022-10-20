@@ -5,7 +5,7 @@ import { Text } from "@rneui/themed";
 import I18n from '../../assets/localization/I18n'
 import { useEffect } from "react";
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
-
+import { ROUTES } from "..";
 
 function LoginUserScreen({navigation, props}){
         
@@ -86,6 +86,11 @@ function LoginUserScreen({navigation, props}){
         })
     })
 
+    const onGoogleSignInPress = (e) => {
+      console.log("On Google Sign In Press");
+      navigation.navigate(ROUTES.HOME_NORMAL_USER_SCREEN);
+    }
+
     return (
         <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
@@ -97,7 +102,7 @@ function LoginUserScreen({navigation, props}){
                 style={{ width: 312, height: 48 }}
                 size={GoogleSigninButton.Size.Wide}
                 color={GoogleSigninButton.Color.Light}
-                onPress={this._signIn}
+                onPress={onGoogleSignInPress}
             />
         </View>
     )

@@ -1,60 +1,52 @@
-import { View, Text  , FlatList, ScrollView } from 'react-native'
+import { View, FlatList, ScrollView } from 'react-native'
 import React, { useEffect } from 'react'
 import MySearchBar from '../components/MySearchBar'
 import RestaurantCardUser from '../components/restaurantCardUser'
 import screenNames from '../screenNames'
-import { useState } from 'react'
+import { useState } from 'react';
+import { Button } from '@rneui/themed'
+import getRestaurants from '../../networking/getRestaurants';
+
 
 function RestaurantsUserScreen({navigation , props}) {
- 
-    const renderItem = ({ item }) => (
-      <View >
+  
+  const [restaurants, setRestaurants] = useState([]);
+  const [triggerSearch, setTrigggerSearch] = useState(false);
+
+  const renderItem = ({ item }) => (
+    <View >
       <RestaurantCardUser
-            name={item.name}
-            address={item.address}
-            score={item.score}
-            favorite={item.favorite}
-            onFavoriteTouched = {item.onFavoriteTouched}
-            onRestaurantNameTouched={item.onRestaurantNameTouched}
+          name={item.name}
+          address={item.address}
+          score={item.score}
+          favorite={item.favorite}
+          onFavoriteTouched = {item.onFavoriteTouched}
+          onRestaurantNameTouched={item.onRestaurantNameTouched}
+        ></RestaurantCardUser>
+    </View>
+  ); 
 
-            ></RestaurantCardUser>
-      </View>
-      ); 
+  const [isFavorite, setFavorite] = useState(true);
 
-     const RESTAURANTS = [
-      {
-      name : 'Rodizio' ,
-      address : 'Honduras 5000',
-      score : 5 ,
-      favorite : true ,
-      onFavoriteTouched : true ,
-      onRestaurantNameTouched :false,
-      },
-      {
-        name : 'Le Pain' ,
-        address : 'Av Belgrano 400',
-        score : 2 ,
-        favorite : true ,
-        onFavoriteTouched : false ,
-        onRestaurantNameTouched :false,
-        },
-        {
-          name : 'Marcelo' ,
-          address : 'Peru 768',
-          score : 1 ,
-          favorite : true ,
-          onFavoriteTouched : true ,
-          onRestaurantNameTouched :false,
-          },
-     ];
+  const fillRestaurantList = async () => {
+    const rests = await getRestaurants({});
+    setRestaurants(rests);
+    console.log("Restaurantas Info: ", rests);
+  }
 
-    const [isFavorite, setFavorite] = useState(true);
+  useEffect(() => {
 
-    useEffect(() => {
-        navigation.setOptions({
-            title : 'props.addressUser'
-        })
-    })
+    if (!triggerSearch)
+    {
+      fillRestaurantList();
+      setTrigggerSearch(true);
+
+      navigation.setOptions({
+        title : ''
+      })
+    }
+
+  }, [restaurants, triggerSearch])
 
   const onRestaurantNameTouched = (event) => {
     console.log('On Restaurant Name Touched');
@@ -67,33 +59,17 @@ function RestaurantsUserScreen({navigation , props}) {
   }
 
   return (
-    <ScrollView
-    stickyHeaderIndices={[0]}
-    
-    >
-   
-  
-        <MySearchBar ></MySearchBar>
-
-          <FlatList
-              data={RESTAURANTS}
-              renderItem={renderItem}
-              keyExtractor ={item => item.name}
-              />
-
-      
-
-      
-     {/*
-
-      crtl+k+c} */}
-  
-    
-    </ScrollView>
-    
+    <View>
+      <MySearchBar></MySearchBar>
+      <View>
+      <FlatList
+          data={restaurants}
+          renderItem={renderItem}
+          keyExtractor ={item => item.name}
+       ></FlatList>
+      </View>
+    </View>
   )
-
- 
 }
 
 export default RestaurantsUserScreen;
