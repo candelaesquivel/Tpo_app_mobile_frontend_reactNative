@@ -9,7 +9,7 @@ import getRestaurants from '../../networking/getRestaurants';
 import I18n from '../../assets/localization/I18n'
 
 
-function RestaurantsUserScreen({navigation , props}) {
+function UserFavoritesRestaurantsScreen({navigation , props}) {
   
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
@@ -35,15 +35,19 @@ function RestaurantsUserScreen({navigation , props}) {
   }
 
   useEffect(() => {
-
     navigation.setOptions({
-      title : I18n.t('home'),
+      title : I18n.t('favorites')
     })
+  })
+
+  useEffect(() => {
 
     if (!triggerSearch)
     {
       fillRestaurantList();
       setTrigggerSearch(true);
+
+      
     }
 
   }, [restaurants, triggerSearch])
@@ -72,4 +76,4 @@ function RestaurantsUserScreen({navigation , props}) {
   )
 }
 
-export default RestaurantsUserScreen;
+export default UserFavoritesRestaurantsScreen;
