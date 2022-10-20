@@ -1,12 +1,52 @@
-import { View, Text } from 'react-native'
+import { View, Text  , FlatList, ScrollView } from 'react-native'
 import React, { useEffect } from 'react'
 import MySearchBar from '../components/MySearchBar'
 import RestaurantCardUser from '../components/restaurantCardUser'
 import screenNames from '../screenNames'
 import { useState } from 'react'
 
-export function RestaurantsUserScreen({navigation , props}) {
-    const resto =[]
+function RestaurantsUserScreen({navigation , props}) {
+ 
+    const renderItem = ({ item }) => (
+      <View >
+      <RestaurantCardUser
+            name={item.name}
+            address={item.address}
+            score={item.score}
+            favorite={item.favorite}
+            onFavoriteTouched = {item.onFavoriteTouched}
+            onRestaurantNameTouched={item.onRestaurantNameTouched}
+
+            ></RestaurantCardUser>
+      </View>
+      ); 
+
+     const RESTAURANTS = [
+      {
+      name : 'Rodizio' ,
+      address : 'Honduras 5000',
+      score : 5 ,
+      favorite : true ,
+      onFavoriteTouched : true ,
+      onRestaurantNameTouched :false,
+      },
+      {
+        name : 'Le Pain' ,
+        address : 'Av Belgrano 400',
+        score : 2 ,
+        favorite : true ,
+        onFavoriteTouched : false ,
+        onRestaurantNameTouched :false,
+        },
+        {
+          name : 'Marcelo' ,
+          address : 'Peru 768',
+          score : 1 ,
+          favorite : true ,
+          onFavoriteTouched : true ,
+          onRestaurantNameTouched :false,
+          },
+     ];
 
     const [isFavorite, setFavorite] = useState(true);
 
@@ -27,11 +67,22 @@ export function RestaurantsUserScreen({navigation , props}) {
   }
 
   return (
+    <ScrollView
+    stickyHeaderIndices={[0]}
+    
+    >
+   
+  
+        <MySearchBar ></MySearchBar>
 
-    <View style={{alignItems:'center'}}>
-      <MySearchBar></MySearchBar>
+          <FlatList
+              data={RESTAURANTS}
+              renderItem={renderItem}
+              keyExtractor ={item => item.name}
+              />
+
       
-      <RestaurantCardUser
+      {/* <RestaurantCardUser
             name='Rodizio'
             address='honduras 50000'
             score={10}
@@ -39,7 +90,7 @@ export function RestaurantsUserScreen({navigation , props}) {
             onFavoriteTouched = {onFavoriteTouched}
             onRestaurantNameTouched={onRestaurantNameTouched}
 
-            ></RestaurantCardUser>
+            ></RestaurantCardUser> */}
 
       
      {/* {
@@ -57,6 +108,12 @@ export function RestaurantsUserScreen({navigation , props}) {
 
       crtl+k+c} */}
   
-    </View>
+    
+    </ScrollView>
+    
   )
+
+ 
 }
+
+export default RestaurantsUserScreen;
