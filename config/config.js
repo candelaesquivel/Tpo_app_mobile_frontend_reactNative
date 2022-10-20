@@ -7,6 +7,7 @@ const USER_ROUTE = URL_API + 'users/'
 const URL_SERVICES = {
   // AUTH
   REGISTER_OWNER : USER_ROUTE + 'register',
+  BOUND_GOOGLE_DATA : USER_ROUTE + 'register',
   LOGIN : USER_ROUTE + 'login',
   LOGOUT : USER_ROUTE + 'logout',
   RECOVER_PASSWORD : USER_ROUTE + 'recoverPassword',

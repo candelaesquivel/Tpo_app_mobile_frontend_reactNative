@@ -3,12 +3,14 @@ import { Logo } from "../components/Logo";
 import { colorPalette } from "../styles/colors";
 import { Text } from "@rneui/themed";
 import I18n from '../../assets/localization/I18n'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
 import { ROUTES } from "..";
+import boundGoogleData from "../../networking/boundGoogleData";
 
 function LoginUserScreen({navigation, props}){
-        
+  
+    const [userInfo, setUserInfo] = useState({});
 
     GoogleSignin.configure({
         androidClientId: '721847506667-mg9d8oci85eocn8aelu7n33ijfpvccbk.apps.googleusercontent.com',
@@ -18,7 +20,9 @@ function LoginUserScreen({navigation, props}){
 
       _isSignedIn = async () => {
         const isSignedIn = await GoogleSignin.isSignedIn();
-        this.setState({ isLoginScreenPresented: !isSignedIn });
+
+        if (isSignedIn)
+          navigation.navigate(ROUTES.HOME_NORMAL_USER_SCREEN);
       };
 
       _signIn = async () => {
@@ -31,7 +35,16 @@ function LoginUserScreen({navigation, props}){
           });
           const info = await GoogleSignin.signIn();
           console.log('User Info --> ', info);
-          this.setState({ info });
+
+          let userData = {
+            email : info.user.email, 
+            name : info.user.name, 
+            id : info.user.id, 
+            photo : info.user.photo
+          }
+
+          boundGoogleData(info.user.email, info.user.name, info.user.id, info.user.photo);
+          setUserInfo(userData);
         } catch (error) {
           console.log('Message', error.message);
           if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -102,7 +115,7 @@ function LoginUserScreen({navigation, props}){
                 style={{ width: 312, height: 48 }}
                 size={GoogleSigninButton.Size.Wide}
                 color={GoogleSigninButton.Color.Light}
-                onPress={onGoogleSignInPress}
+                onPress={_signIn}
             />
         </View>
     )
