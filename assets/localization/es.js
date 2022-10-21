@@ -8,7 +8,8 @@ export  default{
     messageEmailSent : ' Se ha enviado a el email las instrucciones de recuperación',
     logIn :'Iniciar sesión',
     calification : 'Calificación :',
-    comment : 'Comentario (opcional)',
+    comment : 'Comentario',
+    comments : 'Comentarios',
     name : 'Nombre :',
     price : 'Precio :',
     ingredients: 'Ingredientes :',
@@ -42,5 +43,7 @@ export  default{
    	profileUser : 'Perfil del usuario',
     restaurantUserView : 'Info. del Restaurante',
     logout : 'Cerrar Sesión',
-    deleteAccount : 'Eliminar Cuenta'
+    deleteAccount : 'Eliminar Cuenta',
+    address : 'Dirección',
+    map : 'Mapa'
 };

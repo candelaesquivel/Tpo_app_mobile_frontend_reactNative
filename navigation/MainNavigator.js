@@ -1,9 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AddDish, CreateAccountOwner, CreateRestaurant, DeleteAccountOwner, ForgetPassword, Home, LoginNormalUser, LoginOwner, MenuRestaurantOwner, ModifyDish} from "../ui/screens";
+import { AddDish, CreateAccountOwner, CreateRestaurant, 
+        DeleteAccountOwner, ForgetPassword, Home, LoginNormalUser, LoginOwner, MenuRestaurantOwner,
+        ModifyDish , ProfileUserRestaurant } from "../ui/screens";
 import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
 import DrawerUserNavigator from "./DrawerUserNavigator";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +37,7 @@ function MainNavigator(props){
             <Stack.Screen name = {ROUTES.DELETE_ACCOUNT_OWNER_STACK} component = {DeleteAccountOwner}></Stack.Screen>
 
 
+            <Stack.Screen name = {ROUTES.PROFILE_RESTAURANT_USER} component = {ProfileUserRestaurant}></Stack.Screen>
         </Stack.Navigator>
     )
 }

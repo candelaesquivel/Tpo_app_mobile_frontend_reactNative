@@ -26,6 +26,10 @@ export default {
     DELETE_ACCOUNT_OWNER_STACK : 'DeleteAccountOwnerStack',
 
     // User Routes
+    HOME_NORMAL_USER_SCREEN  : 'NormalUserScreenHome',
+    PROFILE_RESTAURANT_USER : 'ProfileUserRestaurantScreen',
+
+
     HOME_NORMAL_USER  : 'NormalUserScreenHome',
     HOME_NORMAL_USER_DRAWER : 'NormalUserScreenHomeDrawer',
     FAVORITE_RESTAURANTS_DRAWER : 'FavoriteUserRestaurantsScreenDrawer',
