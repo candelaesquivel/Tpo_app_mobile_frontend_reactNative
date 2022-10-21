@@ -1,12 +1,9 @@
 import { View, Text , FlatList} from 'react-native'
 import React, { useEffect } from 'react'
-import I18n from "../../assets/localization/I18n";
 import { Icon } from "@rneui/themed";
 import { colorPalette } from '../styles/colors';
 import MenuCard from '../components/menuCard';
 import { ROUTES } from '..';
-import { FAB } from 'react-native-elements';
-import { colors } from 'react-native-swiper-flatlist/src/themes';
 
 function MenuRestaurantOwnerScreen({navigation,props}) {
 
