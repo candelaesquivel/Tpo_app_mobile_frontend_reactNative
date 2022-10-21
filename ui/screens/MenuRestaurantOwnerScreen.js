@@ -86,11 +86,11 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
            bottom: 0,
            }}
         />
-         <FlatList
-              data={MENU}
-              renderItem={renderItem}
-              keyExtractor ={item => item.name}
-              /> 
+         <Comment
+         userName='hola'
+         Comment='ajkdnsbuqfbcjkedbfjeidbcfedsbjcfedbs'
+         >
+         </Comment>
 
       
       

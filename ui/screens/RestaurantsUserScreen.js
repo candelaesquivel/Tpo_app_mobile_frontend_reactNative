@@ -4,7 +4,7 @@ import MySearchBar from '../components/MySearchBar'
 import RestaurantCardUser from '../components/restaurantCardUser'
 import screenNames from '../screenNames'
 import { useState } from 'react'
-
+import { ROUTES } from '..'
 function RestaurantsUserScreen({navigation , props}) {
  
     const renderItem = ({ item }) => (
@@ -14,8 +14,9 @@ function RestaurantsUserScreen({navigation , props}) {
             address={item.address}
             score={item.score}
             favorite={item.favorite}
-            onFavoriteTouched = {item.onFavoriteTouched}
-            onRestaurantNameTouched={item.onRestaurantNameTouched}
+            onFavoriteTouched = {onFavoriteTouched}
+            onRestaurantNameTouched={onRestaurantNameTouched}
+            onPhotoPress={onPhotooPresses}
 
             ></RestaurantCardUser>
       </View>
@@ -29,6 +30,7 @@ function RestaurantsUserScreen({navigation , props}) {
       favorite : true ,
       onFavoriteTouched : true ,
       onRestaurantNameTouched :false,
+      onPhotoPress : true,
       },
       {
         name : 'Le Pain' ,
@@ -37,6 +39,7 @@ function RestaurantsUserScreen({navigation , props}) {
         favorite : true ,
         onFavoriteTouched : false ,
         onRestaurantNameTouched :false,
+        onPhotoPress : true,
         },
         {
           name : 'Marcelo' ,
@@ -45,10 +48,12 @@ function RestaurantsUserScreen({navigation , props}) {
           favorite : true ,
           onFavoriteTouched : true ,
           onRestaurantNameTouched :false,
+          onPhotoPress : true,
           },
      ];
 
     const [isFavorite, setFavorite] = useState(true);
+    const [isPhotoPress, setIsPhotoPress] = useState(false);
 
     useEffect(() => {
         navigation.setOptions({
@@ -66,13 +71,12 @@ function RestaurantsUserScreen({navigation , props}) {
     setFavorite(!isFavorite);
   }
 
+  const onPhotooPresses = (event) => {
+    navigation.navigate(ROUTES.PROFILE_RESTAURANT_USER);
+  }
+
   return (
-    <ScrollView
-    stickyHeaderIndices={[0]}
-    
-    >
-   
-  
+  <View >  
         <MySearchBar ></MySearchBar>
 
           <FlatList
@@ -80,20 +84,17 @@ function RestaurantsUserScreen({navigation , props}) {
               renderItem={renderItem}
               keyExtractor ={item => item.name}
               />
-
-      
-
       
      {/*
 
       crtl+k+c} */}
   
     
-    </ScrollView>
+    </View>
     
   )
 
- 
-}
+
+    }
 
 export default RestaurantsUserScreen;
