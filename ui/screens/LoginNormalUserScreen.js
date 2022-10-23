@@ -7,10 +7,12 @@ import { useEffect, useState } from "react";
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
 import { ROUTES } from "..";
 import boundGoogleData from "../../networking/boundGoogleData";
+import * as Location from 'expo-location';
 
 function LoginUserScreen({navigation, props}){
   
     const [userInfo, setUserInfo] = useState({});
+    const [errorMsg, setErrorMsg] = useState(null);
 
     GoogleSignin.configure({
         androidClientId: '721847506667-mg9d8oci85eocn8aelu7n33ijfpvccbk.apps.googleusercontent.com',
@@ -34,17 +36,35 @@ function LoginUserScreen({navigation, props}){
             showPlayServicesUpdateDialog: true,
           });
           const info = await GoogleSignin.signIn();
-          console.log('User Info --> ', info);
+          console.log('User Info: ', info);
+
+          let { status } = await Location.requestForegroundPermissionsAsync();
+          if (status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+            return;
+          }
+    
+          const location = await Location.getCurrentPositionAsync({});
+          console.log("Location: ", location);
 
           let userData = {
             email : info.user.email, 
             name : info.user.name, 
             id : info.user.id, 
-            photo : info.user.photo
+            photo : info.user.photo,
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
           }
 
-          boundGoogleData(info.user.email, info.user.name, info.user.id, info.user.photo);
           setUserInfo(userData);
+          console.log("User Info: ", userInfo);
+
+          // Navigate to the Home screen when the user has successfully signed in
+          if (userInfo.email != null){
+            console.log("userInfo: ", userInfo);
+            boundGoogleData(userInfo);
+            navigation.navigate(ROUTES.HOME_NORMAL_USER);
+          }
         } catch (error) {
           console.log('Message', error.message);
           if (error.code === statusCodes.SIGN_IN_CANCELLED) {
