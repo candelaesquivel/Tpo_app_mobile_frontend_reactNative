@@ -10,7 +10,7 @@ async function boundGoogleData(userInfo){
       id : userInfo.id,
       photoUrl : userInfo.photo,
     },
-    location : {
+    coordinates : {
       latitude : userInfo.latitude,
       longitude : userInfo.longitude
     },
