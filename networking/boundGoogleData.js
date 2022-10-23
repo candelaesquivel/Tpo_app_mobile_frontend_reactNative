@@ -1,24 +1,24 @@
+import { getRelativeCoords } from 'react-native-reanimated';
 import URL_SERVICES from '../config/config';
 
-async function boundGoogleData({email, name, id, photo}){
+async function boundGoogleData(userInfo){
   const user = {
     role : "user",
     google : {
-      name : name,
-      email : email,
-      id : id,
-      photo : photo,
+      name : userInfo.name,
+      email : userInfo.email,
+      id : userInfo.id,
+      photoUrl : userInfo.photo,
     },
-    custom : {
-      name : 'null',
-      email : 'null',
-      password : 'null',
-    }
+    location : {
+      latitude : userInfo.latitude,
+      longitude : userInfo.longitude
+    },
   };
   
   const userData = JSON.stringify(user);
 
-  console.log("User: ", userData);
+  console.log("BoundGoogleData: ", userData);
 
   let result = await fetch(URL_SERVICES.BOUND_GOOGLE_DATA, {
     method : 'POST',
