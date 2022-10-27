@@ -26,7 +26,7 @@ async function createAccountOwner(userData)
     headers : {
       'Content-Type' : 'application/json'
     },
-    body : userData
+    body : jsonData
   }).then(res => {
     console.log("Status: ", res.status);
 

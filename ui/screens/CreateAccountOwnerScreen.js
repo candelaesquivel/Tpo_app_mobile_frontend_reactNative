@@ -5,7 +5,8 @@ import { MyButton } from "../components/button"
 import { InputText } from "../components/InputText"
 import { useState, useEffect } from "react";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import createAccountOwner from "../../networking/createAccount"
+import createAccountOwner from "../../networking/createAccount";
+import { ROUTES } from '..';
 
 export function CreateAccountOwnerScreen({navigation, props}) {
 
@@ -18,6 +19,9 @@ export function CreateAccountOwnerScreen({navigation, props}) {
     const onRegisterPress = async (e) => {
       const result = await createAccountOwner(userData);
       console.log("Result Register: ", result);
+
+      if (result)
+        navigation.navigate(ROUTES.OWNER_HOME);
     }
 
     useEffect(() => {
@@ -35,8 +39,6 @@ export function CreateAccountOwnerScreen({navigation, props}) {
     const onRepeatPassChange = ({nativeEvent : {eventCount, target, text}}) => {
       setUserData({...userData, 'repeatPassword' : text})
     }
-
-    console.log(userData);
 
     return (
         <View style={{flexDirection : 'column', 
