@@ -14,7 +14,7 @@ class MainApplicationTurboModuleManagerDelegate
  public:
   // Adapt it to the package you used for your Java class.
   static constexpr auto kJavaDescriptor =
-      "Lcom/anonymous/Morfando_app/newarchitecture/modules/MainApplicationTurboModuleManagerDelegate;";
+      "Lcom/Morfando_app/Morfando_app/newarchitecture/modules/MainApplicationTurboModuleManagerDelegate;";
 
   static jni::local_ref<jhybriddata> initHybrid(jni::alias_ref<jhybridobject>);
 

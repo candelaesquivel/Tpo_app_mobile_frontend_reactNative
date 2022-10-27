@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
 import { ROUTES } from "..";
 import boundGoogleData from "../../networking/boundGoogleData";
-import * as Location from 'expo-location';
 
 function LoginUserScreen({navigation, props}){
   
@@ -38,22 +37,22 @@ function LoginUserScreen({navigation, props}){
           const info = await GoogleSignin.signIn();
           console.log('User Info: ', info);
 
-          let { status } = await Location.requestForegroundPermissionsAsync();
-          if (status !== 'granted') {
-            setErrorMsg('Permission to access location was denied');
-            return;
-          }
+          // let { status } = await Location.requestForegroundPermissionsAsync();
+          // if (status !== 'granted') {
+          //   setErrorMsg('Permission to access location was denied');
+          //   return;
+          // }
     
-          const location = await Location.getCurrentPositionAsync({});
-          console.log("Location: ", location);
+          // const location = await Location.getCurrentPositionAsync({});
+          // console.log("Location: ", location);
 
           let userData = {
             email : info.user.email, 
             name : info.user.name, 
             id : info.user.id, 
             photo : info.user.photo,
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
+            // latitude: location.coords.latitude,
+            // longitude: location.coords.longitude,
           }
 
           setUserInfo(userData);

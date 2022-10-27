@@ -2,16 +2,10 @@
   "name": "morfando_app",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web",
-    "tunnel": "expo start --tunnel --android",
     "lint": "eslint --fix .",
     "gaby": "npx react-native start"
   },
   "dependencies": {
-    "@expo/ngrok": "^4.1.0",
     "@react-native-community/datetimepicker": "6.2.0",
     "@react-native-google-signin/google-signin": "^8.0.1",
     "@react-navigation/drawer": "^6.5.0",
@@ -19,9 +13,6 @@
     "@react-navigation/native-stack": "^6.9.1",
     "@rneui/base": "^4.0.0-rc.6",
     "@rneui/themed": "^4.0.0-rc.6",
-    "expo": "~46.0.16",
-    "expo-splash-screen": "~0.16.2",
-    "expo-status-bar": "~1.4.0",
     "i18n-js": "^4.1.1",
     "react": "18.0.0",
     "react-dom": "18.0.0",
@@ -35,8 +26,7 @@
     "react-native-svg": "12.3.0",
     "react-native-svg-transformer": "^1.0.0",
     "react-native-swiper-flatlist": "^3.0.17",
-    "react-native-web": "~0.18.7",
-    "expo-location": "~14.3.0"
+    "react-native-web": "~0.18.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { Icon } from 'react-native-elements';
+import { Icon } from '@rneui/themed';
 import I18n from "../../assets/localization/I18n";
 import { colorPalette } from '../styles/colors';
 import Images from '../../assets/images/index';
