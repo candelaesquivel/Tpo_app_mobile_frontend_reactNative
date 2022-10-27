@@ -1,30 +1,43 @@
 import React from 'react';
-import { View, Image } from 'react-native';
-import { Text, Card, Icon } from '@rneui/themed';
+import { View, Image , FlatList } from 'react-native';
+import { Text, Card, Icon } from "@rneui/themed";
 import { colorPalette } from '../styles/colors';
 import I18n from "../../assets/localization/I18n";
 
-export default function DishCard(props) {
 
-    const VeganComponent = () => {
-        return (
-            <View style={{flexDirection: 'row',alignItems: 'center'}}>
-                 <Icon name="leaf" type='font-awesome-5' color={colorPalette.Black} size={20}></Icon>
-                <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> {I18n.t('vegan')} </Text>
-            </View>
+function DishCard({name = 'Tarta de Atun', vegan = true, celiac = true, ingredients = [], price = 0}) {
 
-        )
-    }
+     const VeganComponent = () => {
+         return (
+             <View style={{flexDirection: 'row',alignItems: 'center'}}>
+                  <Icon name="leaf" type='font-awesome-5' color={colorPalette.Black} size={20}></Icon>
+                 <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}> {I18n.t('vegan')} </Text>
+             </View>
 
-    const CeliacComponent= () => {
-        return(
-            <View style={{flexDirection: 'row',alignItems: 'center'}}>
-                 <Icon name="leaf" type='font-awesome-5' color={colorPalette.Black} size={20}></Icon>
-                <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}>  {I18n.t('celiac')} </Text>
-            </View>
+         )
+     }
+
+     const CeliacComponent= () => {
+         return(
+             <View style={{flexDirection: 'row',alignItems: 'center'}}>
+                  <Icon name="leaf" type='font-awesome-5' color={colorPalette.Black} size={20}></Icon>
+                 <Text style={{color: colorPalette.Black , fontSize: 18}} marginBottom={30}>  {I18n.t('celiac')} </Text>
+             </View>
             
-        )
-    }
+         )
+     }
+
+     const renderItem = ({ item }) => (
+      <View >
+      <View style={{alignItems: 'center',flexDirection: 'row' }}>
+        <Icon name="circle"  color={colorPalette.Black} size={7}></Icon>
+        <Text style={{ fontSize:18,color: colorPalette.Black}}>{item.name}</Text>
+        
+        </View>
+        
+      </View>
+    ); 
+  
 
   return (
     <View >
@@ -32,18 +45,18 @@ export default function DishCard(props) {
         <View>
 
        <View width='100%' style={{ alignItems: 'center'}}>
-         <Text h4 style={{flexDirection: 'column',color: colorPalette.Black , fontWeight: 'bold'}}>{props.name}</Text>  
+         <Text h4 style={{flexDirection: 'column',color: colorPalette.Black , fontWeight: 'bold'}}>{name}</Text>  
        </View>
        <View width='10%' height= '10%'></View>
         {
-            props.vegan && <VeganComponent/>
+            vegan && <VeganComponent/>
         }
         {
-            props.celiac && <CeliacComponent/>
+            celiac && <CeliacComponent/>
         }
           <View width='10%' height= '10%'></View>
-        {
-            props.ingredients.map((l) => (
+        {/* {
+            ingredients.map((l,o) => (
                
            <View style={{alignItems: 'center',flexDirection: 'row' }}>
                 <Icon name="circle"  color={colorPalette.Black} size={7}></Icon>
@@ -52,10 +65,20 @@ export default function DishCard(props) {
             </View>
         
             ))
+        } */}
+
+        {
+          <FlatList
+          data={ingredients}
+          renderItem={renderItem}
+          keyExtractor ={item => {
+            return item.name
+          }}
+       ></FlatList>
         }
          
         <View width={300} style={{ alignItems: 'center'}}>
-         <Text h4 style={{flexDirection: 'column',color: colorPalette.Orange}}>{I18n.t('priceSymbol')}{props.price}</Text>  
+         <Text h4 style={{flexDirection: 'column',color: colorPalette.Orange}}>{I18n.t('priceSymbol')}{price}</Text>  
        </View>
        </View>
          </Card>
@@ -64,3 +87,5 @@ export default function DishCard(props) {
     
   )
 }
+
+export default DishCard;

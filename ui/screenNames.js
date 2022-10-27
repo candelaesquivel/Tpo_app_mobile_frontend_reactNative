@@ -11,7 +11,7 @@ export default {
     FORGET_PASSWORD : 'RecoveryPasswordScreen',
    
     RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
-
+    DISH_CREATE : 'DishScreen',
     // Owner Routes
     OWNER_STACK : 'OwnerStackScreens',
     OWNER_HOME : 'OwnerHome',

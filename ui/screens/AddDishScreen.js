@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Icon, Switch } from '@rneui/base'
 import { colorPalette } from '../styles/colors'
 import I18n from "../../assets/localization/I18n";
@@ -8,6 +8,7 @@ import { MyButton } from '../components/button'
 
 
 function AddDishScreen() {
+   const [dishName, setDishName]= useState(""); 
   return (
     <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
         <View style={{width:'85%', alignItems:'flex-start'}}>

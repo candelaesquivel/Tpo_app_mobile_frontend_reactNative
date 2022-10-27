@@ -22,6 +22,7 @@ const URL_SERVICES = {
 
   // Restaurants
   RESTAURANTS_LIST : RESTAURANT_ROUTE + '',
+  DISH_CREATE : RESTAURANT_ROUTE + 'dishes',
 
   // Status Server check
   HEALTH_CHECK : URL_API + 'health',
