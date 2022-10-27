@@ -1,11 +1,30 @@
 import { View , FlatList } from 'react-native'
-import React  from 'react'
+import React, { useState }  from 'react'
 import { Icon } from "@rneui/themed";
 import RestaurantCardOwner from '../components/RestaurantCardOwner';
 import MySearchBar from '../components/MySearchBar';
 import { ROUTES } from '..';
+import { useEffect } from 'react';
 
 function OwnerHomeScreen({navigation, props}) {
+
+  const [restaurants, setRestaurants] = useState([]);
+  const [triggerSearch, setTrigggerSearch] = useState(false);
+
+  const testOwnerId = "";
+
+  const fillRestaurantList = async () => {
+    setRestaurants(rests);
+  }
+
+  useEffect(() => {
+    if (!triggerSearch)
+    {
+      fillRestaurantList();
+      setTrigggerSearch(true);
+    }
+
+  }, [restaurants, triggerSearch])
 
   const renderItem = ({ item }) => (
     <View >
@@ -46,10 +65,8 @@ function OwnerHomeScreen({navigation, props}) {
       >
       </Icon>
 
-     
-
       <FlatList
-          data={RESTAURANTS_OWNER}
+          data={[restaurants]}
           renderItem={renderItem}
           keyExtractor ={item => item.name}
           />
