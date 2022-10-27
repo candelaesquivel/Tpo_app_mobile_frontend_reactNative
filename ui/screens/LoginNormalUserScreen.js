@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
 import { ROUTES } from "..";
 import boundGoogleData from "../../networking/boundGoogleData";
+import GetLocation from 'react-native-get-location'
 
 function LoginUserScreen({navigation, props}){
   
     const [userInfo, setUserInfo] = useState({});
-    const [errorMsg, setErrorMsg] = useState(null);
 
     GoogleSignin.configure({
         androidClientId: '721847506667-mg9d8oci85eocn8aelu7n33ijfpvccbk.apps.googleusercontent.com',
@@ -19,6 +19,7 @@ function LoginUserScreen({navigation, props}){
         offlineAccess: false,
       });    
 
+      
       _isSignedIn = async () => {
         const isSignedIn = await GoogleSignin.isSignedIn();
 
@@ -35,35 +36,35 @@ function LoginUserScreen({navigation, props}){
             showPlayServicesUpdateDialog: true,
           });
           const info = await GoogleSignin.signIn();
-          console.log('User Info: ', info);
 
-          // let { status } = await Location.requestForegroundPermissionsAsync();
-          // if (status !== 'granted') {
-          //   setErrorMsg('Permission to access location was denied');
-          //   return;
-          // }
+          GetLocation.getCurrentPosition({timeout:50000, enableHighAccuracy:true})
+            .then(latestLocation => {
+              console.log("location " + JSON.stringify(latestLocation));
+              console.log("google " + JSON.stringify(info));
+
+              let userData = {
+                email : info.user.email, 
+                name : info.user.name, 
+                id : info.user.id, 
+                photo : info.user.photo,
+                latitude: latestLocation.latitude,
+                longitude: latestLocation.longitude,
+              }
+
+              console.log("userData " + JSON.stringify(userData));
+              setUserInfo(userData);
     
-          // const location = await Location.getCurrentPositionAsync({});
-          // console.log("Location: ", location);
+              // Navigate to the Home screen when the user has successfully signed in
+              if (userData.email != null){
+                console.log("userInfo: ", userData);
+                boundGoogleData(userData);
+                navigation.navigate(ROUTES.HOME_NORMAL_USER);
+              }
+            })
+            .catch(error => {
+              console.warn("Error getting location: ", error);
+            })
 
-          let userData = {
-            email : info.user.email, 
-            name : info.user.name, 
-            id : info.user.id, 
-            photo : info.user.photo,
-            // latitude: location.coords.latitude,
-            // longitude: location.coords.longitude,
-          }
-
-          setUserInfo(userData);
-          console.log("User Info: ", userInfo);
-
-          // Navigate to the Home screen when the user has successfully signed in
-          if (userInfo.email != null){
-            console.log("userInfo: ", userInfo);
-            boundGoogleData(userInfo);
-            navigation.navigate(ROUTES.HOME_NORMAL_USER);
-          }
         } catch (error) {
           console.log('Message', error.message);
           if (error.code === statusCodes.SIGN_IN_CANCELLED) {

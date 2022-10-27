@@ -14,8 +14,8 @@ const Stack = createNativeStackNavigator();
 function MainNavigator(props){
     return (
         <Stack.Navigator>
-            <Stack.Screen name = {ROUTES.DISH_MODIFY} component = {DishM}></Stack.Screen>
             <Stack.Screen name = {ROUTES.HOME_SCREEN} component = {Home}></Stack.Screen>
+            <Stack.Screen name = {ROUTES.DISH_MODIFY} component = {DishM}></Stack.Screen>
             <Stack.Screen name = {ROUTES.LOGIN_OWNER} component = {LoginOwner}></Stack.Screen>
             <Stack.Screen name = {ROUTES.LOGIN_NORMAL_USER} component = {LoginNormalUser}></Stack.Screen>
             <Stack.Screen name = {ROUTES.CREATE_ACCOUNT_OWNER} component = {CreateAccountOwner}></Stack.Screen>
