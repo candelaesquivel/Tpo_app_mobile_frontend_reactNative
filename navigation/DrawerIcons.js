@@ -19,3 +19,7 @@ export const LogoutIcon = ({focused, color, size}) => {
 export const DeleteIcon = ({focused, color, size}) => {
   return (<Icon name = 'delete'></Icon>)
 }
+
+export const MyRestaurantsIcon = ({focused, color, size}) => {
+  return (<Icon name = 'restaurant'></Icon>)
+}
