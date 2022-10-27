@@ -12,6 +12,7 @@ export default {
    
     RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
     DISH_CREATE : 'DishScreen',
+    DISH_MODIFY : 'DishModifyScreen',
     // Owner Routes
     OWNER_STACK : 'OwnerStackScreens',
     OWNER_HOME : 'OwnerHome',

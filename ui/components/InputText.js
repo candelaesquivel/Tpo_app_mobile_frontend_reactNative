@@ -6,7 +6,7 @@ export function InputText(props){
         <Input 
           secureTextEntry = {props.secureTextEntry}
           placeholder={props.placeholder}
-          placeholderTextColor = {colorPalette.White}
+          placeholderTextColor = {props.placeholderTextColor}
           inputStyle={{color : colorPalette.White}}
           style={{
               borderRadius : 30, 
