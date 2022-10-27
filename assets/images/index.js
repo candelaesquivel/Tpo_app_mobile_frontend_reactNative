@@ -1,9 +1,7 @@
-
 import logo from './logo.svg';
 
-const Images = 
-{
-  logo
-}
+const Images = {
+  logo,
+};
 
 export default Images;

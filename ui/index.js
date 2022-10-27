@@ -1,3 +1,3 @@
-import ROUTES from './screenNames'
+import ROUTES from './screenNames';
 
-export {ROUTES}
+export {ROUTES};
