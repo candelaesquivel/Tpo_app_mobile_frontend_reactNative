@@ -1,36 +1,4 @@
 {
-  "expo": {
-    "name": "Morfando_app",
-    "slug": "Morfando_app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      //"googleServicesFile": "./google-services.json",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.Morfando_app.Morfando_app"
-    },
-    "web": {
-      "favicon": "./assets/images/favicon.png"
-    },
-    "plugins": ["@react-native-google-signin/google-signin"]
-  }
+  "name": "Tpo_app_mobile_frontend",
+  "displayName": "Tpo_app_mobile_frontend"
 }

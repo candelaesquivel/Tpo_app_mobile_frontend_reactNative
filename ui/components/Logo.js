@@ -6,7 +6,7 @@ import I18n from "../../assets/localization/I18n";
 
 export function Logo(props) {
     return (
-        <View style={{flexDirection : 'column', alignItems :"center"}}>
+        <View style={{flexDirection : 'column', alignItems :'center'}}>
             <Images.logo width={185} height={162}></Images.logo>
             <Text h2 h2Style={{color : colorPalette.Black}}>
             {I18n.t('appName')}

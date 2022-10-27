@@ -1,7 +1,7 @@
 import { View, Text , FlatList} from 'react-native'
 import React from 'react'
 import Images from '../../assets/images/index';
-import { Icon } from '@rneui/themed'
+import { Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import MenuCard from '../components/menuCard';
 import CommentUserRestaurant from '../components/commentUserRestaurant';
