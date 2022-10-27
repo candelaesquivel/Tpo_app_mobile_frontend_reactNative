@@ -20,40 +20,6 @@ function OwnerHomeScreen({navigation, props}) {
     </View>
     ); 
 
-    const RESTAURANTS_OWNER = [
-      {
-      name : 'Rodizio' ,
-      address : 'Honduras 5000',
-      score : 5 ,
-      onMenuPressed : true ,
-      onPhotoPress:false,
-      },
-      {
-        name : 'Rodizio' ,
-        address : 'Honduras 5000',
-        score : 5 ,
-        onMenuPressed : true ,
-        onPhotoPress:false,
-        },
-        {
-          name : 'Rodizio' ,
-          address : 'Honduras 5000',
-          score : 5 ,
-          onMenuPressed : true ,
-          onPhotoPress:false,
-          },
-          {
-            name : 'Rodizio' ,
-            address : 'Honduras 5000',
-            score : 5 ,
-            onMenuPressed : true ,
-            onPhotoPress:false,
-            },
-     
-     ];
-
-
-
   const onCreateRestaurantPressed = (event) => {
     console.log('On Restaurant Create Press');
     navigation.navigate(ROUTES.CREATE_RESTAURANT_STACK)
