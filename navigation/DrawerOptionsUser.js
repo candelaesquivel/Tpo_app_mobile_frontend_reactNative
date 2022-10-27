@@ -21,7 +21,7 @@ const DrawerOptionsUser = (props) => {
 
   return (
     <DrawerContentScrollView {...props}>
-      <View style={{height : 150}}></View>
+      <DrawerHeader {...props}></DrawerHeader>
       <DrawerItemList {...props}>
       </DrawerItemList>
       <DrawerItem
