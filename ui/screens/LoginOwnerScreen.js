@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import I18n from "../../assets/localization/I18n";
 import { View } from "react-native";
 import { Logo } from "../components/Logo";
@@ -10,6 +10,19 @@ import { InputText } from "../components/InputText";
 import { ROUTES } from "..";
 
 function LoginOwnerScreen({navigation, props}){
+
+  const [userData, setUserData] = useState({
+    email : '',
+    password : '',
+  })
+
+  const onEmailChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setUserData({...userData, 'email' : text})
+  }
+
+  const onPassChange = ({nativeEvent : {eventCount, target, text}}) => {
+    setUserData({...userData, 'password' : text})
+  }
 
     useEffect(() => {
         navigation.setOptions({
@@ -27,8 +40,14 @@ function LoginOwnerScreen({navigation, props}){
         navigation.navigate(ROUTES.CREATE_ACCOUNT_OWNER);
     }
 
-    const onLoginPressed = (event) => {
+    const onLoginPressed = async (event) => {
         console.log("On Login Pressed");
+
+        const loggingResult = await loginOwner(userData);
+
+        console.log(loggingResult);
+        return;
+        
         navigation.navigate(ROUTES.OWNER_HOME);
     }
 
@@ -45,9 +64,12 @@ function LoginOwnerScreen({navigation, props}){
                 backgroundColor : colorPalette.LightOrange,
             }}>
                 <InputText color = {colorPalette.Orange} placeholder = 'Ingrese Mail'
-                height = '50%'
+                height = '50%' onChange={onEmailChange}
                 ></InputText>
-                <InputText color = {colorPalette.Orange} placeholder = 'Ingrese Contraseña'></InputText>
+                <InputText color = {colorPalette.Orange} 
+                  placeholder = 'Ingrese Contraseña'
+                  secureTextEntry = {true}
+                  onChange = {onPassChange}></InputText>
             </View>
             <MyButton title = {I18n.t('logIn')} onPress={onLoginPressed}></MyButton>
             <Text style={{color : colorPalette.Orange, marginTop : 10}} onPress={onRecoverTouched}>{I18n.t('forgotPassword')}</Text>
