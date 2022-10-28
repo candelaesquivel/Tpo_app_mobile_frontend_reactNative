@@ -156,13 +156,13 @@ function CreateRestaurantScreen({navigation, props}) {
             ></MyButton>
             <MyTimePicker></MyTimePicker>
 
-            {/* {
+            {
                 openingHour && <MyTimePicker></MyTimePicker>
             }
             
             {
                 closingHour &&  <MyTimePicker></MyTimePicker>
-            } */}
+            }
             
         </View>
             <View style={{height:'3%'}}></View>  

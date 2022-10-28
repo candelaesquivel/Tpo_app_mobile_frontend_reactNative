@@ -10,7 +10,7 @@ import Carousal from '../components/carousal';
 import Mapa from '../components/mapa';
 import { Dropdown } from 'react-native-element-dropdown';
 import MyWeekButtons from '../components/WeekButton';
-
+import MyTimePicker from '../components/TimePicker';
 
 function CreateRestaurantScreen({navigation, props}) {
 
@@ -30,6 +30,8 @@ function CreateRestaurantScreen({navigation, props}) {
   ];
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const [openingHour,setOpeningHour] = useState(false);
+  const [closingHour,setClosingHour] = useState(false);
 
   const renderLabel = () => {
     if (value || isFocus) {
@@ -63,7 +65,8 @@ function CreateRestaurantScreen({navigation, props}) {
                 {I18n.t('name')}    
             </Text>
             <InputText 
-            placeholder="Tartar de atun" 
+            placeholder=""
+             
             color={colorPalette.White}
             placeholderTextColor = {colorPalette.Black}
             ></InputText>
@@ -74,7 +77,8 @@ function CreateRestaurantScreen({navigation, props}) {
                 Direccion   
             </Text>
             <InputText 
-                placeholder="Tartar de atun" 
+                placeholder=""
+                 
                 color={colorPalette.White}
                 placeholderTextColor = {colorPalette.Black}
             ></InputText>
@@ -85,7 +89,8 @@ function CreateRestaurantScreen({navigation, props}) {
                 Barrio    
             </Text>
             <InputText 
-                placeholder="Tartar de atun" 
+                placeholder=""
+                 
                 color={colorPalette.White}
                 placeholderTextColor = {colorPalette.Black}
             ></InputText>
@@ -97,7 +102,8 @@ function CreateRestaurantScreen({navigation, props}) {
             </Text>
 
             <InputText 
-                placeholder="Tartar de atun" 
+                placeholder=""
+                 
                 color={colorPalette.White}
                 placeholderTextColor = {colorPalette.Black}
             ></InputText>
@@ -109,7 +115,8 @@ function CreateRestaurantScreen({navigation, props}) {
             </Text>
 
             <InputText 
-                placeholder="Tartar de atun" 
+                placeholder=""
+                 
                 color={colorPalette.White}
                 placeholderTextColor = {colorPalette.Black}
             ></InputText>
@@ -134,6 +141,37 @@ function CreateRestaurantScreen({navigation, props}) {
         
 
           <Mapa></Mapa>
+                     
+        <View style={{flexDirection : "column"}}>
+        <Text
+             style={{fontSize: 20, color: colorPalette.Black, width:'45%'}}
+             >
+                Horario 
+            </Text>
+            < MyButton
+            title= "Apertura"
+            width={200}
+            height={50}
+            onPress={() =>{ setOpeningHour(!openingHour)}}
+            ></MyButton>
+
+            < MyButton
+            title= "Cierre"
+            width={200}
+            height={50}
+            onPress={() => {setClosingHour(!closingHour)}}
+            ></MyButton>
+            <MyTimePicker></MyTimePicker>
+
+            {
+                openingHour && <MyTimePicker></MyTimePicker>
+            }
+            
+            {
+                closingHour &&  <MyTimePicker></MyTimePicker>
+            }
+            
+        </View>
           <View style ={{width : "90%" , marginBottom : 10  }}>
 
           <Dropdown
