@@ -110,7 +110,13 @@ function DishModifyScreen({navigation, props}){
                  
                 </View>
                
-            <View style={{flexDirection: 'column' , width : "100%",height : 100 , alignItems : "center" }}>
+            <View style={{flexDirection: 'column' , width : "100%",height : 160 , alignItems : "center" }}>
+
+            < MyButton
+                title= "Guardar"
+                width={200}
+                height={50}
+                ></MyButton>
 
             < MyButton
                 title= "Eliminar plato"
