@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { Text } from 'react-native';
 import { ROUTES } from '..';
 import { MyButton } from '../components/button';
+import Carousal from '../components/carousal';
 
 function CreateRestaurantScreen({navigation, props}) {
 
