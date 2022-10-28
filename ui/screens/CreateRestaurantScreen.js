@@ -9,7 +9,7 @@ import  Icon from 'react-native-vector-icons/MaterialIcons';
 import Carousal from '../components/carousal';
 import Mapa from '../components/mapa';
 import { Dropdown } from 'react-native-element-dropdown';
-
+import MyWeekButtons from '../components/WeekButton';
 
 
 function CreateRestaurantScreen({navigation, props}) {
@@ -175,6 +175,9 @@ function CreateRestaurantScreen({navigation, props}) {
           activeColor={colorPalette.Orange}
         />
       </View>
+      
+      <MyWeekButtons></MyWeekButtons>
+      
         <View style={{flexDirection: 'column' , width : "100%",height : 160 , alignItems : "center" }}>
 
         < MyButton
