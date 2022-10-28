@@ -17,8 +17,10 @@ function DishModifyScreen({navigation, props}){
   return (
     <ScrollView>
         <Carousal></Carousal>
-        <Icon name = 'favorite' size={30}></Icon>
-         
+        <View style={{flexDirection:"row-reverse"}}>
+        <Icon name = 'add' size={30} style={{marginRight: 10 , marginTop : 10 }}></Icon>
+        </View>
+
         <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 20}}>
      
             <View style={{width:'85%', alignItems:'flex-start'}}>
