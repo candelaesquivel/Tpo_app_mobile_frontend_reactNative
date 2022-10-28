@@ -7,9 +7,20 @@ import { MyButton } from "../components/button";
 import { Text } from "@rneui/themed";
 import { InputText } from "../components/InputText";
 
+import loginOwner from "../../networking/loginOwner";
 import { ROUTES } from "..";
+import {REDUX_ACTIONS} from '../../config';
+import { useSelector, useDispatch } from 'react-redux'
 
 function LoginOwnerScreen({navigation, props}){
+
+  const isLogged = useSelector((state) => {
+    return state.session.isLogged
+  });
+
+  const dispatch = useDispatch();
+
+  console.log("Is Logged: ", isLogged)
 
   const [userData, setUserData] = useState({
     email : '',
@@ -28,7 +39,11 @@ function LoginOwnerScreen({navigation, props}){
         navigation.setOptions({
             title : I18n.t('logIn')
         })
-    }, [navigation])
+
+        if (isLogged)
+          navigation.navigate(ROUTES.OWNER_HOME);
+
+    }, [navigation, isLogged])
 
     const onRecoverTouched = (event) => {
         console.log("Recovery Password Link Touched");
@@ -41,14 +56,37 @@ function LoginOwnerScreen({navigation, props}){
     }
 
     const onLoginPressed = async (event) => {
-        console.log("On Login Pressed");
+      
+        const loginRes = await loginOwner(userData);
 
-        const loggingResult = await loginOwner(userData);
+        console.log("On Login Pressed: ", loginRes);
 
-        console.log(loggingResult);
+        if (loginRes){
+          dispatch({
+            type : REDUX_ACTIONS.USER_LOGIN,
+            payload : {
+              userId : loginRes.id,
+              userMail : loginRes.email,
+              token : loginRes.token,
+              userName : loginRes.name,
+              isLogged : true,
+            }
+          })
+        }else{
+          dispatch({type : REDUX_ACTIONS.USER_LOGOUT});
+        }
+
+        return;
+
+        
+
+        return;
+
+        navigation.navigate(ROUTES.OWNER_HOME);
         return;
         
-        navigation.navigate(ROUTES.OWNER_HOME);
+
+        console.log(loggingResult);
     }
 
     return (

@@ -20,11 +20,12 @@ async function loginOwner(userData)
     body : jsonData
   }).then(res => {
     console.log("Status: ", res.status);
+    const jsonData = res.json();
 
-    if (res.status === 201)
-      return true;
+    if (res.status === 200)
+      return jsonData;
     
-    return false;
+    return null;
   }).
   catch(err => {
     console.log(err);
