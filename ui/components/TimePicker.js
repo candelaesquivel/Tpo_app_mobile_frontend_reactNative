@@ -1,7 +1,7 @@
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { useState } from "react";
 
-export function TimePicker(props){
+export default function TimePicker(){
 
     const [date, setDate] = useState(new Date(1598051730000));
     return (
