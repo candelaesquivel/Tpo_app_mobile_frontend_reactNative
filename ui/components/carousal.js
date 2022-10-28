@@ -8,43 +8,68 @@ import {
   Dimensions,
   Text
 } from "react-native";
+import  Icon from 'react-native-vector-icons/FontAwesome';
+import  Iconn from 'react-native-vector-icons/Ionicons';
+import { colorPalette } from "../styles/colors";
 
 // Default Sample Data
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-   image:
-      "https://www.clara.es/medio/2021/12/16/que-comer-hoy-ideas_21beeb02_1200x630.jpg",
+    title: "The most beutiful railway track!",
+    subtitle:
+      "This is a long subtitle. Which also can be used to display flashnews.",
+    image:
+      "https://i.picsum.photos/id/524/700/500.jpg?hmac=PuAKCqRNlpa6_UJLeKABjXH9l3MFgsv-LHMm0bDfey4",
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    
+    title: "Memories lives in this home",
+    subtitle:
+      "This is a long subtitle. Which also can be used to display flashnews.",
     image:
-      "https://www.cocinacaserayfacil.net/wp-content/uploads/2020/03/Platos-de-comida-que-pides-a-domicilio-y-puedes-hacer-en-casa-945x630.jpg",
+      "https://i.picsum.photos/id/193/700/500.jpg?hmac=q5QJ9ieureq_dXwwsUmh7ub2pN-V1arRrqpMV7czc9g",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
-  
+    title: "Snow and Fun! How can we forget",
+    subtitle:
+      "This is a long subtitle. Which also can be used to display flashnews.",
     image:
-      "https://www.cocinacaserayfacil.net/wp-content/uploads/2020/04/Recetas-de-comidas-para-ni%C3%B1os.jpg",
+      "https://i.picsum.photos/id/971/700/500.jpg?hmac=kNTldtPvd24NEOfvd39iwsRBun4As0dYChiWQuyCFo4",
   },
 ];
 
 // Default Props
 const defaults = {
-  height: (Dimensions.get("window").height)*0.4,
+  height: 200,
   width: Dimensions.get("window").width,
-  delay: 3000,
+  delay: 5000,
 };
 
 // Default Image Item
-const Item = ({ image, height, width, onPress}) => (
+const Item = ({ title, image, height, width, onPress, subtitle }) => (
   <TouchableOpacity
     activeOpacity={0.8}
     onPress={onPress}
     style={[styles.imageContainer, { height: height, width: width }]}
   >
     <Image source={{ uri: image }} style={[styles.image, { height: height }]} />
+  
+    <View style={styles.titleContainer}>
+      {<Iconn name="create-outline" size={30} color={colorPalette.White}></Iconn>}
+      <View style = {{width : 10}}></View>
+      {<Icon name = 'trash' size={30} color={colorPalette.White}></Icon>}
+    </View>
+
+    <View style={styles.movement}>
+    <View style={{width : "45%"}}></View>
+    <Iconn name="ellipse" size={10} color={colorPalette.White}></Iconn>
+    <Iconn name="ellipse" size={10} color={colorPalette.White}></Iconn>
+    <Iconn name="ellipse" size={10} color={colorPalette.White}></Iconn>
+
+    </View>
+
   </TouchableOpacity>
 );
 
@@ -65,7 +90,18 @@ export default function Carousal({
   const [selectedIndex, setselectedIndex] = useState(0);
   const scrollView = useRef();
 
-  
+  // Script which will only executed when component initilizes
+  useEffect(() => {
+    const fn = setInterval(() => {
+      setselectedIndex((oldCount) =>
+        oldCount === data.length - 1 ? 0 : oldCount + 1
+      );
+    }, delay);
+    return () => {
+      clearInterval(fn);
+    };
+  }, []);
+
   // Script will executed every time selectedIndex updates
   useEffect(() => {
     scrollView.current.scrollTo({
@@ -84,7 +120,7 @@ export default function Carousal({
   };
 
   return (
-    <View >
+    <View>
       <ScrollView
         ref={scrollView}
         horizontal
@@ -120,9 +156,33 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
- 
+  titleContainer: {
+    
+    position: "absolute",
+    flexDirection : "row-reverse",
+    bottom: 10,
+    width: "100%",
+    paddingLeft: 10,
+    
+    
+  },
+  title: {
+    fontSize: 28,
+    color: '#fff',
+    fontWeight: "bold",
+  },
+  subtitle: {
+    color: '#fff',
+  },
   image: {
     width: defaults.width,
-    height: "100%",
+    height: defaults.height,
   },
+  movement : {
+    position: "absolute",
+    width: "100%",
+    bottom :"3%",
+    flexDirection : "row"
+  
+  }
 });
