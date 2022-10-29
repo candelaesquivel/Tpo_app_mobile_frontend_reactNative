@@ -5,17 +5,23 @@ import RestaurantCardOwner from '../components/RestaurantCardOwner';
 import MySearchBar from '../components/MySearchBar';
 import { ROUTES } from '..';
 import { useEffect } from 'react';
-import { SpeedDial } from '@rneui/themed';
-import { colorPalette } from '../styles/colors';
+import { useSelector } from 'react-redux';
+import { GetOwnerRestaurants } from '../../networking';
+
 
 function OwnerHomeScreen({navigation, props}) {
 
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
 
+  const ownerId = useSelector((state) => {
+    return state.session.userId;
+  });
+
   const testOwnerId = "";
 
   const fillRestaurantList = async () => {
+    const rests = await GetOwnerRestaurants(ownerId);
     setRestaurants(rests);
   }
 
@@ -28,22 +34,29 @@ function OwnerHomeScreen({navigation, props}) {
 
   }, [restaurants, triggerSearch])
 
-  const renderItem = ({ item }) => (
-    <View >
-    <RestaurantCardOwner 
-      name ={item.name}
-      address = {item.address}
-      score = {item.score}
-      onMenuPressed={onRestaurantMenuPressed}
-      onPhotoPress={onPhotoPresses}
-      >
-      </RestaurantCardOwner>
-    </View>
-    ); 
+  const renderItem = ({ item }) => {
+    console.log("Drawing Rest: ", item.name);
+
+    return (
+      <View >
+      <RestaurantCardOwner 
+        name ={item.name}
+        address = {item.address}
+        score = {item.score}
+        onMenuPressed={onRestaurantMenuPressed}
+        onPhotoPress={onPhotoPresses}
+        >
+        </RestaurantCardOwner>
+      </View>
+    )
+  };
 
   const onCreateRestaurantPressed = (event) => {
     console.log('On Restaurant Create Press');
-    navigation.navigate(ROUTES.CREATE_RESTAURANT_STACK)
+
+    setTrigggerSearch(false);
+
+    // navigation.navigate(ROUTES.CREATE_RESTAURANT_STACK)
   }
 
   const onRestaurantMenuPressed = (event) => {
@@ -56,15 +69,14 @@ function OwnerHomeScreen({navigation, props}) {
     navigation.navigate(ROUTES.RESTAURANT_OWNER_PROFILE_STACK);
   }
   
-
   return (
     <View>
     <View style={styles.global}>
        <MySearchBar ></MySearchBar>
        <FlatList
-            data={[restaurants]}
+            data={restaurants}
             renderItem={renderItem}
-            keyExtractor ={item => item.name}
+            keyExtractor={(item) => item.name}
             />
      </View>
 
