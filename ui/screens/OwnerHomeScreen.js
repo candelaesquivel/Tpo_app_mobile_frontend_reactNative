@@ -35,8 +35,6 @@ function OwnerHomeScreen({navigation, props}) {
   }, [restaurants, triggerSearch])
 
   const renderItem = ({ item }) => {
-    console.log("Drawing Rest: ", item.name);
-
     return (
       <View >
       <RestaurantCardOwner 
@@ -53,10 +51,7 @@ function OwnerHomeScreen({navigation, props}) {
 
   const onCreateRestaurantPressed = (event) => {
     console.log('On Restaurant Create Press');
-
-    setTrigggerSearch(false);
-
-    // navigation.navigate(ROUTES.CREATE_RESTAURANT_STACK)
+    navigation.navigate(ROUTES.CREATE_RESTAURANT_STACK)
   }
 
   const onRestaurantMenuPressed = (event) => {
@@ -72,7 +67,6 @@ function OwnerHomeScreen({navigation, props}) {
   return (
     <View>
     <View style={styles.global}>
-       <MySearchBar ></MySearchBar>
        <FlatList
             data={restaurants}
             renderItem={renderItem}
