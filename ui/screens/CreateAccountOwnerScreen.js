@@ -1,5 +1,5 @@
 import I18n from "../../assets/localization/I18n"
-import { View } from "react-native"
+import { View , StyleSheet, Dimensions} from "react-native"
 import { colorPalette } from "../styles/colors"
 import { MyButton } from "../components/button"
 import { InputText } from "../components/InputText"
@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import createAccountOwner from "../../networking/createAccount";
 import { ROUTES } from '..';
+import { Theme } from "../styles/Theme"
 
 export function CreateAccountOwnerScreen({navigation, props}) {
 
@@ -41,24 +42,74 @@ export function CreateAccountOwnerScreen({navigation, props}) {
     }
 
     return (
-        <View style={{flexDirection : 'column', 
-        height : '100%',
-        alignItems : 'center', backgroundColor : colorPalette.White}}>
-            <View style={{width : '100%', height : '15%', backgroundColor : colorPalette.White}}></View>
+        <View style={styles.global}>
+          <View style={styles.icon}>
             <Icon name='account-circle' size={96} color={colorPalette.Orange} />
-            <View style={{width : '100%', height : '5%', backgroundColor : colorPalette.White}}></View>
+          </View>
+          <View style={styles.input}>
+              <View style={styles.inputTwo}>
+                <InputText 
+                placeholder = {I18n.t('emailInput')} 
+                placeholderTextColor ={colorPalette.White}
+                color={colorPalette.Orange} name = 'email'
+                onChange = {onEmailChange}></InputText>
 
-            <View style={{ justifyContent : 'space-evenly', height : '35%', width : '80%', backgroundColor : colorPalette.LightOrange, borderRadius : 30}}>
-                <InputText placeholder = {I18n.t('emailInput')} color={colorPalette.Orange} name = 'email' onChange = {onEmailChange}></InputText>
-                <InputText secureTextEntry = {true} placeholder = {I18n.t('passInput')} color={colorPalette.Orange} name='password' onChange = {onPassChange}></InputText>
-                <InputText secureTextEntry = {true} placeholder = {I18n.t('validPassInput')} color={colorPalette.Orange} name='repeatPassword' onChange = {onRepeatPassChange}></InputText>
+                <InputText s
+                ecureTextEntry = {true} 
+                placeholder = {I18n.t('passInput')} 
+                placeholderTextColor ={colorPalette.White}
+                color={colorPalette.Orange} 
+                name='password' 
+                onChange = {onPassChange}></InputText>
 
-            </View>
+                <InputText
+                secureTextEntry = {true} 
+                placeholder = {I18n.t('validPassInput')}
+                placeholderTextColor ={colorPalette.White}
+                color={colorPalette.Orange} 
+                name='repeatPassword' 
+                onChange = {onRepeatPassChange}></InputText>
+              </View>
+             
+          </View>
             <View style={{width : '100%', height : '5%', backgroundColor : colorPalette.White}}></View>
-            <MyButton title = {I18n.t('createAccount')} onPress = {onRegisterPress}></MyButton>
+            <MyButton
+             title = {I18n.t('createAccount')} 
+             onPress = {onRegisterPress}
+             width={Dimensions.get("window").width*0.6}
+             height={Dimensions.get("window").height*0.07}
+             ></MyButton>
         </View>
     )
 
 }
 
 export default CreateAccountOwnerScreen;
+
+const styles = StyleSheet.create({
+  global:{
+    flexDirection : 'column', 
+    height : '100%',
+    alignItems : 'center',
+    backgroundColor : colorPalette.White
+  },
+  icon : {
+    width : '100%', 
+    marginTop :"20%",
+    marginBottom : "7%",
+    backgroundColor : colorPalette.White,
+    alignItems : "center"
+    },
+    input : { 
+      justifyContent : 'space-evenly',
+       height : '35%', 
+       width : '80%', 
+       backgroundColor : colorPalette.LightOrange, 
+      borderRadius : Theme.sizes.ROUNDED
+  },
+  inputTwo :{
+    flexDirection :"column",
+    marginTop :"9%"
+  }
+
+});
