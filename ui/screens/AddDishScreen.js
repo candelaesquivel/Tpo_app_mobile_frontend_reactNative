@@ -9,6 +9,47 @@ import { MyButton } from '../components/button'
 
 function AddDishScreen() {
    const [dishName, setDishName]= useState(""); 
+
+  const [dishData, setDishData] = useState({
+    name : '',
+    price : '',
+    ingredients : [],
+    discount : '',
+    isVegan : false,
+    isCeliac : false,
+    photos : [],
+    category : 'Plato Caliente',
+  });
+
+  const onNameChanged = ({ nativeEvent: { eventCount, target, text} }) => {
+    setDishData({...dishData, 'name' : text})
+  }
+
+  const onPriceChanged = ({ nativeEvent: { eventCount, target, text} }) => {
+    setDishData({...dishData, 'price' : text})
+  }
+
+  const onIngredientChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    const str = text.split(',');
+    setDishData({...dishData, 'ingredients' : str})
+  }
+  
+  const onDiscountChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setDishData({...dishData, 'discount' : text})
+  }
+
+  const onIsVeganChange = ({nativeEvent : {eventCount, target, value}}) => {
+    setDishData({...dishData, 'isVegan' : value})
+  }
+
+  const onIsCeliacChange = ({nativeEvent : {eventCount, target, value}}) => {
+    setDishData({...dishData, 'isCeliac' : value})
+  }
+
+  const onCategoryChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setDishData({...dishData, 'category' : text})
+  }
+
   return (
     <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
         <View style={{width:'85%', alignItems:'flex-start'}}>
@@ -17,28 +58,28 @@ function AddDishScreen() {
           >
               {I18n.t('name')}    
           </Text>
-          <InputText color={colorPalette.White}></InputText>
+          <InputText textColor={colorPalette.Black} color={colorPalette.White} onChange={onNameChanged}></InputText>
 
             <Text
             style={{ fontSize: 20, color: colorPalette.Black}}
             >
                {I18n.t('price')}    
             </Text>
-            <InputText color={colorPalette.White}></InputText>
+            <InputText textColor={colorPalette.Black} color={colorPalette.White} onChange={onPriceChanged}></InputText>
 
             <Text
             style={{ fontSize: 20, color: colorPalette.Black}}
             >
                {I18n.t('ingredients')}    
             </Text>
-            <InputText color={colorPalette.White}></InputText>
+            <InputText textColor={colorPalette.Black} color={colorPalette.White} onChange={onIngredientChange}></InputText>
 
             <Text
             style={{ fontSize: 20, color: colorPalette.Black}}
             >
                {I18n.t('discount')}    
             </Text>
-             <InputText color={colorPalette.White}></InputText>
+             <InputText textColor={colorPalette.Black} color={colorPalette.White} onChange={onDiscountChange}></InputText>
 
              <View style={{flexDirection:'row' }}>
             <Text
@@ -46,17 +87,17 @@ function AddDishScreen() {
             >
                {I18n.t('vegan')}    
             </Text>
-            <Switch></Switch>
+            <Switch value={dishData.isVegan} onChange={onIsVeganChange}></Switch>
 
             </View>
             <View style={{height:'3%'}}></View>
             <View style={{flexDirection:'row' }}>
             <Text
-                    style={{fontSize: 20, color: colorPalette.Black, width:'45%'}}
-                    >
-                    {I18n.t('celiac')}    
-                    </Text>
-                    <Switch ></Switch>
+              style={{fontSize: 20, color: colorPalette.Black, width:'45%'}}
+              >
+              {I18n.t('celiac')}    
+              </Text>
+              <Switch value={dishData.isCeliac} onChange={onIsCeliacChange}></Switch>
             </View>
             <View style={{height:'3%'}}></View>  
             <View style={{flexDirection:'row' }}>
