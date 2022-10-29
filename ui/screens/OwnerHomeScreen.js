@@ -1,10 +1,12 @@
-import { View , FlatList } from 'react-native'
+import { View , FlatList , StyleSheet } from 'react-native'
 import React, { useState }  from 'react'
 import { Icon } from "@rneui/themed";
 import RestaurantCardOwner from '../components/RestaurantCardOwner';
 import MySearchBar from '../components/MySearchBar';
 import { ROUTES } from '..';
 import { useEffect } from 'react';
+import { SpeedDial } from '@rneui/themed';
+import { colorPalette } from '../styles/colors';
 
 function OwnerHomeScreen({navigation, props}) {
 
@@ -53,26 +55,52 @@ function OwnerHomeScreen({navigation, props}) {
     console.log('On Photo Pressed');
     navigation.navigate(ROUTES.RESTAURANT_OWNER_PROFILE_STACK);
   }
+  
 
   return (
-    <View style={{alignItems:'center'}}>
+    <View>
+    <View style={styles.global}>
        <MySearchBar ></MySearchBar>
-      <Icon
-        size={50}
-        name = 'pluscircle'
-        type = 'antdesign'
-        onPress={onCreateRestaurantPressed}
-      >
-      </Icon>
+       <FlatList
+            data={[restaurants]}
+            renderItem={renderItem}
+            keyExtractor ={item => item.name}
+            />
+     </View>
 
-      <FlatList
-          data={[restaurants]}
-          renderItem={renderItem}
-          keyExtractor ={item => item.name}
-          />
+      <View style={styles.icon}>
+        <Icon
+            size={50}
+            name = 'pluscircle'
+            type = 'antdesign'
+            onPress={onCreateRestaurantPressed}
+            containerStyle={StyleSheet.icon}	
+          >
+          </Icon>
+       </View>
+
+       
+    
  
     </View>
+  
   )
 }
 
 export default OwnerHomeScreen;
+
+
+
+const styles = StyleSheet.create({
+  global : {
+    alignItems:'center' , 
+    height : "100%"
+},
+icon : {
+                                 
+  position: 'absolute',                                         
+  bottom: "2%",                                                    
+  right: "2%", 
+
+},
+});
