@@ -53,6 +53,10 @@ export  default{
     hour : "Horario",
     opening : "Apertura",
     closing : "Cierre",
-    
+    save : "Guardar",
+    pricee : "Price",
+    typeFood : "Tipo de comida",
+    deleteRestaurant : "Eliminar resto",
+    create : "Crear",
 
 };

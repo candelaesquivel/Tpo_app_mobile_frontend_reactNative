@@ -158,7 +158,7 @@ function CreateRestaurantScreen({navigation, props}) {
           
           <View style={{flexDirection: 'column' , width : "100%",height : "60%", alignItems : "center" }}>
             < MyButton
-                title= "Crear"
+                title= {I18n.t('create')} 
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}
                 ></MyButton>
