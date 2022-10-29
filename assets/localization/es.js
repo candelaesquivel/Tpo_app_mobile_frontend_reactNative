@@ -45,5 +45,14 @@ export  default{
     logout : 'Cerrar Sesión',
     deleteAccount : 'Eliminar Cuenta',
     address : 'Dirección',
-    map : 'Mapa'
+    map : 'Mapa',
+    neighborhood: "Barrio",
+    location : "Localización",
+    zipCode : "Código postal",
+    close : "Cerrado",
+    hour : "Horario",
+    opening : "Apertura",
+    closing : "Cierre",
+    
+
 };

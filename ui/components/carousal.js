@@ -42,7 +42,7 @@ const DATA = [
 
 // Default Props
 const defaults = {
-  height: 200,
+  height:  Dimensions.get("window").height*0.3,
   width: Dimensions.get("window").width,
   delay: 5000,
 };
