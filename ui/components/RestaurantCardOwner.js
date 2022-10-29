@@ -11,7 +11,6 @@ address = 'Honduras 5500', score = 5, onMenuPressed = {}, onPhotoPress = {},
 props}) {
 
   return (
-    <View style={{width:'100%' , height : "100%"}} >
       <Card>
         <View style={styles.global}>
 
@@ -39,8 +38,6 @@ props}) {
       
         </View>
       </Card>
-    
- </View>
   )
 }
 
