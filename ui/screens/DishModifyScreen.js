@@ -1,4 +1,4 @@
-import { View, Text , ScrollView} from 'react-native'
+import { View, Text , ScrollView , StyleSheet , Dimensions} from 'react-native'
 import React, { useState } from 'react'
 import {  Switch } from '@rneui/base'
 import { colorPalette } from '../styles/colors'
@@ -7,129 +7,105 @@ import { InputText } from '../components/InputText'
 import { MyButton } from '../components/button'
 import  Icon from 'react-native-vector-icons/MaterialIcons';
 import Carousal from '../components/carousal';
-
-
+import { Theme } from '../styles/Theme';
 
 function DishModifyScreen({navigation, props}){
-  
 
     const [dishName, setDishName]= useState(""); 
   return (
+
     <ScrollView>
-        <Carousal></Carousal>
-        <View style={{flexDirection:"row-reverse"}}>
-        <Icon name = 'add' size={30} style={{marginRight: 10 , marginTop : 10 }}></Icon>
+     <Carousal></Carousal>
+        <View style={styles.iconGlobal}>
+            <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
         </View>
+        <View style={styles.global}>
+         <View style={styles.globalTwo}>
+            <Text style={styles.words}>
+                {I18n.t('name')}    
+            </Text>
+            <InputText 
+            placeholder="Tartar de atun"
+            color={colorPalette.White}
+            placeholderTextColor = {colorPalette.Black}
+            ></InputText>
 
-        <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 20}}>
-     
-            <View style={{width:'85%', alignItems:'flex-start'}}>
-                <Text
-                style={{ fontSize: 20, color: colorPalette.Black}}
-                >
-                    {I18n.t('name')}    
-                </Text>
-                <InputText 
-                placeholder="Tartar de atun" 
-                color={colorPalette.White}
-                placeholderTextColor = {colorPalette.Black}
-                ></InputText>
+            <Text style={styles.words}>
+                {I18n.t('price')}        
+            </Text>
+            <InputText 
+            placeholder="4000"
+            color={colorPalette.White}
+            placeholderTextColor = {colorPalette.Black}
+            ></InputText>
 
-                <Text
-                style={{ fontSize: 20, color: colorPalette.Black}}
-                >
-                    {I18n.t('price')}    
-                </Text>
-                <InputText 
-                    placeholder="Tartar de atun" 
-                    color={colorPalette.White}
-                    placeholderTextColor = {colorPalette.Black}
-                ></InputText>
+            <Text style={styles.words}>
+                {I18n.t('ingredients')}        
+            </Text>
+            <InputText 
+            placeholder="Atun, palta  y aceite de oliva"
+            color={colorPalette.White}
+            placeholderTextColor = {colorPalette.Black}
+            ></InputText>
 
-                <Text
-                style={{ fontSize: 20, color: colorPalette.Black}}
-                >
-                    {I18n.t('ingredients')}    
-                </Text>
-                <InputText 
-                    placeholder="Tartar de atun" 
-                    color={colorPalette.White}
-                    placeholderTextColor = {colorPalette.Black}
-                ></InputText>
-
-                <Text
-                style={{ fontSize: 20, color: colorPalette.Black}}
-                >
-                    {I18n.t('discount')}    
-                </Text>
-                
-
-                    <View style={{flexDirection:'row' }}>
-                <Text
-                style={{ fontSize: 20, color: colorPalette.Black, width:'45%'}}
-                >
+            <Text style={styles.words}>
+                {I18n.t('discount')}          
+            </Text>
+            <Text style={styles.words}>
+                STEPPER          
+            </Text>
+           
+             <View style={styles.switchContainer}>
+                <Text style={styles.words}>
                     {I18n.t('vegan')}    
                 </Text>
+                <View style={{width:'18%'}}></View>
                 <Switch
-                value={true}
-                ></Switch>
-
-                </View>
-              
-                <View style={{height:'3%'}}></View>
-                <View style={{flexDirection:'row' }}>
-                <Text
-                        style={{fontSize: 20, color: colorPalette.Black, width:'45%'}}
-                        >
-                        {I18n.t('celiac')}    
-                        </Text>
-                        <Switch
-                        value={false}
-                        ></Switch>
-                </View>
-            
-                <View style={{height:'3%'}}></View>  
-            
-
-                <Text
-                style={{ fontSize: 20, color: colorPalette.Black}}
-                >
-                    {I18n.t('category')} {"PROMOCION"}  
+                    value={true} />
+            </View>
+            <View style={styles.switchContainer}>
+                <Text style={styles.words}>
+                    {I18n.t('celiac')}       
                 </Text>
-            
-                <View style={{flexDirection: 'row' , height : 150 , marginTop : 10 , marginBottom : -90}}>
+                <Switch
+                    value={true} />
+            </View>
+            <Text style={styles.words}>
+             {I18n.t('category')} {"PROMOCION"}      
+            </Text>
+
+            <View style={styles.buttons}>
                     <MyButton
                     title= {I18n.t('chose')} 
-                    width='50%'
-                    height='30%'
+                    width={ Dimensions.get("window").width*0.4}
+                    height={Dimensions.get("window").height*0.07}
                     ></MyButton>
 
                     <MyButton
                     title= {I18n.t('addNewCategory')} 
-                    width='50%'
-                    height='30%'
+                    width={ Dimensions.get("window").width*0.4}
+                    height={Dimensions.get("window").height*0.07}
                     ></MyButton>
                  
-                </View>
+            </View>
                
-            <View style={{flexDirection: 'column' , width : "100%",height : 160 , alignItems : "center" }}>
+            <View style={styles.buttonsTwo}>
 
             < MyButton
-                title= "Guardar"
-                width={200}
-                height={50}
+                title={I18n.t('save')}
+                width={ Dimensions.get("window").width*0.5}
+                height={Dimensions.get("window").height*0.07}
                 ></MyButton>
 
             < MyButton
-                title= "Eliminar plato"
-                width={200}
-                height={50}
+                title= {I18n.t('deleteDish')}
+                width={ Dimensions.get("window").width*0.5}
+                height={Dimensions.get("window").height*0.07}
                 ></MyButton>
             </View>
         
-                </View>
-                     
-        </View>
+        </View>                
+         </View>
        
     </ScrollView>
     
@@ -137,3 +113,47 @@ function DishModifyScreen({navigation, props}){
 }
 
 export default DishModifyScreen;
+
+const styles = StyleSheet.create({
+    iconGlobal :{
+        flexDirection:"row-reverse"
+    }
+    ,
+    iconPlus:{
+        marginRight: "3%" , 
+        marginTop : "3%" 
+    },
+    globalTwo:{
+        width:'90%', 
+        alignItems:'flex-start'
+      },
+      global:{
+        flexDirection : 'column',
+        alignItems : 'center'
+      },
+      words :{
+        fontSize: Theme.font.MEDIUM,
+        color: colorPalette.Black, 
+        marginLeft : "4%" , 
+        marginBottom : "3%"
+    },
+    switchContainer : {
+        flexDirection:'row',
+        marginBottom : "3%"
+         
+    },
+    buttons : {
+        flexDirection: 'row' , 
+        marginLeft : "6%"
+        },
+
+    buttonsTwo : {
+        flexDirection: 'column' , 
+        alignItems : "center" ,
+        width : "100%",
+        height : "75%" , 
+        
+    },
+
+});
+

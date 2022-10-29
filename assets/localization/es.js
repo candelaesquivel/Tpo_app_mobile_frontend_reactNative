@@ -58,5 +58,7 @@ export  default{
     typeFood : "Tipo de comida",
     deleteRestaurant : "Eliminar resto",
     create : "Crear",
+    deleteDish : "Eliminar Plato",
+    
 
 };
