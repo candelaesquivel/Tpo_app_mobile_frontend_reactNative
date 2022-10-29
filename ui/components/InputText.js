@@ -2,12 +2,13 @@ import { Input } from "@rneui/themed";
 import {colorPalette} from "../styles/colors";
 
 export function InputText(props){
+
     return (
         <Input 
           secureTextEntry = {props.secureTextEntry}
           placeholder={props.placeholder}
           placeholderTextColor = {props.placeholderTextColor}
-          inputStyle={{color : colorPalette.White}}
+          inputStyle={{color : props.textColor !== undefined ? props.textColor : colorPalette.White}}
           style={{
               borderRadius : 30, 
               borderWidth : props.borderWidth,
