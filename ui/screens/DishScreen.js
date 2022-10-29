@@ -2,8 +2,8 @@ import { View, Text } from 'react-native'
 import DishCard from '../components/dishCard';
 import Carousal from '../components/carousal';
 
-
 function DishScreen({navigation, props}){
+
     const ING = [
         {
           name: 'atun',
@@ -21,7 +21,7 @@ function DishScreen({navigation, props}){
            
            <Carousal></Carousal>
             <DishCard
-            name = 'Tarta de Atun'
+            name = 'Tarta de Atún'
             vegan = {true}
             celiac = {true}
             price = {10}

@@ -2,12 +2,12 @@
 export const Theme ={
     font : {
         FONTFAMILY : "Roboto",
-        SMALL : 10,
+        SMALL : 15,
         MEDIUM : 20,
         LARGE : 27,
     } ,
     sizes : {
-        ROUNDED : 15 
+        ROUNDED : 25 
     },
 
     button : {

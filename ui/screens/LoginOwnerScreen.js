@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import I18n from "../../assets/localization/I18n";
-import { View } from "react-native";
+import { View , StyleSheet} from "react-native";
 import { Logo } from "../components/Logo";
 import { colorPalette } from "../styles/colors";
 import { MyButton } from "../components/button";
 import { Text } from "@rneui/themed";
 import { InputText } from "../components/InputText";
-
 import loginOwner from "../../networking/loginOwner";
 import { ROUTES } from "..";
 import {REDUX_ACTIONS} from '../../config';
 import { useSelector, useDispatch } from 'react-redux'
+import { Theme } from "../styles/Theme";
 
 function LoginOwnerScreen({navigation, props}){
 
@@ -19,8 +19,6 @@ function LoginOwnerScreen({navigation, props}){
   });
 
   const dispatch = useDispatch();
-
-  console.log("Is Logged: ", isLogged)
 
   const [userData, setUserData] = useState({
     email : '',
@@ -46,20 +44,17 @@ function LoginOwnerScreen({navigation, props}){
     }, [navigation, isLogged])
 
     const onRecoverTouched = (event) => {
-        console.log("Recovery Password Link Touched");
         navigation.navigate(ROUTES.FORGET_PASSWORD);
     }
 
     const onCreateTouched = (event) => {
-        console.log("On Create Owner Account Touched");
         navigation.navigate(ROUTES.CREATE_ACCOUNT_OWNER);
     }
 
     const onLoginPressed = async (event) => {
-      
+
         const loginRes = await loginOwner(userData);
 
-        console.log("On Login Pressed: ", loginRes);
 
         if (loginRes){
           dispatch({
@@ -77,43 +72,72 @@ function LoginOwnerScreen({navigation, props}){
         }
 
         return;
-
-        
-
-        return;
-
-        navigation.navigate(ROUTES.OWNER_HOME);
-        return;
-        
-
-        console.log(loggingResult);
     }
 
     return (
-        <View style={{flexDirection : 'column', 
-        height : '100%',
-        alignItems : 'center', backgroundColor : colorPalette.White}}>
-            <View style={{width : '100%', height : '5%', backgroundColor : colorPalette.White}}></View>
+        <View style={styles.global}>
+           <View style={styles.headerWhite}></View>
+           
             <Logo></Logo>
-            <View style = {{ 
-                width : '90%', 
-                height : '30%',
-                borderRadius : 30,
-                backgroundColor : colorPalette.LightOrange,
-            }}>
-                <InputText color = {colorPalette.Orange} placeholder = 'Ingrese Mail'
-                height = '50%' onChange={onEmailChange}
-                ></InputText>
-                <InputText color = {colorPalette.Orange} 
-                  placeholder = 'Ingrese Contraseña'
+
+              <View style = {styles.logInContainer}>
+                  <View style = {styles.logInContainerTwo}>
+                  <InputText 
+                  color = {colorPalette.Orange} 
+                  placeholder = {I18n.t('writeEmail')}
+                  placeholderTextColor ={colorPalette.White}
+                  height = '50%' 
+                  onChange={onEmailChange}
+                  ></InputText>
+                  <InputText 
+                  color = {colorPalette.Orange} 
+                  placeholder = {I18n.t('passInput')}
+                  placeholderTextColor ={colorPalette.White}
                   secureTextEntry = {true}
-                  onChange = {onPassChange}></InputText>
-            </View>
-            <MyButton title = {I18n.t('logIn')} onPress={onLoginPressed}></MyButton>
-            <Text style={{color : colorPalette.Orange, marginTop : 10}} onPress={onRecoverTouched}>{I18n.t('forgotPassword')}</Text>
-            <Text style={{color : colorPalette.Orange, marginTop : 15}} onPress={onCreateTouched}>{I18n.t('createAccount')}</Text>
-        </View>
+                  onChange = {onPassChange}>
+                  </InputText>
+                  </View>
+              </View>
+
+              <MyButton 
+              title = {I18n.t('logIn')} 
+              onPress={onLoginPressed}
+              ></MyButton>
+              <Text style={styles.word} onPress={onRecoverTouched}>{I18n.t('forgotPassword')}</Text>
+              <Text style={styles.word} onPress={onCreateTouched}>{I18n.t('createAccount')}</Text>
+          </View>
     )
 }
 
 export default LoginOwnerScreen;
+
+const styles = StyleSheet.create({
+  global:{
+    flexDirection : 'column', 
+    height : '100%',
+    alignItems : 'center',
+    backgroundColor : colorPalette.White,
+  },
+  headerWhite : {
+    height : "12%",
+  },
+  logInContainer : {
+      width : '90%', 
+      height : '24%',
+      borderRadius : Theme.sizes.ROUNDED,
+      backgroundColor : colorPalette.LightOrange,
+      marginTop : "5%",
+      marginBottom : "5%",
+     
+  },
+  logInContainerTwo : {
+    flexDirection : "column" ,
+    marginTop : "7%"
+  },
+  word : {
+    color : colorPalette.Orange,
+     marginTop : 15,
+     fontSize : Theme.font.SMALL
+    },
+});
+
