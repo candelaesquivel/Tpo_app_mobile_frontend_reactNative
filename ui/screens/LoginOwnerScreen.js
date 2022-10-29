@@ -84,7 +84,7 @@ function LoginOwnerScreen({navigation, props}){
                   <View style = {styles.logInContainerTwo}>
                   <InputText 
                   color = {colorPalette.Orange} 
-                  placeholder = {I18n.t('writeEmail')}
+                  placeholder = {I18n.t('emailInput')}
                   placeholderTextColor ={colorPalette.White}
                   height = '50%' 
                   onChange={onEmailChange}
