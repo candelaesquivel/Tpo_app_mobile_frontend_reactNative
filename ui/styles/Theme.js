@@ -4,7 +4,7 @@ export const Theme ={
         FONTFAMILY : "Roboto",
         SMALL : 15,
         MEDIUM : 20,
-        LARGE : 27,
+        LARGE : 25,
     } ,
     sizes : {
         ROUNDED : 25 

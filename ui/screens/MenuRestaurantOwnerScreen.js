@@ -1,9 +1,12 @@
-import { View, Text , FlatList} from 'react-native'
+import { View, Text , FlatList ,StyleSheet, SectionList} from 'react-native'
 import React, { useEffect } from 'react'
 import { Icon } from "@rneui/themed";
 import { colorPalette } from '../styles/colors';
 import MenuCard from '../components/menuCard';
 import { ROUTES } from '..';
+import Comment from '../components/comment';
+import { Theme } from '../styles/Theme';
+
 
 function MenuRestaurantOwnerScreen({navigation,props}) {
 
@@ -16,48 +19,43 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
     console.log('On Dish Photo Press');
     navigation.navigate(ROUTES.DISH_DETAILS_OWNER_STACK);
   }
-
-  const renderItem = ({ item }) => (
+  const Item = ({ title }) => (
     <View >
-    <Text style={{color: colorPalette.Black , fontSize: 18 ,marginTop :10, fontWeight: 'bold'}}>{item.category}</Text>
+    
          <MenuCard
-            onPhotoPress={item.onDishPhotoPress}
-            name={item.name}
-            price={item.price}
-            discount={item.discount}>
+            onPhotoPress={title.onDishPhotoPress}
+            name={title.name}
+            price={title.price}
+            discount={title.discount}>
         </MenuCard>
 
     </View>
-    ); 
+  );
+  
+ 
 
    const MENU = [
     {
-    name : 'Camarones',
-    category : 'Promocion',
-    price : 4000,
-    discount : 10,
-    onPhotoPress : false,
-    onCreateDishPress : false,
-
-    },
-    {
-      name : 'Camarones',
-      category : 'Promocion',
-      price : 4000,
-      discount : 10,
-      onPhotoPress : false,
-      onCreateDishPress : false,
-  
-      },
-      {
-        name : 'Camarones',
+      title : 'Promocion',
+        data: [
+        
+        {name : 'Camarones',
         category : 'Promocion',
         price : 4000,
         discount : 10,
         onPhotoPress : false,
-        onCreateDishPress : false,
-    
-        },
+        onCreateDishPress : false} 
+        , 
+        {
+          name : 'Camarones',
+          category : 'Promocion',
+          price : 4000,
+          discount : 10,
+          onPhotoPress : false,
+          onCreateDishPress : false,
+      
+          }
+        ,
         {
           name : 'Camarones',
           category : 'Promocion',
@@ -67,36 +65,98 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
           onCreateDishPress : false,
       
           },
-    
-   ];
+          {
+            name : 'Camarones',
+            category : 'Promocion',
+            price : 4000,
+            discount : 10,
+            onPhotoPress : false,
+            onCreateDishPress : false,
+        
+            },
+            {
+              name : 'Camarones',
+              category : 'Promocion',
+              price : 4000,
+              discount : 10,
+              onPhotoPress : false,
+              onCreateDishPress : false,
+          
+              },
+              {
+                name : 'Camarones',
+                category : 'Promocion',
+                price : 4000,
+                discount : 10,
+                onPhotoPress : false,
+                onCreateDishPress : false,
+            
+                },
+                {
+                  name : 'Camarones',
+                  category : 'Promocion',
+                  price : 4000,
+                  discount : 10,
+                  onPhotoPress : false,
+                  onCreateDishPress : false,
+              
+                  }]
+        } 
+      ];
+      
+  const onCreateMenuPressed = (event) => {
+    navigation.navigate(ROUTES.DISH_CREATE)
+  }
 
   return (
-
-    <View style={{alignItems:'center'}}>
-          <Icon
-          size={50}
-          name = 'pluscircle'
-          type='antdesign'
-          onPress={onCreateDishPress}
-          containerStyle={{        
-           left : '40%',
-           bottom: 0,
-           }}
-        />
-         <Comment
-         userName='hola'
-         Comment='ajkdnsbuqfbcjkedbfjeidbcfedsbjcfedbs'
-         >
-         </Comment>
-
-      
-      
-        {/* <Icon size={50} color={colorPalette.Black} name='pluscircle' type='antdesign' 
-        containerStyle={{position: 'fixed', bottom: -565, left: 170}}></Icon> */}
-
-    
+    <View style={styles.global}> 
+      <View style={{alignItems:'center'}}>        
+          <SectionList
+            sections={MENU}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({ item }) => <Item title={item} />}
+            renderSectionHeader={({ section: { title } }) => (
+            <Text style={styles.header}>{title}</Text>
+            )} />
+          <View style={styles.icon}>
+            <Icon
+                size={50}
+                name = 'pluscircle'
+                type = 'antdesign'
+                onPress={onCreateMenuPressed}
+                containerStyle={StyleSheet.icon}	
+              >
+              </Icon>
+          </View>
+      </View>
     </View>
-  )
+      )
 }
 
 export default MenuRestaurantOwnerScreen;
+
+const styles = StyleSheet.create({
+  category : {
+    color: colorPalette.Black ,
+     fontSize: 18 ,marginTop :10, fontWeight: 'bold'
+  },
+  header :{
+    fontSize: Theme.font.MEDIUM,
+    color: colorPalette.Black, 
+    fontWeight: 'bold', 
+    marginStart :"5%",
+    marginTop : "2%",
+    
+  },
+  global : {
+    alignItems:'center' , 
+    height : "100%"
+},
+icon : {
+                                 
+  position: 'absolute',                                         
+  bottom: "2%",                                                    
+  right: "2%", 
+
+},
+});
