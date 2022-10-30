@@ -1,34 +1,32 @@
+import axios from "axios";
 import URL_SERVICES from "../config/config"
 
-async function getRestaurants({distance, foodType, princeRange, rating, name})
+async function getRestaurants(userId)
 {
   console.log("On Get Restaurants");
 
   let restaurants = [];
 
-  return fetch(URL_SERVICES.RESTAURANTS_LIST, {
-    method : 'GET',
-    headers : {
-      'Content-Type' : 'application/json'
-    },
-  }).then((res) => res.json().then((json) => {
+  return axios.get(URL_SERVICES.RESTAURANTS_LIST, 
+    {
+      params : {
+        userId : userId
+      },
+  }).then((response) => {
+    let restos = [];
 
-    json.forEach(element => {
-      let resInfo = {
-        name : element.name,
-        address : element.address.neighborhood + ' ' + element.address.streetNumber,
-        score : 0,
-        favorite : false
-      }
-
-      restaurants.push(resInfo);
+    response.data.forEach(itr => {
+      restos.push({
+        name : itr.name,
+        address : itr.address.neighborhood + ' ' + itr.address.streetNumber,
+        score : itr.averageRating.$numberDecimal,
+        restaurantId : itr._id, // Is _id because the list is not created by populate method in Mongodb
+        isFavorite : itr.isFavorite
+      });
     });
 
-    return restaurants;
-  }))
-  .catch(err => {
-    console.log(err);
-  })
+    return restos;
+  });
 }
 
 export default getRestaurants;
