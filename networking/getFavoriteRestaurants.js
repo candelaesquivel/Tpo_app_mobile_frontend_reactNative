@@ -14,8 +14,6 @@ async function getFavoriteRestaurants(userId)
   return axios.get(url).then( (response) => {
     let restos = [];
 
-    console.log(response.data);
-
     response.data.forEach(itr => {
       restos.push({
         name : itr.name,

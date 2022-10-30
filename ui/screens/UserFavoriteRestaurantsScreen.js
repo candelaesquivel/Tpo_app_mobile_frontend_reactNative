@@ -13,11 +13,7 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
 
-  const dispatch = useDispatch();
   const userId = useSelector(state => state.session.userId);
-  const restaurantSelectedId = useSelector(state => state.session.restaurantSelectedId);
-
-  console.log("Curre Rest Id: ", restaurantSelectedId);
 
   const fillFavoriteRestaurantList = async () => {
     const restos = await GetFavoriteRestaurants(userId);
