@@ -1,7 +1,7 @@
 import URL_SERVICES from "../config/config"
 import axios from 'axios';
 
-async function wsGetOwnerRestaurants(ownerId)
+async function getOwnerRestaurants(ownerId)
 {
   console.log("On Get Restaurants");
 
@@ -30,4 +30,4 @@ async function wsGetOwnerRestaurants(ownerId)
   })
 }
 
-export default wsGetOwnerRestaurants;
+export default getOwnerRestaurants;
