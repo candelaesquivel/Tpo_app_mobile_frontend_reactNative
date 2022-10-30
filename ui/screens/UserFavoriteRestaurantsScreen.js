@@ -1,12 +1,12 @@
-import { View, FlatList, ScrollView } from 'react-native'
+import { View } from 'react-native'
 import React, { useEffect } from 'react'
 import MySearchBar from '../components/MySearchBar'
-import RestaurantCardUser from '../components/restaurantCardUser'
 import screenNames from '../screenNames'
 import { useState } from 'react';
-import { Button } from '@rneui/themed'
-import getRestaurants from '../../networking/getRestaurants';
 import I18n from '../../assets/localization/I18n'
+import { MyButton } from '../components/button';
+import { GetFavoriteRestaurants } from '../../networking';
+import { RestaurantFlatListUser } from '../components/restaurantListUser';
 
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
@@ -14,24 +14,11 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
 
-  const renderItem = ({ item }) => (
-    <View >
-      <RestaurantCardUser
-          name={item.name}
-          address={item.address}
-          score={item.score}
-          favorite={item.favorite}
-          onFavoriteTouched = {item.onFavoriteTouched}
-          onRestaurantNameTouched={item.onRestaurantNameTouched}
-        ></RestaurantCardUser>
-    </View>
-  ); 
-
   const [isFavorite, setFavorite] = useState(true);
 
-  const fillRestaurantList = async () => {
-    const rests = await getRestaurants({});
-    setRestaurants(rests);
+  const fillFavoriteRestaurantList = async () => {
+    const restos = await GetFavoriteRestaurants('635ddf0387204979748381de');
+    setRestaurants(restos);
   }
 
   useEffect(() => {
@@ -44,10 +31,8 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
 
     if (!triggerSearch)
     {
-      fillRestaurantList();
+      fillFavoriteRestaurantList();
       setTrigggerSearch(true);
-
-      
     }
 
   }, [restaurants, triggerSearch])
@@ -62,15 +47,17 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
     setFavorite(!isFavorite);
   }
 
+  const onGetPressed = async (event) => {
+    const restos = await GetFavoriteRestaurants('635ddf0387204979748381de');
+    console.log(restos);
+    setRestaurants(restos);
+  }
+
   return (
     <View>
       <MySearchBar></MySearchBar>
       <View>
-      <FlatList
-          data={restaurants}
-          renderItem={renderItem}
-          keyExtractor ={item => item.name}
-       ></FlatList>
+        <RestaurantFlatListUser restaurants={restaurants}></RestaurantFlatListUser>
       </View>
     </View>
   )
