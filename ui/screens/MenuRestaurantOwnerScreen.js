@@ -31,13 +31,7 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
   }, [dishes, triggerSearch])
 
   const onCreateDishPress = (event) => {
-    console.log('On Created Dish Press');
     navigation.navigate(ROUTES.ADD_DISH_STACK)
-  }
-
-  const onDishPhotoPress = (event) => {
-    console.log('On Dish Photo Press');
-    navigation.navigate(ROUTES.DISH_DETAILS_OWNER_STACK);
   }
 
   return (

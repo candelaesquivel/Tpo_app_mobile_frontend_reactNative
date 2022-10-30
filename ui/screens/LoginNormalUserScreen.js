@@ -21,7 +21,6 @@ function LoginUserScreen({navigation, props}){
 
     const checkLogStatus = async () => {
       const isGoogleSigned = await _isSignedIn();
-      console.log("Google Sign Status: ", isGoogleSigned);
       if (isLogged)
         navigation.navigate(ROUTES.HOME_NORMAL_USER_SCREEN);
       else if (isGoogleSigned)
@@ -29,7 +28,6 @@ function LoginUserScreen({navigation, props}){
     }
 
     useEffect(() => {
-      console.log("IS Logged: ", isLogged)
       checkLogStatus();
     }, [isLogged]);
 
@@ -56,7 +54,6 @@ function LoginUserScreen({navigation, props}){
 
           GetLocation.getCurrentPosition({timeout:50000, enableHighAccuracy:true})
             .then(async latestLocation => {
-              console.log("location " + JSON.stringify(latestLocation));
 
               let userData = {
                 email : info.user.email, 
@@ -73,11 +70,8 @@ function LoginUserScreen({navigation, props}){
     
               // Navigate to the Home screen when the user has successfully signed in
               if (userData.email != null){
-                console.log("userInfo: ", userData);
                 const userInfo = await boundGoogleData(userData);
-
                 userData.id = userInfo.id;
-
                 dispatch(loginUserAction(userData));
               }
             })

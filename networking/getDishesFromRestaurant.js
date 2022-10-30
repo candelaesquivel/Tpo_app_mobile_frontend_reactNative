@@ -2,11 +2,7 @@ import axios from "axios";
 import URL_SERVICES from "../config/config";
 
 function getDishesFromRestaurant(restaurantId){
-  console.log("On Get Dishes From Menu");
-
   const url = URL_SERVICES.DISH_LIST.replace('restaurantId', restaurantId);
-
-  console.log("URL:", url);
 
   return axios.get(url).then( (response) => {
     let dishes = []
@@ -34,7 +30,6 @@ function getDishesFromRestaurant(restaurantId){
 
       dishes[idx].data.push(dishInfo);
 
-      console.log(dishes[idx]);
 
     });
 
