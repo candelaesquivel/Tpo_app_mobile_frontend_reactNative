@@ -1,7 +1,7 @@
 import { color, Icon } from "@rneui/base"
 import { useEffect } from "react"
 import I18n from "../../assets/localization/I18n"
-import { View , StyleSheet } from "react-native"
+import { View , StyleSheet , KeyboardAvoidingView } from "react-native"
 import { colorPalette } from "../styles/colors"
 import { MyButton } from "../components/button"
 import { TextInput , Dimensions} from "react-native"
@@ -29,30 +29,36 @@ function ForgetPasswordScreen({navigation, props}) {
     }
 
     return (
+      <KeyboardAvoidingView>
         <View style={styles.global}>
+          
           <View style={styles.containerWhite}>
             <Icon name='lock' size={96} color={colorPalette.Orange}></Icon>
           </View>
-         <View style={styles.containerEmail}>
-          <View style={styles.containerEmailTwo}>
-          <InputText 
-            color = {colorPalette.Orange} 
-            placeholder = {I18n.t('emailInput')}
-            placeholderTextColor ={colorPalette.White}
-            height = '50%' 
-            onChange={onEmailChange}
-            ></InputText>
-          </View> 
-          </View>
-          <View style={styles.button}>
-            <MyButton 
-            title = {I18n.t('recoverPasswordBtn')} 
-            onPress = {onRecoveryTouch}
-            width={ Dimensions.get("window").width*0.6}
-            height={Dimensions.get("window").height*0.07}
-            ></MyButton>
-          </View>
+         
+            <View style={styles.containerEmail}>
+            <View style={styles.containerEmailTwo}>
+            <InputText 
+              color = {colorPalette.Orange} 
+              placeholder = {I18n.t('emailInput')}
+              placeholderTextColor ={colorPalette.White}
+              height = '50%' 
+              onChange={onEmailChange}
+              ></InputText>
+            </View> 
+            </View>
+            <View style={styles.button}>
+              <MyButton 
+              title = {I18n.t('recoverPasswordBtn')} 
+              onPress = {onRecoveryTouch}
+              width={ Dimensions.get("window").width*0.6}
+              height={Dimensions.get("window").height*0.07}
+              ></MyButton>
+            </View>
+        
+       
          </View>
+         </KeyboardAvoidingView>
     )
 
 }
@@ -64,7 +70,8 @@ const styles = StyleSheet.create({
   flexDirection : 'column', 
   alignItems : 'center', 
   backgroundColor : colorPalette.White,
-  height : "100%"
+  width : Dimensions.get("window").width,
+    height:Dimensions.get("window").height,
  },
  containerWhite : {
     width : '100%',
@@ -75,8 +82,8 @@ const styles = StyleSheet.create({
   },
   containerEmail : { 
     justifyContent : 'space-evenly',
-     height : '10%',
-      width : '90%', 
+    width : Dimensions.get("window").width*0.9,
+    height:Dimensions.get("window").height*0.1,
      backgroundColor : colorPalette.LightOrange, 
      borderRadius : Theme.sizes.ROUNDED
     },
