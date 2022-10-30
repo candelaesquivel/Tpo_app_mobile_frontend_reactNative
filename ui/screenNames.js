@@ -10,10 +10,6 @@ export default {
     FILTER : 'FilterScreen',
     FORGET_PASSWORD : 'RecoveryPasswordScreen',
    
-    RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
-    RESTAURANT_EDIT_OWNER : "EditRestaurantScreen",
-    DISH_USER_VIEW_STACK : 'DishScreenStack',
-    DISH_MODIFY_STACK : 'DishModifyScreen',
     // Owner Routes
     OWNER_STACK : 'OwnerStackScreens',
     OWNER_HOME : 'OwnerHome',
@@ -24,14 +20,16 @@ export default {
     CREATE_RESTAURANT_STACK : 'OwnerCreateRestaurantStack',
     RESTAURANT_OWNER_PROFILE_STACK : 'OwnerRestaurantProfileStack',
     ADD_DISH_STACK : 'AddDishToMenuStack',
-    DISH_DETAILS_OWNER_STACK : 'DishModifyStack',
+    DISH_MODIFY_STACK : 'DishModifyStack',
     DELETE_ACCOUNT_OWNER_STACK : 'DeleteAccountOwnerStack',
+    RESTAURANT_EDIT_OWNER : "EditRestaurantScreen",
 
     // User Routes
     HOME_NORMAL_USER_SCREEN  : 'NormalUserScreenHome',
     PROFILE_RESTAURANT_USER : 'ProfileUserRestaurantScreen',
+    RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
 
-
+    DISH_USER_VIEW_STACK : 'DishScreenStack',
     HOME_NORMAL_USER  : 'NormalUserScreenHome',
     HOME_NORMAL_USER_DRAWER : 'NormalUserScreenHomeDrawer',
     FAVORITE_RESTAURANTS_DRAWER : 'FavoriteUserRestaurantsScreenDrawer',
