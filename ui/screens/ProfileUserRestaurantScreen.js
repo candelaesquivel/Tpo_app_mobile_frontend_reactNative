@@ -3,7 +3,6 @@ import React from 'react'
 import Images from '../../assets/images/index';
 import { Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
-import MenuCard from '../components/menuCard';
 import CommentUserRestaurant from '../components/commentUserRestaurant';
 import I18n from '../../assets/localization/I18n';
 import Mapa from '../components/mapa';
@@ -12,18 +11,6 @@ import Mapa from '../components/mapa';
 function ProfileUserRestaurantScreen({navigation,name='Mudra',hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
 calification=4,priceRange='$$$$',props}) {
 
-  const renderItem = ({ item }) => (
-    <View  >
-    <Text style={{color: colorPalette.Black , fontSize: 18 ,marginTop :10, fontWeight: 'bold'}}>{item.category}</Text>
-         <MenuCard
-            onPhotoPress={item.onDishPhotoPress}
-            name={item.name}
-            price={item.price}
-            discount={item.discount}>
-        </MenuCard>
-
-    </View>
-    ); 
 
 
 
