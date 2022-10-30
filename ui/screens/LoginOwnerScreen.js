@@ -8,7 +8,7 @@ import { Text } from "@rneui/themed";
 import { InputText } from "../components/InputText";
 import loginOwner from "../../networking/loginOwner";
 import { ROUTES } from "..";
-import {REDUX_ACTIONS} from '../../config';
+import {CONSTANTS, REDUX_ACTIONS} from '../../config';
 import { useSelector, useDispatch } from 'react-redux'
 import { Theme } from "../styles/Theme";
 
@@ -65,6 +65,7 @@ function LoginOwnerScreen({navigation, props}){
               token : loginRes.token,
               userName : loginRes.name,
               isLogged : true,
+              role : CONSTANTS.OWNER_ROLE,
             }
           })
         }else{
