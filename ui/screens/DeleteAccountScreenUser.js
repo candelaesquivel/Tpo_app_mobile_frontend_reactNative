@@ -1,4 +1,4 @@
-import { View , StyleSheet , Dimensions} from "react-native";
+import { View , StyleSheet , Dimensions , KeyboardAvoidingView} from "react-native";
 import { NavBar } from "../components/navBar";
 import { colorPalette } from "../styles/colors";
 import { Text } from "@rneui/themed";
@@ -19,7 +19,6 @@ function DeleteAccountScreenUser({navigation, props}){
     }, [navigation])
 
     return (
-        <ScrollView >
             <View  style={styles.global}>
                 <View style={styles.containerWhite}>
                     <Icon 
@@ -36,26 +35,26 @@ function DeleteAccountScreenUser({navigation, props}){
                     style={styles.message}>
                     {I18n.t('messageDeleteAccount')}
                 </Text>
-                
-                <View style = {styles.container}>
-                    <View style={styles.containerTwo}>
-                        <InputText
-                            placeholder = {I18n.t('passInput')}
-                            placeholderTextColor ={colorPalette.White}
-                            color = {colorPalette.Orange}
+                <KeyboardAvoidingView>
+                    <View style = {styles.container}>
+                        <View style={styles.containerTwo}>
+                            <InputText
+                                placeholder = {I18n.t('passInput')}
+                                placeholderTextColor ={colorPalette.White}
+                                color = {colorPalette.Orange}
+                                
+                                >
+                            </InputText>
+                            <InputText 
+                                placeholder ={I18n.t('validPassInput')}
+                                placeholderTextColor ={colorPalette.White}
+                                color = {colorPalette.Orange}
+                                secureTextEntry = {true}
                             
-                            >
-                        </InputText>
-                        <InputText 
-                            placeholder ={I18n.t('validPassInput')}
-                            placeholderTextColor ={colorPalette.White}
-                            color = {colorPalette.Orange}
-                            secureTextEntry = {true}
-                        
-                        ></InputText>
+                            ></InputText>
+                        </View>
                     </View>
-                
-                </View>
+                </KeyboardAvoidingView>
                 <View style={styles.button}>
                     <MyButton
                     title = {I18n.t('delete')}
@@ -65,8 +64,6 @@ function DeleteAccountScreenUser({navigation, props}){
                 </View>
                 
             </View>
-        </ScrollView>
-       
     )
 }
 
@@ -81,11 +78,11 @@ const styles = StyleSheet.create({
         width :  Dimensions.get("window").width
        },
     containerWhite : {
-    width : '100%',
-    height : '15%',
-    backgroundColor : colorPalette.White,
-    marginBottom : "5%",
-    marginTop : "10%"
+        width : '100%',
+        height :  Dimensions.get("window").height*0.15,
+        backgroundColor : colorPalette.White,
+        marginBottom : "5%",
+        marginTop : "20%"
     },
     message : {
     marginBottom : "5%",
@@ -93,8 +90,8 @@ const styles = StyleSheet.create({
     },
     container : {
         justifyContent : 'space-evenly',
-        height : '20%',
-         width : '90%', 
+        height :  Dimensions.get("window").height*0.2,
+        width :  Dimensions.get("window").width*0.9, 
         backgroundColor : colorPalette.LightOrange, 
         borderRadius : Theme.sizes.ROUNDED,
         
