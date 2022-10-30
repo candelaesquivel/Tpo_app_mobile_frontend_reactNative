@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CONSTANTS} from '../../config';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
-import {dishSelectedAction} from '../../redux/actions'
+import getDishData from '../../networking/getDishDetails';
 
 export default function DishItemCard({name = '', discount = 0, price = 100, dishId = '', props}) {
   const priceDescount =(price)* ((100-discount)/100)
@@ -18,18 +18,16 @@ export default function DishItemCard({name = '', discount = 0, price = 100, dish
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  console.log(role);
+  const restaurantId = useSelector(state => state.session.restaurantSelectedId);
 
-  const onPhotoPress = (event) => {
+  const onPhotoPress = async (event) => {
 
-    dispatch(dishSelectedAction(dishId));
-
-    console.log("User Role: ", role)
+    const dishData = await getDishData(restaurantId, dishId);
 
     if (role === CONSTANTS.USER_ROLE)
       navigation.navigate(ROUTES.DISH_USER_VIEW_STACK);
     else if (role === CONSTANTS.OWNER_ROLE)
-      navigation.navigate(ROUTES.DISH_MODIFY_STACK);
+      navigation.navigate(ROUTES.DISH_MODIFY_STACK, dishData);
   }
 
   return (
