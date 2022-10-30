@@ -7,7 +7,7 @@ import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
 
 
-export default function MenuCard({name = '', discount = 10, price = 100, onPhotoPress={}, props}) {
+export default function MenuCard({name = '', discount = 0, price = 100, onPhotoPress={}, props}) {
   const priceDescount =(price)* ((100-discount)/100)
   return (
     <View style={styles.globalOne}>
@@ -24,7 +24,7 @@ export default function MenuCard({name = '', discount = 10, price = 100, onPhoto
               <View style={styles.globalThree}>
                   <Text style={styles.wordsTwo} marginBottom={30}> {I18n.t('priceSymbol')}{priceDescount} </Text>
                   <Icon  name="local-offer" color={colorPalette.Orange} size={20}></Icon>
-                  <Text style={styles.wordsThree} marginBottom={30}>%{10}</Text>   
+                  <Text style={styles.wordsThree} marginBottom={30}>%{discount}</Text>   
               </View>
               <View style={styles.globalFour} >
                   <Icon name="leaf" type='font-awesome-5' color={colorPalette.Black} size={20}></Icon>
