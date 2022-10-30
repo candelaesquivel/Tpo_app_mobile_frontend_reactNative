@@ -1,5 +1,5 @@
 import I18n from "../../assets/localization/I18n"
-import { View , StyleSheet, Dimensions} from "react-native"
+import { View , StyleSheet, Dimensions , KeyboardAvoidingView} from "react-native"
 import { colorPalette } from "../styles/colors"
 import { MyButton } from "../components/button"
 import { InputText } from "../components/InputText"
@@ -46,6 +46,7 @@ export function CreateAccountOwnerScreen({navigation, props}) {
           <View style={styles.icon}>
             <Icon name='account-circle' size={96} color={colorPalette.Orange} />
           </View>
+          <KeyboardAvoidingView>
           <View style={styles.input}>
               <View style={styles.inputTwo}>
                 <InputText 
@@ -72,6 +73,8 @@ export function CreateAccountOwnerScreen({navigation, props}) {
               </View>
              
           </View>
+          </KeyboardAvoidingView>
+       
             <View style={{width : '100%', height : '5%', backgroundColor : colorPalette.White}}></View>
             <MyButton
              title = {I18n.t('createAccount')} 
@@ -89,7 +92,8 @@ export default CreateAccountOwnerScreen;
 const styles = StyleSheet.create({
   global:{
     flexDirection : 'column', 
-    height : '100%',
+    width : Dimensions.get("window").width,
+    height:Dimensions.get("window").height,
     alignItems : 'center',
     backgroundColor : colorPalette.White
   },
@@ -102,8 +106,8 @@ const styles = StyleSheet.create({
     },
     input : { 
       justifyContent : 'space-evenly',
-       height : '35%', 
-       width : '80%', 
+      width : Dimensions.get("window").width*0.9,
+      height:Dimensions.get("window").height*0.3,
        backgroundColor : colorPalette.LightOrange, 
       borderRadius : Theme.sizes.ROUNDED
   },
