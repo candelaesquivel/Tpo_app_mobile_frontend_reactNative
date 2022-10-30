@@ -43,6 +43,7 @@ function OwnerHomeScreen({navigation, props}) {
         score = {item.score}
         onMenuPressed={onRestaurantMenuPressed}
         onPhotoPress={onPhotoPresses}
+        restaurantId = {item.id}
         >
         </RestaurantCardOwner>
       </View>
