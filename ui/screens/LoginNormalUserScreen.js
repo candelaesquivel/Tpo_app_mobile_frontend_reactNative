@@ -75,8 +75,10 @@ function LoginUserScreen({navigation, props}){
               if (userData.email != null){
                 console.log("userInfo: ", userData);
                 const userInfo = await boundGoogleData(userData);
-                console.log("User Info: ", userInfo);
-                dispatch(loginUserAction(userInfo));
+
+                userData.id = userInfo.id;
+
+                dispatch(loginUserAction(userData));
               }
             })
             .catch(error => {
