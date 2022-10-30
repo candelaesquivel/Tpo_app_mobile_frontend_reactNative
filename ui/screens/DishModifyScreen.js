@@ -8,10 +8,21 @@ import { MyButton } from '../components/button'
 import  Icon from 'react-native-vector-icons/MaterialIcons';
 import Carousal from '../components/carousal';
 import { Theme } from '../styles/Theme';
+import { useSelector } from 'react-redux';
+import updateDish from '../../networking/updateDish'
 
-function DishModifyScreen({navigation, props}){
+function DishModifyScreen({navigation, route, props}){
+  
+  const dishId = route.params.id;
 
-    const [dishName, setDishName]= useState(""); 
+  const [name, setName] = useState(route.params.name);
+  const [price, setPrice] = useState('0');
+  const currRestaurant = useSelector(state => state.session.restaurantSelectedId)
+
+  const onSavePress = async (event) => {
+    const result = await updateDish(currRestaurant, dishId);
+  }
+
   return (
 
     <ScrollView>
@@ -25,7 +36,8 @@ function DishModifyScreen({navigation, props}){
                 {I18n.t('name')}    
             </Text>
             <InputText 
-            placeholder="Tartar de atun"
+            value={name}
+            placeholder={name}
             color={colorPalette.White}
             placeholderTextColor = {colorPalette.Black}
             ></InputText>
@@ -34,7 +46,8 @@ function DishModifyScreen({navigation, props}){
                 {I18n.t('price')}        
             </Text>
             <InputText 
-            placeholder="4000"
+            value={price}
+            placeholder={price}
             color={colorPalette.White}
             placeholderTextColor = {colorPalette.Black}
             ></InputText>
@@ -92,6 +105,7 @@ function DishModifyScreen({navigation, props}){
             <View style={styles.buttonsTwo}>
 
             < MyButton
+              onPress={onSavePress}
                 title={I18n.t('save')}
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}

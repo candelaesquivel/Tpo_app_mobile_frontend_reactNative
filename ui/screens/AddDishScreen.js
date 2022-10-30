@@ -8,9 +8,13 @@ import { MyButton } from '../components/button'
 import  Icon from 'react-native-vector-icons/MaterialIcons';
 import Carousal from '../components/carousal';
 import { Theme } from '../styles/Theme';
+import createDish from '../../networking/createDish';
+import { useSelector } from 'react-redux';
 
 function AddDishScreen() {
-   const [dishName, setDishName]= useState(""); 
+   const [dishName, setDishName]= useState("");
+
+  const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
 
   const [dishData, setDishData] = useState({
     name : '',
@@ -50,6 +54,11 @@ function AddDishScreen() {
 
   const onCategoryChange = ({ nativeEvent: { eventCount, target, text} }) => {
     setDishData({...dishData, 'category' : text})
+  }
+
+  const onSavePress = async (event) => {
+    const res = await createDish(currRestaurant);
+    console.log('Dish Created: ', res);
   }
 
   return (
@@ -131,6 +140,7 @@ function AddDishScreen() {
             <View style={styles.buttonsTwo}>
 
             < MyButton
+                onPress={onSavePress}
                 title={I18n.t('save')}
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}

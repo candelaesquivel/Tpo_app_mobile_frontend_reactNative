@@ -1,39 +1,47 @@
-import URL_SERVICES from "../config/config"
+import URL_SERVICES from "../config/config";
+import axios from "axios";
 
-async function createDish({ name,category, price, picture, ingredients,isVegan,isGlutenFree
-,restaurantId})
-{
+const defaultDish = {
+  name: "Pizza Margarita",
+  price: 1000,
+  discount: 0,
+  description: "Pizza con tomate, queso y albahaca",
+  category: "Criolla",
+  ingredients: [
+    "tomate",
+    "queso",
+    "albahaca"
+  ],
+  isVegan: false,
+  isGlutenFree: false
+}
 
-const dish ={
-    name: "req.body.name",
-    category: "req.body.category",
-    price: "req.body.price",
-    picture: "req.body.picture",
-    ingredients: "req.body.ingredients",
-    isVegan: "req.body.isVegan",
-    isGlutenFree: "req.body.isGlutenFree",
-    restaurantId : '6320d342d4203565c30409de'
-    }
- 
-  
-  const dishData = JSON.stringify(dish);
+function createDish(restaurantId, dishData = defaultDish){
 
-  console.log("Dish: ", dishData);
+  const URL = URL_SERVICES.DISH_CREATE.replace('restaurantId', restaurantId);
 
-  let result = await fetch(URL_SERVICES.DISH_CREATE, {
-    method : 'POST',
-    headers : {
-      'Content-Type' : 'application/json'
-    },
-    body : userDish
-  }).then(res => {
-    console.log("Status: ", res.status);
-  }).
-  catch(err => {
+  console.log('URL:', URL);
+
+  return axios.post(URL, {
+    name: "Pizza Margarita",
+    price: 1000,
+    discount: 0,
+    description: "Pizza con tomate, queso y albahaca",
+    category: "Criolla",
+    ingredients: [
+      "tomate",
+      "queso",
+      "albahaca"
+    ],
+    isVegan: false,
+    isGlutenFree: false
+  }).then(response => {
+    console.log('Dish Data:', response.data);
+  }).catch(err => {
     console.log(err);
+  }).finally(() => {
+    console.log('Dish created');
   })
-
-  return result;
 }
 
 export default createDish;
