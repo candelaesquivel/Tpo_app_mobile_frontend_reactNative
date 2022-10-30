@@ -57,9 +57,6 @@ function LoginUserScreen({navigation, props}){
           GetLocation.getCurrentPosition({timeout:50000, enableHighAccuracy:true})
             .then(async latestLocation => {
               console.log("location " + JSON.stringify(latestLocation));
-              console.log("google " + JSON.stringify(info));
-
-              console.log("Google Info: ", info);
 
               let userData = {
                 email : info.user.email, 
