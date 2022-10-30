@@ -6,7 +6,8 @@ const initialState = {
     token : '',
     userEmail : '',
     userName : '',
-    isLogged : false
+    isLogged : false,
+    restaurantSelected : '',
   }
 }
 
@@ -32,6 +33,14 @@ export default function userReducer(state = initialState, action){
     }
     case REDUX_ACTIONS.USER_LOGOUT:{
       return initialState
+    }
+    case REDUX_ACTIONS.OWNER_SELECT_RESTAURANT:{
+      return {
+        ...state,
+        session : {
+          restaurantSelected : action.payload.restaurantId,
+        }
+      }
     }
     default:
       return state;

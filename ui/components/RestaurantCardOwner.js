@@ -5,10 +5,25 @@ import { colorPalette } from '../styles/colors';
 import I18n from "../../assets/localization/I18n";
 import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
+import { useDispatch } from 'react-redux';
+import { REDUX_ACTIONS } from '../../config';
+
 function RestaurantCardOwner({name = 'Rodizio', 
 
-address = 'Honduras 5500', score = 5, onMenuPressed = {}, onPhotoPress = {},
+address = 'Honduras 5500', score = 5, onMenuPressed = {}, onPhotoPress = {}, restaurantId = '',
 props}) {
+
+  const dispatcher = useDispatch();
+
+  const onMenuHandlerPress = () => {
+
+    dispatcher({
+      type : REDUX_ACTIONS.OWNER_SELECT_RESTAURANT,
+      payload : {restaurantId},
+    })
+
+    onMenuPressed();
+  }
 
   return (
       <Card>
@@ -31,7 +46,7 @@ props}) {
           </View>
 
           <View style={styles.globalFour} >
-            <Text  onPress={onMenuPressed} style={styles.menu} >{I18n.t('menu')}</Text>
+            <Text  onPress={onMenuHandlerPress} style={styles.menu} >{I18n.t('menu')}</Text>
           </View>
 
          </View>
