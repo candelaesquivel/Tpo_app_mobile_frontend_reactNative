@@ -7,7 +7,7 @@ import { ROUTES } from '..';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { GetOwnerRestaurants } from '../../networking';
-
+import { RestaurantFlatListOwner } from '../components/RestaurantFlatListOwner';
 
 function OwnerHomeScreen({navigation, props}) {
 
@@ -34,21 +34,7 @@ function OwnerHomeScreen({navigation, props}) {
 
   }, [restaurants, triggerSearch])
 
-  const renderItem = ({ item }) => {
-    return (
-      <View >
-      <RestaurantCardOwner 
-        name ={item.name}
-        address = {item.address}
-        score = {item.score}
-        onMenuPressed={onRestaurantMenuPressed}
-        onPhotoPress={onPhotoPresses}
-        restaurantId = {item.id}
-        >
-        </RestaurantCardOwner>
-      </View>
-    )
-  };
+
 
   const onCreateRestaurantPressed = (event) => {
     console.log('On Restaurant Create Press');
@@ -68,11 +54,7 @@ function OwnerHomeScreen({navigation, props}) {
   return (
     <View>
     <View style={styles.global}>
-       <FlatList
-            data={restaurants}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.name}
-            />
+       <RestaurantFlatListOwner restaurants={restaurants}></RestaurantFlatListOwner>
      </View>
 
       <View style={styles.icon}>
@@ -85,12 +67,7 @@ function OwnerHomeScreen({navigation, props}) {
           >
           </Icon>
        </View>
-
-       
-    
- 
     </View>
-  
   )
 }
 
