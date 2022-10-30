@@ -3,11 +3,17 @@ import { View } from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import Images from '../../assets/images/index';
-import { ROUTES } from '..';
+import { useDispatch } from 'react-redux';
+import {unselectRestaurantAction} from '../../redux/actions';
+
+function RestaurantCardUser({name ='Rodizio',address='',score= 0, favorite=true, onRestaurantNameTouched={},onPhotoPress={}, props}) {
 
 
-function RestaurantCardUser({name ='Rodizio',address='',score= 0, favorite=true,onFavoriteTouched = {}
-  ,onRestaurantNameTouched={},onPhotoPress={}, props}) {
+  const dispatch = useDispatch();
+  
+  const onFavoriteTouched = (event) => {
+    dispatch(unselectRestaurantAction());
+  }
 
   const FavoriteIcon = ({props}) => {
 
