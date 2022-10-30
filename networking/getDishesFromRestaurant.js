@@ -11,8 +11,6 @@ function getDishesFromRestaurant(restaurantId){
   return axios.get(url).then( (response) => {
     let dishes = []
 
-    console.log(response.data);
-
     response.data.forEach(itr => {
       
       let idx = dishes.findIndex(dishData => dishData.category === itr.category);
@@ -27,11 +25,8 @@ function getDishesFromRestaurant(restaurantId){
         idx = idx -1;
       }
 
-      console.log("IDX: ", idx);
-
-      console.log(itr.name);
-      
       const dishInfo = {
+        dishId : itr.id,
         name : itr.name,
         price : itr.price.$numberDecimal,
         discount : itr.discounts.$numberDecimal
