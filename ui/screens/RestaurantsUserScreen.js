@@ -1,10 +1,9 @@
-import { View, FlatList, ScrollView } from 'react-native'
+import { View, FlatList} from 'react-native'
 import React, { useEffect } from 'react'
 import MySearchBar from '../components/MySearchBar'
-import RestaurantCardUser from '../components/restaurantCardUser'
+import RestaurantCardUser from '../components/RestaurantCardUser'
 import screenNames from '../screenNames'
 import { useState } from 'react';
-import { Button } from '@rneui/themed'
 import getRestaurants from '../../networking/getRestaurants';
 import I18n from '../../assets/localization/I18n'
 
