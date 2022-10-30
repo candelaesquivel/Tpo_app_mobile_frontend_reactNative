@@ -7,7 +7,9 @@ const initialState = {
     userEmail : '',
     userName : '',
     isLogged : false,
+    role : '',
     restaurantSelected : '',
+    dishSelected : ''
   }
 }
 
@@ -27,18 +29,27 @@ export default function userReducer(state = initialState, action){
           token : action.payload.token,
           userEmail : action.payload.userEmail,
           userName : action.payload.userName,
-          isLogged : action.payload.isLogged
+          isLogged : action.payload.isLogged,
+          role : action.payload.role
         }
       }
     }
     case REDUX_ACTIONS.USER_LOGOUT:{
       return initialState
     }
-    case REDUX_ACTIONS.OWNER_SELECT_RESTAURANT:{
+    case REDUX_ACTIONS.USER_SELECT_RESTAURANT:{
       return {
         ...state,
         session : {
           restaurantSelected : action.payload.restaurantId,
+        }
+      }
+    }
+    case REDUX_ACTIONS.USER_SELECT_DISH:{
+      return {
+        ...state,
+        session : {
+          dishSelected : action.payload.dishId,
         }
       }
     }
