@@ -10,8 +10,6 @@ async function loginOwner(userData)
 
   const jsonData = JSON.stringify(user);
 
-  console.log("User Login Data: ", jsonData);
-
   let result = await fetch(URL_SERVICES.LOGIN, {
     method : 'POST',
     headers : {

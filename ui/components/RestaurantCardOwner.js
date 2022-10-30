@@ -5,7 +5,7 @@ import { colorPalette } from '../styles/colors';
 import I18n from "../../assets/localization/I18n";
 import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { REDUX_ACTIONS } from '../../config';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
@@ -17,12 +17,13 @@ props}) {
 
   const dispatcher = useDispatch();
   const navigation = useNavigation();
+  const state = useSelector(state => state.session);
 
   const onMenuHandlerPress = (event) => {
 
     dispatcher({
-      type : REDUX_ACTIONS.OWNER_SELECT_RESTAURANT,
-      payload : {restaurantId},
+      type : REDUX_ACTIONS.USER_SELECT_RESTAURANT,
+      payload : {restaurantId: restaurantId},
     })
 
     navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
