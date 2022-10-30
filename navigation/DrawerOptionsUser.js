@@ -1,9 +1,9 @@
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View } from "react-native";
 import I18n from "../assets/localization/I18n";
 import { ROUTES } from "../ui";
+import DrawerHeader from "./DrawerHeader";
 
 const DrawerOptionsUser = (props) => {
 
