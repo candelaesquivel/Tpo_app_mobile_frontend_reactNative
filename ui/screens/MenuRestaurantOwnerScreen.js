@@ -5,7 +5,7 @@ import { colorPalette } from '../styles/colors';
 import { ROUTES } from '..';
 import { GetDishesFromRestaurant } from '../../networking';
 import { useState } from 'react';
-import { DishOwnerList } from '../components/dishesOwnerList';
+import { DishFlatList } from '../components/DishFlatList';
 import { useSelector } from 'react-redux';
 
 
@@ -14,7 +14,7 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
   const [dishes, setDishes] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
 
-  const restoId = useSelector((state) => state.session.restaurantSelected);
+  const restoId = useSelector((state) => state.session.restaurantSelectedId);
 
   const fillDishList = async () => {
     const newDishes = await GetDishesFromRestaurant(restoId);
@@ -40,23 +40,16 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
     navigation.navigate(ROUTES.DISH_DETAILS_OWNER_STACK);
   }
 
-  const onCreateMenuPressed = async (event) => {
-    const newDishes = await GetDishesFromRestaurant('63558c31e775bce680b6ae56');
-    console.log("Dish Data: ", newDishes)
-    setDishes(newDishes);
-    // navigation.navigate(ROUTES.DISH_CREATE)
-  }
-
   return (
     <View style={styles.global}> 
       <View style={{alignItems:'center'}}>
-        <DishOwnerList dishes={dishes}></DishOwnerList>
+        <DishFlatList dishes={dishes}></DishFlatList>
         <View style={styles.icon}>
           <Icon
             size={50}
             name = 'pluscircle'
             type = 'antdesign'
-            onPress={onCreateMenuPressed}
+            onPress={onCreateDishPress}
             containerStyle={StyleSheet.icon}	
           >
           </Icon>

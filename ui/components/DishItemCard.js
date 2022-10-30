@@ -5,10 +5,37 @@ import { colorPalette } from '../styles/colors';
 import I18n from "../../assets/localization/I18n";
 import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
+import { useDispatch, useSelector } from 'react-redux';
+import { CONSTANTS, REDUX_ACTIONS } from '../../config';
+import { useNavigation } from '@react-navigation/native';
+import { ROUTES } from '..';
 
-
-export default function MenuCard({name = '', discount = 0, price = 100, onPhotoPress={}, props}) {
+export default function DishItemCard({name = '', discount = 0, price = 100, dishId = '', props}) {
   const priceDescount =(price)* ((100-discount)/100)
+  
+  const role = useSelector(state => state.session.role);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  console.log(role);
+
+  const onPhotoPress = (event) => {
+
+    dispatch({
+      type : REDUX_ACTIONS.USER_SELECT_DISH,
+      payload : {
+        dishId : dishId
+      },
+    });
+
+    console.log("User Role: ", role)
+
+    if (role === CONSTANTS.USER_ROLE)
+      navigation.navigate(ROUTES.DISH_USER_VIEW_STACK);
+    else if (role === CONSTANTS.OWNER_ROLE)
+      navigation.navigate(ROUTES.DISH_MODIFY_STACK);
+  }
+
   return (
     <View style={styles.globalOne}>
       <Card>

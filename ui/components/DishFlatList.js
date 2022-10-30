@@ -1,24 +1,24 @@
 import { SectionList } from "react-native";
 import { Text } from "react-native";
-import MenuCard from "./menuCard";
 import { StyleSheet } from "react-native";
 import { Theme } from '../styles/Theme';
 import { colorPalette } from "../styles/colors";
+import DishItemCard from "./DishItemCard";
 
 
-export function DishOwnerList({dishes, props}){
+export function DishFlatList({dishes, props}){
 
   const renderCategory = ({ section: { category } }) => (
       <Text style={style.header}>{category}</Text>
   );
 
   const renderDishData = ({item}) => (
-    <MenuCard
-        onPhotoPress={item.onDishPhotoPress}
+    <DishItemCard
+        dishId={item.dishId}
         name={item.name}
         price={item.price}
         discount={item.discount}>
-    </MenuCard>
+    </DishItemCard>
   );
 
   return (
