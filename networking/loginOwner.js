@@ -1,36 +1,20 @@
-import URL_SERVICES from "../config/config"
-import { MAX_HASH_LENGHT } from "../config/security";
+import URL_SERVICES from "../config/config";
+import axios from 'axios';
+import { CONSTANTS } from "../config";
 
 async function loginOwner(userData)
 { 
-  const user = {
+  return axios.post(URL_SERVICES.LOGIN, {
     email : userData.email,
     password : userData.password,
-  }
-
-  const jsonData = JSON.stringify(user);
-
-  let result = await fetch(URL_SERVICES.LOGIN, {
-    method : 'POST',
-    headers : {
-      'Content-Type' : 'application/json'
-    },
-    body : jsonData
   }).then(res => {
-    console.log("Status: ", res.status);
-    const jsonData = res.json();
-
-    if (res.status === 200)
-      return jsonData;
-    
-    return null;
-  }).
-  catch(err => {
+    res.data.role = CONSTANTS.OWNER_ROLE;
+    return res.data;
+  }).catch(err => {
     console.log(err);
-    return false;
+  }).finally(() => {
+    console.log('Login Succesful')
   })
-
-  return result;
 }
 
 export default loginOwner;
