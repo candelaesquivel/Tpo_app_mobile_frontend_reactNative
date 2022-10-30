@@ -10,7 +10,8 @@ export function RestaurantFlatListUser({restaurants = [], onMenuPressed = {}, on
         name ={item.name}
         address = {item.address}
         score = {item.score}
-        restaurantId = {item.id}
+        favorite = {item.isFavorite}
+        restaurantId = {item.restaurantId}
         onMenuPressed={onMenuPressed}
         onPhotoPress={onPhotoPress}
         onFavoriteTouched={onFavoriteTouched}
