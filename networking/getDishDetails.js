@@ -9,6 +9,8 @@ async function getDishData(restaurantId, dishId)
 
   return axios.get(URL).then((resp) => {
     console.log("data:", resp.data);
+    resp.data.discounts = resp.data.discounts.$numberDecimal;
+    resp.data.price = resp.data.price.$numberDecimal;
     return resp.data;
   }).catch(err => {
     console.log("error: ", err)

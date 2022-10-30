@@ -5,6 +5,7 @@ export function InputText(props){
 
     return (
         <Input 
+          defaultValue={props.defaultValue ? props.defaultValue : ''}
           secureTextEntry = {props.secureTextEntry}
           placeholder={props.placeholder}
           placeholderTextColor = {props.placeholderTextColor}

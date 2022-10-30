@@ -15,8 +15,14 @@ function DishModifyScreen({navigation, route, props}){
   
   const dishId = route.params.id;
 
-  const [name, setName] = useState(route.params.name);
-  const [price, setPrice] = useState('0');
+  const [dishData, setDishData] = useState({
+    name : route.params.name,
+    price : route.params.price,
+    isVegan : route.params.isVegan,
+    isGlutenFree : route.params.isGlutenFree,
+    category : route.params.category,
+  });
+
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId)
 
   const onSavePress = async (event) => {
@@ -36,8 +42,8 @@ function DishModifyScreen({navigation, route, props}){
                 {I18n.t('name')}    
             </Text>
             <InputText 
-            value={name}
-            placeholder={name}
+            textColor={colorPalette.Black}
+            defaultValue={dishData.name}
             color={colorPalette.White}
             placeholderTextColor = {colorPalette.Black}
             ></InputText>
@@ -46,8 +52,8 @@ function DishModifyScreen({navigation, route, props}){
                 {I18n.t('price')}        
             </Text>
             <InputText 
-            value={price}
-            placeholder={price}
+            textColor={colorPalette.Black}
+            defaultValue={dishData.price}
             color={colorPalette.White}
             placeholderTextColor = {colorPalette.Black}
             ></InputText>
@@ -56,6 +62,7 @@ function DishModifyScreen({navigation, route, props}){
                 {I18n.t('ingredients')}        
             </Text>
             <InputText 
+            textColor={colorPalette.Black}
             placeholder="Atun, palta  y aceite de oliva"
             color={colorPalette.White}
             placeholderTextColor = {colorPalette.Black}
@@ -74,17 +81,17 @@ function DishModifyScreen({navigation, route, props}){
                 </Text>
                 <View style={{width:'18%'}}></View>
                 <Switch
-                    value={true} />
+                    value={dishData.isVegan} />
             </View>
             <View style={styles.switchContainer}>
                 <Text style={styles.words}>
                     {I18n.t('celiac')}       
                 </Text>
                 <Switch
-                    value={true} />
+                    value={dishData.isGlutenFree} />
             </View>
             <Text style={styles.words}>
-             {I18n.t('category')} {"PROMOCION"}      
+             {I18n.t('category')} {dishData.category}      
             </Text>
 
             <View style={styles.buttons}>
