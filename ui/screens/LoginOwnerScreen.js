@@ -56,11 +56,8 @@ function LoginOwnerScreen({navigation, props}){
 
         const loginRes = await loginOwner(userData);
 
-        console.log("Login Res:", loginRes)
-
         if (loginRes){
           dispatch(loginUserAction(loginRes))
-
         }else{
           dispatch(logoutUserAction());
         }
