@@ -1,4 +1,4 @@
-import { View , FlatList , StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import React, { useState }  from 'react'
 import { Icon } from "@rneui/themed";
 import { ROUTES } from '..';
@@ -48,7 +48,7 @@ function OwnerHomeScreen({navigation, props}) {
     console.log('On Photo Pressed');
     navigation.navigate(ROUTES.RESTAURANT_OWNER_PROFILE_STACK);
   }
-  
+
   return (
     <View>
     <View style={styles.global}>
