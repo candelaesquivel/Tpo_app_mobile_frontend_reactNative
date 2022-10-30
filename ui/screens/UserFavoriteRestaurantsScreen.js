@@ -6,7 +6,7 @@ import { useState } from 'react';
 import I18n from '../../assets/localization/I18n'
 import { MyButton } from '../components/button';
 import { GetFavoriteRestaurants } from '../../networking';
-import { RestaurantFlatListUser } from '../components/restaurantListUser';
+import { RestaurantFlatListUser } from '../components/RestaurantFlatListUser';
 
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
