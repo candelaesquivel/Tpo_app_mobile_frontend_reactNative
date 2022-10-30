@@ -4,33 +4,35 @@ const initialState = {
   session : {
     userId : '',
     token : '',
-    userEmail : '',
+    email : '',
     userName : '',
     isLogged : false,
     role : '',
-    restaurantSelected : '',
-    dishSelected : ''
+    restaurantSelectedId : '',
+    dishSelectedId : ''
   }
 }
 
 
 export default function userReducer(state = initialState, action){
 
+  console.log(state);
   console.log(action);
 
   switch (action.type)
   {
     case REDUX_ACTIONS.USER_LOGIN:{
-      console.log("On Login Action")
       return {
         ...state,
         session : {
           userId : action.payload.userId,
           token : action.payload.token,
-          userEmail : action.payload.userEmail,
+          email : action.payload.email,
           userName : action.payload.userName,
           isLogged : action.payload.isLogged,
-          role : action.payload.role
+          role : action.payload.role,
+          restaurantSelectedId : '',
+          dishSelectedId : ''
         }
       }
     }
@@ -41,7 +43,8 @@ export default function userReducer(state = initialState, action){
       return {
         ...state,
         session : {
-          restaurantSelected : action.payload.restaurantId,
+          ...state.session,
+          restaurantSelectedId : action.payload.restaurantId,
         }
       }
     }
@@ -49,7 +52,8 @@ export default function userReducer(state = initialState, action){
       return {
         ...state,
         session : {
-          dishSelected : action.payload.dishId,
+          ...state.session,
+          dishSelectedId : action.payload.dishId,
         }
       }
     }

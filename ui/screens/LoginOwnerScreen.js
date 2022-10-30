@@ -55,19 +55,21 @@ function LoginOwnerScreen({navigation, props}){
 
         const loginRes = await loginOwner(userData);
 
+        console.log("Login Res:", loginRes)
 
         if (loginRes){
           dispatch({
             type : REDUX_ACTIONS.USER_LOGIN,
             payload : {
               userId : loginRes.id,
-              userMail : loginRes.email,
-              token : loginRes.token,
+              email : loginRes.email,
+              token : loginRes.accessToken,
               userName : loginRes.name,
               isLogged : true,
               role : CONSTANTS.OWNER_ROLE,
             }
           })
+
         }else{
           dispatch({type : REDUX_ACTIONS.USER_LOGOUT});
         }
