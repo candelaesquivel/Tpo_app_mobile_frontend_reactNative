@@ -48,6 +48,24 @@ export default function userReducer(state = initialState, action){
         }
       }
     }
+    case REDUX_ACTIONS.USER_UNSELECT_RESTAURANT:{
+      return {
+        ...state,
+        session : {
+          ...state.session,
+          restaurantId : ''
+        }
+      }
+    }
+    case REDUX_ACTIONS.USER_UNSELECT_DISH:{
+      return {
+        ...state,
+        session : {
+          ...state.session,
+          dishSelectedId : '',
+        }
+      }
+    }
     case REDUX_ACTIONS.USER_SELECT_DISH:{
       return {
         ...state,
