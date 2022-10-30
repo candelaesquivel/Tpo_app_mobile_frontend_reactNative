@@ -30,8 +30,7 @@ function RestaurantsUserScreen({navigation , props}) {
   const [isFavorite, setFavorite] = useState(true);
 
   const fillRestaurantList = async () => {
-    const rests = await getRestaurants({});
-    setRestaurants(rests);
+    setRestaurants([]);
   }
 
   useEffect(() => {
