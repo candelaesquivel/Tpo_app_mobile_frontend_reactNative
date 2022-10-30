@@ -17,6 +17,7 @@ async function boundGoogleData(userInfo){
     },
   }).then(res => {
     console.log("Google Resp Data:", res.data);
+    return res.data;
   }).catch(err => {
     console.log(err);
   }).finally(() => {

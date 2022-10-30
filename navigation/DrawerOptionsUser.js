@@ -1,13 +1,16 @@
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
+import { useDispatch } from "react-redux";
 import I18n from "../assets/localization/I18n";
 import { ROUTES } from "../ui";
 import DrawerHeader from "./DrawerHeader";
+import { logoutUserAction } from "../redux/actions";
 
 const DrawerOptionsUser = (props) => {
 
   const navigator = useNavigation();
+  const dispatch = useDispatch();
 
   const onDeletePress = (event) => {
     console.log('On Delete Drawer Option Press');
@@ -15,7 +18,8 @@ const DrawerOptionsUser = (props) => {
   }
 
   const onLogoutPress = (event) => {
-    console.log('On Logout Press Drawer Option Owner');
+    console.log('On Logut User Drawer');
+    dispatch(logoutUserAction());
     navigator.navigate(ROUTES.LOGIN_NORMAL_USER);
   }
 

@@ -8,14 +8,30 @@ import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-goo
 import { ROUTES } from "..";
 import boundGoogleData from "../../networking/boundGoogleData";
 import GetLocation from 'react-native-get-location'
-import { useDispatch } from "react-redux";
-import {loginUserAction} from '../../redux/actions';
+import { useDispatch, useSelector } from "react-redux";
+import {loginUserAction } from '../../redux/actions';
 import { CONSTANTS } from "../../config";
 
 function LoginUserScreen({navigation, props}){
   
     const [userInfo, setUserInfo] = useState({});
     const dispatch = useDispatch();
+
+    const isLogged = useSelector(state => state.session.isLogged);
+
+    const checkLogStatus = async () => {
+      const isGoogleSigned = await _isSignedIn();
+      console.log("Google Sign Status: ", isGoogleSigned);
+      if (isLogged)
+        navigation.navigate(ROUTES.HOME_NORMAL_USER_SCREEN);
+      else if (isGoogleSigned)
+        await _signOut();
+    }
+
+    useEffect(() => {
+      console.log("IS Logged: ", isLogged)
+      checkLogStatus();
+    }, [isLogged]);
 
     GoogleSignin.configure({
         androidClientId: '721847506667-mg9d8oci85eocn8aelu7n33ijfpvccbk.apps.googleusercontent.com',
@@ -25,10 +41,7 @@ function LoginUserScreen({navigation, props}){
 
       
       _isSignedIn = async () => {
-        const isSignedIn = await GoogleSignin.isSignedIn();
-
-        if (isSignedIn)
-          navigation.navigate(ROUTES.HOME_NORMAL_USER_SCREEN);
+        return await GoogleSignin.isSignedIn();
       };
 
       _signIn = async () => {
@@ -42,7 +55,7 @@ function LoginUserScreen({navigation, props}){
           const info = await GoogleSignin.signIn();
 
           GetLocation.getCurrentPosition({timeout:50000, enableHighAccuracy:true})
-            .then(latestLocation => {
+            .then(async latestLocation => {
               console.log("location " + JSON.stringify(latestLocation));
               console.log("google " + JSON.stringify(info));
 
@@ -59,17 +72,14 @@ function LoginUserScreen({navigation, props}){
                 accessToken : 'this is a token',
               }
 
-              console.log("userData " + JSON.stringify(userData));
               setUserInfo(userData);
     
               // Navigate to the Home screen when the user has successfully signed in
               if (userData.email != null){
                 console.log("userInfo: ", userData);
-                boundGoogleData(userData);
-
-                // TO DO: Dispatch User Data
-                dispatch(loginUserAction(userData));
-                navigation.navigate(ROUTES.HOME_NORMAL_USER);
+                const userInfo = await boundGoogleData(userData);
+                console.log("User Info: ", userInfo);
+                dispatch(loginUserAction(userInfo));
               }
             })
             .catch(error => {
@@ -91,24 +101,11 @@ function LoginUserScreen({navigation, props}){
         }
       };
 
-      _getCurrentUser = async () => {
-        //May be called eg. in the componentDidMount of your main component.
-        //This method returns the current user
-        //if they already signed in and null otherwise.
-        try {
-          const userInfo = await GoogleSignin.getCurrentUser();
-          this.setState({ userInfo });
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
       _signOut = async () => {
         //Remove user session from the device.
         try {
           await GoogleSignin.revokeAccess();
           await GoogleSignin.signOut();
-          this.setState({ user: null }); // Remove the user from your app's state as well
         } catch (error) {
           console.error(error);
         }
@@ -129,11 +126,6 @@ function LoginUserScreen({navigation, props}){
             title : I18n.t('logIn')
         })
     })
-
-    const onGoogleSignInPress = (e) => {
-      console.log("On Google Sign In Press");
-      navigation.navigate(ROUTES.HOME_NORMAL_USER_SCREEN);
-    }
 
     return (
         <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
