@@ -3,16 +3,23 @@ import { View } from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import Images from '../../assets/images/index';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {unselectRestaurantAction} from '../../redux/actions';
+import { useNavigation } from '@react-navigation/native';
+import { ROUTES } from '..';
+import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 
-function RestaurantCardUser({name ='Rodizio',address='',score= 0, favorite=true, onRestaurantNameTouched={},onPhotoPress={}, props}) {
+function RestaurantCardUser({name ='Rodizio',address='',score= 0, favorite=true,
+restaurantId = '', onRestaurantNameTouched={},onPhotoPress={}, props}) {
 
 
   const dispatch = useDispatch();
-  
-  const onFavoriteTouched = (event) => {
-    dispatch(unselectRestaurantAction());
+  const navigation = useNavigation();
+  const userId = useSelector(state => state.session.userId);
+
+  const onFavoriteTouched = async (event) => {
+    const res = await toggleRestaurantFavorite(userId, restaurantId);
+    navigation.navigate(ROUTES.FAVORITE_RESTAURANTS_DRAWER);
   }
 
   const FavoriteIcon = ({props}) => {
