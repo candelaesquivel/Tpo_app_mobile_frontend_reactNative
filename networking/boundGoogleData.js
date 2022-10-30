@@ -1,10 +1,14 @@
 import URL_SERVICES from '../config/config';
 import axios from 'axios';
+import { CONSTANTS } from '../config';
 
 async function boundGoogleData(userInfo){
 
+  console.log('Bound Params: ', userInfo);
+
+
   return axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, {
-    role : "user",
+    role : CONSTANTS.USER_ROLE,
     google : {
       name : userInfo.name,
       email : userInfo.email,
