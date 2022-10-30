@@ -1,8 +1,6 @@
 import { View , FlatList , StyleSheet } from 'react-native'
 import React, { useState }  from 'react'
 import { Icon } from "@rneui/themed";
-import RestaurantCardOwner from '../components/RestaurantCardOwner';
-import MySearchBar from '../components/MySearchBar';
 import { ROUTES } from '..';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
