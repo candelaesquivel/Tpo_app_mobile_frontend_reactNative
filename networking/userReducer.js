@@ -1,4 +1,4 @@
-import { REDUX_ACTIONS } from "../config";
+import REDUX_ACTIONS from '../redux/actions_names';
 
 const initialState = {
   session : {
@@ -53,7 +53,7 @@ export default function userReducer(state = initialState, action){
         ...state,
         session : {
           ...state.session,
-          restaurantId : ''
+          restaurantSelectedId : ''
         }
       }
     }

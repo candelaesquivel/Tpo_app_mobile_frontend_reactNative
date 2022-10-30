@@ -6,7 +6,7 @@ import { ROUTES } from "../ui";
 import { DeleteIcon, LogoutIcon } from "./DrawerIcons";
 import DrawerHeader from "./DrawerHeader";
 import { useDispatch } from 'react-redux'
-import { REDUX_ACTIONS } from "../config";
+import {logoutUserAction} from '../redux/actions';
 
 const DrawerOptionsOwner = (props) => {
 
@@ -22,9 +22,7 @@ const DrawerOptionsOwner = (props) => {
   const onLogoutPress = (event) => {
     console.log('On Logout Press Drawer Option Owner');
 
-    dispatch({
-      type : REDUX_ACTIONS.USER_LOGOUT
-    })
+    dispatch(logoutUserAction());
 
     navigator.navigate(ROUTES.LOGIN_OWNER);
   }

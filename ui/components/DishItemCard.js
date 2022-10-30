@@ -6,9 +6,10 @@ import I18n from "../../assets/localization/I18n";
 import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
 import { useDispatch, useSelector } from 'react-redux';
-import { CONSTANTS, REDUX_ACTIONS } from '../../config';
+import { CONSTANTS} from '../../config';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
+import {dishSelectedAction} from '../../redux/actions'
 
 export default function DishItemCard({name = '', discount = 0, price = 100, dishId = '', props}) {
   const priceDescount =(price)* ((100-discount)/100)
@@ -21,12 +22,7 @@ export default function DishItemCard({name = '', discount = 0, price = 100, dish
 
   const onPhotoPress = (event) => {
 
-    dispatch({
-      type : REDUX_ACTIONS.USER_SELECT_DISH,
-      payload : {
-        dishId : dishId
-      },
-    });
+    dispatch(dishSelectedAction(dishId));
 
     console.log("User Role: ", role)
 

@@ -1,4 +1,4 @@
-export default {
+export default REDUX_ACTIONS = {
   USER_LOGOUT : 'user/logout',
   USER_LOGIN : 'user/login',
   USER_SELECT_RESTAURANT : 'user/rest_selected',

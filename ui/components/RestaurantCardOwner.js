@@ -6,9 +6,9 @@ import I18n from "../../assets/localization/I18n";
 import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
 import { useDispatch, useSelector } from 'react-redux';
-import { REDUX_ACTIONS } from '../../config';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
+import {restaurantSelectedAction} from '../../redux/actions'
 
 function RestaurantCardOwner({name = 'Rodizio', 
 
@@ -21,11 +21,7 @@ props}) {
 
   const onMenuHandlerPress = (event) => {
 
-    dispatcher({
-      type : REDUX_ACTIONS.USER_SELECT_RESTAURANT,
-      payload : {restaurantId: restaurantId},
-    })
-
+    dispatcher(restaurantSelectedAction(restaurantId));
     navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
   }
 

@@ -8,9 +8,10 @@ import { Text } from "@rneui/themed";
 import { InputText } from "../components/InputText";
 import loginOwner from "../../networking/loginOwner";
 import { ROUTES } from "..";
-import {CONSTANTS, REDUX_ACTIONS} from '../../config';
 import { useSelector, useDispatch } from 'react-redux'
 import { Theme } from "../styles/Theme";
+
+import {logoutUserAction, loginUserAction} from '../../redux/actions';
 
 function LoginOwnerScreen({navigation, props}){
 
@@ -58,20 +59,10 @@ function LoginOwnerScreen({navigation, props}){
         console.log("Login Res:", loginRes)
 
         if (loginRes){
-          dispatch({
-            type : REDUX_ACTIONS.USER_LOGIN,
-            payload : {
-              userId : loginRes.id,
-              email : loginRes.email,
-              token : loginRes.accessToken,
-              userName : loginRes.name,
-              isLogged : true,
-              role : CONSTANTS.OWNER_ROLE,
-            }
-          })
+          dispatch(loginUserAction(loginRes))
 
         }else{
-          dispatch({type : REDUX_ACTIONS.USER_LOGOUT});
+          dispatch(logoutUserAction());
         }
 
         return;
