@@ -1,8 +1,8 @@
 import { FlatList } from "react-native-gesture-handler";
 import { View } from "react-native";
-import RestaurantCardUser from "./restaurantCardUser";
+import RestaurantCardUser from '../components/RestaurantCardUser';
 
-export function RestaurantFlatListUser({restaurants = [], onMenuPressed = {}, onPhotoPress={}, props}){
+export function RestaurantFlatListUser({restaurants = [], onMenuPressed = {}, onPhotoPress={}, onFavoriteTouched={}, props}){
   const renderItem = ({ item }) => {
     return (
       <View >
@@ -13,6 +13,7 @@ export function RestaurantFlatListUser({restaurants = [], onMenuPressed = {}, on
         restaurantId = {item.id}
         onMenuPressed={onMenuPressed}
         onPhotoPress={onPhotoPress}
+        onFavoriteTouched={onFavoriteTouched}
         >
         </RestaurantCardUser>
       </View>
