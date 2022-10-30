@@ -1,22 +1,23 @@
 import { FlatList } from "react-native-gesture-handler";
 import { View } from "react-native";
-import RestaurantCardUser from "./restaurantCardUser";
+import RestaurantCardOwner from "./RestaurantCardOwner";
 
-export function RestaurantFlatListUser({restaurants = [], props}){
+export function RestaurantFlatListOwner({restaurants = [], onMenuPressed = {}, onPhotoPress={}, props}){
   const renderItem = ({ item }) => {
     return (
       <View >
-      <RestaurantCardUser 
+      <RestaurantCardOwner 
         name ={item.name}
         address = {item.address}
         score = {item.score}
+        onMenuPressed={onMenuPressed}
+        onPhotoPress={onPhotoPress}
         restaurantId = {item.id}
         >
-        </RestaurantCardUser>
+        </RestaurantCardOwner>
       </View>
     )
   };
-
   return (
     <FlatList
       data={restaurants}
