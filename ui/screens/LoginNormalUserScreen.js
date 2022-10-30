@@ -8,10 +8,14 @@ import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-goo
 import { ROUTES } from "..";
 import boundGoogleData from "../../networking/boundGoogleData";
 import GetLocation from 'react-native-get-location'
+import { useDispatch } from "react-redux";
+import {loginUserAction} from '../../redux/actions';
+import { CONSTANTS } from "../../config";
 
 function LoginUserScreen({navigation, props}){
   
     const [userInfo, setUserInfo] = useState({});
+    const dispatch = useDispatch();
 
     GoogleSignin.configure({
         androidClientId: '721847506667-mg9d8oci85eocn8aelu7n33ijfpvccbk.apps.googleusercontent.com',
@@ -42,6 +46,8 @@ function LoginUserScreen({navigation, props}){
               console.log("location " + JSON.stringify(latestLocation));
               console.log("google " + JSON.stringify(info));
 
+              console.log("Google Info: ", info);
+
               let userData = {
                 email : info.user.email, 
                 name : info.user.name, 
@@ -49,6 +55,8 @@ function LoginUserScreen({navigation, props}){
                 photo : info.user.photo,
                 latitude: latestLocation.latitude,
                 longitude: latestLocation.longitude,
+                role : CONSTANTS.USER_ROLE,
+                accessToken : 'this is a token',
               }
 
               console.log("userData " + JSON.stringify(userData));
@@ -58,6 +66,9 @@ function LoginUserScreen({navigation, props}){
               if (userData.email != null){
                 console.log("userInfo: ", userData);
                 boundGoogleData(userData);
+
+                // TO DO: Dispatch User Data
+                dispatch(loginUserAction(userData));
                 navigation.navigate(ROUTES.HOME_NORMAL_USER);
               }
             })
