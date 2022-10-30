@@ -6,6 +6,8 @@ import screenNames from '../screenNames'
 import { useState } from 'react';
 import getRestaurants from '../../networking/getRestaurants';
 import I18n from '../../assets/localization/I18n'
+import { useSelector } from 'react-redux'
+import { RestaurantFlatListUser } from '../components/RestaurantFlatListUser'
 
 
 function RestaurantsUserScreen({navigation , props}) {
@@ -13,23 +15,11 @@ function RestaurantsUserScreen({navigation , props}) {
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
 
-  const renderItem = ({ item }) => (
-    <View >
-      <RestaurantCardUser
-          name={item.name}
-          address={item.address}
-          score={item.score}
-          favorite={item.favorite}
-          onFavoriteTouched = {item.onFavoriteTouched}
-          onRestaurantNameTouched={item.onRestaurantNameTouched}
-        ></RestaurantCardUser>
-    </View>
-  ); 
-
-  const [isFavorite, setFavorite] = useState(true);
+  const userId = useSelector(state => state.session.userId);
 
   const fillRestaurantList = async () => {
-    setRestaurants([]);
+    const restos = await getRestaurants(userId);
+    setRestaurants(restos);
   }
 
   useEffect(() => {
@@ -60,11 +50,7 @@ function RestaurantsUserScreen({navigation , props}) {
     <View>
       <MySearchBar></MySearchBar>
       <View>
-      <FlatList
-          data={restaurants}
-          renderItem={renderItem}
-          keyExtractor ={item => item.name}
-       ></FlatList>
+      <RestaurantFlatListUser restaurants={restaurants}></RestaurantFlatListUser>
       </View>
     </View>
   )
