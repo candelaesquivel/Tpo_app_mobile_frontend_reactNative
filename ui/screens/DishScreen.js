@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import DishCard from '../components/dishCard';
+import DishCard from '../components/DishCard';
 import Carousal from '../components/carousal';
 
 function DishScreen({navigation, props}){

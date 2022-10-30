@@ -5,8 +5,8 @@ import { colorPalette } from '../styles/colors';
 import { ROUTES } from '..';
 import { GetDishesFromRestaurant } from '../../networking';
 import { useState } from 'react';
-import { DishFlatList } from '../components/DishFlatList';
 import { useSelector } from 'react-redux';
+import { DishFlatList } from '../components/DishFlatList';
 
 
 function MenuRestaurantOwnerScreen({navigation,props}) {
