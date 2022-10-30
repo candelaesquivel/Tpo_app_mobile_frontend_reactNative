@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import I18n from "../../assets/localization/I18n";
-import { View , StyleSheet} from "react-native";
+import { View , StyleSheet , KeyboardAvoidingView , Dimensions} from "react-native";
 import { Logo } from "../components/Logo";
 import { colorPalette } from "../styles/colors";
 import { MyButton } from "../components/button";
@@ -79,35 +79,36 @@ function LoginOwnerScreen({navigation, props}){
 
     return (
         <View style={styles.global}>
-           <View style={styles.headerWhite}></View>
-           
-            <Logo></Logo>
-
-              <View style = {styles.logInContainer}>
-                  <View style = {styles.logInContainerTwo}>
-                  <InputText 
-                  color = {colorPalette.Orange} 
-                  placeholder = {I18n.t('emailInput')}
-                  placeholderTextColor ={colorPalette.White}
-                  height = '50%' 
-                  onChange={onEmailChange}
-                  ></InputText>
-                  <InputText 
-                  color = {colorPalette.Orange} 
-                  placeholder = {I18n.t('passInput')}
-                  placeholderTextColor ={colorPalette.White}
-                  secureTextEntry = {true}
-                  onChange = {onPassChange}>
-                  </InputText>
-                  </View>
-              </View>
-
-              <MyButton 
-              title = {I18n.t('logIn')} 
-              onPress={onLoginPressed}
-              ></MyButton>
+           <KeyboardAvoidingView>
+            <View style={styles.headerWhite}></View>           
+              <Logo></Logo>  
+                <View style = {styles.logInContainer}>
+                    <View style = {styles.logInContainerTwo}>
+                    <InputText 
+                    color = {colorPalette.Orange} 
+                    placeholder = {I18n.t('emailInput')}
+                    placeholderTextColor ={colorPalette.White}
+                    height = '50%' 
+                    onChange={onEmailChange}
+                    ></InputText>
+                    <InputText 
+                    color = {colorPalette.Orange} 
+                    placeholder = {I18n.t('passInput')}
+                    placeholderTextColor ={colorPalette.White}
+                    secureTextEntry = {true}
+                    onChange = {onPassChange}>
+                    </InputText>
+                    </View>
+                </View>
+                
+                <MyButton 
+                title = {I18n.t('logIn')} 
+                onPress={onLoginPressed}
+                ></MyButton>
+              </KeyboardAvoidingView>
               <Text style={styles.word} onPress={onRecoverTouched}>{I18n.t('forgotPassword')}</Text>
-              <Text style={styles.word} onPress={onCreateTouched}>{I18n.t('createAccount')}</Text>
+              <Text style={styles.word} onPress={onCreateTouched}>{I18n.t('createAccount')}</Text>        
+             
           </View>
     )
 }
@@ -117,7 +118,8 @@ export default LoginOwnerScreen;
 const styles = StyleSheet.create({
   global:{
     flexDirection : 'column', 
-    height : '100%',
+    width : Dimensions.get("window").width,
+    height:Dimensions.get("window").height,
     alignItems : 'center',
     backgroundColor : colorPalette.White,
   },
@@ -125,8 +127,8 @@ const styles = StyleSheet.create({
     height : "12%",
   },
   logInContainer : {
-      width : '90%', 
-      height : '24%',
+    width : Dimensions.get("window").width*0.9,
+    height:Dimensions.get("window").height*0.2,
       borderRadius : Theme.sizes.ROUNDED,
       backgroundColor : colorPalette.LightOrange,
       marginTop : "5%",
@@ -135,12 +137,13 @@ const styles = StyleSheet.create({
   },
   logInContainerTwo : {
     flexDirection : "column" ,
-    marginTop : "7%"
+    marginTop : "5%"
   },
   word : {
     color : colorPalette.Orange,
      marginTop : 15,
      fontSize : Theme.font.SMALL
     },
+   
 });
 
