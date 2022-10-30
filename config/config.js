@@ -19,6 +19,8 @@ const URL_SERVICES = {
   UPLOAD_USER_IMAGE: USER_ROUTE + '/image',
   FAVORITE_RESTAURANTS_NORMAL_USER: USER_ROUTE + 'id/' + 'favorites',
   RESTAURANTS_OWNER: USER_ROUTE + 'id/' + 'restaurants',
+  CHANGE_RESTAURANT_FAVORITE : USER_ROUTE + 'id/' + 'favorites',
+
 
   // Restaurants
   RESTAURANTS_LIST: RESTAURANT_ROUTE + '',
