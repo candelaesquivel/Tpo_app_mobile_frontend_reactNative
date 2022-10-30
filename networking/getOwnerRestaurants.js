@@ -5,10 +5,6 @@ async function wsGetOwnerRestaurants(ownerId)
 {
   console.log("On Get Restaurants");
 
-  let restaurants = [];
-
-  const formData = new URLSearchParams();
-
   const url = URL_SERVICES.RESTAURANTS_OWNER.replace('id', ownerId);
 
   console.log("URL:", url);
@@ -20,7 +16,8 @@ async function wsGetOwnerRestaurants(ownerId)
       restos.push({
         name : itr.name,
         address : itr.address.neighborhood + ' ' + itr.address.streetNumber,
-        score : itr.averageRating.$numberDecimal
+        score : itr.averageRating.$numberDecimal,
+        restaurantId : itr.id,
       });
     });
 
@@ -30,21 +27,6 @@ async function wsGetOwnerRestaurants(ownerId)
     console.log(err);
   }).finally(() => {
     console.log('Everything is ok');
-  })
-
-  console.log('url:', URL_SERVICES.RESTAURANTS_OWNER);
-
-  return fetch('http://10.0.2.2:8080/api/v1/users/' + ownerId + '/restaurants', {
-    method : 'GET',
-    headers : {
-      'Content-Type' : 'application/json'
-    },
-  }).then((res) => res.json().then((json) => {
-    console.log(json);
-    return [];
-  }))
-  .catch(err => {
-    console.log(err);
   })
 }
 

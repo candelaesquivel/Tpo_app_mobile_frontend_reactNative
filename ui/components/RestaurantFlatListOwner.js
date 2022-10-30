@@ -12,7 +12,7 @@ export function RestaurantFlatListOwner({restaurants = [], onMenuPressed = {}, o
         score = {item.score}
         onMenuPressed={onMenuPressed}
         onPhotoPress={onPhotoPress}
-        restaurantId = {item.id}
+        restaurantId = {item.restaurantId}
         >
         </RestaurantCardOwner>
       </View>

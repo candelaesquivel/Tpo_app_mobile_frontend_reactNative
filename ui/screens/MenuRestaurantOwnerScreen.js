@@ -6,6 +6,7 @@ import { ROUTES } from '..';
 import { GetDishesFromRestaurant } from '../../networking';
 import { useState } from 'react';
 import { DishOwnerList } from '../components/dishesOwnerList';
+import { useSelector } from 'react-redux';
 
 
 function MenuRestaurantOwnerScreen({navigation,props}) {
@@ -13,8 +14,10 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
   const [dishes, setDishes] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
 
+  const restoId = useSelector((state) => state.session.restaurantSelected);
+
   const fillDishList = async () => {
-    const newDishes = await GetDishesFromRestaurant('63558c31e775bce680b6ae56');
+    const newDishes = await GetDishesFromRestaurant(restoId);
     setDishes(newDishes);
   }
 

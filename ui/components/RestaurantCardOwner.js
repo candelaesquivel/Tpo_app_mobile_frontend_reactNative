@@ -7,22 +7,25 @@ import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
 import { useDispatch } from 'react-redux';
 import { REDUX_ACTIONS } from '../../config';
+import { useNavigation } from '@react-navigation/native';
+import { ROUTES } from '..';
 
 function RestaurantCardOwner({name = 'Rodizio', 
 
-address = 'Honduras 5500', score = 5, onMenuPressed = {}, onPhotoPress = {}, restaurantId = '',
+address = 'Honduras 5500', score = 5, onPhotoPress = {}, restaurantId = '',
 props}) {
 
   const dispatcher = useDispatch();
+  const navigation = useNavigation();
 
-  const onMenuHandlerPress = () => {
+  const onMenuHandlerPress = (event) => {
 
     dispatcher({
       type : REDUX_ACTIONS.OWNER_SELECT_RESTAURANT,
       payload : {restaurantId},
     })
 
-    onMenuPressed();
+    navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
   }
 
   return (
@@ -41,7 +44,7 @@ props}) {
             <Text style={styles.address}>{address}</Text>
 
           <View style={styles.globalThree}>
-            <Text marginBottom={30}>{score} </Text>
+            <Text marginBottom={30}>{score}</Text>
             <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
           </View>
 
