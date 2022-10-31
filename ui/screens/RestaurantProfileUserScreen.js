@@ -8,7 +8,7 @@ import I18n from '../../assets/localization/I18n';
 import Mapa from '../components/mapa';
 
 
-function ProfileUserRestaurantScreen({navigation,name='Mudra',hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
+function RestaurantProfileUserScreen({navigation,name='Mudra',hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
 calification=4,priceRange='$$$$',props}) {
 
 
@@ -70,4 +70,4 @@ calification=4,priceRange='$$$$',props}) {
   )
 }
 
-export default ProfileUserRestaurantScreen;
+export default RestaurantProfileUserScreen;

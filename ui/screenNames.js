@@ -26,7 +26,6 @@ export default {
 
     // User Routes
     HOME_NORMAL_USER_SCREEN  : 'NormalUserScreenHome',
-    PROFILE_RESTAURANT_USER : 'ProfileUserRestaurantScreen',
     RESTAURANT_VIEW_USER : 'RestaurantViewUserScreen',
 
     DISH_USER_VIEW_STACK : 'DishScreenStack',

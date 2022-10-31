@@ -10,7 +10,7 @@ import { ROUTES } from '..';
 import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 
 function RestaurantCardUser({name ='Rodizio',address='',score= 0, favorite=true,
-restaurantId = '', onRestaurantNameTouched={},onPhotoPress={}, props}) {
+restaurantId = '', props}) {
 
 
   const dispatch = useDispatch();
@@ -20,6 +20,10 @@ restaurantId = '', onRestaurantNameTouched={},onPhotoPress={}, props}) {
   const onFavoriteTouched = async (event) => {
     const res = await toggleRestaurantFavorite(userId, restaurantId);
     navigation.navigate(ROUTES.FAVORITE_RESTAURANTS_DRAWER);
+  }
+
+  const onPhotoPress = async (event) => {
+    navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
   }
 
   const FavoriteIcon = ({props}) => {
@@ -37,7 +41,7 @@ restaurantId = '', onRestaurantNameTouched={},onPhotoPress={}, props}) {
       {/* Acomodar Tamano de Imagen  */}
       <Images.logo width='10%' height={100} onPress={onPhotoPress}></Images.logo>
        <View width={200}  style={{justifyContent : 'space-evenly', marginLeft:10}} >
-         <Text h4 onPress={onRestaurantNameTouched}>{name}</Text>
+         <Text h4>{name}</Text>
          <Text>{address}</Text>
          <View style={{flexDirection: 'row',alignItems: 'center'}}>
             <Text marginBottom={30}>{score} </Text>
