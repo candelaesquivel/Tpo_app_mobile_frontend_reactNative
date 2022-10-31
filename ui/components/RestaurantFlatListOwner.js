@@ -10,8 +10,6 @@ export function RestaurantFlatListOwner({restaurants = [], onMenuPressed = {}, o
         name ={item.name}
         address = {item.address}
         score = {item.score}
-        onMenuPressed={onMenuPressed}
-        onPhotoPress={onPhotoPress}
         restaurantId = {item.restaurantId}
         >
         </RestaurantCardOwner>

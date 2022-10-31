@@ -12,7 +12,7 @@ import {restaurantSelectedAction} from '../../redux/actions'
 
 function RestaurantCardOwner({name = 'Rodizio', 
 
-address = 'Honduras 5500', score = 5, onPhotoPress = {}, restaurantId = '',
+address = 'Honduras 5500', score = 5, restaurantId = '',
 props}) {
 
   const dispatcher = useDispatch();
@@ -20,9 +20,13 @@ props}) {
   const state = useSelector(state => state.session);
 
   const onMenuHandlerPress = (event) => {
-
     dispatcher(restaurantSelectedAction(restaurantId));
     navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
+  }
+
+  const onPhotoPress = (event) => {
+    dispatcher(restaurantSelectedAction(restaurantId));
+    navigation.navigate(ROUTES.RESTAURANT_EDIT_OWNER);
   }
 
   return (
