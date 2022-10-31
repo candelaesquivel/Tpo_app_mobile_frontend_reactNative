@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AddDish, CreateAccountOwner, CreateRestaurant, 
         DeleteAccountOwner, ForgetPassword, Home, LoginNormalUser,
         LoginOwner, MenuRestaurantOwner, DishUserView,RestaurantEdit,
-        ModifyDish , ProfileUserRestaurant, SearchFilters, RestaurantProfileUser, EditRestaurant } from "../ui/screens";
+        ModifyDish , ProfileUserRestaurant, SearchFilters, RestaurantProfileUser, EditRestaurant, UserProfile } from "../ui/screens";
 import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
@@ -32,6 +32,7 @@ function MainNavigator(props){
             }}></Stack.Screen>
 
             {/* User Screens without Drawer */}
+            <Stack.Screen name = {ROUTES.USER_PROFILE} component={UserProfile}></Stack.Screen>
             <Stack.Screen name = {ROUTES.RESTAURANT_VIEW_USER} component={RestaurantProfileUser}></Stack.Screen>
             <Stack.Screen name = {ROUTES.FILTERS_SCREEN_STACK} component={SearchFilters}></Stack.Screen>
 
