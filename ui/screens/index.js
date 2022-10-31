@@ -17,3 +17,4 @@ export {default as DishUserView} from './DishScreen';
 export {default as DeleteAccountOwner} from './DeleteAccountScreenUser';
 export {default as UserFavoritesRestaurants} from './UserFavoriteRestaurantsScreen';
 export {default as RestaurantEdit} from './EditRestaurantScreen';
+export {default as SearchFilters} from './FilterScreen';

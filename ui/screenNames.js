@@ -7,7 +7,7 @@ export default {
     MENU_RESTAURANT: 'MenuRestaurantOwnerScreen',
     USER_PROFILE: 'UserProfileScreen',
     CREATE_ACCOUNT_OWNER : 'CreateAccountOwner',
-    FILTER : 'FilterScreen',
+    FILTERS_SCREEN_STACK : 'FilterScreen',
     FORGET_PASSWORD : 'RecoveryPasswordScreen',
    
     // Owner Routes
