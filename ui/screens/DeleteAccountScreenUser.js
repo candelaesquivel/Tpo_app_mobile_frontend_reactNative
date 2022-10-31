@@ -9,14 +9,31 @@ import I18n from "../../assets/localization/I18n";
 import { useEffect } from "react";
 import { Theme } from "../styles/Theme";
 import { ScrollView } from "react-native-gesture-handler";
+import { useDispatch, useSelector } from "react-redux";
+import deleteAccount from '../../networking/deleteAccount';
+import {ROUTES} from '../';
+import {logoutUserAction} from '../../redux/actions';
 
 function DeleteAccountScreenUser({navigation, props}){
+
+  const userId = useSelector(state => state.session.userId);
+  const dispatcher = useDispatch();
 
     useEffect( () => {
         navigation.setOptions({
             title : 'Eliminar Cuenta'
         })
     }, [navigation])
+
+    const onDeletePress = async (event) => {
+      const isDeleted = await deleteAccount(userId);
+
+      if (isDeleted)
+      {
+        dispatcher(logoutUserAction());
+        navigation.navigate(ROUTES.LOGIN_NORMAL_USER);
+      }
+    }
 
     return (
             <View  style={styles.global}>
@@ -57,6 +74,7 @@ function DeleteAccountScreenUser({navigation, props}){
                 </KeyboardAvoidingView>
                 <View style={styles.button}>
                     <MyButton
+                    onPress={onDeletePress}
                     title = {I18n.t('delete')}
                     width={ Dimensions.get("window").width*0.6}
                     height={Dimensions.get("window").height*0.07}
