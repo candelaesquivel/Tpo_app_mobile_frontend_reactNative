@@ -6,7 +6,7 @@ import I18n from "../assets/localization/I18n";
 import { ROUTES } from "../ui";
 import DrawerHeader from "./DrawerHeader";
 import { logoutUserAction } from "../redux/actions";
-
+import { LogoutIcon, DeleteIcon } from "./DrawerIcons";
 const DrawerOptionsUser = (props) => {
 
   const navigator = useNavigation();
@@ -29,10 +29,12 @@ const DrawerOptionsUser = (props) => {
       <DrawerItemList {...props}>
       </DrawerItemList>
       <DrawerItem
+        icon={LogoutIcon}
         label={I18n.t('logout')}
         onPress={onLogoutPress}
       />
       <DrawerItem
+        icon={DeleteIcon}
         label={I18n.t('deleteAccount')}
         onPress={onDeletePress}
       />
