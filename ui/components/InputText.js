@@ -5,6 +5,7 @@ export function InputText(props){
 
     return (
         <Input 
+          keyboardType={props.keyboardType ? props.keyboardType : 'default'}
           defaultValue={props.defaultValue ? props.defaultValue : ''}
           secureTextEntry = {props.secureTextEntry}
           placeholder={props.placeholder}
