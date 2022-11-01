@@ -56,7 +56,9 @@ function MainNavigator(props){
             <Stack.Screen name = {ROUTES.FILTERS_SCREEN_STACK} component={SearchFilters} options={{
               title : CONSTANTS.SCREEN_TITLES.FILTERS
             }}></Stack.Screen>
-            <Stack.Screen name = {ROUTES.USER_SENT_COMMENT} component={ SentComment}></Stack.Screen>
+            <Stack.Screen name = {ROUTES.USER_SENT_COMMENT} component={ SentComment} options = {{
+              title : CONSTANTS.SCREEN_TITLES.SENT_COMMENT
+            }}></Stack.Screen>
 
             {/* Owner Screens without Drawer */}
             <Stack.Screen name = {ROUTES.RESTAURANT_EDIT_OWNER} component = {EditRestaurant} options={{
