@@ -12,26 +12,13 @@ import MyWeekButtons from '../components/WeekButton';
 import MyTimePicker from '../components/TimePicker';
 import { Theme } from '../styles/Theme';
 import CloseComponent from '../components/closeComponent';
+import { FoodTypesDropDown } from '../components/FoodTypesDropdown';
+import { PriceRangesDropdown } from '../components/PriceRangeDropdown';
 
 function CreateRestaurantScreen({navigation, props}) {
   
   const [openingHour,setOpeningHour] = useState(false);
   const [closingHour,setClosingHour] = useState(false);
-
-  const data = [
-    { label: 'Mexicana', value: '1' },
-    { label: 'Vegetariana', value: '2' },
-    { label: 'Argentina', value: '3' },
-    { label: 'Vegana', value: '4' },
-    { label: 'China', value: '5' },
-  ];
-  const data2 = [
-    { label: '$', value: '1' },
-    { label: '$$', value: '2' },
-    { label: '$$$', value: '3' },
-    { label: '$$$$', value: '4' },
-   
-  ];
 
   const onCreateRestaurantPressed = (event) => {
     console.log('On Restaurant Create Press');
@@ -128,29 +115,10 @@ function CreateRestaurantScreen({navigation, props}) {
           <Mapa></Mapa>
           <CloseComponent>s</CloseComponent>
           <View style ={styles.dropdownContainer}>
-                <Dropdown
-                style={[styles.dropdown ]}
-                placeholderStyle={styles.placeholderStyle}  
-                itemTextStyle ={styles.placeholderStyle}       
-                data={data}
-                labelField="label"
-                valueField="value"
-                placeholder={ 'Tipo de comida'}              
-                       
-              />
-      
+            <FoodTypesDropDown></FoodTypesDropDown>
           </View>
          <View style ={styles.dropdownContainer}>
-
-              <Dropdown
-              style={[styles.dropdown ]}
-              placeholderStyle={styles.placeholderStyle}  
-              itemTextStyle ={styles.placeholderStyle}   
-              labelField="label"
-              valueField="value"
-              data={data2}
-              placeholder={ 'Precio'}
-            />
+              <PriceRangesDropdown></PriceRangesDropdown>
           </View>
           
           <MyWeekButtons></MyWeekButtons>
