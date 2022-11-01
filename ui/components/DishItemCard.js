@@ -24,9 +24,9 @@ export default function DishItemCard({name = '', discount = 0, price = 100, dish
 
     const dishData = await getDishData(restaurantId, dishId);
 
-    if (role === CONSTANTS.USER_ROLE)
+    if (role === CONSTANTS.ROLES.USER_ROLE)
       navigation.navigate(ROUTES.DISH_USER_VIEW_STACK);
-    else if (role === CONSTANTS.OWNER_ROLE)
+    else if (role === CONSTANTS.ROLES.OWNER_ROLE)
       navigation.navigate(ROUTES.DISH_MODIFY_STACK, dishData);
   }
 

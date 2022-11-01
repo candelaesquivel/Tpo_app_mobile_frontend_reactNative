@@ -5,7 +5,7 @@ import { CONSTANTS } from '../config';
 async function boundGoogleData(userInfo){
 
   return axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, {
-    role : CONSTANTS.USER_ROLE,
+    role : CONSTANTS.ROLES.USER_ROLE,
     google : {
       name : userInfo.name,
       email : userInfo.email,

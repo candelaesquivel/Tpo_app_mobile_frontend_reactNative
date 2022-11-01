@@ -62,7 +62,7 @@ function LoginUserScreen({navigation, props}){
                 photo : info.user.photo,
                 latitude: latestLocation.latitude,
                 longitude: latestLocation.longitude,
-                role : CONSTANTS.USER_ROLE,
+                role : CONSTANTS.ROLES.USER_ROLE,
                 accessToken : 'this is a token',
               }
 

@@ -8,7 +8,7 @@ async function loginOwner(userData)
     email : userData.email,
     password : userData.password,
   }).then(res => {
-    res.data.role = CONSTANTS.OWNER_ROLE;
+    res.data.role = CONSTANTS.ROLES.OWNER_ROLE;
     return res.data;
   }).catch(err => {
     console.log(err);
