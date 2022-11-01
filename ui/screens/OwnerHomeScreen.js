@@ -1,56 +1,36 @@
-import { View , FlatList } from 'react-native'
-import React  from 'react'
+import { View, StyleSheet } from 'react-native'
+import React, { useState }  from 'react'
 import { Icon } from "@rneui/themed";
-import RestaurantCardOwner from '../components/RestaurantCardOwner';
-import MySearchBar from '../components/MySearchBar';
 import { ROUTES } from '..';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { GetOwnerRestaurants } from '../../networking';
+import { RestaurantFlatListOwner } from '../components/RestaurantFlatListOwner';
 
 function OwnerHomeScreen({navigation, props}) {
 
-  const renderItem = ({ item }) => (
-    <View >
-    <RestaurantCardOwner 
-      name ={item.name}
-      address = {item.address}
-      score = {item.score}
-      onMenuPressed={onRestaurantMenuPressed}
-      onPhotoPress={onPhotoPresses}
-      >
-      </RestaurantCardOwner>
-    </View>
-    ); 
+  const [restaurants, setRestaurants] = useState([]);
+  const [triggerSearch, setTrigggerSearch] = useState(false);
 
-    const RESTAURANTS_OWNER = [
-      {
-      name : 'Rodizio' ,
-      address : 'Honduras 5000',
-      score : 5 ,
-      onMenuPressed : true ,
-      onPhotoPress:false,
-      },
-      {
-        name : 'Rodizio' ,
-        address : 'Honduras 5000',
-        score : 5 ,
-        onMenuPressed : true ,
-        onPhotoPress:false,
-        },
-        {
-          name : 'Rodizio' ,
-          address : 'Honduras 5000',
-          score : 5 ,
-          onMenuPressed : true ,
-          onPhotoPress:false,
-          },
-          {
-            name : 'Rodizio' ,
-            address : 'Honduras 5000',
-            score : 5 ,
-            onMenuPressed : true ,
-            onPhotoPress:false,
-            },
-     
-     ];
+  const ownerId = useSelector((state) => {
+    return state.session.userId;
+  });
+
+  const testOwnerId = "";
+
+  const fillRestaurantList = async () => {
+    const rests = await GetOwnerRestaurants(ownerId);
+    setRestaurants(rests);
+  }
+
+  useEffect(() => {
+    if (!triggerSearch)
+    {
+      fillRestaurantList();
+      setTrigggerSearch(true);
+    }
+
+  }, [restaurants, triggerSearch])
 
 
 
@@ -70,26 +50,39 @@ function OwnerHomeScreen({navigation, props}) {
   }
 
   return (
-    <View style={{alignItems:'center'}}>
-       <MySearchBar ></MySearchBar>
-      <Icon
-        size={50}
-        name = 'pluscircle'
-        type = 'antdesign'
-        onPress={onCreateRestaurantPressed}
-      >
-      </Icon>
+    <View>
+    <View style={styles.global}>
+       <RestaurantFlatListOwner restaurants={restaurants}></RestaurantFlatListOwner>
+     </View>
 
-     
-
-      <FlatList
-          data={RESTAURANTS_OWNER}
-          renderItem={renderItem}
-          keyExtractor ={item => item.name}
-          />
- 
+      <View style={styles.icon}>
+        <Icon
+            size={50}
+            name = 'pluscircle'
+            type = 'antdesign'
+            onPress={onCreateRestaurantPressed}
+            containerStyle={StyleSheet.icon}	
+          >
+          </Icon>
+       </View>
     </View>
   )
 }
 
 export default OwnerHomeScreen;
+
+
+
+const styles = StyleSheet.create({
+  global : {
+    alignItems:'center' , 
+    height : "100%"
+},
+icon : {
+                                 
+  position: 'absolute',                                         
+  bottom: "2%",                                                    
+  right: "2%", 
+
+},
+});

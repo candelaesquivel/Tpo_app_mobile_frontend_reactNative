@@ -13,7 +13,7 @@ class MainComponentsRegistry
  public:
   // Adapt it to the package you used for your Java class.
   constexpr static auto kJavaDescriptor =
-      "Lcom/anonymous/Morfando_app/newarchitecture/components/MainComponentsRegistry;";
+      "Lcom/tpo_app_mobile_frontend/newarchitecture/components/MainComponentsRegistry;";
 
   static void registerNatives();
 

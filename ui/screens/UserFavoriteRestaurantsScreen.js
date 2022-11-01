@@ -1,76 +1,71 @@
-import { View, FlatList, ScrollView } from 'react-native'
-import React, { useEffect } from 'react'
+import { View } from 'react-native'
+import React, { useCallback, useEffect } from 'react'
 import MySearchBar from '../components/MySearchBar'
-import RestaurantCardUser from '../components/restaurantCardUser'
 import screenNames from '../screenNames'
 import { useState } from 'react';
-import { Button } from '@rneui/themed'
-import getRestaurants from '../../networking/getRestaurants';
-import I18n from '../../assets/localization/I18n'
-
+import { GetFavoriteRestaurants } from '../../networking';
+import { RestaurantFlatListUser } from '../components/RestaurantFlatListUser';
+import { useSelector } from 'react-redux';
+import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { Text } from 'react-native';
+import { CONSTANTS } from '../../config';
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
   
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
+  const isFocused = useIsFocused();
 
-  const renderItem = ({ item }) => (
-    <View >
-      <RestaurantCardUser
-          name={item.name}
-          address={item.address}
-          score={item.score}
-          favorite={item.favorite}
-          onFavoriteTouched = {item.onFavoriteTouched}
-          onRestaurantNameTouched={item.onRestaurantNameTouched}
-        ></RestaurantCardUser>
-    </View>
-  ); 
+  const userId = useSelector(state => state.session.userId);
 
-  const [isFavorite, setFavorite] = useState(true);
-
-  const fillRestaurantList = async () => {
-    const rests = await getRestaurants({});
-    setRestaurants(rests);
+  const fillFavoriteRestaurantList = async () => {
+    const restos = await GetFavoriteRestaurants(userId);
+    setRestaurants(restos);
   }
 
-  useEffect(() => {
-    navigation.setOptions({
-      title : I18n.t('favorites')
-    })
-  })
+  useFocusEffect(
+    useCallback(() => {
 
-  useEffect(() => {
+      if (isFocused || triggerSearch)
+        fillFavoriteRestaurantList();
 
-    if (!triggerSearch)
-    {
-      fillRestaurantList();
-      setTrigggerSearch(true);
+        return () => {
+          setTrigggerSearch(false);
+          setRestaurants([]);
+      }
+    }, [triggerSearch, isFocused])
+  );
 
-      
-    }
-
-  }, [restaurants, triggerSearch])
+  const onFavoriteIconPress = async (restaurantId) => {
+    const result = await toggleRestaurantFavorite(userId, restaurantId);
+    setTrigggerSearch(true);
+  }
 
   const onRestaurantNameTouched = (event) => {
-    console.log('On Restaurant Name Touched');
     navigation.navigate(screenNames.RESTAURANT_VIEW_USER);
-  }
-
-  const onFavoriteTouched = (event) => {
-    console.log('On Favorite Pressed');
-    setFavorite(!isFavorite);
   }
 
   return (
     <View>
       <MySearchBar></MySearchBar>
       <View>
-      <FlatList
-          data={restaurants}
-          renderItem={renderItem}
-          keyExtractor ={item => item.name}
-       ></FlatList>
+        {restaurants.length === 0 && 
+          <Text
+          h1
+          h4Style={{textAlign:'center'}}
+          style={{marginBottom : 10, alignSelf : 'center'}}
+          >
+          {CONSTANTS.SCREEN_TEXTS.NOT_FAVORITES}
+          </Text>
+        }
+        {
+          restaurants.length !== 0 && 
+          <RestaurantFlatListUser 
+            restaurants={restaurants}
+            onFavoriteTouched={onFavoriteIconPress}>
+          </RestaurantFlatListUser>
+        }
       </View>
     </View>
   )

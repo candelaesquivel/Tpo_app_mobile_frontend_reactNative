@@ -7,19 +7,11 @@ import { ROUTES } from '..';
 
 function HomeScreen({navigation, props}){
 
-    useEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        })
-    }, [navigation])
-
     const onUserBtnTouch = (e) => {
-        console.log("Btn User Touched");
         navigation.navigate(ROUTES.LOGIN_NORMAL_USER)
     }
     
     const onRestaurantOwnerTouch = (e) => {
-        console.log("Btn Restaurant Owner Touched");
         navigation.navigate(ROUTES.LOGIN_OWNER);
     }
 

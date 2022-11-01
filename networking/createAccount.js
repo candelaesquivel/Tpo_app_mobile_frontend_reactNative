@@ -1,7 +1,8 @@
 import URL_SERVICES from "../config/config"
+import { MAX_HASH_LENGHT } from "../config/security";
 
-async function createAccountOwner({email, password})
-{
+async function createAccountOwner(userData)
+{ 
   const user = {
     role : "owner",
     google : {
@@ -11,26 +12,32 @@ async function createAccountOwner({email, password})
     },
     custom : {
       name : '',
-      email : email,
-      password : password,
+      email : userData.email,
+      password : userData.password
     }
   };
   
-  const userData = JSON.stringify(user);
+  const jsonData = JSON.stringify(user);
 
-  console.log("User: ", userData);
+  console.log("User: ", jsonData);
 
   let result = await fetch(URL_SERVICES.REGISTER_OWNER, {
     method : 'POST',
     headers : {
       'Content-Type' : 'application/json'
     },
-    body : userData
+    body : jsonData
   }).then(res => {
     console.log("Status: ", res.status);
+
+    if (res.status === 201)
+      return true;
+    
+    return false;
   }).
   catch(err => {
     console.log(err);
+    return false;
   })
 
   return result;

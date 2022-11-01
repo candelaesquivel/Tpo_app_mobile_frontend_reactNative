@@ -1,9 +1,11 @@
-import { getRelativeCoords } from 'react-native-reanimated';
 import URL_SERVICES from '../config/config';
+import axios from 'axios';
+import { CONSTANTS } from '../config';
 
 async function boundGoogleData(userInfo){
-  const user = {
-    role : "user",
+
+  return axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, {
+    role : CONSTANTS.ROLES.USER_ROLE,
     google : {
       name : userInfo.name,
       email : userInfo.email,
@@ -14,26 +16,14 @@ async function boundGoogleData(userInfo){
       latitude : userInfo.latitude,
       longitude : userInfo.longitude
     },
-  };
-  
-  const userData = JSON.stringify(user);
-
-  console.log("BoundGoogleData: ", userData);
-
-  let result = await fetch(URL_SERVICES.BOUND_GOOGLE_DATA, {
-    method : 'POST',
-    headers : {
-      'Content-Type' : 'application/json'
-    },
-    body : userData
   }).then(res => {
-    console.log("Status: ", res.status);
-  }).
-  catch(err => {
+    console.log("Google Resp Data:", res.data);
+    return res.data;
+  }).catch(err => {
     console.log(err);
+  }).finally(() => {
+    console.log('Google Login Succesful')
   })
-
-  return result;
 }
 
 

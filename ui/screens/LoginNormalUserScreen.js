@@ -7,12 +7,29 @@ import { useEffect, useState } from "react";
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
 import { ROUTES } from "..";
 import boundGoogleData from "../../networking/boundGoogleData";
-import * as Location from 'expo-location';
+import GetLocation from 'react-native-get-location'
+import { useDispatch, useSelector } from "react-redux";
+import {loginUserAction } from '../../redux/actions';
+import { CONSTANTS } from "../../config";
 
 function LoginUserScreen({navigation, props}){
   
     const [userInfo, setUserInfo] = useState({});
-    const [errorMsg, setErrorMsg] = useState(null);
+    const dispatch = useDispatch();
+
+    const isLogged = useSelector(state => state.session.isLogged);
+
+    const checkLogStatus = async () => {
+      const isGoogleSigned = await _isSignedIn();
+      if (isLogged)
+        navigation.navigate(ROUTES.HOME_NORMAL_USER_SCREEN);
+      else if (isGoogleSigned)
+        await _signOut();
+    }
+
+    useEffect(() => {
+      checkLogStatus();
+    }, [isLogged]);
 
     GoogleSignin.configure({
         androidClientId: '721847506667-mg9d8oci85eocn8aelu7n33ijfpvccbk.apps.googleusercontent.com',
@@ -20,11 +37,9 @@ function LoginUserScreen({navigation, props}){
         offlineAccess: false,
       });    
 
+      
       _isSignedIn = async () => {
-        const isSignedIn = await GoogleSignin.isSignedIn();
-
-        if (isSignedIn)
-          navigation.navigate(ROUTES.HOME_NORMAL_USER_SCREEN);
+        return await GoogleSignin.isSignedIn();
       };
 
       _signIn = async () => {
@@ -36,35 +51,34 @@ function LoginUserScreen({navigation, props}){
             showPlayServicesUpdateDialog: true,
           });
           const info = await GoogleSignin.signIn();
-          console.log('User Info: ', info);
 
-          let { status } = await Location.requestForegroundPermissionsAsync();
-          if (status !== 'granted') {
-            setErrorMsg('Permission to access location was denied');
-            return;
-          }
+          GetLocation.getCurrentPosition({timeout:50000, enableHighAccuracy:true})
+            .then(async latestLocation => {
+
+              let userData = {
+                email : info.user.email, 
+                name : info.user.name, 
+                id : info.user.id, 
+                photo : info.user.photo,
+                latitude: latestLocation.latitude,
+                longitude: latestLocation.longitude,
+                role : CONSTANTS.ROLES.USER_ROLE,
+                accessToken : 'this is a token',
+              }
+
+              setUserInfo(userData);
     
-          const location = await Location.getCurrentPositionAsync({});
-          console.log("Location: ", location);
+              // Navigate to the Home screen when the user has successfully signed in
+              if (userData.email != null){
+                const userInfo = await boundGoogleData(userData);
+                userData.id = userInfo.id;
+                dispatch(loginUserAction(userData));
+              }
+            })
+            .catch(error => {
+              console.warn("Error getting location: ", error);
+            })
 
-          let userData = {
-            email : info.user.email, 
-            name : info.user.name, 
-            id : info.user.id, 
-            photo : info.user.photo,
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
-          }
-
-          setUserInfo(userData);
-          console.log("User Info: ", userInfo);
-
-          // Navigate to the Home screen when the user has successfully signed in
-          if (userInfo.email != null){
-            console.log("userInfo: ", userInfo);
-            boundGoogleData(userInfo);
-            navigation.navigate(ROUTES.HOME_NORMAL_USER);
-          }
         } catch (error) {
           console.log('Message', error.message);
           if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -80,24 +94,11 @@ function LoginUserScreen({navigation, props}){
         }
       };
 
-      _getCurrentUser = async () => {
-        //May be called eg. in the componentDidMount of your main component.
-        //This method returns the current user
-        //if they already signed in and null otherwise.
-        try {
-          const userInfo = await GoogleSignin.getCurrentUser();
-          this.setState({ userInfo });
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
       _signOut = async () => {
         //Remove user session from the device.
         try {
           await GoogleSignin.revokeAccess();
           await GoogleSignin.signOut();
-          this.setState({ user: null }); // Remove the user from your app's state as well
         } catch (error) {
           console.error(error);
         }
@@ -112,17 +113,6 @@ function LoginUserScreen({navigation, props}){
           console.error(error);
         }
       };
-
-    useEffect(() => {
-        navigation.setOptions({
-            title : I18n.t('logIn')
-        })
-    })
-
-    const onGoogleSignInPress = (e) => {
-      console.log("On Google Sign In Press");
-      navigation.navigate(ROUTES.HOME_NORMAL_USER_SCREEN);
-    }
 
     return (
         <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>

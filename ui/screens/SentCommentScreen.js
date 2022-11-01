@@ -1,42 +1,50 @@
-import { View } from "react-native";
+import { View , StyleSheet , Dimensions} from "react-native";
 import { NavBar } from "../components/navBar";
 import { colorPalette } from "../styles/colors";
-import { AirbnbRating, Text } from "@rneui/themed";
-import { Input } from "@rneui/themed";
+import { AirbnbRating, Text, ThemeConsumer } from "@rneui/themed";
 import I18n from "../../assets/localization/I18n";
+import { Theme } from '../styles/Theme';
+import { InputText } from '../components/InputText'
 
-export function SentCommentScreen(props){
+export default function SentCommentScreen(props){
     return (
-        <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
-            <NavBar
-                centerText = 'Enviar Comentario'
-                leftIcon = 'arrow-back'
-            ></NavBar>
-            <View style={{width : '100%', height : '10%', backgroundColor: colorPalette.White}}></View>
-            <Text h3>{I18n.t('calification')}</Text>
-            <AirbnbRating 
-                defaultRating={3}
-                reviews = {[]}
-                size = {30}
-                selectedColor = {colorPalette.Orange}
-            ></AirbnbRating>
-            <View style={{flexDirection : 'row'}}>
-
-            </View>
-            <Text>{I18n.t('comment')}</Text>
-            <Input
-                inputContainerStyle={{
-                    padding : 10,
-                    width : '100%',
-                    minHeight : '10%',
-                    borderRadius : 30,
-                    backgroundColor : colorPalette.LightOrange
-                }}
-                maxLength = {140}
-                multiline = {true}
-
-            >
-            </Input>
+        <View style={styles.global}>
+            <Text style={styles.words}>{I18n.t('calification')}</Text>
+            <View style={styles.rating}>
+                <AirbnbRating 
+                    defaultRating={1}
+                    reviews = {[]}
+                    size = {30}
+                    selectedColor = {colorPalette.Orange}
+                    ></AirbnbRating>
+            </View>     
+            <Text style={styles.words}>{I18n.t('comment')}</Text>
+            <InputText 
+                placeholder=""
+                color={colorPalette.Cream}
+                height={Dimensions.get("window").height*0.17}
+                width={ Dimensions.get("window").width*0.6}
+            ></InputText>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+global : {
+    flexDirection : 'column', 
+    alignItems : 'center',
+    backgroundColor : colorPalette.White,
+    height : "100%"
+    },
+words : {
+    marginTop:Dimensions.get("window").width*0.1,  
+    marginBottom:"2%", 
+    marginTop :"6%",
+    fontSize : Theme.font.MEDIUM,
+    color : colorPalette.Black,
+    },
+rating : {
+    marginTop : -Dimensions.get("window").width*0.1
+    },
+  });
+  
