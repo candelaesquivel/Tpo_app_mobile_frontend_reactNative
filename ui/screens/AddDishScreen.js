@@ -10,8 +10,9 @@ import Carousal from '../components/carousal';
 import { Theme } from '../styles/Theme';
 import createDish from '../../networking/createDish';
 import { useSelector } from 'react-redux';
+import { CONSTANTS } from '../../config';
 
-function AddDishScreen() {
+function AddDishScreen({navigation, props}) {
    const [dishName, setDishName]= useState("");
 
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
@@ -20,7 +21,7 @@ function AddDishScreen() {
     name : '',
     price : '',
     ingredients : [],
-    discount : '',
+    discount : 0,
     isVegan : false,
     isCeliac : false,
     photos : [],
@@ -57,8 +58,14 @@ function AddDishScreen() {
   }
 
   const onSavePress = async (event) => {
-    const res = await createDish(currRestaurant);
-    console.log('Dish Created: ', res);
+    const status = await createDish(currRestaurant, dishData);
+
+    if (status === 201)
+    {
+      console.log('Dish Created');
+    }
+    else
+      console.log("Status: ", status);
   }
 
   return (
@@ -70,18 +77,23 @@ function AddDishScreen() {
         <View style={styles.global}>
          <View style={styles.globalTwo}>
             <Text style={styles.words}>
-                {I18n.t('name')}    
+                {CONSTANTS.SCREEN_TEXTS.NAME_LABEL}    
             </Text>
             <InputText 
+            onChange = {onNameChanged}
+            textColor = {colorPalette.Black}
             placeholder=""
             color={colorPalette.White}
             placeholderTextColor = {colorPalette.Black}
             ></InputText>
 
             <Text style={styles.words}>
-                {I18n.t('price')}        
+              {CONSTANTS.SCREEN_TEXTS.PRICE_LABEL}
             </Text>
-            <InputText 
+            <InputText
+            onChange={onPriceChanged}
+            keyboardType = {'numeric'} 
+            textColor = {colorPalette.Black}
             placeholder=""
             color={colorPalette.White}
             placeholderTextColor = {colorPalette.Black}
@@ -91,6 +103,8 @@ function AddDishScreen() {
                 {I18n.t('ingredients')}        
             </Text>
             <InputText 
+            onChange={onIngredientChange}
+            textColor = {colorPalette.Black}
             placeholder=""
             color={colorPalette.White}
             placeholderTextColor = {colorPalette.Black}
@@ -105,21 +119,23 @@ function AddDishScreen() {
            
              <View style={styles.switchContainer}>
                 <Text style={styles.words}>
-                    {I18n.t('vegan')}    
+                    {CONSTANTS.SCREEN_TEXTS.VEGAN_LABEL}    
                 </Text>
                 <View style={{width:'18%'}}></View>
                 <Switch
-                    value={true} />
+                    onChange={onIsVeganChange}
+                    value={dishData.isVegan} />
             </View>
             <View style={styles.switchContainer}>
                 <Text style={styles.words}>
-                    {I18n.t('celiac')}       
+                    {CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}       
                 </Text>
                 <Switch
-                    value={true} />
+                    onChange={onIsCeliacChange}
+                    value={dishData.isCeliac} />
             </View>
             <Text style={styles.words}>
-             {I18n.t('category')} {""}      
+             {CONSTANTS.SCREEN_TEXTS.CATEGORY_LABEL} {""}      
             </Text>
 
             <View style={styles.buttons}>

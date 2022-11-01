@@ -43,5 +43,10 @@ export default  {
 
   SCREEN_TEXTS : {
     NOT_FAVORITES : I18n.t('emptyFavorites'),
-  }
+    NAME_LABEL : I18n.t('name'),
+    PRICE_LABEL : I18n.t('price'),
+    VEGAN_LABEL : I18n.t('vegan'),
+    CELIAC_LABEL : I18n.t('celiac'),
+    CATEGORY_LABEL : I18n.t('category'),
+  },
 }
