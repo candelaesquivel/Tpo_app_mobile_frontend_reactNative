@@ -78,5 +78,6 @@ export  default{
     transparent : 'transparent',
     open : "Abierto : ",
     
+    dishCreated : 'Plato Creado',
 
 };

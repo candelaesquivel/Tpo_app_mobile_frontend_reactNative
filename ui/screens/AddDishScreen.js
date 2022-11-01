@@ -11,10 +11,12 @@ import { Theme } from '../styles/Theme';
 import createDish from '../../networking/createDish';
 import { useSelector } from 'react-redux';
 import { CONSTANTS } from '../../config';
+import { CustomAlert } from '../components/CustomAlert';
 
 function AddDishScreen({navigation, props}) {
    const [dishName, setDishName]= useState("");
 
+  const [showCreateDishAlert, setShowCreateDish] = useState(false);
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
 
   const [dishData, setDishData] = useState({
@@ -57,11 +59,16 @@ function AddDishScreen({navigation, props}) {
     setDishData({...dishData, 'category' : text})
   }
 
+  const onDismissAlert = (e) => {
+    navigation.goBack();
+  }
+
   const onSavePress = async (event) => {
     const status = await createDish(currRestaurant, dishData);
 
     if (status === 201)
     {
+      setShowCreateDish(true);
       console.log('Dish Created');
     }
     else
@@ -70,6 +77,12 @@ function AddDishScreen({navigation, props}) {
 
   return (
     <ScrollView>
+      <CustomAlert 
+        isVisible={showCreateDishAlert} 
+        msgText={CONSTANTS.SCREEN_TEXTS.DISH_CREATED_MSG}
+        iconName='restaurant'
+        onRequestCloseHandler={onDismissAlert}>
+      </CustomAlert>
      <Carousal></Carousal>
         <View style={styles.iconGlobal}>
             <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
