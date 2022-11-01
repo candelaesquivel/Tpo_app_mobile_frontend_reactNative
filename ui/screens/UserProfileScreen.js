@@ -18,12 +18,12 @@ export default function UserProfileScreen({navigation, props}) {
     <View>
        <View style={{width:'90%', alignItems:'flex-start', marginTop:30, marginLeft : 30}}>
 
-        <Text style={{marginBottom:20,marginLeft:20, fontSize:'20', color: colorPalette.Black}}>{I18n.t('name')}</Text>
+        <Text style={{marginBottom:20,marginLeft:20, fontSize:20, color: colorPalette.Black}}>{I18n.t('name')}</Text>
 
         <InputText color={colorPalette.White}  ></InputText>
 
         <View style={{flexDirection:'row' ,marginBottom:40}}>
-            <Text style={{fontSize:'20', color: colorPalette.Black, width:'45%', marginLeft:20}}>{I18n.t('addPicture')} </Text>
+            <Text style={{fontSize:20, color: colorPalette.Black, width:'45%', marginLeft:20}}>{I18n.t('addPicture')} </Text>
              <Icon name='add-photo-alternate' Type='material-community' size={30} color={colorPalette.Orange}></Icon>
             </View>
 
