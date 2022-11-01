@@ -59,7 +59,8 @@ export  default{
     deleteRestaurant : "Eliminar resto",
     create : "Crear",
     deleteDish : "Eliminar Plato",
-    delete : "Eliminar"
+    delete : "Eliminar",
+    transparent : 'transparent',
     
 
 };
