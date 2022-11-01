@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View , StyleSheet , Dimensions} from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import Images from '../../assets/images/index';
@@ -35,31 +35,53 @@ restaurantId = '', props}) {
   }
 
   return (
-    <View  style={{alignItems : 'center' , width: '100%' }}>
-    <Card style ={{width : '40%'}}>
-      <View style={{flexDirection: 'row', justifyContent : 'space-between'}}>
-      {/* Acomodar Tamano de Imagen  */}
-      <Images.logo width='10%' height={100} onPress={onPhotoPress}></Images.logo>
-       <View width={200}  style={{justifyContent : 'space-evenly', marginLeft:10}} >
-         <Text h4>{name}</Text>
-         <Text>{address}</Text>
-         <View style={{flexDirection: 'row',alignItems: 'center'}}>
-            <Text marginBottom={30}>{score} </Text>
-            <Icon  name="star" color={colorPalette.Orange} size={20}></Icon>
-         </View>
-       
-       </View>
-       <View  style= {{flexDirection:'column-reverse'}}>
-        <FavoriteIcon isFavorite></FavoriteIcon>
-       </View>
-      
-      </View>
-         </Card>
-   
-     
+    <View  style={styles.global}>
+      <Card >
+        <View style={styles.globalTwo}>
+          <Images.logo 
+            width='20%' 
+            height={Dimensions.get('window').height*0.13}
+            onPress={onPhotoPress}
+          ></Images.logo>
+          <View width={Dimensions.get('window').width*0.55} style={styles.globalThree} >
+            <Text h4>{name}</Text>
+            <Text>{address}</Text>
+            <View style={styles.globalFour}>
+              <Text> {score} </Text>
+              <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
+            </View> 
+          </View>
+          <View  style= {styles.globalFive}>
+          <FavoriteIcon isFavorite></FavoriteIcon>
+          </View>   
+        </View>
+        </Card>   
  </View>
   )
 }
 
 export default RestaurantCardUser;
 
+const styles = StyleSheet.create({
+  global:{
+    alignItems : 'center' , 
+    width: '100%' 
+  },
+  globalTwo : {
+    flexDirection: 'row', 
+    justifyContent : 'space-between'
+  }
+,
+globalThree : {
+  justifyContent : 'space-evenly', 
+  marginLeft:10
+},
+globalFour : {
+  flexDirection: 'row',
+  alignItems: 'center'
+},
+globalFive : {
+  flexDirection:'column-reverse'
+}
+
+});

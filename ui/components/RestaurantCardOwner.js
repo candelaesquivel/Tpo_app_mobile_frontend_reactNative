@@ -32,20 +32,17 @@ props}) {
   return (
       <Card>
         <View style={styles.global}>
-
-         <Images.logo
-          onPress={onPhotoPress} 
-          width={"30%"}
-          height={"90%"}
+        <Images.logo 
+            width='20%' 
+            height={Dimensions.get('window').height*0.13}
+            onPress={onPhotoPress}
           ></Images.logo>
 
-          <View width={"60%"}  style={styles.globalTwo} >
-
+          <View width={Dimensions.get('window').width*0.55}   style={styles.globalTwo} >
             <Text style={styles.title} >{name}</Text>
             <Text style={styles.address}>{address}</Text>
-
           <View style={styles.globalThree}>
-            <Text marginBottom={30}>{score}</Text>
+            <Text >{score}</Text>
             <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
           </View>
 
@@ -69,12 +66,14 @@ const styles = StyleSheet.create({
     width : "90%"
   },
   globalTwo : {
-    justifyContent : 'space-evenly',
-    marginLeft : "10%"
+    justifyContent : 'space-between',
+    marginLeft : "10%",
+    marginTop : "3%"
   },
   globalThree : {
     flexDirection: 'row',
-    lignItems: 'center'
+    lignItems: 'center',
+    
   },
   globalFour :{
     direction: 'RLT',
@@ -85,11 +84,12 @@ const styles = StyleSheet.create({
     fontSize: Theme.font.MEDIUM,
     color: colorPalette.Black, 
     fontWeight: 'bold', 
-   
+    marginBottom : "2%"
 },
 address :{
   fontSize: Theme.font.SMALL,
   color: colorPalette.Black, 
+  marginBottom : "2%"
  
 },
 menu :{
