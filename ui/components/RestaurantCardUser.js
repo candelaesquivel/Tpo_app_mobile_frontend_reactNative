@@ -4,9 +4,12 @@ import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import Images from '../../assets/images/index';
 import { ROUTES } from '..';
+import { useNavigation } from '@react-navigation/native';
 
 function RestaurantCardUser({name ='Rodizio',address='',score= 0, favorite=true,
 restaurantId = '', onFavoriteTouched={}, props}) {
+
+  const navigation = useNavigation();
 
   const onPhotoPress = async (event) => {
     navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
@@ -15,7 +18,6 @@ restaurantId = '', onFavoriteTouched={}, props}) {
   const FavoriteIcon = ({props}) => {
 
     const onFavoriteIconPress = (e) => {
-      console.log('On Heart Touched');
       onFavoriteTouched(restaurantId);
     }
 
