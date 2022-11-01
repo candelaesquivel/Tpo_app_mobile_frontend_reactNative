@@ -25,7 +25,9 @@ function getDishesFromRestaurant(restaurantId){
         dishId : itr.id,
         name : itr.name,
         price : itr.price.$numberDecimal,
-        discount : itr.discounts.$numberDecimal
+        discount : itr.discounts.$numberDecimal,
+        isCeliac : itr.isGlutenFree,
+        isVegan : itr.isVegan
       }
 
       dishes[idx].data.push(dishInfo);
