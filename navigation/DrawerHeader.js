@@ -18,7 +18,7 @@ function DrawerHeader({props}){
   })
 
   const onIconPress = (event) => {
-    
+    navigation.navigate(ROUTES.USER_PROFILE);
   }
 
   return (
