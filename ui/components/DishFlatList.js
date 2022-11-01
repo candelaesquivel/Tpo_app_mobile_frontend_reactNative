@@ -1,4 +1,4 @@
-import { SectionList } from "react-native";
+import { SectionList, View } from "react-native";
 import { Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { Theme } from '../styles/Theme';
@@ -13,11 +13,15 @@ export function DishFlatList({dishes, props}){
   );
 
   const renderDishData = ({item}) => (
+
     <DishItemCard
-        dishId={item.dishId}
-        name={item.name}
-        price={item.price}
-        discount={item.discount}>
+      dishId={item.dishId}
+      name={item.name}
+      price={item.price}
+      discount={item.discount}
+      isVegan={item.isVegan}
+      isCeliac={item.isGlutenFree}
+      >
     </DishItemCard>
   );
 
@@ -26,7 +30,9 @@ export function DishFlatList({dishes, props}){
       sections={dishes}
       keyExtractor={(item, index) => item + index}
       renderItem={renderDishData}
-      renderSectionHeader={renderCategory} />
+      renderSectionHeader={renderCategory} 
+      ListFooterComponent={<View style={{height : 20}}></View>}
+      />
   )
 }
 
