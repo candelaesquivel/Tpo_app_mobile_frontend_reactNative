@@ -35,10 +35,6 @@ function LoginOwnerScreen({navigation, props}){
   }
 
     useEffect(() => {
-        navigation.setOptions({
-            title : I18n.t('logIn')
-        })
-
         if (isLogged)
           navigation.navigate(ROUTES.OWNER_HOME);
 

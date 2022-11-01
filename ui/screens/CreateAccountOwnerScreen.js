@@ -25,10 +25,6 @@ export function CreateAccountOwnerScreen({navigation, props}) {
         navigation.navigate(ROUTES.OWNER_HOME);
     }
 
-    useEffect(() => {
-        navigation.setOptions({title : I18n.t('createAccount')})
-    }, [navigation])
-
     const onEmailChange = ({ nativeEvent: { eventCount, target, text} }) => {
       setUserData({...userData, 'email' : text})
     }

@@ -14,12 +14,6 @@ export default function UserProfileScreen({navigation, route, props}) {
   const userName = useSelector(state => state.session.userName);
   const [name, setName] = useState(userName);
 
-  useEffect(() => {
-    navigation.setOptions({
-        title : I18n.t('profileUser')
-      })
-  })
-
   return (
     <View style={style.container}>
       <Text style={style.nameLabel}>{I18n.t('name')}</Text>

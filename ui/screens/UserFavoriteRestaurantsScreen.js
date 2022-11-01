@@ -21,12 +21,6 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
   }
 
   useEffect(() => {
-    navigation.setOptions({
-      title : I18n.t('favorites')
-    })
-  })
-
-  useEffect(() => {
 
     if (!triggerSearch)
     {

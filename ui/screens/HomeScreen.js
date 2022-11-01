@@ -7,12 +7,6 @@ import { ROUTES } from '..';
 
 function HomeScreen({navigation, props}){
 
-    useEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        })
-    }, [navigation])
-
     const onUserBtnTouch = (e) => {
         navigation.navigate(ROUTES.LOGIN_NORMAL_USER)
     }

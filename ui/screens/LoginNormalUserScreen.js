@@ -114,12 +114,6 @@ function LoginUserScreen({navigation, props}){
         }
       };
 
-    useEffect(() => {
-        navigation.setOptions({
-            title : I18n.t('logIn')
-        })
-    })
-
     return (
         <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>

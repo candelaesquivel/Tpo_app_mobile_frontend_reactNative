@@ -15,10 +15,6 @@ function ForgetPasswordScreen({navigation, props}) {
 
   const [email, setEmail] = useState('');
 
-    useEffect(() => {
-        navigation.setOptions({title : I18n.t('recoverPassword')})
-    }, [navigation])
-
     const onEmailChange = ({ nativeEvent: { eventCount, target, text} }) => {
       setEmail(text);
     }

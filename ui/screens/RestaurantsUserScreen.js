@@ -24,10 +24,6 @@ function RestaurantsUserScreen({navigation , props}) {
 
   useEffect(() => {
 
-    navigation.setOptions({
-      title : I18n.t('home'),
-    })
-
     if (!triggerSearch)
     {
       fillRestaurantList();
