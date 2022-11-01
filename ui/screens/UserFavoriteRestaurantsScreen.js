@@ -8,6 +8,8 @@ import { RestaurantFlatListUser } from '../components/RestaurantFlatListUser';
 import { useSelector } from 'react-redux';
 import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { Text } from 'react-native';
+import { CONSTANTS } from '../../config';
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
   
@@ -48,10 +50,22 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
     <View>
       <MySearchBar></MySearchBar>
       <View>
-        <RestaurantFlatListUser 
-          restaurants={restaurants}
-          onFavoriteTouched={onFavoriteIconPress}>
-        </RestaurantFlatListUser>
+        {restaurants.length === 0 && 
+          <Text
+          h1
+          h4Style={{textAlign:'center'}}
+          style={{marginBottom : 10, alignSelf : 'center'}}
+          >
+          {CONSTANTS.SCREEN_TEXTS.NOT_FAVORITES}
+          </Text>
+        }
+        {
+          restaurants.length !== 0 && 
+          <RestaurantFlatListUser 
+            restaurants={restaurants}
+            onFavoriteTouched={onFavoriteIconPress}>
+          </RestaurantFlatListUser>
+        }
       </View>
     </View>
   )

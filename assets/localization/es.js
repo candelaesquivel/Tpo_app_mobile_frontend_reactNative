@@ -49,6 +49,7 @@ export  default{
     createRestaurantTitle : 'Crear Restaurante',
     filtersTitle : 'Filtros',
 
+    emptyFavorites : 'No hay restaurantes favoritos',
     filterMessage1 : 'Distancia respecto de su ubicación :  ',
     km : 'km',
     typeFood : 'Tipo de comida :',

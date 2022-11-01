@@ -40,4 +40,8 @@ export default  {
     CREATE_RESTAURANT : I18n.t('createRestaurantTitle'),
     FILTERS : I18n.t('filtersTitle'),
   },
+
+  SCREEN_TEXTS : {
+    NOT_FAVORITES : I18n.t('emptyFavorites'),
+  }
 }
