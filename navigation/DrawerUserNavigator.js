@@ -4,6 +4,7 @@ import { ROUTES } from '../ui';
 import { HomeNormalUser, UserFavoritesRestaurants} from '../ui/screens';
 import DrawerOptionsUser from './DrawerOptionsUser';
 import { HomeIcon, FavoritesIcon } from './DrawerIcons';
+import { CONSTANTS } from '../config';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,7 +17,7 @@ function DrawerUserNavigator(props){
           >
             <Drawer.Screen name = {ROUTES.HOME_NORMAL_USER_DRAWER} component = {HomeNormalUser}
             options={{
-              title : 'Inicio',
+              title : CONSTANTS.SCREEN_TITLES.HOME,
               drawerIcon : HomeIcon
             }}
             >
@@ -24,7 +25,7 @@ function DrawerUserNavigator(props){
             </Drawer.Screen>
             <Drawer.Screen name = {ROUTES.FAVORITE_RESTAURANTS_DRAWER} component = {UserFavoritesRestaurants}
             options={{
-              title : 'Favoritos',
+              title : CONSTANTS.SCREEN_TITLES.FAVORITES_RESTAURANTS,
               drawerIcon : FavoritesIcon
             }}
             ></Drawer.Screen>
