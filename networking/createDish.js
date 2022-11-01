@@ -23,12 +23,10 @@ function createDish(restaurantId, dishData = defaultDish){
   console.log('URL:', URL);
 
   return axios.post(URL, dishData).then(response => {
-    console.log('Dish Data:', response.data);
     return response.status;
   }).catch(err => {
     console.log(err);
   }).finally(() => {
-    console.log('Dish created');
   })
 }
 
