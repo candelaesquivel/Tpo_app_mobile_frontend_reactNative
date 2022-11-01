@@ -1,19 +1,21 @@
-import { View, FlatList} from 'react-native'
-import React, { useEffect } from 'react'
+import { View} from 'react-native'
+import React from 'react'
 import MySearchBar from '../components/MySearchBar'
-import RestaurantCardUser from '../components/RestaurantCardUser'
 import screenNames from '../screenNames'
 import { useState } from 'react';
 import getRestaurants from '../../networking/getRestaurants';
-import I18n from '../../assets/localization/I18n'
 import { useSelector } from 'react-redux'
 import { RestaurantFlatListUser } from '../components/RestaurantFlatListUser'
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useCallback } from 'react';
+import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 
 
 function RestaurantsUserScreen({navigation , props}) {
   
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
+  const isFocused = useIsFocused();
 
   const userId = useSelector(state => state.session.userId);
 
@@ -22,31 +24,34 @@ function RestaurantsUserScreen({navigation , props}) {
     setRestaurants(restos);
   }
 
-  useEffect(() => {
+  useFocusEffect(
+    useCallback(() => {
 
-    if (!triggerSearch)
-    {
-      fillRestaurantList();
-      setTrigggerSearch(true);
-    }
+      if (isFocused || triggerSearch)
+        fillRestaurantList();
 
-  }, [restaurants, triggerSearch])
+        return () => {
+          setTrigggerSearch(false);
+          setRestaurants([]);
+      }
+    }, [triggerSearch, isFocused])
+  );
 
   const onRestaurantNameTouched = (event) => {
     console.log('On Restaurant Name Touched');
     navigation.navigate(screenNames.RESTAURANT_VIEW_USER);
   }
 
-  const onFavoriteTouched = (event) => {
-    console.log('On Favorite Pressed');
-    setFavorite(!isFavorite);
+  const onFavoriteIconPress = async (restaurantId) => {
+    const result = await toggleRestaurantFavorite(userId, restaurantId);
+    setTrigggerSearch(true);
   }
 
   return (
     <View>
       <MySearchBar></MySearchBar>
       <View>
-      <RestaurantFlatListUser restaurants={restaurants}></RestaurantFlatListUser>
+      <RestaurantFlatListUser restaurants={restaurants} onFavoriteTouched={onFavoriteIconPress}></RestaurantFlatListUser>
       </View>
     </View>
   )

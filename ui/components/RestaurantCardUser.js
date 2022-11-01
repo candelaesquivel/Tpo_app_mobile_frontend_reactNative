@@ -3,24 +3,10 @@ import { View , StyleSheet , Dimensions} from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import Images from '../../assets/images/index';
-import { useDispatch, useSelector } from 'react-redux';
-import {unselectRestaurantAction} from '../../redux/actions';
-import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
-import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 
 function RestaurantCardUser({name ='Rodizio',address='',score= 0, favorite=true,
-restaurantId = '', props}) {
-
-
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
-  const userId = useSelector(state => state.session.userId);
-
-  const onFavoriteTouched = async (event) => {
-    const res = await toggleRestaurantFavorite(userId, restaurantId);
-    navigation.navigate(ROUTES.FAVORITE_RESTAURANTS_DRAWER);
-  }
+restaurantId = '', onFavoriteTouched={}, props}) {
 
   const onPhotoPress = async (event) => {
     navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
@@ -28,10 +14,15 @@ restaurantId = '', props}) {
 
   const FavoriteIcon = ({props}) => {
 
+    const onFavoriteIconPress = (e) => {
+      console.log('On Heart Touched');
+      onFavoriteTouched(restaurantId);
+    }
+
     if (favorite)
-      return <Icon onPress={onFavoriteTouched}  name="favorite" color="red"  marginBottom={7}></Icon >;
+      return <Icon onPress={onFavoriteIconPress} name="favorite" color="red"  marginBottom={7}></Icon >;
     else
-      return <Icon onPress={onFavoriteTouched} name="favorite-border" color={colorPalette.Black}  marginBottom={7}></Icon >
+      return <Icon onPress={onFavoriteIconPress} name="favorite-border" color={colorPalette.Black}  marginBottom={7}></Icon >
   }
 
   return (
