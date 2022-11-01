@@ -32,4 +32,5 @@ export default {
     HOME_NORMAL_USER  : 'NormalUserScreenHome',
     HOME_NORMAL_USER_DRAWER : 'NormalUserScreenHomeDrawer',
     FAVORITE_RESTAURANTS_DRAWER : 'FavoriteUserRestaurantsScreenDrawer',
+    USER_SENT_COMMENT : "SentCommentScreen",
 };

@@ -19,3 +19,4 @@ export {default as DeleteAccountOwner} from './DeleteAccountScreenUser';
 export {default as UserFavoritesRestaurants} from './UserFavoriteRestaurantsScreen';
 export {default as EditRestaurant} from './EditRestaurantScreen';
 export {default as SearchFilters} from './FilterScreen';
+export {default as SentComment} from './SentCommentScreen';

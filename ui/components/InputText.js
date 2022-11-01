@@ -21,6 +21,9 @@ export function InputText(props){
               marginRight : props.marginRight,
               marginLeft : props.marginLeft,
               marginBottom : props.marginBottom,
+              height : props.height,
+              width : props.width,
+              
           }}
           inputContainerStyle={{
               borderColor : props.borderColor,

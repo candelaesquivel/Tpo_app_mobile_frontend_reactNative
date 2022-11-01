@@ -2,7 +2,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AddDish, CreateAccountOwner, CreateRestaurant, 
         DeleteAccountOwner, ForgetPassword, Home, LoginNormalUser,
         LoginOwner, MenuRestaurantOwner, DishUserView,RestaurantEdit,
-        ModifyDish , ProfileUserRestaurant, SearchFilters, RestaurantProfileUser, EditRestaurant, UserProfile } from "../ui/screens";
+        ModifyDish , ProfileUserRestaurant, SearchFilters, RestaurantProfileUser,
+         EditRestaurant, UserProfile , SentComment } from "../ui/screens";
 import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
@@ -14,7 +15,7 @@ const Stack = createNativeStackNavigator();
 function MainNavigator(props){
     return (
         <Stack.Navigator>
-          
+           
             <Stack.Screen name = {ROUTES.HOME_SCREEN} component = {Home}></Stack.Screen>
        
             <Stack.Screen name = {ROUTES.LOGIN_OWNER} component = {LoginOwner}></Stack.Screen>
@@ -35,7 +36,7 @@ function MainNavigator(props){
             <Stack.Screen name = {ROUTES.USER_PROFILE} component={UserProfile}></Stack.Screen>
             <Stack.Screen name = {ROUTES.RESTAURANT_VIEW_USER} component={RestaurantProfileUser}></Stack.Screen>
             <Stack.Screen name = {ROUTES.FILTERS_SCREEN_STACK} component={SearchFilters}></Stack.Screen>
-
+            <Stack.Screen name = {ROUTES.USER_SENT_COMMENT} component={ SentComment}></Stack.Screen>
 
             {/* Owner Screens without Drawer */}
             <Stack.Screen name = {ROUTES.RESTAURANT_EDIT_OWNER} component = {EditRestaurant}></Stack.Screen>
