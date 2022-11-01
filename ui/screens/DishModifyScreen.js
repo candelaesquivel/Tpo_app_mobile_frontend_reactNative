@@ -99,6 +99,7 @@ function DishModifyScreen({navigation, route, props}){
                     title= {I18n.t('chose')} 
                     width={ Dimensions.get("window").width*0.4}
                     height={Dimensions.get("window").height*0.07}
+                    fontSizeTitle={18}
                     ></MyButton>
 
                     <MyButton

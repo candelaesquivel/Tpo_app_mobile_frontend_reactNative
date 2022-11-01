@@ -124,7 +124,7 @@ function CreateRestaurantScreen({navigation, props}) {
           <MyWeekButtons></MyWeekButtons>
 
           
-          <View style={{flexDirection: 'column' , width : "100%",height : "60%", alignItems : "center" }}>
+          <View style={styles.buton}>
             < MyButton
                 title= {I18n.t('create')} 
                 width={ Dimensions.get("window").width*0.5}
@@ -184,6 +184,10 @@ const styles = StyleSheet.create({
     fontSize: Theme.font.MEDIUM,
     color : colorPalette.Black
   },
-
+  buton : {
+    flexDirection: 'column' ,
+     width : "100%",
+     height : "60%", 
+     alignItems : "center" }
 });
 

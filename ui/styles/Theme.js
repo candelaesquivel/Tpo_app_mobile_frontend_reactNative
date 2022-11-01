@@ -10,9 +10,6 @@ export const Theme ={
         ROUNDED : 25 
     },
 
-    button : {
-        WIDTH: 200 ,
-        HEIGHT : 50,
-    }
+  
 }
 

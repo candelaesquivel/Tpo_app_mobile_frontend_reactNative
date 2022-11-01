@@ -11,32 +11,24 @@ import {
 import  Icon from 'react-native-vector-icons/FontAwesome';
 import  Iconn from 'react-native-vector-icons/Ionicons';
 import { colorPalette } from "../styles/colors";
+import I18n from "../../assets/localization/I18n";
 
 // Default Sample Data
 const DATA = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "The most beutiful railway track!",
-    subtitle:
-      "This is a long subtitle. Which also can be used to display flashnews.",
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba", 
     image:
-      "https://i.picsum.photos/id/524/700/500.jpg?hmac=PuAKCqRNlpa6_UJLeKABjXH9l3MFgsv-LHMm0bDfey4",
+      "https://malevamag.com/wp-content/uploads/2020/09/Mudr%C3%A1-Portobello-Anticuchado-900x720.jpeg",
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Memories lives in this home",
-    subtitle:
-      "This is a long subtitle. Which also can be used to display flashnews.",
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63", 
     image:
-      "https://i.picsum.photos/id/193/700/500.jpg?hmac=q5QJ9ieureq_dXwwsUmh7ub2pN-V1arRrqpMV7czc9g",
+      "https://vinomanos.com/wp-content/uploads/2020/02/entrada.jpeg",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Snow and Fun! How can we forget",
-    subtitle:
-      "This is a long subtitle. Which also can be used to display flashnews.",
     image:
-      "https://i.picsum.photos/id/971/700/500.jpg?hmac=kNTldtPvd24NEOfvd39iwsRBun4As0dYChiWQuyCFo4",
+      "https://aguiarbuenosaires.com/wp-content/uploads/2021/04/WhatsApp-Image-2021-09-13-at-11.50.08-800x553.jpeg",
   },
 ];
 
@@ -47,8 +39,9 @@ const defaults = {
   delay: 5000,
 };
 
+
 // Default Image Item
-const Item = ({ title, image, height, width, onPress, subtitle }) => (
+const Item = ({ title, image, height, width, onPress, subtitle , editBool }) => (
   <TouchableOpacity
     activeOpacity={0.8}
     onPress={onPress}
@@ -57,9 +50,9 @@ const Item = ({ title, image, height, width, onPress, subtitle }) => (
     <Image source={{ uri: image }} style={[styles.image, { height: height }]} />
   
     <View style={styles.titleContainer}>
-      {<Iconn name="create-outline" size={30} color={colorPalette.White}></Iconn>}
-      <View style = {{width : 10}}></View>
-      {<Icon name = 'trash' size={30} color={colorPalette.White}></Icon>}
+    {<Iconn name="create-outline" size={30} color={colorPalette.White}></Iconn>}
+    <View style = {{width : 10}}></View>
+    {<Icon name = 'trash' size={30} color={colorPalette.White}></Icon>}
     </View>
 
     <View style={styles.movement}>
@@ -149,7 +142,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
   },
-  imageContainer: { backgroundColor: "yellow" },
+  imageContainer: { backgroundColor: I18n.t('transparent')  },
   item: {
     backgroundColor: "rgba(91, 91, 91, 0.3)",
     marginVertical: 8,

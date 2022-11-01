@@ -76,6 +76,7 @@ export  default{
     deleteDish : "Eliminar Plato",
     delete : "Eliminar",
     transparent : 'transparent',
+    open : "Abierto : ",
     
 
 };

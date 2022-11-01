@@ -9,20 +9,20 @@ import { Theme } from '../styles/Theme';
 export default function Comment(props) {
 
   return (
-    <View>  
+ 
     <Card  containerStyle={styles.global}>
-       <View  style={{alignItems: 'center' }} >
+       <View  style={styles.globalTwo} >
          <Text h4 style={{color: colorPalette.Black}}>{props.userName }</Text>
          <Text style={styles.words}>{props.comment}</Text>
-         <Text style={styles.words}>{I18n.t('vegan')}</Text>
-         <AirbnbRating 
+        <AirbnbRating 
           defaultRating={props.score}
           reviews = {[]}
-          size = {20}
+          size = {25}
           selectedColor = {colorPalette.Orange}></AirbnbRating> 
+      
        </View>
     </Card>     
- </View>
+
   )
 }
 
@@ -31,13 +31,15 @@ const styles = StyleSheet.create({
     backgroundColor : colorPalette.Cream , 
     alignItems: "center",
     width  : Dimensions.get("window").width*0.9,
-    height : "60%"
+    height : Dimensions.get("screen").height*0.25,
+   
   },
+  globalTwo : {
+    alignItems: 'center'
+   },
   words :{
     fontSize: Theme.font.MEDIUM,
     color: colorPalette.Black, 
-  
+    marginBottom : -8
 },
-    
- 
 });
