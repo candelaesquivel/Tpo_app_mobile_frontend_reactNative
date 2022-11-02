@@ -53,5 +53,6 @@ export default  {
     DISH_CREATED_MSG : I18n.t('dishCreated'),
     YES : I18n.t('yes'),
     NO : I18n.t('no'),
+    PRICE_SYMBOL : I18n.t('priceSymbol'),
   },
 }
