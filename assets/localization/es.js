@@ -12,7 +12,7 @@ export  default{
     name : 'Nombre :',
     price : 'Precio :',
     ingredients: 'Ingredientes :',
-    discount : 'Descuento :',
+    discount : 'Descuento ',
     addPicture : 'Agregar fotos :',
     category: 'Categoria :',
     chose : 'Elegir',

@@ -1,9 +1,11 @@
 import { CONSTANTS } from "../../../config"
-import { View, StyleSheet, Text, Switch} from "react-native"
+import { View, StyleSheet, Text, Switch, Dimensions} from "react-native"
 import { Theme } from "../../styles/Theme"
 import { colorPalette } from "../../styles/colors"
 import { InputText } from "../../components/InputText"
 import { Slider } from "@rneui/themed"
+import I18n from "../../../assets/localization/I18n"
+import  Icon from 'react-native-vector-icons/MaterialIcons';
 
 const DishForm = ({
   name = '',
@@ -60,19 +62,31 @@ const DishForm = ({
     ></InputText>
 
     <Text style={styles.words}>
-        {CONSTANTS.SCREEN_TEXTS.DISCOUNT_LABEL}       
+        {CONSTANTS.SCREEN_TEXTS.DISCOUNT_LABEL}{"%"}      
     </Text>
-
-    <Slider
-      value={discount}
-      onValueChange={onDiscountChange}
-      minimumValue={0}
-      maximumValue={100}
-      step={1}
-      allowTouchTrack={true}
-    >
-
-    </Slider>
+    <View style={styles.slider}>
+      <Slider
+        value={discount}
+        onValueChange={onDiscountChange}
+        minimumValue={0}
+        maximumValue={100}
+        step={1}
+        allowTouchTrack={true}
+        trackStyle={styles.thumbStyleOne}
+        thumbStyle={styles.thumbStyle}
+        thumbProps={{
+        children: (
+            <Icon
+            name="circle"
+            type="font-awesome"
+            size={15}
+            reverse
+            color={colorPalette.Orange}
+      />
+        ),
+        }}
+              />
+      </View>
     
       <View style={styles.switchContainer}>
         <Text style={styles.words}>
@@ -131,7 +145,22 @@ const styles = StyleSheet.create({
       height : "75%" , 
       
   },
-
+  slider : {
+    width: Dimensions.get('window').width*0.8, 
+    height : Dimensions.get('window').height*0.05,
+    marginLeft :"5%"
+  },
+  thumbStyleOne : { 
+    height: "10%", 
+    backgroundColor:  I18n.t('transparent') , 
+    },
+  
+  thumbStyle : { 
+    height: 12, 
+    width: 12, 
+    backgroundColor: I18n.t('transparent')
+   },
+   
 });
 
 export {DishForm}
