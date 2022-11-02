@@ -1,5 +1,5 @@
 import { View, Text , FlatList , StyleSheet , Dimensions, ScrollView} from 'react-native'
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import Images from '../../assets/images/index';
 import { Icon , Button} from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
@@ -10,13 +10,45 @@ import Carousal from '../components/carousal';
 import { Theme } from '../styles/Theme';
 import { MyButton } from '../components/button';
 import { DishFlatList } from '../components/DishFlatList';
+import { GetDishesFromRestaurant } from '../../networking';
+import { GetCommentsFromRestaurant } from '../../networking';
+import { useSelector } from 'react-redux';
+import { ROUTES } from '..';
 
-function RestaurantProfileUserScreen({navigation,name='Mudra',hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
+function RestaurantProfileUserScreen({navigation,name='Mudra',
+hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
 calification=4,priceRange='$$$$',props}) {
 
   const [commentBoolean , setCommentBoolean]= useState(false);
   const [mapBoolean , setMapBoolean]= useState(false);
   const [menuBoolean , setMenuBoolean]= useState(false);
+  const [dishes, setDishes] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [triggerSearch, setTrigggerSearch] = useState(false);
+
+  const restoId = useSelector((state) => state.session.restaurantSelectedId);
+
+  const fillCommentsList = async () => {
+    const newComments = await GetCommentsFromRestaurant(restoId);
+    setComments(newComments);
+  }
+
+  const fillDishList = async () => {
+    const newDishes = await GetDishesFromRestaurant(restoId);
+    setDishes(newDishes);
+  }
+
+  useEffect(() => {
+    if (!triggerSearch)
+    {
+      fillDishList();
+      fillCommentsList();
+      setTrigggerSearch(true);
+    }
+
+  }, [dishes, comments,triggerSearch])
+
+
 
   const onBtnPress = (component) => {
 
@@ -45,7 +77,9 @@ calification=4,priceRange='$$$$',props}) {
   const CommentComponent = () => {
     return (
 
-         <CommentUserRestaurant></CommentUserRestaurant>
+         <CommentUserRestaurant
+          comments={comments}
+         ></CommentUserRestaurant>
 
     )
 }
@@ -56,13 +90,10 @@ calification=4,priceRange='$$$$',props}) {
     )
   }
   const MenuComponent = () => {
-    return ( 
-      <View>
-        <Text>DISHES</Text>
-      <DishFlatList
-        dishes ={[]}
-        ></DishFlatList>
-      </View>
+    return (       
+        <DishFlatList 
+         dishes={dishes}
+         ></DishFlatList>   
        
     )
   }
@@ -114,14 +145,14 @@ calification=4,priceRange='$$$$',props}) {
       {
         commentBoolean && <CommentComponent/>
       }
-
+{/* 
       {
         mapBoolean && <MapComponent/>
       }
 
       {
         menuBoolean && <MenuComponent/>
-      }
+      } */}
  </View>
    
 </View>

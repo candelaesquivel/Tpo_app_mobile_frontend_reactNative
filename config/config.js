@@ -28,6 +28,7 @@ const URL_SERVICES = {
   DISH_CREATE: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes',
   DISH_MODIFY: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes/' + 'dishId',
   DISH_LIST : RESTAURANT_ROUTE + 'restaurantId/' + 'dishes',
+  COMMENT_LIST : RESTAURANT_ROUTE + 'restaurantId/' + 'reviews',
 
   // Status Server check
   HEALTH_CHECK: URL_API + 'health',
