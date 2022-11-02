@@ -9,7 +9,6 @@ async function getFavoriteRestaurants(userId)
 
   const url = URL_SERVICES.FAVORITE_RESTAURANTS_NORMAL_USER.replace('id', userId);
 
-  console.log("URL:", url);
 
   return axios.get(url).then( (response) => {
     let restos = [];
@@ -28,7 +27,6 @@ async function getFavoriteRestaurants(userId)
   }).catch(err =>{
     console.log(err);
   }).finally(() => {
-    console.log('Everything is ok');
   })
 }
 

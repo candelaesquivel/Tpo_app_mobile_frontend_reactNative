@@ -7,8 +7,6 @@ async function getOwnerRestaurants(ownerId)
 
   const url = URL_SERVICES.RESTAURANTS_OWNER.replace('id', ownerId);
 
-  console.log("URL:", url);
-
   return axios.get(url).then( (response) => {
     let restos = [];
 
@@ -26,7 +24,6 @@ async function getOwnerRestaurants(ownerId)
   }).catch(err =>{
     console.log(err);
   }).finally(() => {
-    console.log('Everything is ok');
   })
 }
 
