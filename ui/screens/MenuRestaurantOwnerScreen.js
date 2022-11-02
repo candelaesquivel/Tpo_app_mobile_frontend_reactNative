@@ -7,28 +7,31 @@ import { GetDishesFromRestaurant } from '../../networking';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { DishFlatList } from '../components/DishFlatList';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useCallback } from 'react';
 
 
 function MenuRestaurantOwnerScreen({navigation,props}) {
 
   const [dishes, setDishes] = useState([]);
-  const [triggerSearch, setTrigggerSearch] = useState(false);
-
   const restoId = useSelector((state) => state.session.restaurantSelectedId);
+  const isFocused = useIsFocused();
 
   const fillDishList = async () => {
     const newDishes = await GetDishesFromRestaurant(restoId);
     setDishes(newDishes);
   }
 
-  useEffect(() => {
-    if (!triggerSearch)
-    {
-      fillDishList();
-      setTrigggerSearch(true);
-    }
+  useFocusEffect(
+    useCallback(() => {
 
-  }, [dishes, triggerSearch])
+      fillDishList();
+
+      return () => {
+        setDishes([])
+      }
+    }, [isFocused])
+  );
 
   const onCreateDishPress = (event) => {
     navigation.navigate(ROUTES.ADD_DISH_STACK)
