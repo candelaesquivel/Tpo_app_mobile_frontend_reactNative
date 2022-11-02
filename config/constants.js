@@ -54,5 +54,6 @@ export default  {
     YES : I18n.t('yes'),
     NO : I18n.t('no'),
     PRICE_SYMBOL : I18n.t('priceSymbol'),
+    USER_DATA_UPDATED : I18n.t('userDataUpdated'),
   },
 }

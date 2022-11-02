@@ -48,7 +48,8 @@ export  default{
     sentCommentTitle : 'Enviar Comentario',
     createRestaurantTitle : 'Crear Restaurante',
     filtersTitle : 'Filtros',
-
+  
+    userDataUpdated : 'Datos de usuario actualizados',
     emptyFavorites : 'No hay restaurantes favoritos',
     filterMessage1 : 'Distancia respecto de su ubicación :  ',
     km : 'km',
