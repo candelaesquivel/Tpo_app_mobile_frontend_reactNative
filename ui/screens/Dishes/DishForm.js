@@ -1,8 +1,9 @@
 import { CONSTANTS } from "../../../config"
-import { View, StyleSheet, Text, Switch } from "react-native"
+import { View, StyleSheet, Text, Switch} from "react-native"
 import { Theme } from "../../styles/Theme"
 import { colorPalette } from "../../styles/colors"
 import { InputText } from "../../components/InputText"
+import { Slider } from "@rneui/themed"
 
 const DishForm = ({
   name = '',
@@ -13,6 +14,7 @@ const DishForm = ({
   isCeliac = false,
   onNameChanged,
   onPriceChanged,
+  onDiscountChange,
   onIngredientChange,
   onIsCeliacChange,
   onIsVeganChange,
@@ -60,9 +62,17 @@ const DishForm = ({
     <Text style={styles.words}>
         {CONSTANTS.SCREEN_TEXTS.DISCOUNT_LABEL}       
     </Text>
-    <Text style={styles.words}>
-        STEPPER          
-    </Text>
+
+    <Slider
+      value={discount}
+      onValueChange={onDiscountChange}
+      minimumValue={0}
+      maximumValue={100}
+      step={1}
+      allowTouchTrack={true}
+    >
+
+    </Slider>
     
       <View style={styles.switchContainer}>
         <Text style={styles.words}>
