@@ -10,6 +10,11 @@ import Carousal from '../components/carousal';
 import { Theme } from '../styles/Theme';
 import { useSelector } from 'react-redux';
 import updateDish from '../../networking/updateDish'
+import { deleteDish } from '../../networking/deleteDish';
+import { CustomAlert } from '../components/CustomAlert';
+import {ROUTES} from '../';
+import { AlertWithOptions } from '../components/AlertWithOptions';
+import { CONSTANTS } from '../../config';
 
 function DishModifyScreen({navigation, route, props}){
   
@@ -23,15 +28,48 @@ function DishModifyScreen({navigation, route, props}){
     category : route.params.category,
   });
 
-  const currRestaurant = useSelector(state => state.session.restaurantSelectedId)
+  const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+
 
   const onSavePress = async (event) => {
     const result = await updateDish(currRestaurant, dishId);
   }
+  
+  const onDeletePress = (event) => {
+    setShowConfirmDelete(true);
+  }
+
+  const onDeleteConfirmTouch = (event) => {
+    setShowConfirmDelete(false);
+  }
+
+  const onDeleteModalTouch = (event) => {
+    navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
+  }
+
+  const onDeleteOptionsHandler = async (option) => {
+    console.log("Option: ", option)
+    if (option == CONSTANTS.SCREEN_TEXTS.YES){
+      const result = await deleteDish(currRestaurant, dishId);
+
+      console.log(result);
+      if (result === 200)
+        navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
+
+    }
+    else if (option == CONSTANTS.SCREEN_TEXTS.NO){
+      setShowConfirmDelete(false);
+    }
+  }
+
 
   return (
 
     <ScrollView>
+      <AlertWithOptions isVisible={showConfirmDelete} onOptionPress={onDeleteOptionsHandler}></AlertWithOptions>
+      <CustomAlert isVisible={showDeleteModal} onRequestCloseHandler={onDeleteModalTouch} msgText={CONSTANTS.SCREEN_TEXTS.NOT_FAVORITES}></CustomAlert>
      <Carousal></Carousal>
         <View style={styles.iconGlobal}>
             <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
@@ -120,6 +158,7 @@ function DishModifyScreen({navigation, route, props}){
                 ></MyButton>
 
             < MyButton
+                onPress = {onDeletePress}
                 title= {I18n.t('deleteDish')}
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}

@@ -48,6 +48,8 @@ export default  {
     VEGAN_LABEL : I18n.t('vegan'),
     CELIAC_LABEL : I18n.t('celiac'),
     CATEGORY_LABEL : I18n.t('category'),
-    DISH_CREATED_MSG : I18n.t('dishCreated')
+    DISH_CREATED_MSG : I18n.t('dishCreated'),
+    YES : I18n.t('yes'),
+    NO : I18n.t('no'),
   },
 }
