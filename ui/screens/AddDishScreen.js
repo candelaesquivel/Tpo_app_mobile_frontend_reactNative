@@ -1,9 +1,7 @@
-import { View, Text , ScrollView , StyleSheet , Dimensions} from 'react-native'
+import { View, ScrollView , StyleSheet , Dimensions} from 'react-native'
 import React, { useState } from 'react'
-import {  Switch } from '@rneui/base'
 import { colorPalette } from '../styles/colors'
 import I18n from "../../assets/localization/I18n";
-import { InputText } from '../components/InputText'
 import { MyButton } from '../components/button'
 import  Icon from 'react-native-vector-icons/MaterialIcons';
 import Carousal from '../components/carousal';
@@ -12,9 +10,9 @@ import createDish from '../../networking/createDish';
 import { useSelector } from 'react-redux';
 import { CONSTANTS } from '../../config';
 import { CustomAlert } from '../components/CustomAlert';
+import { DishForm } from './Dishes/DishForm';
 
 function AddDishScreen({navigation, props}) {
-   const [dishName, setDishName]= useState("");
 
   const [showCreateDishAlert, setShowCreateDish] = useState(false);
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
@@ -22,7 +20,7 @@ function AddDishScreen({navigation, props}) {
   const [dishData, setDishData] = useState({
     name : '',
     price : '',
-    ingredients : [],
+    ingredients : '',
     discount : 0,
     isVegan : false,
     isCeliac : false,
@@ -88,68 +86,14 @@ function AddDishScreen({navigation, props}) {
             <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
         </View>
         <View style={styles.global}>
-         <View style={styles.globalTwo}>
-            <Text style={styles.words}>
-                {CONSTANTS.SCREEN_TEXTS.NAME_LABEL}    
-            </Text>
-            <InputText 
-            onChange = {onNameChanged}
-            textColor = {colorPalette.Black}
-            placeholder=""
-            color={colorPalette.White}
-            placeholderTextColor = {colorPalette.Black}
-            ></InputText>
-
-            <Text style={styles.words}>
-              {CONSTANTS.SCREEN_TEXTS.PRICE_LABEL}
-            </Text>
-            <InputText
-            onChange={onPriceChanged}
-            keyboardType = {'numeric'} 
-            textColor = {colorPalette.Black}
-            placeholder=""
-            color={colorPalette.White}
-            placeholderTextColor = {colorPalette.Black}
-            ></InputText>
-
-            <Text style={styles.words}>
-                {I18n.t('ingredients')}        
-            </Text>
-            <InputText 
-            onChange={onIngredientChange}
-            textColor = {colorPalette.Black}
-            placeholder=""
-            color={colorPalette.White}
-            placeholderTextColor = {colorPalette.Black}
-            ></InputText>
-
-            <Text style={styles.words}>
-                {I18n.t('discount')}          
-            </Text>
-            <Text style={styles.words}>
-                STEPPER          
-            </Text>
-           
-             <View style={styles.switchContainer}>
-                <Text style={styles.words}>
-                    {CONSTANTS.SCREEN_TEXTS.VEGAN_LABEL}    
-                </Text>
-                <View style={{width:'18%'}}></View>
-                <Switch
-                    onChange={onIsVeganChange}
-                    value={dishData.isVegan} />
-            </View>
-            <View style={styles.switchContainer}>
-                <Text style={styles.words}>
-                    {CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}       
-                </Text>
-                <Switch
-                    onChange={onIsCeliacChange}
-                    value={dishData.isCeliac} />
-            </View>
-            <Text style={styles.words}>
-             {CONSTANTS.SCREEN_TEXTS.CATEGORY_LABEL} {""}      
-            </Text>
+            <DishForm
+              name={dishData.name} onNameChanged={onNameChanged}
+              price={dishData.price} onPriceChanged={onPriceChanged}
+              ingredients={dishData.ingredients} onIngredientChange={onIngredientChange}
+              discount={dishData.discount} onDiscountChange={onDiscountChange}
+              isVegan={dishData.isVegan} onIsVeganChange={onIsVeganChange}
+              isCeliac={dishData.isCeliac} onIsCeliacChange={onIsCeliacChange}
+            ></DishForm>
 
             <View style={styles.buttons}>
                     <MyButton
@@ -176,10 +120,7 @@ function AddDishScreen({navigation, props}) {
                 ></MyButton>
 
             </View>
-        
-        </View>                
          </View>
-       
     </ScrollView>
     
   )
