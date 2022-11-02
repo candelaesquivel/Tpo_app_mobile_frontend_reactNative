@@ -2,24 +2,18 @@ import axios from "axios";
 import { CONSTANTS } from "../config";
 import URL_SERVICES from "../config/config"
 
-const defaultUserData = {
-  name : 'Pedrito Perez',
-  role : CONSTANTS.ROLES.OWNER_ROLE,
-}
-
-export async function updateUserData(userId, userData = defaultUserData){
+export async function updateUserData(userId, userData){
 
   const URL = URL_SERVICES.UPDATE_USER_DATA.replace('id', userId);
 
   return await axios.patch(URL, userData)
   .then(resp => {
-    console.log('Response Update: ', resp.data);
+
+    const dictField = resp.data.role === CONSTANTS.ROLES.OWNER_ROLE ? 'custom' : 'google';
 
     let newUser = {
-      userName : resp.data['custom'].name
+      userName : resp.data[dictField].name
     }
-
-    console.log('New User:', newUser)
 
     return newUser;
   })
@@ -28,6 +22,6 @@ export async function updateUserData(userId, userData = defaultUserData){
     return false;
   })
   .finally(() => {
-    
+
   })
 }
