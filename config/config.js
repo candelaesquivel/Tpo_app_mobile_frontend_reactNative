@@ -16,6 +16,7 @@ const URL_SERVICES = {
   DELETE_ACCOUNT : USER_ROUTE + 'id/',
 
   // User Routes
+  UPDATE_USER_DATA : USER_ROUTE + 'id/',
   GET_USER_INFO: USER_ROUTE + '',
   UPLOAD_USER_IMAGE: USER_ROUTE + '/image',
   FAVORITE_RESTAURANTS_NORMAL_USER: USER_ROUTE + 'id/' + 'favorites',
