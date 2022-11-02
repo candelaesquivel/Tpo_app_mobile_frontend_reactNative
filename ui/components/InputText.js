@@ -10,6 +10,7 @@ export function InputText(props){
           secureTextEntry = {props.secureTextEntry}
           placeholder={props.placeholder}
           placeholderTextColor = {props.placeholderTextColor}
+          maxLength={props.limitLenght}
           inputStyle={{color : props.textColor !== undefined ? props.textColor : colorPalette.White}}
           style={{
               borderRadius : 30, 
