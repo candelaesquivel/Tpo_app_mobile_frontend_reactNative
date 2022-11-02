@@ -36,6 +36,15 @@ export default function userReducer(state = initialState, action){
         }
       }
     }
+    case REDUX_ACTIONS.USER_DATA_UPDATED:{
+      return {
+        ...state,
+        session : {
+          ...state.session,
+          userName : action.payload.userName,
+        }
+      }
+    }
     case REDUX_ACTIONS.USER_LOGOUT:{
       return initialState
     }
