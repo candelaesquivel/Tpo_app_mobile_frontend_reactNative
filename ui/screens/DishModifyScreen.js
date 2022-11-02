@@ -1,6 +1,6 @@
 import { View, Text , ScrollView , StyleSheet , Dimensions} from 'react-native'
 import React, { useState } from 'react'
-import {  Switch } from '@rneui/base'
+import {  Switch , Slider} from '@rneui/base'
 import { colorPalette } from '../styles/colors'
 import I18n from "../../assets/localization/I18n";
 import { InputText } from '../components/InputText'
@@ -19,7 +19,8 @@ import { DishForm } from './Dishes/DishForm';
 
 function DishModifyScreen({navigation, route, props}){
   
-  const dishId = route.params.id;
+   
+    const dishId = route.params.id;
 
   const [dishData, setDishData] = useState({
     name : route.params.name,
@@ -28,7 +29,9 @@ function DishModifyScreen({navigation, route, props}){
     isCeliac : route.params.isGlutenFree,
     category : route.params.category,
     ingredients : route.params.ingredients
+
   });
+  const [discount, setDiscount] = useState(dishData.discounts);
 
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -105,6 +108,7 @@ function DishModifyScreen({navigation, route, props}){
             <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
         </View>
         <View style={styles.global}>
+
             <DishForm
               name={dishData.name} onNameChanged={onNameChanged}
               price={dishData.price} onPriceChanged={onPriceChanged}
@@ -113,6 +117,7 @@ function DishModifyScreen({navigation, route, props}){
               isVegan={dishData.isVegan} onIsVeganChange={onIsVeganChange}
               isCeliac={dishData.isCeliac} onIsCeliacChange={onIsCeliacChange}
             ></DishForm>
+
 
             <View style={styles.buttons}>
                     <MyButton
