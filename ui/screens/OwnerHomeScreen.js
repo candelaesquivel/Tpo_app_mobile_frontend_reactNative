@@ -1,38 +1,37 @@
 import { View, StyleSheet } from 'react-native'
-import React, { useState }  from 'react'
+import React, { useCallback, useState }  from 'react'
 import { Icon } from "@rneui/themed";
 import { ROUTES } from '..';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { GetOwnerRestaurants } from '../../networking';
 import { RestaurantFlatListOwner } from '../components/RestaurantFlatListOwner';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 
 function OwnerHomeScreen({navigation, props}) {
 
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
+  const isFocused = useIsFocused();
 
   const ownerId = useSelector((state) => {
     return state.session.userId;
   });
-
-  const testOwnerId = "";
 
   const fillRestaurantList = async () => {
     const rests = await GetOwnerRestaurants(ownerId);
     setRestaurants(rests);
   }
 
-  useEffect(() => {
-    if (!triggerSearch)
-    {
+  useFocusEffect(
+    useCallback(() => {
       fillRestaurantList();
-      setTrigggerSearch(true);
-    }
 
-  }, [restaurants, triggerSearch])
-
-
+      return () => {
+        setRestaurants([]);
+      }
+    }, [isFocused])
+  );
 
   const onCreateRestaurantPressed = (event) => {
     console.log('On Restaurant Create Press');
