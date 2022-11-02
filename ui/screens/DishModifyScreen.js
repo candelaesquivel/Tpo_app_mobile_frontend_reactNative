@@ -15,6 +15,7 @@ import { CustomAlert } from '../components/CustomAlert';
 import {ROUTES} from '../';
 import { AlertWithOptions } from '../components/AlertWithOptions';
 import { CONSTANTS } from '../../config';
+import { DishForm } from './Dishes/DishForm';
 
 function DishModifyScreen({navigation, route, props}){
   
@@ -24,8 +25,9 @@ function DishModifyScreen({navigation, route, props}){
     name : route.params.name,
     price : route.params.price,
     isVegan : route.params.isVegan,
-    isGlutenFree : route.params.isGlutenFree,
+    isCeliac : route.params.isGlutenFree,
     category : route.params.category,
+    ingredients : route.params.ingredients
   });
 
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
@@ -34,7 +36,7 @@ function DishModifyScreen({navigation, route, props}){
 
 
   const onSavePress = async (event) => {
-    const result = await updateDish(currRestaurant, dishId);
+    const result = await updateDish(currRestaurant, dishId, dishData);
   }
   
   const onDeletePress = (event) => {
@@ -64,6 +66,34 @@ function DishModifyScreen({navigation, route, props}){
     }
   }
 
+  const onNameChanged = ({ nativeEvent: { eventCount, target, text} }) => {
+    setDishData({...dishData, 'name' : text})
+  }
+
+  const onPriceChanged = ({ nativeEvent: { eventCount, target, text} }) => {
+    setDishData({...dishData, 'price' : text})
+  }
+
+  const onIngredientChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    text.replace(' ', '')
+    setDishData({...dishData, 'ingredients' : text})
+  }
+  
+  const onDiscountChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setDishData({...dishData, 'discount' : text})
+  }
+
+  const onIsVeganChange = ({nativeEvent : {eventCount, target, value}}) => {
+    setDishData({...dishData, 'isVegan' : value})
+  }
+
+  const onIsCeliacChange = ({nativeEvent : {eventCount, target, value}}) => {
+    setDishData({...dishData, 'isCeliac' : value})
+  }
+
+  const onCategoryChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setDishData({...dishData, 'category' : text})
+  }
 
   return (
 
@@ -75,62 +105,14 @@ function DishModifyScreen({navigation, route, props}){
             <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
         </View>
         <View style={styles.global}>
-         <View style={styles.globalTwo}>
-            <Text style={styles.words}>
-                {I18n.t('name')}    
-            </Text>
-            <InputText 
-            textColor={colorPalette.Black}
-            defaultValue={dishData.name}
-            color={colorPalette.White}
-            placeholderTextColor = {colorPalette.Black}
-            ></InputText>
-
-            <Text style={styles.words}>
-                {I18n.t('price')}        
-            </Text>
-            <InputText 
-            textColor={colorPalette.Black}
-            defaultValue={dishData.price}
-            color={colorPalette.White}
-            placeholderTextColor = {colorPalette.Black}
-            ></InputText>
-
-            <Text style={styles.words}>
-                {I18n.t('ingredients')}        
-            </Text>
-            <InputText 
-            textColor={colorPalette.Black}
-            placeholder="Atun, palta  y aceite de oliva"
-            color={colorPalette.White}
-            placeholderTextColor = {colorPalette.Black}
-            ></InputText>
-
-            <Text style={styles.words}>
-                {I18n.t('discount')}          
-            </Text>
-            <Text style={styles.words}>
-                STEPPER          
-            </Text>
-           
-             <View style={styles.switchContainer}>
-                <Text style={styles.words}>
-                    {I18n.t('vegan')}    
-                </Text>
-                <View style={{width:'18%'}}></View>
-                <Switch
-                    value={dishData.isVegan} />
-            </View>
-            <View style={styles.switchContainer}>
-                <Text style={styles.words}>
-                    {I18n.t('celiac')}       
-                </Text>
-                <Switch
-                    value={dishData.isGlutenFree} />
-            </View>
-            <Text style={styles.words}>
-             {I18n.t('category')} {dishData.category}      
-            </Text>
+            <DishForm
+              name={dishData.name} onNameChanged={onNameChanged}
+              price={dishData.price} onPriceChanged={onPriceChanged}
+              ingredients={dishData.ingredients} onIngredientChange={onIngredientChange}
+              discount={dishData.discount} onDiscountChange={onDiscountChange}
+              isVegan={dishData.isVegan} onIsVeganChange={onIsVeganChange}
+              isCeliac={dishData.isCeliac} onIsCeliacChange={onIsCeliacChange}
+            ></DishForm>
 
             <View style={styles.buttons}>
                     <MyButton
@@ -165,9 +147,7 @@ function DishModifyScreen({navigation, route, props}){
                 ></MyButton>
             </View>
         
-        </View>                
-         </View>
-       
+        </View>
     </ScrollView>
     
   )
@@ -215,6 +195,5 @@ const styles = StyleSheet.create({
         height : "75%" , 
         
     },
-
 });
 

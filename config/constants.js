@@ -47,6 +47,8 @@ export default  {
     PRICE_LABEL : I18n.t('price'),
     VEGAN_LABEL : I18n.t('vegan'),
     CELIAC_LABEL : I18n.t('celiac'),
+    INGREDIENTS_LABEL : I18n.t('ingredients'),
+    DISCOUNT_LABEL : I18n.t('discount'),
     CATEGORY_LABEL : I18n.t('category'),
     DISH_CREATED_MSG : I18n.t('dishCreated'),
     YES : I18n.t('yes'),

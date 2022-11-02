@@ -1,28 +1,22 @@
 import axios from "axios";
 import URL_SERVICES from "../config/config";
 
-const defaultDish = {
-  price : 1200,
-}
-
-function updateDish(restaurantId, dishId, dishData = defaultDish){
+function updateDish(restaurantId, dishId, dishData){
 
   const URL = URL_SERVICES.DISH_MODIFY.replace('restaurantId', restaurantId).replace(
     'dishId',
     dishId
   );
 
+  console.log('Dish Data: ', dishData);
+
   console.log("URL: ", URL);
 
-  return axios.patch(URL, {
-    price : 1200
-  }).then(resp => {
-    console.log(resp.data);
-
+  return axios.patch(URL, dishData).then(resp => {
+    console.log('Dish Updated:', resp.data);
   }).catch(err => {
-    console.log(err);
+    console.log('Error on Update dish: ', err);
   }).finally(() => {
-    console.log('Dish Update Succesful')
   })
 }
 
