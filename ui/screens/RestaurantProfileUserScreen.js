@@ -97,6 +97,9 @@ calification=4,priceRange='$$$$',props}) {
        
     )
   }
+  const onPressComment = (event) => {
+    navigation.navigate(ROUTES.USER_SENT_COMMENT);
+  }
   return (
     <View>
 
@@ -116,8 +119,17 @@ calification=4,priceRange='$$$$',props}) {
           <Text style={styles.words}>{priceRange}</Text>
 
         <View style={styles.icons}>
-          <Icon name='heart' type='font-awesome' color={colorPalette.Orange}></Icon>
-          <Icon name='comment' type='font-awesome' color={colorPalette.Orange}></Icon>
+          <Icon
+           name='heart' 
+           type='font-awesome'
+            color={colorPalette.Orange}
+            ></Icon>
+          <Icon 
+          name='comment' 
+          type='font-awesome' 
+          color={colorPalette.Orange}
+          onPress={onPressComment}
+          ></Icon>
           <Icon name='share' type='font-awesome' color={colorPalette.Orange}></Icon>
         </View>
 
@@ -125,19 +137,19 @@ calification=4,priceRange='$$$$',props}) {
           <MyButton
             title={I18n.t('map')}
             width={Dimensions.get("window").width*0.3}
-            height={Dimensions.get("window").height*0.08}
+            height={Dimensions.get("window").height*0.055}
             onPress={() => {onBtnPress('map')} }
           ></MyButton>
           <MyButton
             title={I18n.t('menu')}
             width={Dimensions.get("window").width*0.3}
-            height={Dimensions.get("window").height*0.08}
+            height={Dimensions.get("window").height*0.055}
             onPress={() => {onBtnPress('menu')} }
           ></MyButton>
           <MyButton
             title={I18n.t('comment')}
             width={Dimensions.get("window").width*0.32}
-            height={Dimensions.get("window").height*0.08}
+            height={Dimensions.get("window").height*0.055}
             onPress={() => {onBtnPress('comment')} }
           ></MyButton>
        </View>
@@ -145,14 +157,14 @@ calification=4,priceRange='$$$$',props}) {
       {
         commentBoolean && <CommentComponent/>
       }
-{/* 
+
       {
         mapBoolean && <MapComponent/>
       }
 
       {
         menuBoolean && <MenuComponent/>
-      } */}
+      }
  </View>
    
 </View>
@@ -172,10 +184,10 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent: 'space-evenly',
     width :'100%',
-    marginTop : "3%"
+    marginTop : "1%"
      },
     carousal : {
-      height : Dimensions.get('window').height * 0.32
+      height : Dimensions.get('window').height * 0.3
     },
     title : {
       fontSize : Theme.font.LARGE,
@@ -197,8 +209,8 @@ const styles = StyleSheet.create({
       justifyContent: 'space-evenly',
       width :'100%' ,
       height : "30%",
-      marginTop : '5%',
-      marginBottom : -Dimensions.get('window').height * 0.2
+      marginTop : '2%',
+      marginBottom : -Dimensions.get('window').height * 0.24
     },
     wordButton : {
       fontSize: Theme.font.MEDIUM,
