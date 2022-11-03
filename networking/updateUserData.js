@@ -18,7 +18,7 @@ export async function updateUserData(userId, userData){
     return newUser;
   })
   .catch(err => {
-    console.log('Error on Update User Data WS: ', err);
+    console.error('Error on Update User Data WS: ', err);
     return null;
   })
   .finally(() => {

@@ -19,8 +19,6 @@ async function createAccountOwner(userData)
   
   const jsonData = JSON.stringify(user);
 
-  console.log("User: ", jsonData);
-
   let result = await fetch(URL_SERVICES.REGISTER_OWNER, {
     method : 'POST',
     headers : {

@@ -6,17 +6,13 @@ async function toggleRestaurantFavorite(userId, restaurantId)
 { 
   const URL = URL_SERVICES.CHANGE_RESTAURANT_FAVORITE.replace('id', userId);
 
-  console.log("URL: ", URL);
-  console.log('Params:', restaurantId)
-
   return axios.patch(URL, {
     restaurantId : restaurantId
   }).then(res => {
-    console.log(res);
+    return;
   }).catch(err => {
-    console.log(err);
+    console.error("Error on Toggle Restaurant Favorite Status: ", err);
   }).finally(() => {
-    console.log('Restaurant Toggled favorite')
   })
 }
 

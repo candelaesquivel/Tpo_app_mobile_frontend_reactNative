@@ -25,7 +25,7 @@ async function getFavoriteRestaurants(userId)
     return restos;
 
   }).catch(err =>{
-    console.log(err);
+    console.error('Error on Get Favorite Restaurants: ', err);
   }).finally(() => {
   })
 }

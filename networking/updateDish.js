@@ -8,15 +8,12 @@ function updateDish(restaurantId, dishId, dishData){
     dishId
   );
 
-  console.log('Dish Data: ', dishData);
-
-  console.log("URL: ", URL);
-
   return axios.patch(URL, dishData).then(resp => {
-    console.log('Dish Updated:', resp.data);
+    return;
   }).catch(err => {
-    console.log('Error on Update dish: ', err);
+    console.error('Error on Update dish: ', err);
   }).finally(() => {
+    
   })
 }
 

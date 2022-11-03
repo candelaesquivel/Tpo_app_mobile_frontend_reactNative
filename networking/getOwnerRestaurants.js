@@ -20,7 +20,7 @@ async function getOwnerRestaurants(ownerId)
     return restos;
 
   }).catch(err =>{
-    console.log(err);
+    console.error("Error on Get Owner Restaurants: ", err);
   }).finally(() => {
   })
 }

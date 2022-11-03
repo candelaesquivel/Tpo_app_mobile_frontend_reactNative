@@ -38,7 +38,7 @@ async function getDishesFromRestaurant(restaurantId){
     return dishes;
 
   }).catch(err =>{
-    console.log(err);
+    console.error("Get dishes from Restaurant Error: ", err);
     return [];
   }).finally(() => {
   })

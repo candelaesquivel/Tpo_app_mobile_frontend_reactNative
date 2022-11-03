@@ -10,7 +10,7 @@ async function createReview(restaurantId,userId, reviewData){
   return axios.post(URL, reviewData).then(response => {
     return response.status;
   }).catch(err => {
-    console.log(err);
+    console.error(err);
   }).finally(() => {
   })
 }

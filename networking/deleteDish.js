@@ -8,10 +8,9 @@ export async function deleteDish(restaurantId, dishId){
 
   return axios.delete(URL)
   .then(resp => {
-    console.log(resp);
     return resp.status;
   }).catch(err => {
-    console.log(err);
+    console.error(err);
   }).finally(() => {
 
   });

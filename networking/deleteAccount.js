@@ -6,13 +6,11 @@ async function deleteAccount(userId){
 
   return axios.delete(URL).
   then(resp => {
-    console.log(resp.data);
     return true;
   }).catch(err => {
-    console.log(err);
+    console.error(err);
     return false;
   }).finally( () => {
-    console.log('User Deleted Web Service End');
   });
 }
 

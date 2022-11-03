@@ -7,10 +7,9 @@ export async function createRestaurant(ownerId, restaurantData){
 
   return await axios.post(URL, restaurantData)
   .then(resp => {
-    console.log('Resto Data: ', resp);
     return resp.data;
   }).catch(err => {
-    console.log('WS Error: ', err);
+    console.error('WS Error: ', err);
   }).finally(() => {
 
   })

@@ -20,8 +20,6 @@ async function createDish(restaurantId, dishData = defaultDish){
 
   const URL = URL_SERVICES.DISH_CREATE.replace('restaurantId', restaurantId);
 
-  console.log('URL:', URL);
-
   return axios.post(URL, dishData).then(response => {
     return response.status;
   }).catch(err => {

@@ -20,7 +20,7 @@ async function getCommentsFromRestaurant(restaurantId) {
       return comments;
   
     }).catch(err =>{
-      console.err(err);
+      console.error(err);
       return [];
     }).finally(() => {
      
