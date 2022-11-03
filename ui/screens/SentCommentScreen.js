@@ -17,7 +17,7 @@ export default function SentCommentScreen({navigation, props}){
     const userId = useSelector(state => state.session.userId);
 
     const [reviewData, setReviewData] = useState({
-        rating : 0,
+        rating : 1,
         comment : '',
       });
 
@@ -42,7 +42,7 @@ export default function SentCommentScreen({navigation, props}){
             <Text style={styles.words}>{I18n.t('calification')}</Text>
             <View style={styles.rating}>
                 <AirbnbRating 
-                    defaultRating={1}
+                    defaultRating={reviewData.rating}
                     onFinishRating={onRatingChanged}
                     reviews = {[]}
                     size = {30}
