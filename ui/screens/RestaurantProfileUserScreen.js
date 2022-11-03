@@ -14,17 +14,23 @@ import { GetDishesFromRestaurant } from '../../networking';
 import { GetCommentsFromRestaurant } from '../../networking';
 import { useSelector } from 'react-redux';
 import { ROUTES } from '..';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useCallback } from 'react';
 
 function RestaurantProfileUserScreen({navigation,name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
 calification=4,priceRange='$$$$',props}) {
 
-  const [commentBoolean , setCommentBoolean]= useState(false);
-  const [mapBoolean , setMapBoolean]= useState(false);
-  const [menuBoolean , setMenuBoolean]= useState(false);
+  const [showComments , setShowComments]= useState(false);
+  const [showMap , setShowMap]= useState(false);
+  const [showDishes , setShowDishes]= useState(false);
+
   const [dishes, setDishes] = useState([]);
   const [comments, setComments] = useState([]);
-  const [triggerSearch, setTrigggerSearch] = useState(false);
+
+  const [forceRender, setForceRender] = useState(false);
+
+  const isFocused = useIsFocused();
 
   const restoId = useSelector((state) => state.session.restaurantSelectedId);
 
@@ -38,39 +44,53 @@ calification=4,priceRange='$$$$',props}) {
     setDishes(newDishes);
   }
 
-  useEffect(() => {
-    if (!triggerSearch)
-    {
-      fillDishList();
-      fillCommentsList();
-      setTrigggerSearch(true);
-    }
+  useFocusEffect(
+    useCallback(() => {
 
-  }, [dishes, comments,triggerSearch])
+      if (showComments)
+        fillCommentsList();
 
+      if (showDishes)
+        fillDishList();
 
+      return () => {
+
+        if (!isFocused){
+          setShowComments(false);
+          setShowDishes(false);
+          setShowMap(false);
+          setDishes([]);
+          setComments([]);
+        }
+      }
+    }, [isFocused, showDishes, showComments])
+  )
 
   const onBtnPress = (component) => {
 
     if (component === 'map')
     {
-      setCommentBoolean(false);
-      setMenuBoolean(false);
-      setMapBoolean(!mapBoolean);
+      setComments([]);
+      setDishes([]);
+      setShowComments(false);
+      setShowDishes(false);
+      setShowMap(true);
     }
 
     if (component === 'menu')
     {
-      setCommentBoolean(false);
-      setMenuBoolean(!menuBoolean);
-      setMapBoolean(false);
+      setComments([]);
+      setShowComments(false);
+      setShowDishes(true);
+      setShowMap(false);
     }
 
     if (component === 'comment')
     {
-      setCommentBoolean(!commentBoolean);
-      setMenuBoolean(false);
-      setMapBoolean(false);
+      setDishes([]);
+      setShowComments(true);
+      setShowDishes(false);
+      setShowMap(false);
     }
   }
 
@@ -155,15 +175,15 @@ calification=4,priceRange='$$$$',props}) {
        </View>
       
       {
-        commentBoolean && <CommentComponent/>
+        showComments && <CommentComponent/>
       }
 
       {
-        mapBoolean && <MapComponent/>
+        showMap && <MapComponent/>
       }
 
       {
-        menuBoolean && <MenuComponent/>
+        showDishes && <MenuComponent/>
       }
  </View>
    

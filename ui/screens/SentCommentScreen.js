@@ -11,18 +11,18 @@ import { useSelector
  import { MyButton } from "../components/button";
  import createReview from "../../networking/createReview"
 import { ROUTES } from "..";
-export default function SentCommentScreen(props){
+export default function SentCommentScreen({navigation, props}){
 
     const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
     const userId = useSelector(state => state.session.userId);
 
     const [reviewData, setReviewData] = useState({
-        raiting : 0,
+        rating : 0,
         comment : '',
       });
 
-      const onRaitingChanged = ({ nativeEvent: { eventCount, target, value} }) => {
-        setReviewData({...reviewData, 'raiting' : value})
+      const onRatingChanged = (value) => {
+        setReviewData({...reviewData, 'rating' : value})
       }
     
       const onPriceChanged = ({ nativeEvent: { eventCount, target, text} }) => {
@@ -34,10 +34,7 @@ export default function SentCommentScreen(props){
         const result= await createReview(currRestaurant,userId, reviewData);
         
         if (result)
-        {
-        navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
-        }
-    
+          navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
       }
     
     return (
@@ -46,10 +43,10 @@ export default function SentCommentScreen(props){
             <View style={styles.rating}>
                 <AirbnbRating 
                     defaultRating={1}
+                    onFinishRating={onRatingChanged}
                     reviews = {[]}
                     size = {30}
                     selectedColor = {colorPalette.Orange}
-                    onChange = {onRaitingChanged}
                     ></AirbnbRating>
             </View>     
             <Text style={styles.words}>{I18n.t('comment')}</Text>
