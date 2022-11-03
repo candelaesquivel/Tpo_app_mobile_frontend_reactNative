@@ -17,9 +17,15 @@ import { ROUTES } from '..';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
 
-function RestaurantProfileUserScreen({navigation,name='Mudra',
+function RestaurantProfileUserScreen({navigation, route, name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
 calification=4,priceRange='$$$$',props}) {
+
+  const restoData = {
+    name : route.params.name,
+    rating : route.params.averageRating.toFixed(2),
+    priceRange : route.params.priceRange,
+  };
 
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
@@ -130,13 +136,13 @@ calification=4,priceRange='$$$$',props}) {
           ></Carousal>
         </View>
 
-          <Text style={styles.title}>{name}</Text>
+          <Text style={styles.title}>{restoData.name}</Text>
           <Text style={styles.words}> {I18n.t('open')} {hourOpen}{hourOpen2} - {hourClose}{hourClose2}</Text>
           <View style={styles.globalThree}>
-            <Text style={styles.words} >{calification}</Text>
+            <Text style={styles.words} >{restoData.rating}</Text>
             <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
           </View>
-          <Text style={styles.words}>{priceRange}</Text>
+          <Text style={styles.words}>{restoData.priceRange}</Text>
 
         <View style={styles.icons}>
           <Icon
