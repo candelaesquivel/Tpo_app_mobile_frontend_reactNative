@@ -65,3 +65,5 @@ buck-out/
 
 # dev
 .vscode
+
+.env

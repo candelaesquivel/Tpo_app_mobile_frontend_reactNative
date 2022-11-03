@@ -14,6 +14,8 @@ import { Theme } from '../styles/Theme';
 import CloseComponent from '../components/closeComponent';
 import { FoodTypesDropDown } from '../components/FoodTypesDropdown';
 import { PriceRangesDropdown } from '../components/PriceRangeDropdown';
+import MapView, {Marker} from 'react-native-maps';
+const {width, height} = Dimensions.get('window');
 
 function CreateRestaurantScreen({navigation, props}) {
   
@@ -24,6 +26,15 @@ function CreateRestaurantScreen({navigation, props}) {
     console.log('On Restaurant Create Press');
     navigation.navigate(ROUTES.OWNER_HOME_DRAWER);
   }
+
+  this.state = {
+    region: {
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    },
+  };
 
   return (
     <ScrollView>
@@ -80,14 +91,26 @@ function CreateRestaurantScreen({navigation, props}) {
                     color={colorPalette.White}
                     placeholderTextColor = {colorPalette.Black}
                     ></InputText>
-
-                  <Text style={styles.words}>
-                    {I18n.t('hour')} 
-                    </Text>
-
                 </View>
-          <View style={styles.hour}>
-          
+                <View>
+                <MapView
+                  style={styles.map}
+                  scrollEnabled={false}
+                  zoomEnabled={false}
+                  pitchEnabled={false}
+                  rotateEnabled={false}
+                  initialRegion={this.state.region}>
+                  <Marker
+                    title="Ubicacion"
+                    coordinate={this.state.region}
+                  />
+                  </MapView>
+                </View>
+                <View style={styles.hour}>
+                <Text style={styles.words}>
+                    {I18n.t('hour')} 
+                </Text>
+                
                 < MyButton
                 title= {I18n.t('opening')} 
                 width={ Dimensions.get("window").width*0.5}
@@ -111,8 +134,6 @@ function CreateRestaurantScreen({navigation, props}) {
                   }
                   
                 </View>
-               
-          <Mapa></Mapa>
           <CloseComponent>s</CloseComponent>
           <View style ={styles.dropdownContainer}>
             <FoodTypesDropDown></FoodTypesDropDown>
@@ -167,6 +188,10 @@ const styles = StyleSheet.create({
     width : "90%" , 
     marginBottom : 10  
    
+  },
+  map: {
+    width: 250,
+    height: 250,
   },
   container: {
     backgroundColor: colorPalette.White,
