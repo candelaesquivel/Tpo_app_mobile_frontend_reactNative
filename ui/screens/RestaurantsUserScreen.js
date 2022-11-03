@@ -40,11 +40,6 @@ function RestaurantsUserScreen({navigation , props}) {
     }, [triggerSearch, isFocused])
   );
 
-  const onRestaurantNameTouched = (event) => {
-    console.log('On Restaurant Name Touched');
-    navigation.navigate(screenNames.RESTAURANT_VIEW_USER);
-  }
-
   const onFavoriteIconPress = async (restaurantId) => {
     const result = await toggleRestaurantFavorite(userId, restaurantId);
     setTrigggerSearch(true);
