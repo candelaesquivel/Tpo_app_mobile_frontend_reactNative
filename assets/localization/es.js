@@ -86,5 +86,6 @@ export  default{
     dishUpdated : 'Plato Modificado',
     restaurantCreated : 'Restaurante Creado',
     accountCreated : 'Cuenta Creada exitosamente',
+    accountDeleted : 'Cuenta eliminada exitosamente',
 
 };

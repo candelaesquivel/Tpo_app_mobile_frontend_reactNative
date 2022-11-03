@@ -8,11 +8,11 @@ import { InputText } from "../components/InputText";
 import I18n from "../../assets/localization/I18n";
 import { useEffect } from "react";
 import { Theme } from "../styles/Theme";
-import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import deleteAccount from '../../networking/deleteAccount';
-import {ROUTES} from '../';
 import {logoutUserAction} from '../../redux/actions';
+import { CONSTANTS } from "../../config";
+import { ToastAndroid } from "react-native";
 
 function DeleteAccountScreenUser({navigation, props}){
 
@@ -31,7 +31,12 @@ function DeleteAccountScreenUser({navigation, props}){
       if (isDeleted)
       {
         dispatcher(logoutUserAction());
-        navigation.navigate(ROUTES.LOGIN_NORMAL_USER);
+
+        setTimeout(() => {
+          ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.ACCOUNT_DELETED, ToastAndroid.SHORT);
+          navigation.popToTop();
+        }, 200);
+
       }
     }
 
