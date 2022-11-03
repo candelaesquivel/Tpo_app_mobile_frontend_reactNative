@@ -5,12 +5,19 @@ import { HomeNormalUser, UserFavoritesRestaurants} from '../ui/screens';
 import DrawerOptionsUser from './DrawerOptionsUser';
 import { HomeIcon, FavoritesIcon } from './DrawerIcons';
 import { CONSTANTS } from '../config';
+import { colorPalette } from '../ui/styles/colors';
 
 const Drawer = createDrawerNavigator();
 
 function DrawerUserNavigator(props){
     return (
         <Drawer.Navigator 
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: colorPalette.Orange,
+            },
+            headerTintColor: colorPalette.White,
+          }}
           useLegacyImplementation 
           initialRouteName={ROUTES.HOME_NORMAL_USER_DRAWER}
           drawerContent={(props) => <DrawerOptionsUser {...props}></DrawerOptionsUser>}
