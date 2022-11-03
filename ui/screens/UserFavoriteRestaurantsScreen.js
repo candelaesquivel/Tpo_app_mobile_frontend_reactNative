@@ -5,18 +5,21 @@ import screenNames from '../screenNames'
 import { useState } from 'react';
 import { GetFavoriteRestaurants } from '../../networking';
 import { RestaurantFlatListUser } from '../components/RestaurantFlatListUser';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { Text } from 'react-native';
 import { CONSTANTS } from '../../config';
 import EmptyScreenMessage from '../components/EmptyScreenMessage';
+import { restaurantSelectedAction } from '../../redux/actions';
+import { ROUTES } from '..';
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
   
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
   const isFocused = useIsFocused();
+  const dispatch = useDispatch();
 
   const userId = useSelector(state => state.session.userId);
 
@@ -43,9 +46,10 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
     setTrigggerSearch(true);
   }
 
-  const onRestaurantNameTouched = (event) => {
-    navigation.navigate(screenNames.RESTAURANT_VIEW_USER);
-  }
+  const onPhotoPress = (restaurantId) => {
+    dispatch(restaurantSelectedAction(restaurantId))
+    navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
+   }
 
   return (
     <View>
@@ -60,6 +64,7 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
           restaurants.length !== 0 && 
           <RestaurantFlatListUser 
             restaurants={restaurants}
+            onPhotoPress={onPhotoPress}
             onFavoriteTouched={onFavoriteIconPress}>
           </RestaurantFlatListUser>
         }
