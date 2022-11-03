@@ -43,9 +43,9 @@ const DishCard = ({
         {isCeliac && <DishDetail iconName='leaf' iconType='font-awesome-5' detail={CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}></DishDetail>}
         <View style={styles.ingredientsContainer}>
         {
-          ingredients.map(item => {
+          ingredients.map((item, idx) => {
             return (
-              <View style={styles.ingredientItemContainer}>
+              <View key={idx} style={styles.ingredientItemContainer}>
                 <Text style={styles.ingredientsWords}>{'\u2B24' + ' '}{item}</Text>
               </View>
             )
