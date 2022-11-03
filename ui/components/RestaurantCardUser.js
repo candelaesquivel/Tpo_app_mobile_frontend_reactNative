@@ -11,6 +11,8 @@ restaurantId = '', onPhotoPress = {}, onFavoriteTouched={}, props}) {
 
   const navigation = useNavigation();
 
+  const showRating = score > 0;
+
   const FavoriteIcon = ({props}) => {
 
     const onFavoriteIconPress = (e) => {
@@ -35,10 +37,14 @@ restaurantId = '', onPhotoPress = {}, onFavoriteTouched={}, props}) {
           <View width={Dimensions.get('window').width*0.55} style={styles.globalThree} >
             <Text h4>{name}</Text>
             <Text>{address}</Text>
-            <View style={styles.globalFour}>
-              <Text> {Number(score).toFixed(1)} </Text>
-              <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
-            </View> 
+            {
+              showRating && 
+              <View style={styles.globalFour}>
+                <Text> {Number(score).toFixed(1)} </Text>
+                <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
+              </View>
+            }
+             
           </View>
           <View  style= {styles.globalFive}>
           <FavoriteIcon isFavorite></FavoriteIcon>
