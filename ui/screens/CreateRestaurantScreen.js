@@ -1,4 +1,4 @@
-import { View, Text , ScrollView , StyleSheet , Dimensions} from 'react-native'
+import { View, Text , ScrollView , StyleSheet , Dimensions, ToastAndroid} from 'react-native'
 import React, { useState } from 'react'
 import { colorPalette } from '../styles/colors'
 import I18n from "../../assets/localization/I18n";
@@ -14,180 +14,72 @@ import { Theme } from '../styles/Theme';
 import CloseComponent from '../components/closeComponent';
 import { FoodTypesDropDown } from '../components/FoodTypesDropdown';
 import { PriceRangesDropdown } from '../components/PriceRangeDropdown';
+import { createRestaurant } from '../../networking/createRestaurant';
+import { CONSTANTS } from '../../config';
+import { useSelector } from 'react-redux';
+import { RestaurantForm } from './createRestaurant/RestaurantForm';
 
 function CreateRestaurantScreen({navigation, props}) {
   
-  const [openingHour,setOpeningHour] = useState(false);
-  const [closingHour,setClosingHour] = useState(false);
+  const [restaurantData, setRestaurantData] = useState({
+    name : '',
+    address : '',
+    neighborhood : '',
+    location : '',
+    zipCode : '',
+    isClosed : false,
+    foodTypes : [],
+    priceRange : '',
+  })
 
-  const onCreateRestaurantPressed = (event) => {
-    console.log('On Restaurant Create Press');
-    navigation.navigate(ROUTES.OWNER_HOME_DRAWER);
+  const ownerId = useSelector(state => state.session.userId);
+
+  const onCreateHandler = async (event) => {
+    const result = await createRestaurant(ownerId);
+
+    if (result)
+      navigation.navigate(ROUTES.OWNER_HOME_DRAWER);
+    else
+      ToastAndroid.show('Error on Create Restaurant', ToastAndroid.SHORT);
+  }
+
+  const onCloseHandler = (value) => {
+    setRestaurantData({...restaurantData, 'isClosed' : value})
+  }
+
+  const onNameChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setRestaurantData({...restaurantData, 'name' : text});
+  }
+
+  const onAddressChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setRestaurantData({...restaurantData, 'address' : text});
+  }
+
+  const onLocationChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setRestaurantData({...restaurantData, 'location' : text});
+  }
+
+  const onNeighborhoodChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setRestaurantData({...restaurantData, 'neighborhood' : text});
   }
 
   return (
-    <ScrollView>
-     <Carousal></Carousal>
-      <View style={{flexDirection:"row-reverse"}}>
-        <Icon name = 'add' size={30} style={{marginRight: 10 , marginTop : "5%" }}></Icon>
-       </View>
-        <View style={styles.global}>
-
-                <View style={styles.globalTwo}>
-
-                    <Text style={styles.words}>
-                        {I18n.t('name')}    
-                    </Text>
-                    <InputText 
-                    placeholder=""
-                    color={colorPalette.White}
-                    placeholderTextColor = {colorPalette.Black}
-                    ></InputText>
-
-                    <Text style={styles.words}>
-                        {I18n.t('address')}    
-                    </Text>
-                    <InputText 
-                    placeholder=""
-                    color={colorPalette.White}
-                    placeholderTextColor = {colorPalette.Black}
-                    ></InputText>
-
-                    <Text  style={styles.words} >
-                     {I18n.t('neighborhood')}    
-                    </Text>
-                    <InputText 
-                    placeholder=""
-                    color={colorPalette.White}
-                    placeholderTextColor = {colorPalette.Black}
-                    ></InputText>
-
-                    <Text style={styles.words}  >
-                    {I18n.t('location')}    
-                    </Text>
-                    <InputText 
-                    placeholder=""
-                    color={colorPalette.White}
-                    placeholderTextColor = {colorPalette.Black}
-                    ></InputText>
-                    
-                    <Text style={styles.words}
-                    >
-                     {I18n.t('zipCode')}    
-                    </Text>
-                    <InputText 
-                    placeholder=""
-                    color={colorPalette.White}
-                    placeholderTextColor = {colorPalette.Black}
-                    ></InputText>
-
-                  <Text style={styles.words}>
-                    {I18n.t('hour')} 
-                    </Text>
-
-                </View>
-          <View style={styles.hour}>
-          
-                < MyButton
-                title= {I18n.t('opening')} 
-                width={ Dimensions.get("window").width*0.5}
-                height={Dimensions.get("window").height*0.07}
-                onPress={() =>{ setOpeningHour(!openingHour)}}
-                ></MyButton>
-
-                < MyButton
-                title= {I18n.t('closing')} 
-                width={ Dimensions.get("window").width*0.5}
-                height={Dimensions.get("window").height*0.07}
-                onPress={() => {setClosingHour(!closingHour)}}
-                ></MyButton>
-              
-                  {
-                      openingHour && <MyTimePicker></MyTimePicker>
-                  }
-                  
-                  {
-                      closingHour &&  <MyTimePicker></MyTimePicker>
-                  }
-                  
-                </View>
-               
-          <Mapa></Mapa>
-          <CloseComponent>s</CloseComponent>
-          <View style ={styles.dropdownContainer}>
-            <FoodTypesDropDown></FoodTypesDropDown>
-          </View>
-         <View style ={styles.dropdownContainer}>
-              <PriceRangesDropdown></PriceRangesDropdown>
-          </View>
-          
-          <MyWeekButtons></MyWeekButtons>
-
-          
-          <View style={styles.buton}>
-            < MyButton
-                title= {I18n.t('create')} 
-                width={ Dimensions.get("window").width*0.5}
-                height={Dimensions.get("window").height*0.07}
-                ></MyButton>
-
-           </View>
-       
-      </View>
-
-      
-</ScrollView>
-  )
+    <RestaurantForm
+      name={restaurantData.name}
+      address={restaurantData.address}
+      zipCode={restaurantData.zipCode}
+      neighborhood={restaurantData.neighborhood}
+      location={restaurantData.location}
+      isClosed={restaurantData.isClosed}
+      onCreateHandler={onCreateHandler}
+      onNameHandler={onNameChange}
+      onAddressHandler={onAddressChange}
+      onLocationHandler={onLocationChange}
+      onNeighborhoodHandler={onNeighborhoodChange}
+      onToggleClose={onCloseHandler}
+    >
+    </RestaurantForm>
+  );
 }
 
 export default CreateRestaurantScreen;
-
-const styles = StyleSheet.create({
-    globalTwo:{
-      width:'90%', 
-      alignItems:'flex-start'
-    },
-    global:{
-      flexDirection : 'column',
-      alignItems : 'center'
-    },
-    words :{
-      fontSize: Theme.font.MEDIUM,
-      color: colorPalette.Black, 
-      marginLeft : "4%" , 
-      marginBottom : "3%"
-  },
-  hour : {
-    flexDirection : "column" , 
-    alignSelf : "center" ,
-    marginBottom :"5%"
-  }
-  ,
-  dropdownContainer: {
-    width : "90%" , 
-    marginBottom : 10  
-   
-  },
-  container: {
-    backgroundColor: colorPalette.White,
-    padding: 10,
-    width : "80%"
-  },
-  dropdown: {
-    height: 50,
-    borderColor: colorPalette.Orange,
-    borderRadius: 5,
-    paddingHorizontal: 10, borderWidth:1,
-  },
-   
-  placeholderStyle: {
-    fontSize: Theme.font.MEDIUM,
-    color : colorPalette.Black
-  },
-  buton : {
-    flexDirection: 'column' ,
-     width : "100%",
-     height : "60%", 
-     alignItems : "center" }
-});
-
