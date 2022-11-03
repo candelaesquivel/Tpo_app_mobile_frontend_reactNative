@@ -23,9 +23,7 @@ function OwnerHomeScreen({navigation, props}) {
   const fillRestaurantList = async () => {
     const rests = await GetOwnerRestaurants(ownerId);
     setRestaurants(rests);
-    console.log(rests);
   }
-
 
   useFocusEffect(
     useCallback(() => {
@@ -38,7 +36,6 @@ function OwnerHomeScreen({navigation, props}) {
   );
 
   const onCreateRestaurantPressed = (event) => {
-    console.log('On Restaurant Create Press');
     navigation.navigate(ROUTES.CREATE_RESTAURANT_STACK)
   }
 
