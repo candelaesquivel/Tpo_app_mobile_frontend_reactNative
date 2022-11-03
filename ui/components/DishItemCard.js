@@ -30,6 +30,8 @@ export default function DishItemCard({name = '', discount = 0, price = 100, dish
       navigation.navigate(ROUTES.DISH_MODIFY_STACK, dishData);
   }
 
+  const showDiscount = discount  > 0
+
   return (
     <View style={styles.globalOne}>
       <Card>
@@ -41,11 +43,16 @@ export default function DishItemCard({name = '', discount = 0, price = 100, dish
           ></Images.logo>
           <View width={"70%"}  style={styles.global} >
             <Text style={styles.words} >{name}</Text>
-            <Text style={styles.discount}> {I18n.t('priceSymbol')}{price}</Text>
+              {showDiscount && <Text style={styles.discount}> {I18n.t('priceSymbol')}{price}</Text>}
               <View style={styles.globalThree}>
                   <Text style={styles.wordsTwo} marginBottom={30}> {I18n.t('priceSymbol')}{priceDescount} </Text>
-                  <Icon  name="local-offer" color={colorPalette.Orange} size={20}></Icon>
-                  <Text style={styles.wordsThree} marginBottom={30}>%{discount}</Text>   
+                  {
+                    showDiscount &&
+                    <>
+                      <Icon  name="local-offer" color={colorPalette.Orange} size={20}></Icon>
+                      <Text style={styles.wordsThree} marginBottom={30}>%{discount}</Text>   
+                    </> 
+                  }
               </View>
               <View style={styles.globalFour} >
                   {isVegan && <Icon name="leaf" type='font-awesome-5' color={colorPalette.Black} size={20}></Icon>}
