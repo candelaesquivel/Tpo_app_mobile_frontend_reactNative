@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { View , StyleSheet , Dimensions} from 'react-native'
 import React, { useCallback, useEffect } from 'react'
 import MySearchBar from '../components/MySearchBar'
 import screenNames from '../screenNames'
@@ -10,6 +10,7 @@ import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite'
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { Text } from 'react-native';
 import { CONSTANTS } from '../../config';
+import EmptyScreenMessage from '../components/EmptyScreenMessage';
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
   
@@ -51,13 +52,9 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
       <MySearchBar></MySearchBar>
       <View>
         {restaurants.length === 0 && 
-          <Text
-          h1
-          h4Style={{textAlign:'center'}}
-          style={{marginBottom : 10, alignSelf : 'center'}}
-          >
-          {CONSTANTS.SCREEN_TEXTS.NOT_FAVORITES}
-          </Text>
+         <EmptyScreenMessage
+         message={CONSTANTS.SCREEN_TEXTS.NOT_FAVORITES}
+         ></EmptyScreenMessage>
         }
         {
           restaurants.length !== 0 && 
@@ -72,3 +69,4 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
 }
 
 export default UserFavoritesRestaurantsScreen;
+

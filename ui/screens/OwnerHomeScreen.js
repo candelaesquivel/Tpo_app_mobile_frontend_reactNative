@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import { GetOwnerRestaurants } from '../../networking';
 import { RestaurantFlatListOwner } from '../components/RestaurantFlatListOwner';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { CONSTANTS } from '../../config';
+import EmptyScreenMessage from '../components/EmptyScreenMessage';
 
 function OwnerHomeScreen({navigation, props}) {
 
@@ -21,7 +23,9 @@ function OwnerHomeScreen({navigation, props}) {
   const fillRestaurantList = async () => {
     const rests = await GetOwnerRestaurants(ownerId);
     setRestaurants(rests);
+    console.log(rests);
   }
+
 
   useFocusEffect(
     useCallback(() => {
@@ -30,7 +34,7 @@ function OwnerHomeScreen({navigation, props}) {
       return () => {
         setRestaurants([]);
       }
-    }, [isFocused])
+    }, [isFocused ])
   );
 
   const onCreateRestaurantPressed = (event) => {
@@ -51,7 +55,16 @@ function OwnerHomeScreen({navigation, props}) {
   return (
     <View>
     <View style={styles.global}>
-       <RestaurantFlatListOwner restaurants={restaurants}></RestaurantFlatListOwner>
+        {restaurants === undefined && 
+         <EmptyScreenMessage
+         message={CONSTANTS.SCREEN_TEXTS.NOT_RESTAURANTS}
+         ></EmptyScreenMessage>
+        }
+        {
+          restaurants !== undefined && 
+          <RestaurantFlatListOwner restaurants={restaurants}></RestaurantFlatListOwner>
+        }
+     
      </View>
 
       <View style={styles.icon}>

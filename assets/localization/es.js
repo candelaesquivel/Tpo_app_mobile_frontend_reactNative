@@ -25,6 +25,7 @@ export  default{
     passInput : 'Ingrese contraseña',
     validPassInput : 'Repita contraseña',
     recoverPassword : 'Recuperar contraseña',
+    send : "Enviar",
     recoverPasswordBtn : 'Recuperar Contraseña',
     createAccount : 'Crear cuenta',
     logIn :'Iniciar sesión',
@@ -51,6 +52,8 @@ export  default{
   
     userDataUpdated : 'Datos de usuario actualizados',
     emptyFavorites : 'No hay restaurantes favoritos',
+    emptyRestaurants : 'No hay restaurantes ',
+    emptyDishes : 'No hay platos ',
     filterMessage1 : 'Distancia respecto de su ubicación :  ',
     km : 'km',
     typeFood : 'Tipo de comida :',

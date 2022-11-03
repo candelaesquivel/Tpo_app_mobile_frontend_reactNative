@@ -44,6 +44,8 @@ export default  {
   SCREEN_TEXTS : {
     CREATE_LABEL : I18n.t('create'),
     NOT_FAVORITES : I18n.t('emptyFavorites'),
+    NOT_RESTAURANTS : I18n.t('emptyRestaurants'),
+    NOT_DISHES : I18n.t('emptyDishes'),
     NAME_LABEL : I18n.t('name'),
     PRICE_LABEL : I18n.t('price'),
     VEGAN_LABEL : I18n.t('vegan'),
