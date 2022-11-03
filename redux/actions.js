@@ -50,6 +50,7 @@ export function loginUserAction(userData){
       email : userData.email,
       token : userData.accessToken,
       userName : userData.name,
+      userImg : userData.photo,
       isLogged : true,
       role : userData.role,
     }

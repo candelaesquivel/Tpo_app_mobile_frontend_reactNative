@@ -8,6 +8,7 @@ const initialState = {
     userName : '',
     isLogged : false,
     role : '',
+    userImg : '',
     restaurantSelectedId : '',
     dishSelectedId : ''
   }
@@ -30,6 +31,7 @@ export default function userReducer(state = initialState, action){
           email : action.payload.email,
           userName : action.payload.userName,
           isLogged : action.payload.isLogged,
+          userImg : action.payload.userImg,
           role : action.payload.role,
           restaurantSelectedId : '',
           dishSelectedId : ''
