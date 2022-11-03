@@ -42,6 +42,7 @@ export default  {
   },
 
   SCREEN_TEXTS : {
+    CREATE_LABEL : I18n.t('create'),
     NOT_FAVORITES : I18n.t('emptyFavorites'),
     NAME_LABEL : I18n.t('name'),
     PRICE_LABEL : I18n.t('price'),
@@ -55,5 +56,13 @@ export default  {
     NO : I18n.t('no'),
     PRICE_SYMBOL : I18n.t('priceSymbol'),
     USER_DATA_UPDATED : I18n.t('userDataUpdated'),
+    ADDRESS_LABEL : I18n.t('address'),
+    NEIGHBORHOOD_LABEL : I18n.t('neighborhood'),
+    LOCATION_LABEL : I18n.t('location'),
+    ZIP_CODE_LABEL : I18n.t('zipCode'),
+    HOUR_LABEL : I18n.t('hour'),
+    OPEN_HOUR_LABEL : I18n.t('opening'),
+    CLOSE_HOUR_LABEL : I18n.t('closing'),
+    CLOSE_LABEL : I18n.t('close'),
   },
 }
