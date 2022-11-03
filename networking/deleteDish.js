@@ -1,7 +1,7 @@
 import axios from "axios";
 import URL_SERVICES from "../config/config";
 
-export function deleteDish(restaurantId, dishId){
+export async function deleteDish(restaurantId, dishId){
 
   const URL = URL_SERVICES.DISH_DELETE.replace('restaurantId', restaurantId).
   replace('dishId', dishId);

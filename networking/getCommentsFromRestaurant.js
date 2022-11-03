@@ -1,8 +1,7 @@
 import axios from "axios";
 import URL_SERVICES from "../config/config";
 
-
- function getCommentsFromRestaurant(restaurantId) {
+async function getCommentsFromRestaurant(restaurantId) {
 
     const url = URL_SERVICES.COMMENT_LIST.replace('restaurantId', restaurantId);
 

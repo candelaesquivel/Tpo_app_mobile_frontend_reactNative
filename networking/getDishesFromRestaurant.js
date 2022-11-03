@@ -1,7 +1,7 @@
 import axios from "axios";
 import URL_SERVICES from "../config/config";
 
-function getDishesFromRestaurant(restaurantId){
+async function getDishesFromRestaurant(restaurantId){
   const url = URL_SERVICES.DISH_LIST.replace('restaurantId', restaurantId);
 
   return axios.get(url).then( (response) => {

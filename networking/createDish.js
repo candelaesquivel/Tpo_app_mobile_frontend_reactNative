@@ -16,7 +16,7 @@ const defaultDish = {
   isGlutenFree: false
 }
 
-function createDish(restaurantId, dishData = defaultDish){
+async function createDish(restaurantId, dishData = defaultDish){
 
   const URL = URL_SERVICES.DISH_CREATE.replace('restaurantId', restaurantId);
 
