@@ -3,8 +3,6 @@ import axios from 'axios';
 
 async function getOwnerRestaurants(ownerId)
 {
-  console.log("On Get Restaurants");
-
   const url = URL_SERVICES.RESTAURANTS_OWNER.replace('id', ownerId);
 
   return axios.get(url).then( (response) => {

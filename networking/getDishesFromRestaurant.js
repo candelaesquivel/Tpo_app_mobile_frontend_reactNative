@@ -41,7 +41,6 @@ function getDishesFromRestaurant(restaurantId){
     console.log(err);
     return [];
   }).finally(() => {
-    console.log('Everything is ok');
   })
 }
 
