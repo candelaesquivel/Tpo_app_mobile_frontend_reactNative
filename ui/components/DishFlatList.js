@@ -14,8 +14,6 @@ export function DishFlatList({dishes, props}){
 
   const renderDishData = ({item}) => {
 
-    console.log(item);
-
     return (
     <DishItemCard
       dishId={item.dishId}

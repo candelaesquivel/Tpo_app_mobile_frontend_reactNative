@@ -1,4 +1,4 @@
-import { View, Text , ScrollView , StyleSheet , Dimensions} from 'react-native'
+import { View, Text , ScrollView , StyleSheet , Dimensions, ToastAndroid} from 'react-native'
 import React, { useState } from 'react'
 import {  Switch , Slider} from '@rneui/base'
 import { colorPalette } from '../styles/colors'
@@ -28,10 +28,10 @@ function DishModifyScreen({navigation, route, props}){
     isVegan : route.params.isVegan,
     isGlutenFree : route.params.isGlutenFree,
     category : route.params.category,
-    ingredients : route.params.ingredients
+    ingredients : route.params.ingredients,
+    discounts : route.params.discounts,
 
   });
-  const [discount, setDiscount] = useState(dishData.discounts);
 
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -40,6 +40,13 @@ function DishModifyScreen({navigation, route, props}){
 
   const onSavePress = async (event) => {
     const result = await updateDish(currRestaurant, dishId, dishData);
+
+    if (result){
+      setTimeout(() => {
+        ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.DISH_UPDATED_MSG, ToastAndroid.SHORT);
+        navigation.goBack();
+      }, 200);
+    }
   }
   
   const onDeletePress = (event) => {
@@ -55,7 +62,6 @@ function DishModifyScreen({navigation, route, props}){
   }
 
   const onDeleteOptionsHandler = async (option) => {
-    console.log("Option: ", option)
     if (option == CONSTANTS.SCREEN_TEXTS.YES){
       const result = await deleteDish(currRestaurant, dishId);
 
@@ -82,8 +88,8 @@ function DishModifyScreen({navigation, route, props}){
     setDishData({...dishData, 'ingredients' : text})
   }
   
-  const onDiscountChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setDishData({...dishData, 'discount' : text})
+  const onDiscountChange = (value) => {
+    setDishData({...dishData, 'discounts' : value})
   }
 
   const onIsVeganChange = ({nativeEvent : {eventCount, target, value}}) => {
@@ -113,7 +119,7 @@ function DishModifyScreen({navigation, route, props}){
               name={dishData.name} onNameChanged={onNameChanged}
               price={dishData.price} onPriceChanged={onPriceChanged}
               ingredients={dishData.ingredients} onIngredientChange={onIngredientChange}
-              discount={dishData.discount} onDiscountChange={onDiscountChange}
+              discount={dishData.discounts} onDiscountChange={onDiscountChange}
               isVegan={dishData.isVegan} onIsVeganChange={onIsVeganChange}
               isGlutenFree={dishData.isGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChange}
             ></DishForm>

@@ -83,5 +83,6 @@ export  default{
     open : "Abierto : ",
     
     dishCreated : 'Plato Creado',
+    dishUpdated : 'Plato Modificado'
 
 };

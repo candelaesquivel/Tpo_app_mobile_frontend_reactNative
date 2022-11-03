@@ -54,6 +54,7 @@ export default  {
     DISCOUNT_LABEL : I18n.t('discount'),
     CATEGORY_LABEL : I18n.t('category'),
     DISH_CREATED_MSG : I18n.t('dishCreated'),
+    DISH_UPDATED_MSG : I18n.t('dishUpdated'),
     YES : I18n.t('yes'),
     NO : I18n.t('no'),
     PRICE_SYMBOL : I18n.t('priceSymbol'),
