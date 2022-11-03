@@ -26,7 +26,7 @@ function DishModifyScreen({navigation, route, props}){
     name : route.params.name,
     price : route.params.price,
     isVegan : route.params.isVegan,
-    isCeliac : route.params.isGlutenFree,
+    isGlutenFree : route.params.isGlutenFree,
     category : route.params.category,
     ingredients : route.params.ingredients
 
@@ -90,8 +90,8 @@ function DishModifyScreen({navigation, route, props}){
     setDishData({...dishData, 'isVegan' : value})
   }
 
-  const onIsCeliacChange = ({nativeEvent : {eventCount, target, value}}) => {
-    setDishData({...dishData, 'isCeliac' : value})
+  const onIsGlutenFreeChange = ({nativeEvent : {eventCount, target, value}}) => {
+    setDishData({...dishData, 'isGlutenFree' : value})
   }
 
   const onCategoryChange = ({ nativeEvent: { eventCount, target, text} }) => {
@@ -115,7 +115,7 @@ function DishModifyScreen({navigation, route, props}){
               ingredients={dishData.ingredients} onIngredientChange={onIngredientChange}
               discount={dishData.discount} onDiscountChange={onDiscountChange}
               isVegan={dishData.isVegan} onIsVeganChange={onIsVeganChange}
-              isCeliac={dishData.isCeliac} onIsCeliacChange={onIsCeliacChange}
+              isGlutenFree={dishData.isGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChange}
             ></DishForm>
 
 

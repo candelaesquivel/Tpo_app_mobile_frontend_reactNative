@@ -13,12 +13,12 @@ const DishForm = ({
   ingredients = '',
   discount = 0,
   isVegan = false,
-  isCeliac = false,
+  isGlutenFree = false,
   onNameChanged,
   onPriceChanged,
   onDiscountChange,
   onIngredientChange,
-  onIsCeliacChange,
+  onIsGlutenFreeChange,
   onIsVeganChange,
   props}) => {
 
@@ -62,7 +62,7 @@ const DishForm = ({
     ></InputText>
 
     <Text style={styles.words}>
-        {CONSTANTS.SCREEN_TEXTS.DISCOUNT_LABEL}{"%"}      
+        {CONSTANTS.SCREEN_TEXTS.DISCOUNT_LABEL}{discount + ' %'}      
     </Text>
     <View style={styles.slider}>
       <Slider
@@ -102,8 +102,8 @@ const DishForm = ({
             {CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}       
         </Text>
         <Switch
-            onChange={onIsCeliacChange}
-            value={isCeliac} />
+            onChange={onIsGlutenFreeChange}
+            value={isGlutenFree} />
     </View>
     <Text style={styles.words}>
       {CONSTANTS.SCREEN_TEXTS.CATEGORY_LABEL}    

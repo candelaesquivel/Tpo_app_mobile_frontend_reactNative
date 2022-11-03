@@ -21,9 +21,9 @@ function AddDishScreen({navigation, props}) {
     name : '',
     price : '',
     ingredients : '',
-    discount : 0,
+    discounts : 0,
     isVegan : false,
-    isCeliac : false,
+    isGlutenFree : false,
     photos : [],
     category : 'Plato Caliente',
   });
@@ -41,16 +41,16 @@ function AddDishScreen({navigation, props}) {
     setDishData({...dishData, 'ingredients' : str})
   }
   
-  const onDiscountChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setDishData({...dishData, 'discount' : text})
+  const onDiscountChange = (value) => {
+    setDishData({...dishData, 'discounts' : value})
   }
 
   const onIsVeganChange = ({nativeEvent : {eventCount, target, value}}) => {
     setDishData({...dishData, 'isVegan' : value})
   }
 
-  const onIsCeliacChange = ({nativeEvent : {eventCount, target, value}}) => {
-    setDishData({...dishData, 'isCeliac' : value})
+  const onIsGlutenFreeChange = ({nativeEvent : {eventCount, target, value}}) => {
+    setDishData({...dishData, 'isGlutenFree' : value})
   }
 
   const onCategoryChange = ({ nativeEvent: { eventCount, target, text} }) => {
@@ -90,9 +90,9 @@ function AddDishScreen({navigation, props}) {
               name={dishData.name} onNameChanged={onNameChanged}
               price={dishData.price} onPriceChanged={onPriceChanged}
               ingredients={dishData.ingredients} onIngredientChange={onIngredientChange}
-              discount={dishData.discount} onDiscountChange={onDiscountChange}
+              discount={dishData.discounts} onDiscountChange={onDiscountChange}
               isVegan={dishData.isVegan} onIsVeganChange={onIsVeganChange}
-              isCeliac={dishData.isCeliac} onIsCeliacChange={onIsCeliacChange}
+              isGlutenFree={dishData.isGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChange}
             ></DishForm>
 
             <View style={styles.buttons}>

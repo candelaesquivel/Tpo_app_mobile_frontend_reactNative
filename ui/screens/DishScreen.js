@@ -9,7 +9,7 @@ function DishScreen({navigation, route, props}){
       name : route.params.name,
       price : route.params.price,
       isVegan : route.params.isVegan,
-      isCeliac : route.params.isGlutenFree,
+      isGlutenFree : route.params.isGlutenFree,
       category : route.params.category,
       ingredients : route.params.ingredients.split(','),
       discount : route.params.discount,
@@ -19,7 +19,7 @@ function DishScreen({navigation, route, props}){
             <DishCard
               name = {dishData.name}
               vegan = {dishData.isVegan}
-              celiac = {dishData.isCeliac}
+              isGlutenFree = {dishData.isGlutenFree}
               price = {dishData.price}
               discount = {dishData.discount}
               ingredients={dishData.ingredients}

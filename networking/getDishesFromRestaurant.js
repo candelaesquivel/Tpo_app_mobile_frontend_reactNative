@@ -26,7 +26,7 @@ async function getDishesFromRestaurant(restaurantId){
         name : itr.name,
         price : itr.price.$numberDecimal,
         discount : itr.discounts.$numberDecimal,
-        isCeliac : itr.isGlutenFree,
+        isGlutenFree : itr.isGlutenFree,
         isVegan : itr.isVegan
       }
 

@@ -12,8 +12,8 @@ import Carousal from './carousal';
 
 const DishCard = ({
   name = 'Tarta de Atún', 
-  isVegan = true, 
-  isCeliac = true, 
+  isVegan = false, 
+  isGlutenFree = false, 
   ingredients = [], 
   price = 0}) => 
 {
@@ -40,7 +40,7 @@ const DishCard = ({
       <Card containerStyle={styles.container}>
         <Card.Title style={styles.titleWord}>{name}</Card.Title>
         {isVegan && <DishDetail iconName='leaf' iconType='font-awesome-5' detail={CONSTANTS.SCREEN_TEXTS.VEGAN_LABEL}></DishDetail>}
-        {isCeliac && <DishDetail iconName='leaf' iconType='font-awesome-5' detail={CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}></DishDetail>}
+        {isGlutenFree && <DishDetail iconName='leaf' iconType='font-awesome-5' detail={CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}></DishDetail>}
         <View style={styles.ingredientsContainer}>
         {
           ingredients.map((item, idx) => {

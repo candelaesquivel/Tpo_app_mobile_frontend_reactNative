@@ -12,18 +12,21 @@ export function DishFlatList({dishes, props}){
       <Text style={style.header}>{category}</Text>
   );
 
-  const renderDishData = ({item}) => (
+  const renderDishData = ({item}) => {
 
+    console.log(item);
+
+    return (
     <DishItemCard
       dishId={item.dishId}
       name={item.name}
       price={item.price}
       discount={item.discount}
       isVegan={item.isVegan}
-      isCeliac={item.isGlutenFree}
+      isGlutenFree={item.isGlutenFree}
       >
-    </DishItemCard>
-  );
+    </DishItemCard>)
+  };
 
   return (
     <SectionList
