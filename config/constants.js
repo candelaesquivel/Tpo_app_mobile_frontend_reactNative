@@ -53,6 +53,7 @@ export default  {
     INGREDIENTS_LABEL : I18n.t('ingredients'),
     DISCOUNT_LABEL : I18n.t('discount'),
     CATEGORY_LABEL : I18n.t('category'),
+    RESTAURANT_CREATED_MSG : I18n.t(''),
     DISH_CREATED_MSG : I18n.t('dishCreated'),
     DISH_UPDATED_MSG : I18n.t('dishUpdated'),
     YES : I18n.t('yes'),

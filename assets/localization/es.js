@@ -83,6 +83,7 @@ export  default{
     open : "Abierto : ",
     
     dishCreated : 'Plato Creado',
-    dishUpdated : 'Plato Modificado'
+    dishUpdated : 'Plato Modificado',
+    restaurantCreated : 'Restaurante Creado',
 
 };

@@ -23,22 +23,68 @@ function CreateRestaurantScreen({navigation, props}) {
   
   const [restaurantData, setRestaurantData] = useState({
     name : '',
-    address : '',
-    neighborhood : '',
-    location : '',
+    address : {
+      streetName : '',
+      streetNumber : '430',
+      neighborhood : '',
+      city : '',
+      state : '',
+      country : '',
+    },
     zipCode : '',
     isClosed : false,
-    foodTypes : [],
-    priceRange : '',
+    foodTypes : ['Mexicana'],
+    priceRange : '$',
+    hours: {
+      monday: {
+        open: 1000,
+        close: 1400
+      },
+      tuesday: {
+        open: 1000,
+        close: 1400
+      },
+      wednesday: {
+        open: 1000,
+        close: 1400
+      },
+      thursday: {
+        open: 1000,
+        close: 1400
+      },
+      friday: {
+        open: 1000,
+        close: 1400
+      },
+      saturday: {
+        open: 1000,
+        close: 1400
+      },
+      sunday: {
+        open: 1000,
+        close: 1400
+      }
+    },
+    coordinates: {
+      type: "Point",
+      coordinates: [
+        -58.456,
+        -34.567
+      ]
+    },
   })
 
   const ownerId = useSelector(state => state.session.userId);
 
   const onCreateHandler = async (event) => {
-    const result = await createRestaurant(ownerId);
+    const result = await createRestaurant(ownerId, restaurantData);
 
-    if (result)
-      navigation.navigate(ROUTES.OWNER_HOME_DRAWER);
+    if (result){
+      setTimeout(() => {
+        ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.RESTAURANT_CREATED_MSG, ToastAndroid.SHORT);
+        navigation.goBack();
+      }, 200);
+    }
     else
       ToastAndroid.show('Error on Create Restaurant', ToastAndroid.SHORT);
   }
@@ -52,24 +98,31 @@ function CreateRestaurantScreen({navigation, props}) {
   }
 
   const onAddressChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setRestaurantData({...restaurantData, 'address' : text});
+    let oldData = restaurantData;
+    oldData.address.streetName = text;
+
+    setRestaurantData(oldData);
   }
 
   const onLocationChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setRestaurantData({...restaurantData, 'location' : text});
+    let oldData = restaurantData;
+    oldData.address.city = text;
+    setRestaurantData(oldData);
   }
 
   const onNeighborhoodChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setRestaurantData({...restaurantData, 'neighborhood' : text});
+    let oldData = restaurantData;
+    oldData.address.neighborhood = text;
+    setRestaurantData(oldData);
   }
 
   return (
     <RestaurantForm
       name={restaurantData.name}
-      address={restaurantData.address}
+      address={restaurantData.address.streetName}
       zipCode={restaurantData.zipCode}
-      neighborhood={restaurantData.neighborhood}
-      location={restaurantData.location}
+      neighborhood={restaurantData.address.neighborhood}
+      location={restaurantData.address.city}
       isClosed={restaurantData.isClosed}
       onCreateHandler={onCreateHandler}
       onNameHandler={onNameChange}
