@@ -11,17 +11,16 @@ async function getCommentsFromRestaurant(restaurantId) {
 
       response.data.forEach((itr, idx) => {
         comments.push({
-          user : "candela",
+          user : itr.name,
           rating : itr.rating,
           comment : itr.comment,
           idx : idx
         });
       });
-      console.log("respuesta de comentarios " ,comments)
       return comments;
   
     }).catch(err =>{
-      console.log(err);
+      console.err(err);
       return [];
     }).finally(() => {
      
