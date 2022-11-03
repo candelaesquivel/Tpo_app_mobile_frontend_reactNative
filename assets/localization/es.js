@@ -85,5 +85,6 @@ export  default{
     dishCreated : 'Plato Creado',
     dishUpdated : 'Plato Modificado',
     restaurantCreated : 'Restaurante Creado',
+    accountCreated : 'Cuenta Creada exitosamente',
 
 };

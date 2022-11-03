@@ -1,15 +1,16 @@
+import axios from "axios";
 import URL_SERVICES from "../config/config"
 import { MAX_HASH_LENGHT } from "../config/security";
 
 async function createAccountOwner(userData)
 { 
   const user = {
-    role : "owner",
-    google : {
-      name : '',
-      email : '',
-      id : '',
-    },
+    role : 'owner',
+    // google : {
+    //   name : '',
+    //   email : '',
+    //   id : '',
+    // },
     custom : {
       name : '',
       email : userData.email,
@@ -17,28 +18,20 @@ async function createAccountOwner(userData)
     }
   };
   
-  const jsonData = JSON.stringify(user);
+  return axios.post(URL_SERVICES.REGISTER_OWNER, user)
+  .then(resp => {
 
-  let result = await fetch(URL_SERVICES.REGISTER_OWNER, {
-    method : 'POST',
-    headers : {
-      'Content-Type' : 'application/json'
-    },
-    body : jsonData
-  }).then(res => {
-    console.log("Status: ", res.status);
-
-    if (res.status === 201)
+    if (resp.status === 201)
       return true;
     
     return false;
-  }).
-  catch(err => {
-    console.log(err);
-    return false;
-  })
 
-  return result;
+  }).catch(err =>{
+    console.err("WS Register Error: ", err);
+    return false;
+  }).finally(() => {
+
+  })
 }
 
 export default createAccountOwner;

@@ -8,6 +8,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import createAccountOwner from "../../networking/createAccount";
 import { ROUTES } from '..';
 import { Theme } from "../styles/Theme"
+import { CONSTANTS } from "../../config"
+import { ToastAndroid } from "react-native"
 
 export function CreateAccountOwnerScreen({navigation, props}) {
 
@@ -19,10 +21,15 @@ export function CreateAccountOwnerScreen({navigation, props}) {
 
     const onRegisterPress = async (e) => {
       const result = await createAccountOwner(userData);
-      console.log("Result Register: ", result);
 
-      if (result)
-        navigation.navigate(ROUTES.OWNER_HOME);
+      if (result){
+        setTimeout(() => {
+          ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.ACCOUNT_CREATED, ToastAndroid.SHORT);
+          navigation.navigate(ROUTES.LOGIN_OWNER);
+        }, 200);
+      }else{
+
+      }
     }
 
     const onEmailChange = ({ nativeEvent: { eventCount, target, text} }) => {

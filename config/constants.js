@@ -68,5 +68,6 @@ export default  {
     OPEN_HOUR_LABEL : I18n.t('opening'),
     CLOSE_HOUR_LABEL : I18n.t('closing'),
     CLOSE_LABEL : I18n.t('close'),
+    ACCOUNT_CREATED : I18n.t('accountCreated'),
   },
 }

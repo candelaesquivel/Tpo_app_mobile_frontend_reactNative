@@ -18,6 +18,7 @@ import { createRestaurant } from '../../networking/createRestaurant';
 import { CONSTANTS } from '../../config';
 import { useSelector } from 'react-redux';
 import { RestaurantForm } from './createRestaurant/RestaurantForm';
+import { ROUTES } from '..';
 
 function CreateRestaurantScreen({navigation, props}) {
   
@@ -82,7 +83,7 @@ function CreateRestaurantScreen({navigation, props}) {
     if (result){
       setTimeout(() => {
         ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.RESTAURANT_CREATED_MSG, ToastAndroid.SHORT);
-        navigation.goBack();
+        navigation.navigate(ROUTES.OWNER_HOME);
       }, 200);
     }
     else
