@@ -6,26 +6,54 @@ import { InputText } from '../components/InputText';
 import { Icon } from '@rneui/base'
 import { MyButton } from '../components/button';
 import { StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { updateUserData } from '../../networking/updateUserData';
+import { updateUserDataAction } from '../../redux/actions';
+import { ToastAndroid } from 'react-native';
+import { CONSTANTS } from '../../config';
 
 export default function UserProfileScreen({navigation, route, props}) {
 
   const userName = useSelector(state => state.session.userName);
+  const userId = useSelector(state => state.session.userId);
+
+  const dispatch = useDispatch();
+
   const [name, setName] = useState(userName);
+
+  const onSavePress = async (e) => {
+
+    const result = await updateUserData(userId, {name : name});
+
+    if (result)
+    {
+      dispatch(updateUserDataAction(result));
+      ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.USER_DATA_UPDATED, ToastAndroid.SHORT);
+    }
+  }
+
+  const onNameChange = ({ nativeEvent: { eventCount, target, text} }) => {
+    setName(text);
+  }
 
   return (
     <View style={style.container}>
       <Text style={style.nameLabel}>{I18n.t('name')}</Text>
 
-      <InputText color={colorPalette.White} defaultValue={userName} textColor={colorPalette.Black}></InputText>
+      <InputText
+        onChange={onNameChange}
+        color={colorPalette.White} 
+        defaultValue={userName} 
+        textColor={colorPalette.Black}>
+      </InputText>
 
       <View style={{flexDirection:'row' ,marginBottom:40}}>
           <Text style={style.addPictureLabel}>{I18n.t('addPicture')} </Text>
           <Icon name='add-photo-alternate' Type='material-community' size={30} color={colorPalette.Orange}></Icon>
       </View>
       <View style={style.btnContainer}>
-        <MyButton title='Guardar' width='30%' height='60%'></MyButton>
+        <MyButton title='Guardar' width='30%' height='60%' onPress={onSavePress}></MyButton>
       </View>
     </View>
   )

@@ -10,7 +10,11 @@ export function InputText(props){
           secureTextEntry = {props.secureTextEntry}
           placeholder={props.placeholder}
           placeholderTextColor = {props.placeholderTextColor}
-          inputStyle={{color : props.textColor !== undefined ? props.textColor : colorPalette.White}}
+          maxLength={props.limitLenght}
+          inputStyle={{
+            color : props.textColor !== undefined ? props.textColor : colorPalette.White,
+           
+          }}
           style={{
               borderRadius : 30, 
               borderWidth : props.borderWidth,
@@ -24,12 +28,13 @@ export function InputText(props){
               marginBottom : props.marginBottom,
               height : props.height,
               width : props.width,
-              
+             
           }}
           inputContainerStyle={{
               borderColor : props.borderColor,
               borderBottomColor : 'transparent',
-              borderRadius : 0
+              borderRadius : 0,
+              height : props.inputHeight
             }}
           onChange = {props.onChange}
         >

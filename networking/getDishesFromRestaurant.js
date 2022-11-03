@@ -1,7 +1,7 @@
 import axios from "axios";
 import URL_SERVICES from "../config/config";
 
-function getDishesFromRestaurant(restaurantId){
+async function getDishesFromRestaurant(restaurantId){
   const url = URL_SERVICES.DISH_LIST.replace('restaurantId', restaurantId);
 
   return axios.get(url).then( (response) => {
@@ -26,7 +26,7 @@ function getDishesFromRestaurant(restaurantId){
         name : itr.name,
         price : itr.price.$numberDecimal,
         discount : itr.discounts.$numberDecimal,
-        isCeliac : itr.isGlutenFree,
+        isGlutenFree : itr.isGlutenFree,
         isVegan : itr.isVegan
       }
 
@@ -38,10 +38,9 @@ function getDishesFromRestaurant(restaurantId){
     return dishes;
 
   }).catch(err =>{
-    console.log(err);
+    console.error("Get dishes from Restaurant Error: ", err);
     return [];
   }).finally(() => {
-    console.log('Everything is ok');
   })
 }
 

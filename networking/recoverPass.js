@@ -18,7 +18,6 @@ async function recoverPass(email)
     },
     body : jsonData
   }).then(res => {
-    console.log("Status: ", res.status);
 
     if (res.status === 201)
       return true;
@@ -26,7 +25,7 @@ async function recoverPass(email)
     return false;
   }).
   catch(err => {
-    console.log(err);
+    console.error("Error on Recover Pass: ", err);
     return false;
   })
 

@@ -11,9 +11,8 @@ async function loginOwner(userData)
     res.data.role = CONSTANTS.ROLES.OWNER_ROLE;
     return res.data;
   }).catch(err => {
-    console.log(err);
+    console.error("Error on Login Owner: ", err);
   }).finally(() => {
-    console.log('Login Succesful')
   })
 }
 

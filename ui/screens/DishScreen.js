@@ -1,35 +1,29 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import DishCard from '../components/DishCard';
 import Carousal from '../components/carousal';
 
-function DishScreen({navigation, props}){
+function DishScreen({navigation, route, props}){
 
-    const ING = [
-        {
-          name: 'atun',
-          
-        },
-        {
-          name: 'palta',
-          
-        },
-      
-    ];
+    const dishData = 
+    {
+      name : route.params.name,
+      price : route.params.price,
+      isVegan : route.params.isVegan,
+      isGlutenFree : route.params.isGlutenFree,
+      category : route.params.category,
+      ingredients : route.params.ingredients.split(','),
+      discount : route.params.discount,
+    };
 
     return (
-        <View>
-           
-           <Carousal></Carousal>
             <DishCard
-            name = 'Tarta de Atún'
-            vegan = {true}
-            celiac = {true}
-            price = {10}
-            ingredients = {ING}
-         
+              name = {dishData.name}
+              vegan = {dishData.isVegan}
+              isGlutenFree = {dishData.isGlutenFree}
+              price = {dishData.price}
+              discount = {dishData.discount}
+              ingredients={dishData.ingredients}
             ></DishCard>
-        </View>
-       
     )
 }
 

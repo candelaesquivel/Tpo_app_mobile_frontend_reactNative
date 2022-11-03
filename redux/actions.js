@@ -17,6 +17,13 @@ export function logoutUserAction(){
   }
 }
 
+export function updateUserDataAction(userData){
+  return {
+    type : REDUX_ACTIONS.USER_DATA_UPDATED,
+    payload : userData
+  }
+}
+
 export function restaurantSelectedAction(restaurantId){
   return {
     type : REDUX_ACTIONS.USER_SELECT_RESTAURANT,
@@ -43,6 +50,7 @@ export function loginUserAction(userData){
       email : userData.email,
       token : userData.accessToken,
       userName : userData.name,
+      userImg : userData.photo,
       isLogged : true,
       role : userData.role,
     }

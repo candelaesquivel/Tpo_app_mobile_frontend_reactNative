@@ -3,10 +3,6 @@ import URL_SERVICES from "../config/config"
 
 async function getRestaurants(userId)
 {
-  console.log("On Get Restaurants");
-
-  let restaurants = [];
-
   return axios.get(URL_SERVICES.RESTAURANTS_LIST, 
     {
       params : {

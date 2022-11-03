@@ -9,13 +9,28 @@ import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
 import DrawerUserNavigator from "./DrawerUserNavigator";
 import { CONSTANTS } from "../config";
+import { DefaultTheme } from "@react-navigation/native";
+import { colorPalette } from "../ui/styles/colors";
 
 
 const Stack = createNativeStackNavigator();
 
+const NavigatorTheme = {
+  ...DefaultTheme,
+  colors : {
+    ...DefaultTheme.colors,
+    primary : colorPalette.Orange
+  }
+}
+
 function MainNavigator(props){
     return (
-        <Stack.Navigator>
+        <Stack.Navigator       screenOptions={{
+          headerStyle: {
+            backgroundColor: colorPalette.Orange,
+          },
+          headerTintColor: colorPalette.White,
+        }}>
            
             <Stack.Screen name = {ROUTES.HOME_SCREEN} component = {Home} options={{
               headerShown: false,

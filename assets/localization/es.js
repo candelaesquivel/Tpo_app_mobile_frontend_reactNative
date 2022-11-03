@@ -12,7 +12,7 @@ export  default{
     name : 'Nombre :',
     price : 'Precio :',
     ingredients: 'Ingredientes :',
-    discount : 'Descuento :',
+    discount : 'Descuento ',
     addPicture : 'Agregar fotos :',
     category: 'Categoria :',
     chose : 'Elegir',
@@ -25,6 +25,7 @@ export  default{
     passInput : 'Ingrese contraseña',
     validPassInput : 'Repita contraseña',
     recoverPassword : 'Recuperar contraseña',
+    send : "Enviar",
     recoverPasswordBtn : 'Recuperar Contraseña',
     createAccount : 'Crear cuenta',
     logIn :'Iniciar sesión',
@@ -48,8 +49,11 @@ export  default{
     sentCommentTitle : 'Enviar Comentario',
     createRestaurantTitle : 'Crear Restaurante',
     filtersTitle : 'Filtros',
-
+  
+    userDataUpdated : 'Datos de usuario actualizados',
     emptyFavorites : 'No hay restaurantes favoritos',
+    emptyRestaurants : 'No hay restaurantes ',
+    emptyDishes : 'No hay platos ',
     filterMessage1 : 'Distancia respecto de su ubicación :  ',
     km : 'km',
     typeFood : 'Tipo de comida :',
@@ -79,5 +83,9 @@ export  default{
     open : "Abierto : ",
     
     dishCreated : 'Plato Creado',
+    dishUpdated : 'Plato Modificado',
+    restaurantCreated : 'Restaurante Creado',
+    accountCreated : 'Cuenta Creada exitosamente',
+    accountDeleted : 'Cuenta eliminada exitosamente',
 
 };

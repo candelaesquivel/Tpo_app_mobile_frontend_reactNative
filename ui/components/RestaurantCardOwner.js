@@ -12,9 +12,10 @@ import {restaurantSelectedAction} from '../../redux/actions'
 
 function RestaurantCardOwner({name = 'Rodizio', 
 
-address = 'Honduras 5500', score = 5, restaurantId = '',
+address = 'Honduras 5500', score = 0, restaurantId = '',
 props}) {
 
+  const showRating = score > 0;
   const dispatcher = useDispatch();
   const navigation = useNavigation();
   const state = useSelector(state => state.session);
@@ -41,10 +42,14 @@ props}) {
           <View width={Dimensions.get('window').width*0.55}   style={styles.globalTwo} >
             <Text style={styles.title} >{name}</Text>
             <Text style={styles.address}>{address}</Text>
-          <View style={styles.globalThree}>
-            <Text >{score}</Text>
-            <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
-          </View>
+
+          {
+            showRating && 
+            <View style={styles.globalThree}>
+              <Text> {Number(score).toFixed(1)} </Text>
+              <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
+            </View>
+          }
 
           <View style={styles.globalFour} >
             <Text  onPress={onMenuHandlerPress} style={styles.menu} >{I18n.t('menu')}</Text>

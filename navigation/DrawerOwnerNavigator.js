@@ -5,12 +5,19 @@ import { OwnerHome} from '../ui/screens';
 import DrawerOptionsOwner from './DrawerOptionsOwner';
 import { MyRestaurantsIcon } from './DrawerIcons';
 import { CONSTANTS } from '../config';
+import { colorPalette } from '../ui/styles/colors';
 
 const Drawer = createDrawerNavigator();
 
 function DrawerOwnerNavigator(props){
     return (
         <Drawer.Navigator 
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: colorPalette.Orange,
+            },
+            headerTintColor: colorPalette.White,
+          }}
           useLegacyImplementation 
           initialRouteName={ROUTES.OWNER_HOME_DRAWER}
           drawerContent={(props) => <DrawerOptionsOwner {...props}></DrawerOptionsOwner>}

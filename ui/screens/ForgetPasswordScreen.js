@@ -19,8 +19,7 @@ function ForgetPasswordScreen({navigation, props}) {
       setEmail(text);
     }
 
-    const onRecoveryTouch = async (event) => {
-      let recoveryResult = await recoverPass(email);
+    const onRecoveryTouch = (event) => {
 
     }
 

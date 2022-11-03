@@ -4,11 +4,13 @@ import MySearchBar from '../components/MySearchBar'
 import screenNames from '../screenNames'
 import { useState } from 'react';
 import getRestaurants from '../../networking/getRestaurants';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RestaurantFlatListUser } from '../components/RestaurantFlatListUser'
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
 import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
+import {restaurantSelectedAction} from '../../redux/actions';
+import { ROUTES } from '..';
 
 
 function RestaurantsUserScreen({navigation , props}) {
@@ -16,6 +18,7 @@ function RestaurantsUserScreen({navigation , props}) {
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
   const isFocused = useIsFocused();
+  const dispatch =useDispatch();
 
   const userId = useSelector(state => state.session.userId);
 
@@ -37,21 +40,25 @@ function RestaurantsUserScreen({navigation , props}) {
     }, [triggerSearch, isFocused])
   );
 
-  const onRestaurantNameTouched = (event) => {
-    console.log('On Restaurant Name Touched');
-    navigation.navigate(screenNames.RESTAURANT_VIEW_USER);
-  }
-
   const onFavoriteIconPress = async (restaurantId) => {
     const result = await toggleRestaurantFavorite(userId, restaurantId);
     setTrigggerSearch(true);
+  }
+
+  const onPhotoPress = (restaurantId) => {
+   dispatch(restaurantSelectedAction(restaurantId))
+   navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
   }
 
   return (
     <View>
       <MySearchBar></MySearchBar>
       <View>
-      <RestaurantFlatListUser restaurants={restaurants} onFavoriteTouched={onFavoriteIconPress}></RestaurantFlatListUser>
+      <RestaurantFlatListUser
+       restaurants={restaurants} 
+       onFavoriteTouched={onFavoriteIconPress}
+       onPhotoPress={onPhotoPress}
+       ></RestaurantFlatListUser>
       </View>
     </View>
   )

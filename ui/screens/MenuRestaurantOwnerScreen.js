@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Dimensions } from 'react-native'
 import React, { useEffect } from 'react'
 import { Icon } from "@rneui/themed";
 import { colorPalette } from '../styles/colors';
@@ -7,28 +7,33 @@ import { GetDishesFromRestaurant } from '../../networking';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { DishFlatList } from '../components/DishFlatList';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useCallback } from 'react';
+import { CONSTANTS } from '../../config';
+import EmptyScreenMessage from '../components/EmptyScreenMessage';
 
 
 function MenuRestaurantOwnerScreen({navigation,props}) {
 
   const [dishes, setDishes] = useState([]);
-  const [triggerSearch, setTrigggerSearch] = useState(false);
-
   const restoId = useSelector((state) => state.session.restaurantSelectedId);
+  const isFocused = useIsFocused();
 
   const fillDishList = async () => {
     const newDishes = await GetDishesFromRestaurant(restoId);
     setDishes(newDishes);
   }
 
-  useEffect(() => {
-    if (!triggerSearch)
-    {
-      fillDishList();
-      setTrigggerSearch(true);
-    }
+  useFocusEffect(
+    useCallback(() => {
 
-  }, [dishes, triggerSearch])
+      fillDishList();
+
+      return () => {
+        setDishes([])
+      }
+    }, [isFocused])
+  );
 
   const onCreateDishPress = (event) => {
     navigation.navigate(ROUTES.ADD_DISH_STACK)
@@ -37,14 +42,22 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
   return (
     <View style={styles.global}> 
       <View style={{alignItems:'center'}}>
-        <DishFlatList dishes={dishes}></DishFlatList>
+        {dishes.length === 0 && 
+          <EmptyScreenMessage
+          message={CONSTANTS.SCREEN_TEXTS.NOT_DISHES}
+          ></EmptyScreenMessage>
+        }
+        {
+          dishes.length !== 0 && 
+          <DishFlatList dishes={dishes}></DishFlatList>
+        }
         <View style={styles.icon}>
           <Icon
             size={50}
             name = 'pluscircle'
             type = 'antdesign'
             onPress={onCreateDishPress}
-            containerStyle={StyleSheet.icon}	
+            containerStyle={styles.icon}	
           >
           </Icon>
         </View>
@@ -66,10 +79,8 @@ const styles = StyleSheet.create({
     height : "100%"
 },
 icon : {
-                                 
   position: 'absolute',                                         
-  bottom: "2%",                                                    
-  right: "2%", 
-
+  top:  Dimensions.get('screen').width * 0.84,                                                    
+  right: Dimensions.get('screen').width * 0.01, 
 },
 });

@@ -5,4 +5,5 @@ export default REDUX_ACTIONS = {
   USER_SELECT_DISH : 'user/dish_selected',
   USER_UNSELECT_RESTAURANT : 'user/rest_unselected',
   USER_UNSELECT_DISH : 'user/dish_unselected',
+  USER_DATA_UPDATED : 'user/updateUser',
 }

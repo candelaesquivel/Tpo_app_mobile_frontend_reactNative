@@ -1,5 +1,5 @@
 import { View, Text , FlatList , StyleSheet , Dimensions, ScrollView} from 'react-native'
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import Images from '../../assets/images/index';
 import { Icon , Button} from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
@@ -10,42 +10,96 @@ import Carousal from '../components/carousal';
 import { Theme } from '../styles/Theme';
 import { MyButton } from '../components/button';
 import { DishFlatList } from '../components/DishFlatList';
+import { GetDishesFromRestaurant } from '../../networking';
+import { GetCommentsFromRestaurant } from '../../networking';
+import { useSelector } from 'react-redux';
+import { ROUTES } from '..';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useCallback } from 'react';
 
-function RestaurantProfileUserScreen({navigation,name='Mudra',hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
+function RestaurantProfileUserScreen({navigation,name='Mudra',
+hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
 calification=4,priceRange='$$$$',props}) {
 
-  const [commentBoolean , setCommentBoolean]= useState(false);
-  const [mapBoolean , setMapBoolean]= useState(false);
-  const [menuBoolean , setMenuBoolean]= useState(false);
+  const [showComments , setShowComments]= useState(false);
+  const [showMap , setShowMap]= useState(false);
+  const [showDishes , setShowDishes]= useState(false);
+
+  const [dishes, setDishes] = useState([]);
+  const [comments, setComments] = useState([]);
+
+  const [forceRender, setForceRender] = useState(false);
+
+  const isFocused = useIsFocused();
+
+  const restoId = useSelector((state) => state.session.restaurantSelectedId);
+
+  const fillCommentsList = async () => {
+    const newComments = await GetCommentsFromRestaurant(restoId);
+    setComments(newComments);
+  }
+
+  const fillDishList = async () => {
+    const newDishes = await GetDishesFromRestaurant(restoId);
+    setDishes(newDishes);
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+
+      if (showComments)
+        fillCommentsList();
+
+      if (showDishes)
+        fillDishList();
+
+      return () => {
+
+        if (!isFocused){
+          setShowComments(false);
+          setShowDishes(false);
+          setShowMap(false);
+          setDishes([]);
+          setComments([]);
+        }
+      }
+    }, [isFocused, showDishes, showComments])
+  )
 
   const onBtnPress = (component) => {
 
     if (component === 'map')
     {
-      setCommentBoolean(false);
-      setMenuBoolean(false);
-      setMapBoolean(!mapBoolean);
+      setComments([]);
+      setDishes([]);
+      setShowComments(false);
+      setShowDishes(false);
+      setShowMap(true);
     }
 
     if (component === 'menu')
     {
-      setCommentBoolean(false);
-      setMenuBoolean(!menuBoolean);
-      setMapBoolean(false);
+      setComments([]);
+      setShowComments(false);
+      setShowDishes(true);
+      setShowMap(false);
     }
 
     if (component === 'comment')
     {
-      setCommentBoolean(!commentBoolean);
-      setMenuBoolean(false);
-      setMapBoolean(false);
+      setDishes([]);
+      setShowComments(true);
+      setShowDishes(false);
+      setShowMap(false);
     }
   }
 
   const CommentComponent = () => {
     return (
 
-         <CommentUserRestaurant></CommentUserRestaurant>
+         <CommentUserRestaurant
+          comments={comments}
+         ></CommentUserRestaurant>
 
     )
 }
@@ -56,15 +110,15 @@ calification=4,priceRange='$$$$',props}) {
     )
   }
   const MenuComponent = () => {
-    return ( 
-      <View>
-        <Text>DISHES</Text>
-      <DishFlatList
-        dishes ={[]}
-        ></DishFlatList>
-      </View>
+    return (       
+        <DishFlatList 
+         dishes={dishes}
+         ></DishFlatList>   
        
     )
+  }
+  const onPressComment = (event) => {
+    navigation.navigate(ROUTES.USER_SENT_COMMENT);
   }
   return (
     <View>
@@ -85,8 +139,17 @@ calification=4,priceRange='$$$$',props}) {
           <Text style={styles.words}>{priceRange}</Text>
 
         <View style={styles.icons}>
-          <Icon name='heart' type='font-awesome' color={colorPalette.Orange}></Icon>
-          <Icon name='comment' type='font-awesome' color={colorPalette.Orange}></Icon>
+          <Icon
+           name='heart' 
+           type='font-awesome'
+            color={colorPalette.Orange}
+            ></Icon>
+          <Icon 
+          name='comment' 
+          type='font-awesome' 
+          color={colorPalette.Orange}
+          onPress={onPressComment}
+          ></Icon>
           <Icon name='share' type='font-awesome' color={colorPalette.Orange}></Icon>
         </View>
 
@@ -94,33 +157,33 @@ calification=4,priceRange='$$$$',props}) {
           <MyButton
             title={I18n.t('map')}
             width={Dimensions.get("window").width*0.3}
-            height={Dimensions.get("window").height*0.08}
+            height={Dimensions.get("window").height*0.055}
             onPress={() => {onBtnPress('map')} }
           ></MyButton>
           <MyButton
             title={I18n.t('menu')}
             width={Dimensions.get("window").width*0.3}
-            height={Dimensions.get("window").height*0.08}
+            height={Dimensions.get("window").height*0.055}
             onPress={() => {onBtnPress('menu')} }
           ></MyButton>
           <MyButton
             title={I18n.t('comment')}
             width={Dimensions.get("window").width*0.32}
-            height={Dimensions.get("window").height*0.08}
+            height={Dimensions.get("window").height*0.055}
             onPress={() => {onBtnPress('comment')} }
           ></MyButton>
        </View>
       
       {
-        commentBoolean && <CommentComponent/>
+        showComments && <CommentComponent/>
       }
 
       {
-        mapBoolean && <MapComponent/>
+        showMap && <MapComponent/>
       }
 
       {
-        menuBoolean && <MenuComponent/>
+        showDishes && <MenuComponent/>
       }
  </View>
    
@@ -141,10 +204,10 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent: 'space-evenly',
     width :'100%',
-    marginTop : "3%"
+    marginTop : "1%"
      },
     carousal : {
-      height : Dimensions.get('window').height * 0.32
+      height : Dimensions.get('window').height * 0.3
     },
     title : {
       fontSize : Theme.font.LARGE,
@@ -166,8 +229,8 @@ const styles = StyleSheet.create({
       justifyContent: 'space-evenly',
       width :'100%' ,
       height : "30%",
-      marginTop : '5%',
-      marginBottom : -Dimensions.get('window').height * 0.2
+      marginTop : '2%',
+      marginBottom : -Dimensions.get('window').height * 0.24
     },
     wordButton : {
       fontSize: Theme.font.MEDIUM,

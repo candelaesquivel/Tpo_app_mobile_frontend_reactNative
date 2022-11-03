@@ -7,13 +7,11 @@ import { ROUTES } from '..';
 import { useNavigation } from '@react-navigation/native';
 
 function RestaurantCardUser({name ='Rodizio',address='',score= 0, favorite=true,
-restaurantId = '', onFavoriteTouched={}, props}) {
+restaurantId = '', onPhotoPress = {}, onFavoriteTouched={}, props}) {
 
   const navigation = useNavigation();
 
-  const onPhotoPress = async (event) => {
-    navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
-  }
+  const showRating = score > 0;
 
   const FavoriteIcon = ({props}) => {
 
@@ -34,15 +32,19 @@ restaurantId = '', onFavoriteTouched={}, props}) {
           <Images.logo 
             width='20%' 
             height={Dimensions.get('window').height*0.13}
-            onPress={onPhotoPress}
+            onPress={(e) => onPhotoPress(restaurantId)}
           ></Images.logo>
           <View width={Dimensions.get('window').width*0.55} style={styles.globalThree} >
             <Text h4>{name}</Text>
             <Text>{address}</Text>
-            <View style={styles.globalFour}>
-              <Text> {score} </Text>
-              <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
-            </View> 
+            {
+              showRating && 
+              <View style={styles.globalFour}>
+                <Text> {Number(score).toFixed(1)} </Text>
+                <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
+              </View>
+            }
+             
           </View>
           <View  style= {styles.globalFive}>
           <FavoriteIcon isFavorite></FavoriteIcon>
