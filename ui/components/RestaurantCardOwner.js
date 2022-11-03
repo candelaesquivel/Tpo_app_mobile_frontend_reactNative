@@ -42,7 +42,7 @@ props}) {
             <Text style={styles.title} >{name}</Text>
             <Text style={styles.address}>{address}</Text>
           <View style={styles.globalThree}>
-            <Text >{score}</Text>
+            <Text> {Number(score).toFixed(1)} </Text>
             <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
           </View>
 

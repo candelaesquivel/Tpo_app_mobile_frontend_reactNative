@@ -36,7 +36,7 @@ restaurantId = '', onPhotoPress = {}, onFavoriteTouched={}, props}) {
             <Text h4>{name}</Text>
             <Text>{address}</Text>
             <View style={styles.globalFour}>
-              <Text> {score} </Text>
+              <Text> {Number(score).toFixed(1)} </Text>
               <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
             </View> 
           </View>
