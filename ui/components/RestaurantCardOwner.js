@@ -1,18 +1,18 @@
 import React from 'react';
-import { View , StyleSheet , Dimensions} from 'react-native';
+import { View , StyleSheet , Dimensions, TouchableWithoutFeedback} from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import I18n from "../../assets/localization/I18n";
-import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
 import {restaurantSelectedAction} from '../../redux/actions'
+import { Image } from 'react-native';
 
 function RestaurantCardOwner({name = 'Rodizio', 
 
-address = 'Honduras 5500', score = 0, restaurantId = '',
+address = 'Honduras 5500', score = 0, restaurantId = '', pictures = [],
 props}) {
 
   const showRating = score > 0;
@@ -30,14 +30,26 @@ props}) {
     navigation.navigate(ROUTES.RESTAURANT_EDIT_OWNER);
   }
 
+  const photo = pictures.length > 0 ? 
+  'data:image/png;base64,' + pictures[0] : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==';
+
   return (
       <Card>
         <View style={styles.global}>
-        <Images.logo 
+          <TouchableWithoutFeedback onPress={onPhotoPress}>
+            <Image source ={{
+                uri : photo,
+              }}
+              style ={{
+                width : '30%',
+                height : '90%'
+              }}></Image>
+          </TouchableWithoutFeedback>
+        {/* <Images.logo 
             width='20%' 
             height={Dimensions.get('window').height*0.13}
             onPress={onPhotoPress}
-          ></Images.logo>
+          ></Images.logo> */}
 
           <View width={Dimensions.get('window').width*0.55}   style={styles.globalTwo} >
             <Text style={styles.title} >{name}</Text>

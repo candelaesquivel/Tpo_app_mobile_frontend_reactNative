@@ -21,7 +21,9 @@ function OwnerHomeScreen({navigation, props}) {
 
   const fillRestaurantList = async () => {
     const rests = await GetOwnerRestaurants(ownerId);
-    setRestaurants(rests);
+
+    if (rests)
+      setRestaurants(rests);
   }
 
   useFocusEffect(

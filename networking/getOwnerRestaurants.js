@@ -6,19 +6,7 @@ async function getOwnerRestaurants(ownerId)
   const url = URL_SERVICES.RESTAURANTS_OWNER.replace('id', ownerId);
 
   return axios.get(url).then( (response) => {
-    let restos = [];
-
-    response.data.forEach(itr => {
-      restos.push({
-        name : itr.name,
-        address : itr.address.neighborhood + ' ' + itr.address.streetNumber,
-        score : itr.averageRating.$numberDecimal,
-        restaurantId : itr.id,
-      });
-    });
-
-    return restos;
-
+    return response.data;
   }).catch(err =>{
     console.error("Error on Get Owner Restaurants: ", err);
   }).finally(() => {
