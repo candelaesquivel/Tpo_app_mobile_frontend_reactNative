@@ -7,6 +7,8 @@ import { ROUTES } from "../ui";
 import DrawerHeader from "./DrawerHeader";
 import { logoutUserAction } from "../redux/actions";
 import { LogoutIcon, DeleteIcon } from "./DrawerIcons";
+import { CONSTANTS } from "../config";
+
 const DrawerOptionsUser = (props) => {
 
   const navigator = useNavigation();
@@ -30,12 +32,12 @@ const DrawerOptionsUser = (props) => {
       </DrawerItemList>
       <DrawerItem
         icon={LogoutIcon}
-        label={I18n.t('logout')}
+        label={CONSTANTS.SCREEN_TEXTS.LOGOUT_LABEL}
         onPress={onLogoutPress}
       />
       <DrawerItem
         icon={DeleteIcon}
-        label={I18n.t('deleteAccount')}
+        label={CONSTANTS.SCREEN_TEXTS.DELETE_ACOOUNT_LABEL}
         onPress={onDeletePress}
       />
     </DrawerContentScrollView>

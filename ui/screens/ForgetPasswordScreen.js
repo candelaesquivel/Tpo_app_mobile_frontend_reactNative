@@ -10,6 +10,7 @@ import { InputText } from "../components/InputText"
 import recoverPass from "../../networking/recoverPass"
 import { useState } from "react"
 import { Theme } from "../styles/Theme"
+import { CONSTANTS } from "../../config"
 
 function ForgetPasswordScreen({navigation, props}) {
 
@@ -35,7 +36,7 @@ function ForgetPasswordScreen({navigation, props}) {
             <View style={styles.containerEmailTwo}>
             <InputText 
               color = {colorPalette.Orange} 
-              placeholder = {I18n.t('emailInput')}
+              placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
               placeholderTextColor ={colorPalette.White}
               height = '50%' 
               onChange={onEmailChange}
@@ -44,7 +45,7 @@ function ForgetPasswordScreen({navigation, props}) {
             </View>
             <View style={styles.button}>
               <MyButton 
-              title = {I18n.t('recoverPasswordBtn')} 
+              title = {CONSTANTS.SCREEN_TEXTS.RECOVER_PASS_LABEL} 
               onPress = {onRecoveryTouch}
               width={ Dimensions.get("window").width*0.6}
               height={Dimensions.get("window").height*0.07}

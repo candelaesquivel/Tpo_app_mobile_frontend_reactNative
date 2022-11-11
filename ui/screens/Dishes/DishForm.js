@@ -152,13 +152,13 @@ const styles = StyleSheet.create({
   },
   thumbStyleOne : { 
     height: "10%", 
-    backgroundColor:  I18n.t('transparent') , 
+    backgroundColor:  'transparent' , 
     },
   
   thumbStyle : { 
     height: 12, 
     width: 12, 
-    backgroundColor: I18n.t('transparent')
+    backgroundColor: 'transparent'
    },
    
 });

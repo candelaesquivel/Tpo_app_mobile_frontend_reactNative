@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Theme } from "../styles/Theme";
 
 import {logoutUserAction, loginUserAction} from '../../redux/actions';
+import { CONSTANTS } from "../../config";
 
 function LoginOwnerScreen({navigation, props}){
 
@@ -70,14 +71,14 @@ function LoginOwnerScreen({navigation, props}){
                     <View style = {styles.logInContainerTwo}>
                     <InputText 
                     color = {colorPalette.Orange} 
-                    placeholder = {I18n.t('emailInput')}
+                    placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
                     placeholderTextColor ={colorPalette.White}
                     height = '50%' 
                     onChange={onEmailChange}
                     ></InputText>
                     <InputText 
                     color = {colorPalette.Orange} 
-                    placeholder = {I18n.t('passInput')}
+                    placeholder = {CONSTANTS.SCREEN_TEXTS.PASS_INPUT_LABEL}
                     placeholderTextColor ={colorPalette.White}
                     secureTextEntry = {true}
                     onChange = {onPassChange}>
@@ -86,12 +87,12 @@ function LoginOwnerScreen({navigation, props}){
                 </View>
                 
                 <MyButton 
-                title = {I18n.t('logIn')} 
+                title = {CONSTANTS.SCREEN_TEXTS.LOGIN_LABEL} 
                 onPress={onLoginPressed}
                 ></MyButton>
               </KeyboardAvoidingView>
-              <Text style={styles.word} onPress={onRecoverTouched}>{I18n.t('forgotPassword')}</Text>
-              <Text style={styles.word} onPress={onCreateTouched}>{I18n.t('createAccount')}</Text>        
+              <Text style={styles.word} onPress={onRecoverTouched}>{CONSTANTS.SCREEN_TEXTS.FORGOT_PASSWORD_LABEL}</Text>
+              <Text style={styles.word} onPress={onCreateTouched}>{CONSTANTS.SCREEN_TEXTS.CREATE_ACCOUNT_LABEL}</Text>        
              
           </View>
     )

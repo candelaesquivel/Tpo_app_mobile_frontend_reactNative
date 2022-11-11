@@ -5,6 +5,7 @@ import { colorPalette } from '../styles/colors';
 import { InputText } from './InputText';
 import I18n from '../../assets/localization/I18n';
 import { useEffect, useState } from 'react';
+import { CONSTANTS } from '../../config';
 
 export default function OverlayMessage(props) {
 
@@ -13,8 +14,8 @@ export default function OverlayMessage(props) {
         const Message1 = () => {
             return (
                 <View style={{flexDirection: 'row', justifyContent:'space-evenly', width: '100%'}}>
-                 <Text style={{  fontSize: 25,color: colorPalette.Orange}} >{I18n.t('yes')}</Text>
-                <Text style={{  fontSize: 25,color: colorPalette.Orange}}>{I18n.t('no')}</Text>
+                 <Text style={{  fontSize: 25,color: colorPalette.Orange}} >{CONSTANTS.SCREEN_TEXTS.YES}</Text>
+                <Text style={{  fontSize: 25,color: colorPalette.Orange}}>{CONSTANTS.SCREEN_TEXTS.NO}</Text>
                 </View>
                
     

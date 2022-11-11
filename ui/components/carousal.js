@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
   },
-  imageContainer: { backgroundColor: I18n.t('transparent')  },
+  imageContainer: { backgroundColor: 'transparent'  },
   item: {
     backgroundColor: "rgba(91, 91, 91, 0.3)",
     marginVertical: 8,

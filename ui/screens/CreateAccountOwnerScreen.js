@@ -53,14 +53,14 @@ export function CreateAccountOwnerScreen({navigation, props}) {
           <View style={styles.input}>
               <View style={styles.inputTwo}>
                 <InputText 
-                placeholder = {I18n.t('emailInput')} 
+                placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL} 
                 placeholderTextColor ={colorPalette.White}
                 color={colorPalette.Orange} name = 'email'
                 onChange = {onEmailChange}></InputText>
 
                 <InputText s
                 ecureTextEntry = {true} 
-                placeholder = {I18n.t('passInput')} 
+                placeholder = {CONSTANTS.SCREEN_TEXTS.PASS_INPUT_LABEL} 
                 placeholderTextColor ={colorPalette.White}
                 color={colorPalette.Orange} 
                 name='password' 
@@ -68,7 +68,7 @@ export function CreateAccountOwnerScreen({navigation, props}) {
 
                 <InputText
                 secureTextEntry = {true} 
-                placeholder = {I18n.t('validPassInput')}
+                placeholder = {CONSTANTS.SCREEN_TEXTS.VALID_PASS_INPUT_LABEL}
                 placeholderTextColor ={colorPalette.White}
                 color={colorPalette.Orange} 
                 name='repeatPassword' 
@@ -80,7 +80,7 @@ export function CreateAccountOwnerScreen({navigation, props}) {
        
             <View style={{width : '100%', height : '5%', backgroundColor : colorPalette.White}}></View>
             <MyButton
-             title = {I18n.t('createAccount')} 
+             title = {CONSTANTS.SCREEN_TEXTS.CREATE_ACCOUNT_LABEL} 
              onPress = {onRegisterPress}
              width={Dimensions.get("window").width*0.6}
              height={Dimensions.get("window").height*0.07}

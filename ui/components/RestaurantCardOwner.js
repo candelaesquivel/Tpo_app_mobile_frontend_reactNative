@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
 import {restaurantSelectedAction} from '../../redux/actions'
 import { Image } from 'react-native';
+import { CONSTANTS } from '../../config';
 
 function RestaurantCardOwner({name = 'Rodizio', 
 
@@ -64,7 +65,7 @@ props}) {
           }
 
           <View style={styles.globalFour} >
-            <Text  onPress={onMenuHandlerPress} style={styles.menu} >{I18n.t('menu')}</Text>
+            <Text  onPress={onMenuHandlerPress} style={styles.menu} >{CONSTANTS.SCREEN_TEXTS.MENU_LABEL}</Text>
           </View>
 
          </View>

@@ -97,13 +97,13 @@ function AddDishScreen({navigation, props}) {
 
             <View style={styles.buttons}>
                     <MyButton
-                    title= {I18n.t('chose')} 
+                    title= {CONSTANTS.SCREEN_TEXTS.CHOOSE_LABEL} 
                     width={ Dimensions.get("window").width*0.4}
                     height={Dimensions.get("window").height*0.07}
                     ></MyButton>
 
                     <MyButton
-                    title= {I18n.t('addNewCategory')} 
+                    title= {CONSTANTS.SCREEN_TEXTS.ADD_NEW_CATEGORY_LABEL} 
                     width={ Dimensions.get("window").width*0.4}
                     height={Dimensions.get("window").height*0.07}
                     ></MyButton>
@@ -114,7 +114,7 @@ function AddDishScreen({navigation, props}) {
 
             < MyButton
                 onPress={onSavePress}
-                title={I18n.t('save')}
+                title={CONSTANTS.SCREEN_TEXTS.SAVE_LABEL}
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}
                 ></MyButton>

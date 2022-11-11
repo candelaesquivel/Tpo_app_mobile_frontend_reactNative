@@ -55,20 +55,20 @@ function DeleteAccountScreenUser({navigation, props}){
                     h4
                     h4Style={{textAlign:'center'}}
                     style={styles.message}>
-                    {I18n.t('messageDeleteAccount')}
+                    {CONSTANTS.SCREEN_TEXTS.DELETE_ACCOUNT_INTRO_MSG}
                 </Text>
                 <KeyboardAvoidingView>
                     <View style = {styles.container}>
                         <View style={styles.containerTwo}>
                             <InputText
-                                placeholder = {I18n.t('passInput')}
+                                placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
                                 placeholderTextColor ={colorPalette.White}
                                 color = {colorPalette.Orange}
                                 
                                 >
                             </InputText>
                             <InputText 
-                                placeholder ={I18n.t('validPassInput')}
+                                placeholder ={CONSTANTS.SCREEN_TEXTS.PASS_INPUT_LABEL}
                                 placeholderTextColor ={colorPalette.White}
                                 color = {colorPalette.Orange}
                                 secureTextEntry = {true}
@@ -80,7 +80,7 @@ function DeleteAccountScreenUser({navigation, props}){
                 <View style={styles.button}>
                     <MyButton
                     onPress={onDeletePress}
-                    title = {I18n.t('delete')}
+                    title = {CONSTANTS.SCREEN_TEXTS.DELETE_LABEL}
                     width={ Dimensions.get("window").width*0.6}
                     height={Dimensions.get("window").height*0.07}
                     ></MyButton>

@@ -43,9 +43,9 @@ export default function DishItemCard({name = '', discount = 0, price = 100, dish
           ></Images.logo>
           <View width={"70%"}  style={styles.global} >
             <Text style={styles.words} >{name}</Text>
-              {showDiscount && <Text style={styles.discount}> {I18n.t('priceSymbol')}{price}</Text>}
+              {showDiscount && <Text style={styles.discount}> {CONSTANTS.SCREEN_TEXTS.PRICE_SYMBOL}{price}</Text>}
               <View style={styles.globalThree}>
-                  <Text style={styles.wordsTwo} marginBottom={30}> {I18n.t('priceSymbol')}{priceDescount} </Text>
+                  <Text style={styles.wordsTwo} marginBottom={30}> {CONSTANTS.SCREEN_TEXTS.PRICE_SYMBOL}{priceDescount} </Text>
                   {
                     showDiscount &&
                     <>

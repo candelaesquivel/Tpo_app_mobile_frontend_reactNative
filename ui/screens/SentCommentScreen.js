@@ -11,6 +11,7 @@ import { useSelector
  import { MyButton } from "../components/button";
  import createReview from "../../networking/createReview"
 import { ROUTES } from "..";
+import { CONSTANTS } from "../../config";
 export default function SentCommentScreen({navigation, props}){
 
     const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
@@ -39,7 +40,7 @@ export default function SentCommentScreen({navigation, props}){
     
     return (
         <View style={styles.global}>
-            <Text style={styles.words}>{I18n.t('calification')}</Text>
+            <Text style={styles.words}>{CONSTANTS.SCREEN_TEXTS.RATING_LABEL}</Text>
             <View style={styles.rating}>
                 <AirbnbRating 
                     defaultRating={reviewData.rating}
@@ -49,7 +50,7 @@ export default function SentCommentScreen({navigation, props}){
                     selectedColor = {colorPalette.Orange}
                     ></AirbnbRating>
             </View>     
-            <Text style={styles.words}>{I18n.t('comment')}</Text>
+            <Text style={styles.words}>{CONSTANTS.SCREEN_TEXTS.COMMENT_LABEL}</Text>
             <InputText 
                 placeholder=""
                 color={colorPalette.Cream}
@@ -62,7 +63,7 @@ export default function SentCommentScreen({navigation, props}){
             <View style={styles.buttonsTwo}>
             < MyButton
                 onPress={onCreatePress}
-                title={I18n.t('send')}
+                title={CONSTANTS.SCREEN_TEXTS.EMAIL_SENT_MSG}
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}
                 ></MyButton>

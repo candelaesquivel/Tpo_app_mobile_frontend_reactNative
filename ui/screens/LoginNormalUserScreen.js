@@ -119,7 +119,7 @@ function LoginUserScreen({navigation, props}){
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
             <Logo></Logo>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
-            <Text h2 h2Style={{color : colorPalette.Orange}}> {I18n.t('logIn')} </Text>
+            <Text h2 h2Style={{color : colorPalette.Orange}}> {CONSTANTS.SCREEN_TEXTS.LOGIN_LABEL} </Text>
             <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
             <GoogleSigninButton
                 style={{ width: 312, height: 48 }}

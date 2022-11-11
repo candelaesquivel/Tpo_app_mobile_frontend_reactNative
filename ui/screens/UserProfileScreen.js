@@ -39,7 +39,7 @@ export default function UserProfileScreen({navigation, route, props}) {
 
   return (
     <View style={style.container}>
-      <Text style={style.nameLabel}>{I18n.t('name')}</Text>
+      <Text style={style.nameLabel}>{CONSTANTS.SCREEN_TEXTS.NAME_LABEL}</Text>
 
       <InputText
         onChange={onNameChange}
@@ -49,7 +49,7 @@ export default function UserProfileScreen({navigation, route, props}) {
       </InputText>
 
       <View style={{flexDirection:'row' ,marginBottom:40}}>
-          <Text style={style.addPictureLabel}>{I18n.t('addPicture')} </Text>
+          <Text style={style.addPictureLabel}>{CONSTANTS.SCREEN_TEXTS.ADD_PICTURE_LABEL} </Text>
           <Icon name='add-photo-alternate' Type='material-community' size={30} color={colorPalette.Orange}></Icon>
       </View>
       <View style={style.btnContainer}>

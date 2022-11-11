@@ -13,6 +13,7 @@ import { Theme } from '../styles/Theme';
 import CloseComponent from '../components/closeComponent';
 import { FoodTypesDropDown } from '../components/FoodTypesDropdown';
 import { PriceRangesDropdown } from '../components/PriceRangeDropdown';
+import { CONSTANTS } from '../../config';
 
 function EditRestaurantScreen({navigation, props}) {
 
@@ -36,7 +37,7 @@ function EditRestaurantScreen({navigation, props}) {
                 <View style={styles.globalTwo}>
 
                     <Text style={styles.words}>
-                        {I18n.t('name')}    
+                        {CONSTANTS.SCREEN_TEXTS.NAME_LABEL}    
                     </Text>
                     <InputText 
                     placeholder="Mudra"
@@ -45,7 +46,7 @@ function EditRestaurantScreen({navigation, props}) {
                     ></InputText>
 
                     <Text style={styles.words}>
-                        {I18n.t('address')}    
+                        {CONSTANTS.SCREEN_TEXTS.ADDRESS_LABEL}    
                     </Text>
                     <InputText 
                     placeholder="Honduras 500"
@@ -54,7 +55,7 @@ function EditRestaurantScreen({navigation, props}) {
                     ></InputText>
 
                     <Text  style={styles.words} >
-                     {I18n.t('neighborhood')}    
+                     {CONSTANTS.SCREEN_TEXTS.NEIGHBORHOOD_LABEL}    
                     </Text>
                     <InputText 
                     placeholder="Palermo"
@@ -63,7 +64,7 @@ function EditRestaurantScreen({navigation, props}) {
                     ></InputText>
 
                     <Text style={styles.words}  >
-                    {I18n.t('location')}    
+                    {CONSTANTS.SCREEN_TEXTS.LOCATION_LABEL}    
                     </Text>
                     <InputText 
                     placeholder="CABA"
@@ -73,7 +74,7 @@ function EditRestaurantScreen({navigation, props}) {
                     
                     <Text style={styles.words}
                     >
-                     {I18n.t('zipCode')}    
+                     {CONSTANTS.SCREEN_TEXTS.ZIP_CODE_LABEL}    
                     </Text>
                     <InputText 
                     placeholder="1345"
@@ -82,21 +83,21 @@ function EditRestaurantScreen({navigation, props}) {
                     ></InputText>
 
                   <Text style={styles.words}>
-                    {I18n.t('hour')} 
+                    {CONSTANTS.SCREEN_TEXTS.HOUR_LABEL} 
                     </Text>
 
                 </View>
           <View style={styles.hour}>
           
                 < MyButton
-                title= {I18n.t('opening')} 
+                title= {CONSTANTS.SCREEN_TEXTS.OPEN_HOUR_LABEL} 
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}
                 onPress={() =>{ setOpeningHour(!openingHour)}}
                 ></MyButton>
 
                 < MyButton
-                title= {I18n.t('closing')} 
+                title= {CONSTANTS.SCREEN_TEXTS.CLOSE_HOUR_LABEL} 
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}
                 onPress={() => {setClosingHour(!closingHour)}}
@@ -126,13 +127,13 @@ function EditRestaurantScreen({navigation, props}) {
           
           <View style={{flexDirection: 'column' , width : "100%",height : "60%", alignItems : "center" }}>
             < MyButton
-                title= {I18n.t('save')} 
+                title= {CONSTANTS.SCREEN_TEXTS.SAVE_LABEL} 
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}
                 ></MyButton>
 
                  < MyButton
-                title= {I18n.t('deleteRestaurant')} 
+                title= {CONSTANTS.SCREEN_TEXTS.DELETE_RESTAURANT_LABEL} 
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}
                 ></MyButton>

@@ -5,13 +5,14 @@ import I18n from "../../assets/localization/I18n";
 import { colorPalette } from '../styles/colors';
 import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
+import {CONSTANTS} from '../../config';
 
  function Mapa() {
   return (
     <View>
      <View style={{flexDirection : 'row', justifyContent: 'center'}}>
         <Icon  name="pin-outline" type='ionicon' color={colorPalette.Orange}></Icon>
-        <Text style={styles.words}>{I18n.t('address')}</Text>
+        <Text style={styles.words}>{CONSTANTS.SCREEN_TEXTS.ADDRESS_LABEL}</Text>
       </View>
       <Icon name="navigate-circle-outline" type='ionicon' color={colorPalette.Orange} style={{marginTop : '5%'}}></Icon>
       <Images.logo width='100%' height={100} ></Images.logo> 
