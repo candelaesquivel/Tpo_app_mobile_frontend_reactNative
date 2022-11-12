@@ -1,6 +1,5 @@
 import { InputText } from "../../components/InputText";
 import { Text, TouchableOpacityBase } from "react-native";
-import Mapa from "../../components/mapa";
 import { Switch } from "react-native";
 import Carousal from "../../components/carousal";
 import { StyleSheet } from "react-native";
@@ -24,19 +23,11 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 const RestaurantForm = ({
   name,
-  address,
-  neighborhood,
-  location,
-  zipCode,
   isClosed = false,
   region,
   addressEntered,
   onCreateHandler,
   onNameHandler,
-  onAddressHandler,
-  onLocationHandler,
-  onZipCodeHandler,
-  onNeighborhoodHandler,
   onToggleClose,
   onRegionHandler,
   props
@@ -169,10 +160,6 @@ const RestaurantForm = ({
         >
         </MyButton>
       </View>
-
-      
-
-      
     </ScrollView>
   )
 }

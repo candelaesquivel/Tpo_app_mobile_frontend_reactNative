@@ -1,25 +1,10 @@
-import { View, Text , ScrollView , StyleSheet , Dimensions, ToastAndroid} from 'react-native'
+import { ToastAndroid} from 'react-native'
 import React, { useState } from 'react'
-import { colorPalette } from '../styles/colors'
-import I18n from "../../assets/localization/I18n";
-import { InputText } from '../components/InputText'
-import { MyButton } from '../components/button'
-import  Icon from 'react-native-vector-icons/MaterialIcons';
-import Carousal from '../components/carousal';
-import Mapa from '../components/mapa';
-import { Dropdown } from 'react-native-element-dropdown';
-import MyWeekButtons from '../components/WeekButton';
-import MyTimePicker from '../components/TimePicker';
-import { Theme } from '../styles/Theme';
-import CloseComponent from '../components/closeComponent';
-import { FoodTypesDropDown } from '../components/FoodTypesDropdown';
-import { PriceRangesDropdown } from '../components/PriceRangeDropdown';
 import { createRestaurant } from '../../networking/createRestaurant';
 import { CONSTANTS } from '../../config';
 import { useSelector } from 'react-redux';
 import { RestaurantForm } from './createRestaurant/RestaurantForm';
 import { ROUTES } from '..';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useEffect } from 'react';
 
 function CreateRestaurantScreen({navigation, props}) {
@@ -47,14 +32,6 @@ function CreateRestaurantScreen({navigation, props}) {
 
   const [restaurantData, setRestaurantData] = useState({
     name : '',
-    address : {
-      streetName : '',
-      streetNumber : '430',
-      neighborhood : '',
-      city : '',
-      state : '',
-      country : '',
-    },
     zipCode : '',
     isClosed : false,
     foodTypes : ['Mexicana'],
@@ -121,52 +98,32 @@ function CreateRestaurantScreen({navigation, props}) {
     setRestaurantData({...restaurantData, 'name' : text});
   }
 
-  const onAddressChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    let oldData = restaurantData;
-    oldData.address.streetName = text;
-
-    setRestaurantData(oldData);
-  }
-
-  const onLocationChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    let oldData = restaurantData;
-    oldData.address.city = text;
-    setRestaurantData(oldData);
-  }
-
-  const onNeighborhoodChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    let oldData = restaurantData;
-    oldData.address.neighborhood = text;
-    setRestaurantData(oldData);
-  }
-
   const onRegionChange = (data) => {
     setAddressEntered(true);
     setRegion(data);
+
+    setRestaurantData({...restaurantData, 'coordinates' : {
+      type: "Point",
+      coordinates: [
+        data.longitude,
+        data.latitude
+      ]
+    }})
   }
 
   return (
     <RestaurantForm
       name={restaurantData.name}
-      address={restaurantData.address.streetName}
-      zipCode={restaurantData.zipCode}
-      neighborhood={restaurantData.address.neighborhood}
-      location={restaurantData.address.city}
       isClosed={restaurantData.isClosed}
       region={region}
       addressEntered={addressEntered}
       onCreateHandler={onCreateHandler}
       onNameHandler={onNameChange}
-      onAddressHandler={onAddressChange}
-      onLocationHandler={onLocationChange}
-      onNeighborhoodHandler={onNeighborhoodChange}
       onToggleClose={onCloseHandler}
       onRegionHandler={onRegionChange}
    >
   </RestaurantForm>
   );
 }
-
-
 
 export default CreateRestaurantScreen;
