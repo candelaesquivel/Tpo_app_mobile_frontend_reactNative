@@ -30,12 +30,7 @@ function MainNavigator(props){
             backgroundColor: colorPalette.Orange,
           },
           headerTintColor: colorPalette.White,
-        }}>
-
-            <Stack.Screen name = {ROUTES.CREATE_RESTAURANT_STACK} component = {CreateRestaurant} options={{
-              title : CONSTANTS.SCREEN_TITLES.CREATE_RESTAURANT
-            }}></Stack.Screen>
-           
+        }}>           
             <Stack.Screen name = {ROUTES.HOME_SCREEN} component = {Home} options={{
               headerShown: false,
             }}></Stack.Screen>
@@ -104,9 +99,12 @@ function MainNavigator(props){
               title : CONSTANTS.SCREEN_TITLES.DELETE_ACCOUNT
             }}></Stack.Screen>
 
-
             <Stack.Screen name = {ROUTES.DISH_USER_VIEW_STACK} component = {DishUserView} options={{
               title : CONSTANTS.SCREEN_TITLES.DISH_INFO
+            }}></Stack.Screen>
+
+            <Stack.Screen name = {ROUTES.CREATE_RESTAURANT_STACK} component = {CreateRestaurant} options={{
+              title : CONSTANTS.SCREEN_TITLES.CREATE_RESTAURANT
             }}></Stack.Screen>
             
         </Stack.Navigator>

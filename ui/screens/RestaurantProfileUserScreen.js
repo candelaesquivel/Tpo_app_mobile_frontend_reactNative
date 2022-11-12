@@ -6,6 +6,7 @@ import { colorPalette } from '../styles/colors';
 import CommentUserRestaurant from '../components/commentUserRestaurant';
 import I18n from '../../assets/localization/I18n';
 import Mapa from '../components/mapa';
+import { CONSTANTS } from "../../config";
 import Carousal from '../components/carousal';
 import { Theme } from '../styles/Theme';
 import { MyButton } from '../components/button';
@@ -16,10 +17,11 @@ import { useSelector } from 'react-redux';
 import { ROUTES } from '..';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 function RestaurantProfileUserScreen({navigation,name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
-calification=4,priceRange='$$$$',props}) {
+calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sprops}) {
 
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
@@ -105,8 +107,24 @@ calification=4,priceRange='$$$$',props}) {
 }
 
   const MapComponent = () => {
+    region = {
+      latitude: latitude,
+      longitude: longitude,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01,
+    }
+
     return (
-        <Mapa></Mapa>
+      <View style={styles.mapContainer}>
+      <Text style={styles.words}>
+        {CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
+      </Text>
+      <MapView
+        style={styles.map}
+        provider={PROVIDER_GOOGLE}
+        region={region}
+      />
+    </View>
     )
   }
   const MenuComponent = () => {
@@ -237,7 +255,13 @@ const styles = StyleSheet.create({
       fontFamily :'Roboto' ,
        color : colorPalette.Black
       },
-
-
-
+      mapContainer: {
+        alignSelf: 'center',
+        height: 250,
+        width: 250,
+      },
+    
+      map: {
+        ...StyleSheet.absoluteFillObject,
+      },
 });
