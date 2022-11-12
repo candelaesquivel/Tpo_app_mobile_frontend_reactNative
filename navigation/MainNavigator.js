@@ -31,6 +31,10 @@ function MainNavigator(props){
           },
           headerTintColor: colorPalette.White,
         }}>
+
+            <Stack.Screen name = {ROUTES.CREATE_RESTAURANT_STACK} component = {CreateRestaurant} options={{
+              title : CONSTANTS.SCREEN_TITLES.CREATE_RESTAURANT
+            }}></Stack.Screen>
            
             <Stack.Screen name = {ROUTES.HOME_SCREEN} component = {Home} options={{
               headerShown: false,
@@ -103,9 +107,6 @@ function MainNavigator(props){
 
             <Stack.Screen name = {ROUTES.DISH_USER_VIEW_STACK} component = {DishUserView} options={{
               title : CONSTANTS.SCREEN_TITLES.DISH_INFO
-            }}></Stack.Screen>
-            <Stack.Screen name = {ROUTES.CREATE_RESTAURANT_STACK} component = {CreateRestaurant} options={{
-              title : CONSTANTS.SCREEN_TITLES.CREATE_RESTAURANT
             }}></Stack.Screen>
             
         </Stack.Navigator>

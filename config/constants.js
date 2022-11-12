@@ -63,6 +63,7 @@ export default  {
     ADDRESS_LABEL : I18n.t('address'),
     NEIGHBORHOOD_LABEL : I18n.t('neighborhood'),
     LOCATION_LABEL : I18n.t('location'),
+    MAP_LABEL : I18n.t('map'),
     ZIP_CODE_LABEL : I18n.t('zipCode'),
     HOUR_LABEL : I18n.t('hour'),
     OPEN_HOUR_LABEL : I18n.t('opening'),

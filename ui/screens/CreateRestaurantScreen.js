@@ -19,9 +19,32 @@ import { CONSTANTS } from '../../config';
 import { useSelector } from 'react-redux';
 import { RestaurantForm } from './createRestaurant/RestaurantForm';
 import { ROUTES } from '..';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { useEffect } from 'react';
 
 function CreateRestaurantScreen({navigation, props}) {
+
+  useEffect(() => {
+    const mockFunction = (error) => {
+      if (error === 'VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.') 
+      return console.log("Virtualized List error was caught");
+      if (console.originalError) console.originalError(error)
+    }
   
+    console.originalError = console.error
+    console.error = mockFunction
+    return () => { console.error = console.originalError }
+  }, [])
+  
+  const [region, setRegion] = useState({
+    latitude: -34.603722,
+    longitude: -58.381592,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
+
+  const [addressEntered, setAddressEntered] = useState(false);
+
   const [restaurantData, setRestaurantData] = useState({
     name : '',
     address : {
@@ -117,6 +140,11 @@ function CreateRestaurantScreen({navigation, props}) {
     setRestaurantData(oldData);
   }
 
+  const onRegionChange = (data) => {
+    setAddressEntered(true);
+    setRegion(data);
+  }
+
   return (
     <RestaurantForm
       name={restaurantData.name}
@@ -125,15 +153,20 @@ function CreateRestaurantScreen({navigation, props}) {
       neighborhood={restaurantData.address.neighborhood}
       location={restaurantData.address.city}
       isClosed={restaurantData.isClosed}
+      region={region}
+      addressEntered={addressEntered}
       onCreateHandler={onCreateHandler}
       onNameHandler={onNameChange}
       onAddressHandler={onAddressChange}
       onLocationHandler={onLocationChange}
       onNeighborhoodHandler={onNeighborhoodChange}
       onToggleClose={onCloseHandler}
-    >
-    </RestaurantForm>
+      onRegionHandler={onRegionChange}
+   >
+  </RestaurantForm>
   );
 }
+
+
 
 export default CreateRestaurantScreen;

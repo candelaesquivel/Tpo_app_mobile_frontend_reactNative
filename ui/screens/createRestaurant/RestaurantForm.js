@@ -1,5 +1,5 @@
 import { InputText } from "../../components/InputText";
-import { Text } from "react-native";
+import { Text, TouchableOpacityBase } from "react-native";
 import Mapa from "../../components/mapa";
 import { Switch } from "react-native";
 import Carousal from "../../components/carousal";
@@ -17,6 +17,9 @@ import { Dimensions } from "react-native";
 import { FoodTypesDropDown } from "../../components/FoodTypesDropdown";
 import { PriceRangesDropdown } from "../../components/PriceRangeDropdown";
 import MyWeekButtons from '../../components/WeekButton';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { SafeAreaView } from "react-native-safe-area-context";
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 
 const RestaurantForm = ({
@@ -26,13 +29,16 @@ const RestaurantForm = ({
   location,
   zipCode,
   isClosed = false,
+  region,
+  addressEntered,
   onCreateHandler,
-  onToggleClose,
   onNameHandler,
   onAddressHandler,
   onLocationHandler,
   onZipCodeHandler,
   onNeighborhoodHandler,
+  onToggleClose,
+  onRegionHandler,
   props
 }) => {
 
@@ -40,7 +46,7 @@ const RestaurantForm = ({
   const [showClosingPicker, setClosingPicker] = useState(false);
 
   return (
-    <ScrollView >
+    <ScrollView keyboardShouldPersistTaps={'handled'}>
       <Carousal></Carousal>
       <View style={styles.addPhotoContainer}>
         <Icon name='add' size={30}></Icon>
@@ -63,51 +69,48 @@ const RestaurantForm = ({
             {CONSTANTS.SCREEN_TEXTS.ADDRESS_LABEL}
         </Text>
 
-        <InputText
-          textColor={colorPalette.Black}
-          onChange={onAddressHandler}
-          defaultValue={address}
-          color={colorPalette.White}
-          placeholderTextColor = {colorPalette.Black}
-        >
-        </InputText>
+        <SafeAreaView style={styles.addressContainer}>
+          <GooglePlacesAutocomplete
+            placeholder='Ingresa la dirección'
+            fetchDetails={true}
+            onPress={
+              (data, details = null) => {
+                console.log(details);
+                onRegionHandler({
+                  latitude: details.geometry.location.lat,
+                  longitude: details.geometry.location.lng,
+                  latitudeDelta: details.geometry.viewport.northeast.lat - details.geometry.viewport.southwest.lat,
+                  longitudeDelta: (details.geometry.viewport.northeast.lat - details.geometry.viewport.southwest.lat) * (Dimensions.get('window').width / Dimensions.get('window').height),
+                });
+              }
+            }
+            query={{
+              key: 'AIzaSyAjbK7e1ZWUdK3QWETrGvgWMKtjYx0ARDk',
+              language: 'es',
+              components: 'country:ar',
+              type: 'geocode'
+            }}
+            styles={{
+              width: '100%',
+            }}
+          />
+        </SafeAreaView>
 
-          <Text  style={styles.words} >
-            {CONSTANTS.SCREEN_TEXTS.NEIGHBORHOOD_LABEL}
-          </Text>
-
-        <InputText
-          textColor={colorPalette.Black} 
-          onChange={onNeighborhoodHandler}
-          defaultValue={neighborhood}
-          color={colorPalette.White}
-          placeholderTextColor = {colorPalette.Black}
-        >
-        </InputText>
-
-        <Text style={styles.words}  >
-          {CONSTANTS.SCREEN_TEXTS.LOCATION_LABEL}
-        </Text>
-        
-        <InputText
-          textColor={colorPalette.Black} 
-          onChange={onLocationHandler}
-          defaultValue={location}
-          color={colorPalette.White}
-          placeholderTextColor = {colorPalette.Black}
-        >
-        </InputText>
-          <Text style={styles.words}
-          >
-            {CONSTANTS.SCREEN_TEXTS.ZIP_CODE_LABEL}
-          </Text>
-          <InputText
-            textColor={colorPalette.Black} 
-          onChange={onZipCodeHandler}
-          defaultValue={zipCode}
-          color={colorPalette.White}
-          placeholderTextColor = {colorPalette.Black}
-          ></InputText>
+        {
+          addressEntered?
+          <View style={styles.mapContainer}>
+            <Text style={styles.words}>
+              {CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
+            </Text>
+            <MapView
+              style={styles.map}
+              provider={PROVIDER_GOOGLE}
+              region={region}
+            />
+          </View>
+          :
+          <></>
+        }
 
           <Text style={styles.words}>
             {CONSTANTS.SCREEN_TEXTS.HOUR_LABEL}
@@ -141,9 +144,6 @@ const RestaurantForm = ({
         }
         
       </View>
-
-      {/* Map Section */}
-      <Mapa></Mapa>
       
       {/* Is Closed */}
       <View style={styles.closeSection}>
@@ -219,6 +219,22 @@ const styles = StyleSheet.create(
     width : "90%" , 
     marginBottom : 10,
     alignSelf : 'center'
+  },
+
+  addressContainer: {
+    width: "90%",
+    alignSelf : 'center',
+    marginBottom : 10,
+  },
+
+  mapContainer: {
+    alignSelf: 'center',
+    height: 250,
+    width: 250,
+  },
+
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
 
   addPhotoContainer : {
