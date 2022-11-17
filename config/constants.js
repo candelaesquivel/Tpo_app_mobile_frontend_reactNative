@@ -85,7 +85,7 @@ export default  {
     ACCOUNT_CREATED : I18n.t('accountCreated'),
     ACCOUNT_DELETED : I18n.t('accountDeleted'),
     LOGOUT_LABEL : I18n.t('logout'),
-    LOGIN_LABEL : I18n.t('login'),
+    LOGIN_LABEL : I18n.t('loginLabel'),
     DELETE_ACOOUNT_LABEL : I18n.t('deleteAccount'),
     DELETE_ACCOUNT_INTRO_MSG : I18n.t('messageDeleteAccount'),
     DELETE_LABEL : I18n.t('delete'),
