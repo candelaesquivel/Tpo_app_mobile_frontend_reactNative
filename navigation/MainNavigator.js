@@ -85,9 +85,7 @@ function MainNavigator(props){
               title : CONSTANTS.SCREEN_TITLES.RESTAURANT_MENU
             }}></Stack.Screen>
             
-            <Stack.Screen name = {ROUTES.RESTAURANT_OWNER_PROFILE_STACK} component = {OwnerRestaurantProfile} options={{
-              title : CONSTANTS.SCREEN_TITLES.PROFILE_USER
-            }}></Stack.Screen>
+      
 
             <Stack.Screen name = {ROUTES.ADD_DISH_STACK} component = {AddDish} options={{
               title : CONSTANTS.SCREEN_TITLES.ADD_DISH

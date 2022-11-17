@@ -18,7 +18,7 @@ export default {
     CREATE_RESTAURANT_DRAWER : 'OwnerCreateRestaurantDrawer',
     MENU_RESTAURANT_OWNER_STACK : 'MenuRestaurantOwnerStack',
     CREATE_RESTAURANT_STACK : 'OwnerCreateRestaurantStack',
-    RESTAURANT_OWNER_PROFILE_STACK : 'OwnerRestaurantProfileStack',
+    
     ADD_DISH_STACK : 'AddDishToMenuStack',
     DISH_MODIFY_STACK : 'DishModifyStack',
     DELETE_ACCOUNT_OWNER_STACK : 'DeleteAccountOwnerStack',
