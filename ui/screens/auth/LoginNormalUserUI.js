@@ -1,6 +1,6 @@
 import { CONSTANTS } from "../../../config";
 import { Text } from "@rneui/themed";
-import { View, View } from "react-native";
+import { View } from "react-native";
 import { Logo } from "../../components/Logo";
 import { colorPalette } from "../../styles/colors";
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
