@@ -17,6 +17,7 @@ const UserProfileScreenUI = ({
     userName,
     onNameChangeHandler,
     onSavePressHandler,
+    onImgUploadHandler,
     props}) => {
   
     return (
@@ -32,10 +33,16 @@ const UserProfileScreenUI = ({
   
         <View style={{flexDirection:'row' ,marginBottom:40}}>
             <Text style={style.addPictureLabel}>{CONSTANTS.SCREEN_TEXTS.ADD_PICTURE_LABEL} </Text>
-            <Icon name='add-photo-alternate' Type='material-community' size={30} color={colorPalette.Orange}></Icon>
+            <Icon 
+              name='add-photo-alternate' 
+              Type='material-community' size={50} 
+              color={colorPalette.Orange}
+              onPress={onImgUploadHandler}
+              >
+            </Icon>
         </View>
         <View style={style.btnContainer}>
-          <MyButton title='Guardar' width='30%' height='60%' onPress={onSavePressHandler}></MyButton>
+          <MyButton title={CONSTANTS.SCREEN_TEXTS.SAVE_LABEL} width='30%' height='60%' onPress={onSavePressHandler}></MyButton>
         </View>
       </View>
     )

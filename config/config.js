@@ -19,7 +19,7 @@ const URL_SERVICES = {
   // User Routes
   UPDATE_USER_DATA : USER_ROUTE + 'id/',
   GET_USER_INFO: USER_ROUTE + '',
-  UPLOAD_USER_IMAGE: USER_ROUTE + '/image',
+  UPLOAD_USER_IMAGE: USER_ROUTE + 'id/' + 'image',
   FAVORITE_RESTAURANTS_NORMAL_USER: USER_ROUTE + 'id/' + 'favorites',
   RESTAURANTS_OWNER: USER_ROUTE + 'id/' + 'restaurants',
   CHANGE_RESTAURANT_FAVORITE : USER_ROUTE + 'id/' + 'favorites',
