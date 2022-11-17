@@ -106,5 +106,14 @@ export default  {
     PRINCE_RANGE_MID : I18n.t('$$'),
     PRICE_RANGE_HIGH : I18n.t('$$$'),
     PRICE_RANGE_ULTRA_HIGH : I18n.t('$$$$'),
+
+    MONDAY_LETTER : I18n.t('mondayLetter'),
+    TUESDAY_LETTER : I18n.t('tuesdayLetter'),
+    WEDNESDAY_LETTER : I18n.t('wednesdayLetter'),
+    THURSDAY_LETTER : I18n.t('thursdayLetter'),
+    FRIDAY_LETTER : I18n.t('fridayLetter'),
+    SATURDAY_LETTER : I18n.t('saturdayLetter'),
+    SUNDAY_LETTER : I18n.t('sundayLetter'),
+
   },
 }

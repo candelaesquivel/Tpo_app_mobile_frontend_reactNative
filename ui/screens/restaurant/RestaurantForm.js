@@ -15,7 +15,7 @@ import { useState } from "react";
 import { Dimensions } from "react-native";
 import { FoodTypesDropDown } from "../../components/FoodTypesDropdown";
 import { PriceRangesDropdown } from "../../components/PriceRangeDropdown";
-import MyWeekButtons from '../../components/WeekButton';
+import { WeekButtons } from "../../components/WeekButton";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
@@ -35,6 +35,10 @@ const RestaurantForm = ({
 
   const [showOpeningPicker, setOpeningPicker] = useState(false);
   const [showClosingPicker, setClosingPicker] = useState(false);
+  const [daysOpened, setDaysOpened] = useState([]);
+
+  const onDayBtnPress = (event) => {
+  }
 
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}>
@@ -114,7 +118,7 @@ const RestaurantForm = ({
           title= {CONSTANTS.SCREEN_TEXTS.OPEN_HOUR_LABEL} 
           width={ Dimensions.get("window").width*0.5}
           height={Dimensions.get("window").height*0.07}
-          onPress={() =>{ showOpeningPicker(!openingHour)}}
+          onPress={() =>{ setOpeningPicker(!showOpeningPicker)}}
         >
         </MyButton>
 
@@ -122,7 +126,7 @@ const RestaurantForm = ({
           title= {CONSTANTS.SCREEN_TEXTS.CLOSE_HOUR_LABEL} 
           width={ Dimensions.get("window").width*0.5}
           height={Dimensions.get("window").height*0.07}
-          onPress={() => {showClosingPicker(!closingHour)}}
+          onPress={() => {setClosingPicker(!showClosingPicker)}}
         >
         </MyButton>
   
@@ -151,7 +155,12 @@ const RestaurantForm = ({
       </View>
 
       <View style={styles.buttonContainer}>
-        <MyWeekButtons></MyWeekButtons>
+        <WeekButtons
+          weekButtonHandler={onDayBtnPress}
+          weekButtonValues={daysOpened}
+        >
+
+        </WeekButtons>
         <MyButton
         onPress={onCreateHandler}
         title= {CONSTANTS.SCREEN_TEXTS.CREATE_LABEL} 

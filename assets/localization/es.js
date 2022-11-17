@@ -90,4 +90,12 @@ export  default{
     accountCreated : 'Cuenta Creada exitosamente',
     accountDeleted : 'Cuenta eliminada exitosamente',
 
+    mondayLetter : 'L',
+    tuesdayLetter : 'M',
+    wednesdayLetter : 'I',
+    thursdayLetter : 'J',
+    fridayLetter : 'V',
+    saturdayLetter : 'S',
+    sundayLetter : 'D'
+
 };
