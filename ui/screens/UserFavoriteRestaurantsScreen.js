@@ -1,15 +1,9 @@
-import { View , StyleSheet , Dimensions} from 'react-native'
-import React, { useCallback, useEffect } from 'react'
-import MySearchBar from '../components/MySearchBar'
-import screenNames from '../screenNames'
+import React, { useCallback } from 'react'
 import { useState } from 'react';
 import { GetFavoriteRestaurants } from '../../networking';;
 import { useDispatch, useSelector } from 'react-redux';
 import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
-import { Text } from 'react-native';
-import { CONSTANTS } from '../../config';
-import EmptyScreenMessage from '../components/EmptyScreenMessage';
 import { restaurantSelectedAction } from '../../redux/actions';
 import { ROUTES } from '..';
 import { UserFavoriteRestaurantsScreenUI}  from './restaurant/UserFavoriteRestaurantsScreenUI';
