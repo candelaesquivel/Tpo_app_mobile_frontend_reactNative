@@ -98,6 +98,8 @@ export default  {
     FOOD_TYPE_LABEL : I18n.t('foodType'),
     DISTANCE_UNIT_LABEL : I18n.t('distanceUnit'),
     FILTER_MSG_INTRO : I18n.t('filterMessageIntro'),
+    USER_LABEL : I18n.t('user'),
+    OWNER_LABEL : I18n.t('owner'),
 
     PRICE_RANGE_LOW : I18n.t('$'),
     PRINCE_RANGE_MID : I18n.t('$$'),

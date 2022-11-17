@@ -1,6 +1,6 @@
 
 /// Screens
-export {default as Home} from './HomeScreen';
+export {default as Home} from './auth/HomeScreen';
 export {default as LoginOwner} from './LoginOwnerScreen';
 export {default as LoginNormalUser} from './LoginNormalUserScreen';
 export {default as CreateAccountOwner} from './CreateAccountOwnerScreen';

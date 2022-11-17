@@ -49,7 +49,10 @@ export  default{
     sentCommentTitle : 'Enviar Comentario',
     createRestaurantTitle : 'Crear Restaurante',
     filtersTitle : 'Filtros',
-  
+
+    loginLabel : 'Iniciar sesión',
+    user : 'Usuario',
+    owner : 'Dueño de Restaurante',
     userDataUpdated : 'Datos de usuario actualizados',
     emptyFavorites : 'No hay restaurantes favoritos',
     emptyRestaurants : 'No hay restaurantes ',
