@@ -1,16 +1,12 @@
-import { View } from "react-native";
-import { Logo } from "../components/Logo";
-import { colorPalette } from "../styles/colors";
-import { Text } from "@rneui/themed";
-import I18n from '../../assets/localization/I18n'
 import { useEffect, useState } from "react";
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
-import { ROUTES } from "..";
-import boundGoogleData from "../../networking/boundGoogleData";
+import { ROUTES } from "../..";
+import boundGoogleData from "../../../networking/boundGoogleData";
 import GetLocation from 'react-native-get-location'
 import { useDispatch, useSelector } from "react-redux";
-import {loginUserAction } from '../../redux/actions';
-import { CONSTANTS } from "../../config";
+import {loginUserAction } from '../../../redux/actions';
+import { CONSTANTS } from "../../../config";
+import { LoginNormalUserUI } from "./LoginNormalUserUI";
 
 function LoginUserScreen({navigation, props}){
   
@@ -115,19 +111,11 @@ function LoginUserScreen({navigation, props}){
       };
 
     return (
-        <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
-            <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
-            <Logo></Logo>
-            <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
-            <Text h2 h2Style={{color : colorPalette.Orange}}> {CONSTANTS.SCREEN_TEXTS.LOGIN_LABEL} </Text>
-            <View style={{height : 40, backgroundColor : colorPalette.White}}></View>
-            <GoogleSigninButton
-                style={{ width: 312, height: 48 }}
-                size={GoogleSigninButton.Size.Wide}
-                color={GoogleSigninButton.Color.Light}
-                onPress={_signIn}
-            />
-        </View>
+        <LoginNormalUserUI
+          onGoogleSignInHandler={_signIn}
+        >
+
+        </LoginNormalUserUI>
     )
 }
 

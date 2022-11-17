@@ -2,7 +2,7 @@
 /// Screens
 export {default as Home} from './auth/HomeScreen';
 export {default as LoginOwner} from './auth/LoginOwnerScreen';
-export {default as LoginNormalUser} from './LoginNormalUserScreen';
+export {default as LoginNormalUser} from './auth/LoginNormalUserScreen';
 export {default as CreateAccountOwner} from './auth/CreateAccountOwnerScreen';
 export {default as ForgetPassword} from './auth/ForgetPasswordScreen';
 export {default as HomeNormalUser} from './RestaurantsUserScreen';
