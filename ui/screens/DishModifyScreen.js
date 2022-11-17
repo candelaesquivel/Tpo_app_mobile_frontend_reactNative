@@ -15,7 +15,7 @@ import { CustomAlert } from '../components/CustomAlert';
 import {ROUTES} from '../';
 import { AlertWithOptions } from '../components/AlertWithOptions';
 import { CONSTANTS } from '../../config';
-import { DishForm } from './Dishes/DishForm';
+import { DishModifyScreenUI } from './Dishes/DishModifyScreenUI';
 
 function DishModifyScreen({navigation, route, props}){
   
@@ -34,8 +34,7 @@ function DishModifyScreen({navigation, route, props}){
   });
 
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+ 
 
 
   const onSavePress = async (event) => {
@@ -105,61 +104,24 @@ function DishModifyScreen({navigation, route, props}){
   }
 
   return (
-
-    <ScrollView>
-      <AlertWithOptions isVisible={showConfirmDelete} onOptionPress={onDeleteOptionsHandler}></AlertWithOptions>
-      <CustomAlert isVisible={showDeleteModal} onRequestCloseHandler={onDeleteModalTouch} msgText={CONSTANTS.SCREEN_TEXTS.NOT_FAVORITES}></CustomAlert>
-     <Carousal></Carousal>
-        <View style={styles.iconGlobal}>
-            <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
-        </View>
-        <View style={styles.global}>
-
-            <DishForm
-              name={dishData.name} onNameChanged={onNameChanged}
-              price={dishData.price} onPriceChanged={onPriceChanged}
-              ingredients={dishData.ingredients} onIngredientChange={onIngredientChange}
-              discount={dishData.discounts} onDiscountChange={onDiscountChange}
-              isVegan={dishData.isVegan} onIsVeganChange={onIsVeganChange}
-              isGlutenFree={dishData.isGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChange}
-            ></DishForm>
-
-
-            <View style={styles.buttons}>
-                    <MyButton
-                    title= {CONSTANTS.SCREEN_TEXTS.CHOOSE_LABEL} 
-                    width={ Dimensions.get("window").width*0.4}
-                    height={Dimensions.get("window").height*0.07}
-                    fontSizeTitle={18}
-                    ></MyButton>
-
-                    <MyButton
-                    title= {CONSTANTS.SCREEN_TEXTS.ADD_NEW_CATEGORY_LABEL} 
-                    width={ Dimensions.get("window").width*0.4}
-                    height={Dimensions.get("window").height*0.07}
-                    ></MyButton>
-                 
-            </View>
-               
-            <View style={styles.buttonsTwo}>
-
-            < MyButton
-              onPress={onSavePress}
-                title={CONSTANTS.SCREEN_TEXTS.SAVE_LABEL}
-                width={ Dimensions.get("window").width*0.5}
-                height={Dimensions.get("window").height*0.07}
-                ></MyButton>
-
-            < MyButton
-                onPress = {onDeletePress}
-                title= {CONSTANTS.SCREEN_TEXTS.DELETE_DISH_LABEL}
-                width={ Dimensions.get("window").width*0.5}
-                height={Dimensions.get("window").height*0.07}
-                ></MyButton>
-            </View>
-        
-        </View>
-    </ScrollView>
+<DishModifyScreenUI>
+  onDeleteOptionsHandler={onDeleteOptionsHandler}
+  onDeleteModalTouchHandler={onDeleteModalTouch}
+  dishDataName={dishData.name}
+  onNameChangedHandler={onNameChanged}
+  onPriceChangedHandler={onPriceChanged}
+  onIngredientChangeHandler={onIngredientChange}
+  onDiscountChangeHandlerHandler={onDiscountChange}
+  onIsVeganChangeHandler={onIsVeganChange}
+  onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
+  dishDataprice={dishData.price}
+  dishDataingredients={dishData.ingredients}
+  dishDatadiscounts={dishData.discounts}
+  dishDataisVegan={dishData.isVegan}
+  dishDataisGlutenFree={dishData.isGlutenFree}
+  onSavePressHandler={onSavePress}
+  onDeletePressHandler={onDeletePress}
+</DishModifyScreenUI>
     
   )
 }
