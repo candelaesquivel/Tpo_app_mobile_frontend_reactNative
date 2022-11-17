@@ -58,12 +58,14 @@ function HomeLandingUser({navigation , props}) {
   }
 
   return (
+
    <HomeLandingUserUI
     restaurants={restaurants} 
     onFavoriteIconPressHandler={onFavoriteIconPress}
     onPhotoPressHandler={onPhotoPress}
    >
    </HomeLandingUserUI>
+
   )
 }
 
