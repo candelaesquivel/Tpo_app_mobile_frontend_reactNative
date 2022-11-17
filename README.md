@@ -18,4 +18,10 @@ Run in command line the following commands
 npm run lint
 ```
 
+If you want to build the apk file in debug mode:
+1. `cd android`
+2. `./gradlew assembleDebug`
+
+You will find the apk file in `android/app/build/outputs/apk/debug/app-debug.apk`
+
 Enjoy your app

@@ -12,6 +12,7 @@ import { updateUserData } from '../../networking/updateUserData';
 import { updateUserDataAction } from '../../redux/actions';
 import { ToastAndroid } from 'react-native';
 import { CONSTANTS } from '../../config';
+import { UserProfileScreenUI } from './profile/UserProfileScreenUI';
 
 export default function UserProfileScreen({navigation, route, props}) {
 
@@ -38,47 +39,11 @@ export default function UserProfileScreen({navigation, route, props}) {
   }
 
   return (
-    <View style={style.container}>
-      <Text style={style.nameLabel}>{I18n.t('name')}</Text>
-
-      <InputText
-        onChange={onNameChange}
-        color={colorPalette.White} 
-        defaultValue={userName} 
-        textColor={colorPalette.Black}>
-      </InputText>
-
-      <View style={{flexDirection:'row' ,marginBottom:40}}>
-          <Text style={style.addPictureLabel}>{I18n.t('addPicture')} </Text>
-          <Icon name='add-photo-alternate' Type='material-community' size={30} color={colorPalette.Orange}></Icon>
-      </View>
-      <View style={style.btnContainer}>
-        <MyButton title='Guardar' width='30%' height='60%' onPress={onSavePress}></MyButton>
-      </View>
-    </View>
+    <UserProfileScreenUI>
+      userName={userName}
+      onNameChangeHandler={onNameChange}
+      onSavePressHandler={onSavePress}
+    </UserProfileScreenUI>
   )
 }
 
-const style = StyleSheet.create({
-  container : {
-    alignItems : 'flex-start',
-    width : Dimensions.get('window').width,
-    height : Dimensions.get('window').height,
-    marginTop : 10,
-  },
-  nameLabel : {
-    marginBottom : 20,
-    marginLeft : 20,
-    fontSize : 20,
-    color : colorPalette.Black
-  },
-  addPictureLabel :{
-    fontSize : 20,
-    color : colorPalette.Black,
-    width : Dimensions.get('window').width * 0.45,
-    marginLeft : 20
-  },
-  btnContainer : {
-    alignSelf : 'center'
-  }
-})

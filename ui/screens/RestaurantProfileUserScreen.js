@@ -19,9 +19,15 @@ import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-function RestaurantProfileUserScreen({navigation,name='Mudra',
+function RestaurantProfileUserScreen({navigation, route, name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
 calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sprops}) {
+
+  const restoData = {
+    name : route.params.name,
+    rating : route.params.averageRating.toFixed(2),
+    priceRange : route.params.priceRange,
+  };
 
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
@@ -148,13 +154,13 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
           ></Carousal>
         </View>
 
-          <Text style={styles.title}>{name}</Text>
-          <Text style={styles.words}> {I18n.t('open')} {hourOpen}{hourOpen2} - {hourClose}{hourClose2}</Text>
+          <Text style={styles.title}>{restoData.name}</Text>
+          <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.OPEN_LABEL} {hourOpen}{hourOpen2} - {hourClose}{hourClose2}</Text>
           <View style={styles.globalThree}>
-            <Text style={styles.words} >{calification}</Text>
+            <Text style={styles.words} >{restoData.rating}</Text>
             <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
           </View>
-          <Text style={styles.words}>{priceRange}</Text>
+          <Text style={styles.words}>{restoData.priceRange}</Text>
 
         <View style={styles.icons}>
           <Icon
@@ -173,19 +179,19 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
 
         <View style={styles.buttons}>
           <MyButton
-            title={I18n.t('map')}
+            title={CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
             width={Dimensions.get("window").width*0.3}
             height={Dimensions.get("window").height*0.055}
             onPress={() => {onBtnPress('map')} }
           ></MyButton>
           <MyButton
-            title={I18n.t('menu')}
+            title={CONSTANTS.SCREEN_TEXTS.MENU_LABEL}
             width={Dimensions.get("window").width*0.3}
             height={Dimensions.get("window").height*0.055}
             onPress={() => {onBtnPress('menu')} }
           ></MyButton>
           <MyButton
-            title={I18n.t('comment')}
+            title={CONSTANTS.SCREEN_TEXTS.COMMENT_LABEL}
             width={Dimensions.get("window").width*0.32}
             height={Dimensions.get("window").height*0.055}
             onPress={() => {onBtnPress('comment')} }

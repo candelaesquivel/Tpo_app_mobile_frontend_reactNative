@@ -11,10 +11,12 @@ import { useCallback } from 'react';
 import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 import {restaurantSelectedAction} from '../../redux/actions';
 import { ROUTES } from '..';
+import { getRestaurantDetails } from '../../networking/getRestaurantInfo';
 
 
 function RestaurantsUserScreen({navigation , props}) {
   
+  const [name, setName] = useState('');
   const [restaurants, setRestaurants] = useState([]);
   const [triggerSearch, setTrigggerSearch] = useState(false);
   const isFocused = useIsFocused();
@@ -40,14 +42,20 @@ function RestaurantsUserScreen({navigation , props}) {
     }, [triggerSearch, isFocused])
   );
 
+  const onNameHandler = (value) => {
+    setName(value);
+  }
+
   const onFavoriteIconPress = async (restaurantId) => {
     const result = await toggleRestaurantFavorite(userId, restaurantId);
     setTrigggerSearch(true);
   }
 
-  const onPhotoPress = (restaurantId) => {
+  const onPhotoPress = async (restaurantId) => {
    dispatch(restaurantSelectedAction(restaurantId))
-   navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
+
+   const restaurant = await getRestaurantDetails(restaurantId);
+   navigation.navigate(ROUTES.RESTAURANT_VIEW_USER, restaurant);
   }
 
   return (

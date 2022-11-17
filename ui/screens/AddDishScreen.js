@@ -11,10 +11,11 @@ import { useSelector } from 'react-redux';
 import { CONSTANTS } from '../../config';
 import { CustomAlert } from '../components/CustomAlert';
 import { DishForm } from './Dishes/DishForm';
+import AddDishScreenUI from './Dishes/AddDishScreenUI';
 
 function AddDishScreen({navigation, props}) {
 
-  const [showCreateDishAlert, setShowCreateDish] = useState(false);
+  
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
 
   const [dishData, setDishData] = useState({
@@ -74,54 +75,25 @@ function AddDishScreen({navigation, props}) {
   }
 
   return (
-    <ScrollView>
-      <CustomAlert 
-        isVisible={showCreateDishAlert} 
-        msgText={CONSTANTS.SCREEN_TEXTS.DISH_CREATED_MSG}
-        iconName='restaurant'
-        onRequestCloseHandler={onDismissAlert}>
-      </CustomAlert>
-     <Carousal></Carousal>
-        <View style={styles.iconGlobal}>
-            <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
-        </View>
-        <View style={styles.global}>
-            <DishForm
-              name={dishData.name} onNameChanged={onNameChanged}
-              price={dishData.price} onPriceChanged={onPriceChanged}
-              ingredients={dishData.ingredients} onIngredientChange={onIngredientChange}
-              discount={dishData.discounts} onDiscountChange={onDiscountChange}
-              isVegan={dishData.isVegan} onIsVeganChange={onIsVeganChange}
-              isGlutenFree={dishData.isGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChange}
-            ></DishForm>
 
-            <View style={styles.buttons}>
-                    <MyButton
-                    title= {I18n.t('chose')} 
-                    width={ Dimensions.get("window").width*0.4}
-                    height={Dimensions.get("window").height*0.07}
-                    ></MyButton>
+   <AddDishScreenUI
+   onDismissAlertHandler={onDismissAlert}
+   dishDataName={dishData.name}
+   onNameChangedHandler={onNameChanged}
+   dishDataprice={dishData.price}
+   onPriceChangedHandler={onPriceChanged}
+   dishDataingredients={dishData.ingredients}
+   onIngredientChangeHandler={onIngredientChange}
+   dishDatadiscounts={dishData.discounts}
+   onDiscountChangeHandler={onDiscountChange}
+   dishDataisVegan={dishData.isVegan}
+   onIsVeganChangeHandler={onIsVeganChange}
+   dishDataisGlutenFree={dishData.isGlutenFree}
+   onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
+   onSavePressHandler={onSavePress}
+   >
+   </AddDishScreenUI>
 
-                    <MyButton
-                    title= {I18n.t('addNewCategory')} 
-                    width={ Dimensions.get("window").width*0.4}
-                    height={Dimensions.get("window").height*0.07}
-                    ></MyButton>
-                 
-            </View>
-               
-            <View style={styles.buttonsTwo}>
-
-            < MyButton
-                onPress={onSavePress}
-                title={I18n.t('save')}
-                width={ Dimensions.get("window").width*0.5}
-                height={Dimensions.get("window").height*0.07}
-                ></MyButton>
-
-            </View>
-         </View>
-    </ScrollView>
     
   )
 }
@@ -129,45 +101,3 @@ function AddDishScreen({navigation, props}) {
 export default AddDishScreen;
 
 
-const styles = StyleSheet.create({
-  iconGlobal :{
-      flexDirection:"row-reverse"
-  }
-  ,
-  iconPlus:{
-      marginRight: "3%" , 
-      marginTop : "3%" 
-  },
-  globalTwo:{
-      width:'90%', 
-      alignItems:'flex-start'
-    },
-    global:{
-      flexDirection : 'column',
-      alignItems : 'center'
-    },
-    words :{
-      fontSize: Theme.font.MEDIUM,
-      color: colorPalette.Black, 
-      marginLeft : "4%" , 
-      marginBottom : "3%"
-  },
-  switchContainer : {
-      flexDirection:'row',
-      marginBottom : "3%"
-       
-  },
-  buttons : {
-      flexDirection: 'row' , 
-      marginLeft : "6%"
-      },
-
-  buttonsTwo : {
-      flexDirection: 'column' , 
-      alignItems : "center" ,
-      width : "100%",
-      height : "75%" , 
-      
-  },
-
-});

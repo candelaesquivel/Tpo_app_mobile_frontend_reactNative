@@ -1,12 +1,12 @@
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import I18n from "../assets/localization/I18n";
 import { ROUTES } from "../ui";
 import { DeleteIcon, LogoutIcon } from "./DrawerIcons";
 import DrawerHeader from "./DrawerHeader";
 import { useDispatch } from 'react-redux'
 import {logoutUserAction} from '../redux/actions';
+import {CONSTANTS} from '../config/index';
 
 const DrawerOptionsOwner = (props) => {
 
@@ -34,12 +34,12 @@ const DrawerOptionsOwner = (props) => {
       </DrawerItemList>
       <DrawerItem
         icon={LogoutIcon}
-        label={I18n.t('logout')}
+        label={CONSTANTS.SCREEN_TEXTS.LOGOUT_LABEL}
         onPress={onLogoutPress}
       />
       <DrawerItem
         icon = {DeleteIcon}
-        label={I18n.t('deleteAccount')}
+        label={CONSTANTS.SCREEN_TEXTS.DELETE_ACOOUNT_LABEL}
         onPress={onDeletePress}
       />
     </DrawerContentScrollView>

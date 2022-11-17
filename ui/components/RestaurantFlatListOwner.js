@@ -11,6 +11,7 @@ export function RestaurantFlatListOwner({restaurants = [], onMenuPressed = {}, o
         address = {item.address}
         score = {item.score}
         restaurantId = {item.restaurantId}
+        pictures = {item.pictures}
         >
         </RestaurantCardOwner>
       </View>

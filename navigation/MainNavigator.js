@@ -66,7 +66,9 @@ function MainNavigator(props){
               title : CONSTANTS.SCREEN_TITLES.PROFILE_USER
             }}></Stack.Screen>
 
-            <Stack.Screen name = {ROUTES.RESTAURANT_VIEW_USER} component={RestaurantProfileUser}></Stack.Screen>
+            <Stack.Screen name = {ROUTES.RESTAURANT_VIEW_USER} component={RestaurantProfileUser} options={{
+              title : CONSTANTS.SCREEN_TITLES.RESTAURANT_PROFILE,
+            }}></Stack.Screen>
             <Stack.Screen name = {ROUTES.FILTERS_SCREEN_STACK} component={SearchFilters} options={{
               title : CONSTANTS.SCREEN_TITLES.FILTERS
             }}></Stack.Screen>
