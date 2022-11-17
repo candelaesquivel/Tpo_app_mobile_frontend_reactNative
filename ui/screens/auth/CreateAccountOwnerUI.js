@@ -1,78 +1,54 @@
-import I18n from "../../assets/localization/I18n"
-import { View , StyleSheet, Dimensions , KeyboardAvoidingView} from "react-native"
-import { colorPalette } from "../styles/colors"
-import { MyButton } from "../components/button"
-import { InputText } from "../components/InputText"
-import { useState, useEffect } from "react";
+import { MyButton } from "../../components/button"
+import { InputText } from "../../components/InputText";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import createAccountOwner from "../../networking/createAccount";
-import { ROUTES } from '..';
-import { Theme } from "../styles/Theme"
-import { CONSTANTS } from "../../config"
-import { ToastAndroid } from "react-native"
+import { View , StyleSheet, Dimensions , KeyboardAvoidingView} from "react-native"
+import { Theme } from "../../styles/Theme";
+import { colorPalette } from "../../styles/colors";
+import { CONSTANTS } from "../../../config";
 
-export function CreateAccountOwnerScreen({navigation, props}) {
-
-    const [userData, setUserData] = useState({
-      email : '',
-      password : '',
-      repeatPassword : ''
-    })
-
-    const onRegisterPress = async (e) => {
-      const result = await createAccountOwner(userData);
-
-      if (result){
-        setTimeout(() => {
-          ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.ACCOUNT_CREATED, ToastAndroid.SHORT);
-          navigation.navigate(ROUTES.LOGIN_OWNER);
-        }, 200);
-      }else{
-
-      }
-    }
-
-    const onEmailChange = ({ nativeEvent: { eventCount, target, text} }) => {
-      setUserData({...userData, 'email' : text})
-    }
-
-    const onPassChange = ({nativeEvent : {eventCount, target, text}}) => {
-      setUserData({...userData, 'password' : text})
-    }
-
-    const onRepeatPassChange = ({nativeEvent : {eventCount, target, text}}) => {
-      setUserData({...userData, 'repeatPassword' : text})
-    }
-
-    return (
-        <View style={styles.global}>
+export const CreateAccountOwnerUI = ({
+email,
+password,
+repeatPassword,
+onEmailHandler,
+onPasswordHandler,
+onRepeatPassHandler,
+onRegisterHandler,
+props
+}) => 
+{
+  return (
+    <View style={styles.global}>
           <View style={styles.icon}>
             <Icon name='account-circle' size={96} color={colorPalette.Orange} />
           </View>
           <KeyboardAvoidingView>
           <View style={styles.input}>
               <View style={styles.inputTwo}>
-                <InputText 
+                <InputText
+                defaultValue={email}
                 placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL} 
                 placeholderTextColor ={colorPalette.White}
                 color={colorPalette.Orange} name = 'email'
-                onChange = {onEmailChange}></InputText>
+                onChange = {onEmailHandler}></InputText>
 
-                <InputText s
-                ecureTextEntry = {true} 
+                <InputText
+                defaultValue={password}
+                secureTextEntry = {true} 
                 placeholder = {CONSTANTS.SCREEN_TEXTS.PASS_INPUT_LABEL} 
                 placeholderTextColor ={colorPalette.White}
                 color={colorPalette.Orange} 
                 name='password' 
-                onChange = {onPassChange}></InputText>
+                onChange = {onPasswordHandler}></InputText>
 
                 <InputText
+                defaultValue={repeatPassword}
                 secureTextEntry = {true} 
                 placeholder = {CONSTANTS.SCREEN_TEXTS.VALID_PASS_INPUT_LABEL}
                 placeholderTextColor ={colorPalette.White}
                 color={colorPalette.Orange} 
                 name='repeatPassword' 
-                onChange = {onRepeatPassChange}></InputText>
+                onChange = {onRepeatPassHandler}></InputText>
               </View>
              
           </View>
@@ -81,16 +57,13 @@ export function CreateAccountOwnerScreen({navigation, props}) {
             <View style={{width : '100%', height : '5%', backgroundColor : colorPalette.White}}></View>
             <MyButton
              title = {CONSTANTS.SCREEN_TEXTS.CREATE_ACCOUNT_LABEL} 
-             onPress = {onRegisterPress}
+             onPress = {onRegisterHandler}
              width={Dimensions.get("window").width*0.6}
              height={Dimensions.get("window").height*0.07}
              ></MyButton>
         </View>
-    )
-
+  )
 }
-
-export default CreateAccountOwnerScreen;
 
 const styles = StyleSheet.create({
   global:{
