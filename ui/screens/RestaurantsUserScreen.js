@@ -1,18 +1,14 @@
-import { View} from 'react-native'
 import React from 'react'
-import MySearchBar from '../components/MySearchBar'
-import screenNames from '../screenNames'
 import { useState } from 'react';
 import getRestaurants from '../../networking/getRestaurants';
 import { useDispatch, useSelector } from 'react-redux'
-import { RestaurantFlatListUser } from '../components/RestaurantFlatListUser'
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
 import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 import {restaurantSelectedAction} from '../../redux/actions';
 import { ROUTES } from '..';
 import { getRestaurantDetails } from '../../networking/getRestaurantInfo';
-
+import { RestaurantUserScreenUI } from './restaurant/RestaurantUserScreenUI';
 
 function RestaurantsUserScreen({navigation , props}) {
   
@@ -27,6 +23,7 @@ function RestaurantsUserScreen({navigation , props}) {
   const fillRestaurantList = async () => {
     const restos = await getRestaurants(userId);
     setRestaurants(restos);
+   
   }
 
   useFocusEffect(
@@ -59,16 +56,11 @@ function RestaurantsUserScreen({navigation , props}) {
   }
 
   return (
-    <View>
-      <MySearchBar></MySearchBar>
-      <View>
-      <RestaurantFlatListUser
-       restaurants={restaurants} 
-       onFavoriteTouched={onFavoriteIconPress}
-       onPhotoPress={onPhotoPress}
-       ></RestaurantFlatListUser>
-      </View>
-    </View>
+   <RestaurantUserScreenUI>
+      restaurants={restaurants} 
+      onFavoriteIconPressHandler={onFavoriteIconPress}
+      onPhotoPressHandler={onPhotoPress}
+   </RestaurantUserScreenUI>
   )
 }
 

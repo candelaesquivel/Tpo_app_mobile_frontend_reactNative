@@ -12,7 +12,7 @@ import { CONSTANTS } from '../../config';
 import EmptyScreenMessage from '../components/EmptyScreenMessage';
 import { restaurantSelectedAction } from '../../redux/actions';
 import { ROUTES } from '..';
-import { UserFavoriteRestaurantsScreenUI}  from './createRestaurant/UserFavoriteRestaurantsScreenUI';
+import { UserFavoriteRestaurantsScreenUI}  from './restaurant/UserFavoriteRestaurantsScreenUI';
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
   

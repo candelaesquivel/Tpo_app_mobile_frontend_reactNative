@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { createRestaurant } from '../../networking/createRestaurant';
 import { CONSTANTS } from '../../config';
 import { useSelector } from 'react-redux';
-import { RestaurantForm } from './createRestaurant/RestaurantForm';
+import { RestaurantForm } from './restaurant/RestaurantForm';
 import { ROUTES } from '..';
 import { useEffect } from 'react';
 
