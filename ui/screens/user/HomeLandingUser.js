@@ -1,16 +1,16 @@
 import React from 'react'
 import { useState } from 'react';
-import getRestaurants from '../../networking/getRestaurants';
+import getRestaurants from '../../../networking/getRestaurants';
 import { useDispatch, useSelector } from 'react-redux'
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
-import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
-import {restaurantSelectedAction} from '../../redux/actions';
-import { ROUTES } from '..';
-import { getRestaurantDetails } from '../../networking/getRestaurantInfo';
-import { RestaurantUserScreenUI } from './restaurant/RestaurantUserScreenUI';
+import toggleRestaurantFavorite from '../../../networking/toggleRestaurantFavorite';
+import {restaurantSelectedAction} from '../../../redux/actions';
+import { ROUTES } from '../..';
+import { getRestaurantDetails } from '../../../networking/getRestaurantInfo';
+import { HomeLandingUserUI } from './HomeLandingUserUI';
 
-function RestaurantsUserScreen({navigation , props}) {
+function HomeLandingUser({navigation , props}) {
   
   const [name, setName] = useState('');
   const [restaurants, setRestaurants] = useState([]);
@@ -23,7 +23,6 @@ function RestaurantsUserScreen({navigation , props}) {
   const fillRestaurantList = async () => {
     const restos = await getRestaurants(userId);
     setRestaurants(restos);
-   
   }
 
   useFocusEffect(
@@ -32,9 +31,12 @@ function RestaurantsUserScreen({navigation , props}) {
       if (isFocused || triggerSearch)
         fillRestaurantList();
 
+      console.log('Restaurantants: ', restaurants);
         return () => {
           setTrigggerSearch(false);
-          setRestaurants([]);
+
+          if (!isFocused)
+            setRestaurants([]);
       }
     }, [triggerSearch, isFocused])
   );
@@ -56,12 +58,13 @@ function RestaurantsUserScreen({navigation , props}) {
   }
 
   return (
-   <RestaurantUserScreenUI>
-      restaurants={restaurants} 
-      onFavoriteIconPressHandler={onFavoriteIconPress}
-      onPhotoPressHandler={onPhotoPress}
-   </RestaurantUserScreenUI>
+   <HomeLandingUserUI
+    restaurants={restaurants} 
+    onFavoriteIconPressHandler={onFavoriteIconPress}
+    onPhotoPressHandler={onPhotoPress}
+   >
+   </HomeLandingUserUI>
   )
 }
 
-export default RestaurantsUserScreen;
+export default HomeLandingUser;

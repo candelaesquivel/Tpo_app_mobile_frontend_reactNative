@@ -4,13 +4,12 @@ import MySearchBar from '../../components/MySearchBar'
 import { RestaurantFlatListUser } from '../../components/RestaurantFlatListUser'
 
 
-const RestaurantUserScreenUI = ({
-    restaurants =[], 
+const HomeLandingUserUI = ({
+    restaurants = [], 
     onFavoriteIconPressHandler,
     onPhotoPressHandler,
-
     props}) => {
-      console.log("restaurantes:    ",restaurants)
+
     return (
         <View>
         <MySearchBar></MySearchBar>
@@ -28,4 +27,4 @@ const RestaurantUserScreenUI = ({
   
 
   
-  export {RestaurantUserScreenUI}
+  export {HomeLandingUserUI}

@@ -5,7 +5,7 @@ export {default as LoginOwner} from './auth/LoginOwnerScreen';
 export {default as LoginNormalUser} from './auth/LoginNormalUserScreen';
 export {default as CreateAccountOwner} from './auth/CreateAccountOwnerScreen';
 export {default as ForgetPassword} from './auth/ForgetPasswordScreen';
-export {default as HomeNormalUser} from './RestaurantsUserScreen';
+export {default as HomeNormalUser} from './user/HomeLandingUser';
 export {default as RestaurantProfileUser} from './RestaurantProfileUserScreen';
 export {default as UserProfile} from './UserProfileScreen';
 export {default as OwnerHome} from './OwnerHomeScreen';
