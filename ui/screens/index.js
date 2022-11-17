@@ -8,7 +8,7 @@ export {default as ForgetPassword} from './auth/ForgetPasswordScreen';
 export {default as HomeNormalUser} from './user/HomeLandingUser';
 export {default as RestaurantProfileUser} from './RestaurantProfileUserScreen';
 export {default as UserProfile} from './UserProfileScreen';
-export {default as OwnerHome} from './OwnerHomeScreen';
+export {default as OwnerHome} from './user/HomeLandingOwnerScreen';
 export {default as CreateRestaurant} from './CreateRestaurantScreen';
 export {default as MenuRestaurantOwner} from './MenuRestaurantOwnerScreen';
 export {default as OwnerRestaurantProfile} from './RestaurantProfileOwner';
