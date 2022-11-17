@@ -11,10 +11,11 @@ import { useSelector } from 'react-redux';
 import { CONSTANTS } from '../../config';
 import { CustomAlert } from '../components/CustomAlert';
 import { DishForm } from './Dishes/DishForm';
+import AddDishScreenUI from './Dishes/AddDishScreenUI';
 
 function AddDishScreen({navigation, props}) {
 
-  const [showCreateDishAlert, setShowCreateDish] = useState(false);
+  
   const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
 
   const [dishData, setDishData] = useState({
@@ -100,45 +101,3 @@ function AddDishScreen({navigation, props}) {
 export default AddDishScreen;
 
 
-const styles = StyleSheet.create({
-  iconGlobal :{
-      flexDirection:"row-reverse"
-  }
-  ,
-  iconPlus:{
-      marginRight: "3%" , 
-      marginTop : "3%" 
-  },
-  globalTwo:{
-      width:'90%', 
-      alignItems:'flex-start'
-    },
-    global:{
-      flexDirection : 'column',
-      alignItems : 'center'
-    },
-    words :{
-      fontSize: Theme.font.MEDIUM,
-      color: colorPalette.Black, 
-      marginLeft : "4%" , 
-      marginBottom : "3%"
-  },
-  switchContainer : {
-      flexDirection:'row',
-      marginBottom : "3%"
-       
-  },
-  buttons : {
-      flexDirection: 'row' , 
-      marginLeft : "6%"
-      },
-
-  buttonsTwo : {
-      flexDirection: 'column' , 
-      alignItems : "center" ,
-      width : "100%",
-      height : "75%" , 
-      
-  },
-
-});
