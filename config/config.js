@@ -14,6 +14,7 @@ const URL_SERVICES = {
   LOGOUT: USER_ROUTE + 'logout',
   RECOVER_PASSWORD: USER_ROUTE + 'recoverPassword',
   DELETE_ACCOUNT : USER_ROUTE + 'id/',
+  
 
   // User Routes
   UPDATE_USER_DATA : USER_ROUTE + 'id/',

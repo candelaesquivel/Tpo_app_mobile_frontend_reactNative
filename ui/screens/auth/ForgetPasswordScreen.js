@@ -1,6 +1,8 @@
 
 import { ForgotPasswordUI } from "./ForgotPasswordUI"
 import { useState } from "react"
+import { ROUTES } from "../../";
+
 
 function ForgetPasswordScreen({navigation, props}) {
 
@@ -11,7 +13,7 @@ function ForgetPasswordScreen({navigation, props}) {
     }
 
     const onRecoveryTouch = (event) => {
-
+      navigation.navigate(ROUTES.RECOVER_PASSWORD_TOKEN);
     }
 
     return (

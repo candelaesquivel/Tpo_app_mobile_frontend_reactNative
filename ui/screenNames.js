@@ -23,6 +23,7 @@ export default {
     DISH_MODIFY_STACK : 'DishModifyStack',
     DELETE_ACCOUNT_OWNER_STACK : 'DeleteAccountOwnerStack',
     RESTAURANT_EDIT_OWNER : "EditRestaurantScreen",
+    RECOVER_PASSWORD_TOKEN : "RecoverPasswordToken",
 
     // User Routes
     HOME_NORMAL_USER_SCREEN  : 'NormalUserScreenHome',

@@ -96,6 +96,10 @@ export  default{
     thursdayLetter : 'J',
     fridayLetter : 'V',
     saturdayLetter : 'S',
-    sundayLetter : 'D'
+    sundayLetter : 'D',
+
+    TokenInput : "Ingrese el token",
+    TokenpassInput : 'Ingrese nueva contraseña',
+    tokenScreen : "Cambiar contraseña "
 
 };

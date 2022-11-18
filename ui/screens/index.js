@@ -19,3 +19,5 @@ export {default as UserFavoritesRestaurants} from './UserFavoriteRestaurantsScre
 export {default as EditRestaurant} from './EditRestaurantScreen';
 export {default as SearchFilters} from './FilterScreen';
 export {default as SentComment} from './SentCommentScreen';
+export {default as RecoverPasswordToken} from './RecoverPasswordToken';
+

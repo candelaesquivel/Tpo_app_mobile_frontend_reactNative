@@ -8,9 +8,13 @@ import { CONSTANTS } from "../../config";
 
 export function EmailSentScreen(props){
     return (
-        <View style={{flexDirection : 'column', alignItems : 'center', marginTop : 23}}>
-            <View style={{width : '100%', height : '35%', backgroundColor: colorPalette.White}}></View>
-            <Icon name = 'outgoing-mail' size={96} color={colorPalette.Orange}></Icon>
+        <View style={styles.global}>
+            <View style={styles.globalTwo}></View>
+            <Icon 
+            name = 'outgoing-mail'
+             size={96}
+              color={colorPalette.Orange}
+            ></Icon>
             <Text
                 h4
                 h4Style={{textAlign:'center'}}
@@ -21,3 +25,17 @@ export function EmailSentScreen(props){
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    global : {
+        flexDirection : 'column',
+         alignItems : 'center',
+          marginTop : 23
+        },
+    globalTwo : {
+        width : '100%',
+         height : '35%',
+          backgroundColor: colorPalette.White
+        },
+
+  });

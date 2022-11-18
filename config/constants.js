@@ -39,6 +39,7 @@ export default  {
     SENT_COMMENT : I18n.t('sentCommentTitle'),
     CREATE_RESTAURANT : I18n.t('createRestaurantTitle'),
     FILTERS : I18n.t('filtersTitle'),
+    TOKEN : I18n.t('tokenScreen')
   },
 
   SCREEN_TEXTS : {
@@ -114,6 +115,10 @@ export default  {
     FRIDAY_LETTER : I18n.t('fridayLetter'),
     SATURDAY_LETTER : I18n.t('saturdayLetter'),
     SUNDAY_LETTER : I18n.t('sundayLetter'),
+
+    TOKEN_INPUT : I18n.t('TokenInput'),
+    TOKEN_PASSWORD : I18n.t('TokenpassInput'),
+    TOKEN_BUTTON : I18n.t('send'),
 
   },
 }

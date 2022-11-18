@@ -3,7 +3,7 @@ import { AddDish, CreateAccountOwner, CreateRestaurant,
         DeleteAccountOwner, ForgetPassword, Home, LoginNormalUser,
         LoginOwner, MenuRestaurantOwner, DishUserView,RestaurantEdit,
         ModifyDish , ProfileUserRestaurant, SearchFilters, RestaurantProfileUser,
-         EditRestaurant, UserProfile , SentComment } from "../ui/screens";
+         EditRestaurant, UserProfile , SentComment , RecoverPasswordToken } from "../ui/screens";
 import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
@@ -106,9 +106,14 @@ function MainNavigator(props){
             <Stack.Screen name = {ROUTES.CREATE_RESTAURANT_STACK} component = {CreateRestaurant} options={{
               title : CONSTANTS.SCREEN_TITLES.CREATE_RESTAURANT
             }}></Stack.Screen>
+
+            <Stack.Screen name = {ROUTES.RECOVER_PASSWORD_TOKEN} component = {RecoverPasswordToken} 
+            options={{
+              title : CONSTANTS.SCREEN_TITLES.TOKEN
+            }}></Stack.Screen>
             
         </Stack.Navigator>
     )
 }
 
-export default MainNavigator;
+export default MainNavigator;+
