@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { ROUTES } from "../..";
 import boundGoogleData from "../../../networking/boundGoogleData";
 import GetLocation from 'react-native-get-location'
 import { useDispatch, useSelector } from "react-redux";
-import {loginUserAction } from '../../../redux/actions';
 import { CONSTANTS } from "../../../config";
 import { LoginNormalUserUI } from "./LoginNormalUserUI";
+import { loginUser } from "../../../redux/slices/userReducer";
 
 function LoginUserScreen({navigation, props}){
   
-    const [userInfo, setUserInfo] = useState({});
     const dispatch = useDispatch();
 
     const isLogged = useSelector(state => state.user.isLogged);
@@ -62,13 +61,11 @@ function LoginUserScreen({navigation, props}){
                 accessToken : 'this is a token',
               }
 
-              setUserInfo(userData);
-    
               // Navigate to the Home screen when the user has successfully signed in
               if (userData.email != null){
                 const userInfo = await boundGoogleData(userData);
                 userData.id = userInfo.id;
-                dispatch(loginUserAction(userData));
+                dispatch(loginUser(userData));
               }
             })
             .catch(error => {

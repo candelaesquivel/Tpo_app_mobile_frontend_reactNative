@@ -21,8 +21,8 @@ async function boundGoogleData(userInfo){
     return res.data;
   }).catch(err => {
     console.log(err);
+    return null;
   }).finally(() => {
-    console.log('Google Login Succesful')
   })
 }
 
