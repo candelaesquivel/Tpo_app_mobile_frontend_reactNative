@@ -18,24 +18,28 @@ const userSlice = createSlice({
   initialState : defaultState,
 
   reducers : {
-    login(state, action) {
-      console.log('Payload Login: ', action.payload);
+    loginUser(state, action) {
+      state.token = action.payload.token;
+      state.userImg = action.payload.userImg;
+      state.userName = action.payload.name;
       state.userId = action.payload.id;
       state.email = action.payload.email;
       state.role = action.payload.role;
       state.isLogged = true;
+      state.restaurantSelectedId = '';
+      state.dishSelectedId = '';
     },
 
     selectRestaurant(state, action){
       state.restaurantSelectedId = action.payload;
     },
 
-    logout(state, action){
+    logoutUser(state, action){
       return defaultState;
     }
   }
 });
 
-export const {login, logout, selectRestaurant} = userSlice.actions;
+export const {loginUser, logoutUser, selectRestaurant} = userSlice.actions;
 
 export default userSlice.reducer;
