@@ -9,19 +9,7 @@ async function getRestaurants(userId)
         userId : userId
       },
   }).then((response) => {
-    let restos = [];
-
-    response.data.forEach(itr => {
-      restos.push({
-        name : itr.name,
-        address : itr.address.neighborhood + ' ' + itr.address.streetNumber,
-        score : itr.averageRating.$numberDecimal,
-        restaurantId : itr._id, // Is _id because the list is not created by populate method in Mongodb
-        isFavorite : itr.isFavorite
-      });
-    });
-
-    return restos;
+    return response.data;
   });
 }
 

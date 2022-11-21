@@ -6,17 +6,18 @@ export function RestaurantFlatListUser({restaurants = [], onMenuPressed = {}, on
   const renderItem = ({ item }) => {
     return (
       <View >
-      <RestaurantCardUser 
-        name ={item.name}
-        address = {item.address}
-        score = {item.score}
-        favorite = {item.isFavorite}
-        restaurantId = {item.restaurantId}
-        onMenuPressed={onMenuPressed}
-        onPhotoPress={onPhotoPress}
-        onFavoriteTouched={onFavoriteTouched}
-        >
-        </RestaurantCardUser>
+        <RestaurantCardUser 
+          name ={item.name}
+          address = {item.address}
+          score = {item.score}
+          favorite = {item.isFavorite}
+          restaurantId = {item.restaurantId}
+          onMenuPressed={onMenuPressed}
+          onPhotoPress={onPhotoPress}
+          onFavoriteTouched={onFavoriteTouched}
+          pictures = {item.pictures}
+          >
+          </RestaurantCardUser>
       </View>
     )
   };
