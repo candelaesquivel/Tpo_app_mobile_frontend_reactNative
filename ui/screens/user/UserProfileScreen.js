@@ -1,18 +1,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { updateUserData } from '../../../networking/updateUserData';
-import { updateUserDataAction } from '../../../redux/actions';
-import { ToastAndroid } from 'react-native';
-import { CONSTANTS } from '../../../config';
 import { UserProfileScreenUI } from './UserProfileScreenUI';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import { uploadUserImg } from '../../../networking/uploadUserImg';
 
 export default function UserProfileScreen({navigation, route, props}) {
 
-  const userName = useSelector(state => state.session.userName);
-  const userId = useSelector(state => state.session.userId);
+  const userName = useSelector(state => state.user.userName);
+  const userId = useSelector(state => state.user.userId);
 
   const [userData, setUserData] = useState({
     name : userName,

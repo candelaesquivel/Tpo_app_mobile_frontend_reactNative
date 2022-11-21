@@ -28,7 +28,7 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
 
   const isFocused = useIsFocused();
 
-  const restoId = useSelector((state) => state.session.restaurantSelectedId);
+  const restoId = useSelector((state) => state.user.restaurantSelectedId);
 
   const fillCommentsList = async () => {
     const newComments = await GetCommentsFromRestaurant(restoId);

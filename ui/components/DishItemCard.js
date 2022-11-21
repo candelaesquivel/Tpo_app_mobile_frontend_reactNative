@@ -14,11 +14,11 @@ import getDishData from '../../networking/getDishDetails';
 export default function DishItemCard({name = '', discount = 0, price = 100, dishId = '', isVegan = true, isGlutenFree = true, props}) {
   const priceDescount =(price)* ((100-discount)/100)
   
-  const role = useSelector(state => state.session.role);
+  const role = useSelector(state => state.user.role);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const restaurantId = useSelector(state => state.session.restaurantSelectedId);
+  const restaurantId = useSelector(state => state.user.restaurantSelectedId);
 
   const onPhotoPress = async (event) => {
 

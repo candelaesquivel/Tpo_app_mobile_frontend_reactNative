@@ -7,8 +7,8 @@ import { SentCommentScreenUI } from "./misc/SentCommentScreenUI";
 
 export default function SentCommentScreen({navigation, props}){
 
-    const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
-    const userId = useSelector(state => state.session.userId);
+    const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
+    const userId = useSelector(state => state.user.userId);
 
     const [reviewData, setReviewData] = useState({
         rating : 1,

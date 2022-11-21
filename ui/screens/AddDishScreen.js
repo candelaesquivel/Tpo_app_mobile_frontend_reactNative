@@ -16,7 +16,7 @@ import AddDishScreenUI from './Dishes/AddDishScreenUI';
 function AddDishScreen({navigation, props}) {
 
   
-  const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
+  const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
 
   const [dishData, setDishData] = useState({
     name : '',

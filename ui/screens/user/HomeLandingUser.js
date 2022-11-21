@@ -18,7 +18,7 @@ function HomeLandingUser({navigation , props}) {
   const isFocused = useIsFocused();
   const dispatch =useDispatch();
 
-  const userId = useSelector(state => state.session.userId);
+  const userId = useSelector(state => state.user.userId);
 
   const fillRestaurantList = async () => {
     const restos = await getRestaurants(userId);

@@ -5,8 +5,8 @@ import { ROUTES } from "../ui";
 import { DeleteIcon, LogoutIcon } from "./DrawerIcons";
 import DrawerHeader from "./DrawerHeader";
 import { useDispatch } from 'react-redux'
-import {logoutUserAction} from '../redux/actions';
 import {CONSTANTS} from '../config/index';
+import { logoutUser } from "../redux/slices/userReducer";
 
 const DrawerOptionsOwner = (props) => {
 
@@ -15,15 +15,11 @@ const DrawerOptionsOwner = (props) => {
   const dispatch = useDispatch();
 
   const onDeletePress = (event) => {
-    console.log('On Delete Drawer Option Press');
     navigator.navigate(ROUTES.DELETE_ACCOUNT_OWNER_STACK);
   }
 
   const onLogoutPress = (event) => {
-    console.log('On Logout Press Drawer Option Owner');
-
-    dispatch(logoutUserAction());
-
+    dispatch(logoutUser());
     navigator.navigate(ROUTES.LOGIN_OWNER);
   }
 

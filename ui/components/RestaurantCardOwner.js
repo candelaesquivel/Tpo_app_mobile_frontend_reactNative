@@ -19,7 +19,6 @@ props}) {
   const showRating = score > 0;
   const dispatcher = useDispatch();
   const navigation = useNavigation();
-  const state = useSelector(state => state.session);
 
   const onMenuHandlerPress = (event) => {
     dispatcher(restaurantSelectedAction(restaurantId));

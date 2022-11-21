@@ -16,10 +16,10 @@ function DrawerHeader({props}){
   const navigation = useNavigation();
 
   const userName = useSelector((state) => {
-    return state.session.userName;
+    return state.user.userName;
   })
 
-  let userImg = useSelector(state => state.session.userImg);
+  let userImg = useSelector(state => state.user.userImg);
 
   const onIconPress = (event) => {
     navigation.navigate(ROUTES.USER_PROFILE);

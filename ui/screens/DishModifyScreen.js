@@ -33,7 +33,7 @@ function DishModifyScreen({navigation, route, props}){
 
   });
 
-  const currRestaurant = useSelector(state => state.session.restaurantSelectedId);
+  const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
  
 
 

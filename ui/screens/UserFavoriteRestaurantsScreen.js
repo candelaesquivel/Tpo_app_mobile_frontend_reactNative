@@ -16,7 +16,7 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
 
-  const userId = useSelector(state => state.session.userId);
+  const userId = useSelector(state => state.user.userId);
 
   const fillFavoriteRestaurantList = async () => {
     const restos = await GetFavoriteRestaurants(userId);

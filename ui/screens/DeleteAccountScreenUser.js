@@ -9,7 +9,7 @@ import { DeleteAccountScreenUI } from "./user/DeleteAccountScreenUI";
 
 function DeleteAccountScreenUser({navigation, props}){
 
-  const userId = useSelector(state => state.session.userId);
+  const userId = useSelector(state => state.user.userId);
   const dispatcher = useDispatch();
 
     useEffect( () => {

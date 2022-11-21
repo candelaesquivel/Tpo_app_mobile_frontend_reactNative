@@ -13,7 +13,7 @@ function LoginUserScreen({navigation, props}){
     const [userInfo, setUserInfo] = useState({});
     const dispatch = useDispatch();
 
-    const isLogged = useSelector(state => state.session.isLogged);
+    const isLogged = useSelector(state => state.user.isLogged);
 
     const checkLogStatus = async () => {
       const isGoogleSigned = await _isSignedIn();

@@ -11,7 +11,7 @@ function HomeOwnerUI({navigation, props}) {
   const isFocused = useIsFocused();
 
   const ownerId = useSelector((state) => {
-    return state.session.userId;
+    return state.user.userId;
   });
 
   const fillRestaurantList = async () => {

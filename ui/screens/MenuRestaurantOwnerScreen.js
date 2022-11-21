@@ -10,7 +10,7 @@ import { MenuRestaurantOwnerScreenUI } from './user/MenuRestaurantOwnerScreenUI'
 function MenuRestaurantOwnerScreen({navigation,props}) {
 
   const [dishes, setDishes] = useState([]);
-  const restoId = useSelector((state) => state.session.restaurantSelectedId);
+  const restoId = useSelector((state) => state.user.restaurantSelectedId);
   const isFocused = useIsFocused();
 
   const fillDishList = async () => {

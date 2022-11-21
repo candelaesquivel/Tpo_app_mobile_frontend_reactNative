@@ -3,14 +3,12 @@ import loginOwner from "../../../networking/loginOwner";
 import { ROUTES } from "../..";
 import { useSelector, useDispatch } from 'react-redux'
 
-import {logoutUserAction, loginUserAction} from '../../../redux/actions';
 import { LoginOwnerUI } from "./LoginOwnerUI";
+import { loginUser, logoutUser } from "../../../redux/slices/userReducer";
 
 function LoginOwnerScreen({navigation, props}){
 
-  const isLogged = useSelector((state) => {
-    return state.session.isLogged
-  });
+  const isLogged = useSelector(state => state.user.isLogged);
 
   const dispatch = useDispatch();
 
@@ -43,12 +41,16 @@ function LoginOwnerScreen({navigation, props}){
 
     const onLoginPressed = async (event) => {
 
-        const loginRes = await loginOwner(userData);
+        try {
+          var userDataRes = await loginOwner(userData);
+        } catch (error) {
+          dispatch(logoutUser());
+        }
 
-        if (loginRes){
-          dispatch(loginUserAction(loginRes))
-        }else{
-          dispatch(logoutUserAction());
+        if (userDataRes)
+          dispatch(loginUser(userDataRes));
+        else{
+          dispatch(logoutUser());
         }
 
         return;
