@@ -3,7 +3,7 @@ import axios from 'axios';
 import { CONSTANTS } from "../config";
 
 async function loginOwner(userData)
-{ 
+{
   return axios.post(URL_SERVICES.LOGIN, {
     email : userData.email,
     password : userData.password,
@@ -12,6 +12,7 @@ async function loginOwner(userData)
     return res.data;
   }).catch(err => {
     console.error("Error on Login Owner: ", err);
+    return null;
   }).finally(() => {
   })
 }
