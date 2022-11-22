@@ -6,6 +6,7 @@ import { CONSTANTS } from "../../../config";
 import { ToastAndroid } from "react-native";
 import {DeleteAccountScreenUI} from './DeleteAccountScreenUI';
 import { userWS } from "../../../networking/endpoints";
+import { logoutUser } from "../../../redux/slices/userReducer";
 
 function DeleteAccountScreenUser({navigation, props}){
 
@@ -23,7 +24,7 @@ function DeleteAccountScreenUser({navigation, props}){
 
       if (isDeleted)
       {
-        dispatcher(logoutUserAction());
+        dispatcher(logoutUser());
 
         setTimeout(() => {
           ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.ACCOUNT_DELETED, ToastAndroid.SHORT);
