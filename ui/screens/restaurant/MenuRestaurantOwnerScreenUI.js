@@ -15,18 +15,7 @@ const MenuRestaurantOwnerScreenUI = ({
 
     return (
         <View style={styles.global}>
-          <Icon
-            size={50}
-            name = 'pluscircle'
-            type = 'antdesign'
-            onPress={onCreateDishPressHandler}
-            containerStyle={{
-              position : 'absolute',
-              top : height * 0.79,
-              left : width * 0.85,
-            }}
-          >
-          </Icon>
+          
           <View style={{alignItems:'center'}}>
             {
               dishes.length === 0 && 
@@ -42,6 +31,19 @@ const MenuRestaurantOwnerScreenUI = ({
             }
             
           </View>
+
+          <Icon
+            size={50}
+            name = 'pluscircle'
+            type = 'antdesign'
+            onPress={onCreateDishPressHandler}
+            containerStyle={{
+              position : 'absolute',
+              top : height * 0.79,
+              left : width * 0.85,
+            }}
+          >
+          </Icon>
       </View>
     )
   }

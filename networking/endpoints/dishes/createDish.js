@@ -7,8 +7,8 @@ export async function createDish(restaurantId, dishData){
   const URL = URL_SERVICES.DISH_CREATE.replace('restaurantId', restaurantId);
 
   return axios.post(URL, dishData).then(response => {
-    return response.status;
+    return response.data;
   }).catch(err => {
-    console.log(err);
+    console.error(err);
   })
 };

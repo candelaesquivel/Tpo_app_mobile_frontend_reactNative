@@ -7,7 +7,7 @@ function AddDishScreen({navigation, props}) {
 
   
   const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
-
+  const [showDishCreateAlert, setShowCreateDishAlert] = useState(false);
   const [dishData, setDishData] = useState({
     name : '',
     price : '',
@@ -52,16 +52,19 @@ function AddDishScreen({navigation, props}) {
     navigation.goBack();
   }
 
-  const onSavePress = async (event) => {
-    const status = await dishesWS.createDish(currRestaurant, dishData);
+  console.log('Dish Data: ', dishData);
 
-    if (status === 201)
+  const onSavePress = async (event) => {
+    
+    const dish = await dishesWS.createDish(currRestaurant, dishData);
+
+    if (dish)
     {
-      setShowCreateDish(true);
-      console.log('Dish Created');
+      setShowCreateDishAlert(true);
+      console.warn('Dish Created');
     }
     else
-      console.log("Status: ", status);
+      console.warn("Status: ", dish);
   }
 
   return (
@@ -73,6 +76,7 @@ function AddDishScreen({navigation, props}) {
     discount={dishData.discounts}
     isVegan={dishData.isVegan}
     isGlutenFree={dishData.isGlutenFree}
+    showCreateDishAlert={showDishCreateAlert}
 
     onDismissAlertHandler={onDismissAlert}
     onNameChangedHandler={onNameChanged}

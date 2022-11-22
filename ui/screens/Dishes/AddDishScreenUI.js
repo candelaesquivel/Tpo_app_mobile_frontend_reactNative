@@ -20,12 +20,13 @@ export const AddDishScreenUI = ({
     discount = 0,
     isVegan = false,
     isGlutenFree = false,
+    showCreateDishAlert = false,
 
     onIsGlutenFreeChangeHandler,
     onIsVeganChangeHandler,
     onSavePressHandler,
     onDismissAlertHandler,
-    onNameChangedhandler,
+    onNameChangedHandler,
     onPriceChangedHandler,
     onDiscountChangeHandler,
     onIngredientChangeHandler,
@@ -33,10 +34,6 @@ export const AddDishScreenUI = ({
     props
   }) => {
   
-    const [showCreateDishAlert, setShowCreateDish] = useState(false);
-
-   
-
     return (
         <ScrollView>
            <CustomAlert 
@@ -51,7 +48,7 @@ export const AddDishScreenUI = ({
             </View>
             <View style={styles.global}>
                 <DishForm
-                  name={name} onNameChanged={onNameChangedhandler}
+                  name={name} onNameChanged={onNameChangedHandler}
                   price={price} onPriceChanged={onPriceChangedHandler}
                   ingredients={ ingredients} onIngredientChange={onIngredientChangeHandler}
                   discount={discount} onDiscountChange={onDiscountChangeHandler}
