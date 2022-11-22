@@ -15,9 +15,9 @@ const HomeLandingUserUI = ({
         <MySearchBar></MySearchBar>
         <View>
         <RestaurantFlatListUser
-            restaurants={restaurants} 
-            onFavoriteTouched={onFavoriteIconPressHandler}
-            onPhotoPress={onPhotoPressHandler}
+            restaurants={restaurants}
+            onFavoriteTouchHandler={onFavoriteIconPressHandler}
+            onPhotoPressHandler={onPhotoPressHandler}
          ></RestaurantFlatListUser>
         </View>
       </View>

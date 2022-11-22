@@ -2,7 +2,6 @@ import React from 'react';
 import { View , StyleSheet , Dimensions} from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
-import { useNavigation } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native';
 import { Image } from 'react-native';
 
@@ -12,25 +11,28 @@ function RestaurantCardUser({
   score= 0, 
   favorite=true,
   restaurantId = '', 
-  onPhotoPress = {}, 
-  onFavoriteTouched={},
+  onPhotoPressHandler, 
+  onFavoriteTouchHandler,
   pictures=[],
   props}) {
-
-  const navigation = useNavigation();
 
   const showRating = score > 0;
 
   const FavoriteIcon = ({props}) => {
 
     const onFavoriteIconPress = (e) => {
-      onFavoriteTouched(restaurantId);
+      onFavoriteTouchHandler(restaurantId);
     }
 
     if (favorite)
       return <Icon onPress={onFavoriteIconPress} name="favorite" color="red"  marginBottom={7}></Icon >;
     else
       return <Icon onPress={onFavoriteIconPress} name="favorite-border" color={colorPalette.Black}  marginBottom={7}></Icon >
+  }
+
+  const onPhotoPress = (event) => {
+    if (onPhotoPressHandler)
+      onPhotoPressHandler(restaurantId);
   }
 
   const photo = pictures.length > 0 ? 
