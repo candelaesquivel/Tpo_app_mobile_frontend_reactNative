@@ -2,7 +2,7 @@ import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
 
-async function getOwnerRestaurants(ownerId)
+export async function getOwnerRestaurants(ownerId)
 {
   const url = URL_SERVICES.RESTAURANTS_OWNER.replace('id', ownerId);
 
@@ -13,5 +13,3 @@ async function getOwnerRestaurants(ownerId)
   }).finally(() => {
   })
 }
-
-export default getOwnerRestaurants;

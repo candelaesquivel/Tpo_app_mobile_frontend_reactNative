@@ -5,6 +5,11 @@ import { recoverPassword } from "./auth/recoverPassword";
 import {registerOwner} from "./auth/registerOwner";
 import { verifyRecoverToken } from "./auth/verifyRecoverToken";
 
+// User
+import {getOwnerRestaurants} from './user/getOwnerRestaurants';
+import {deleteAccount} from './user/deleteAccount';
+import { getFavoriteRestaurants } from "./user/getFavoriteRestaurants";
+
 // Dishes
 import { createDish } from "./dishes/createDish";
 import { deleteDish } from "./dishes/deleteDish";
@@ -17,7 +22,7 @@ import {uploadDishImg } from './dishes/uploadDishImg';
 
 // Reviews
 
-export const authWS = {
+const authWS = {
   loginGoogle,
   loginOwner,
   recoverPassword,
@@ -25,7 +30,7 @@ export const authWS = {
   verifyRecoverToken,
 };
 
-export const dishesWS = {
+const dishesWS = {
   createDish,
   deleteDish,
   getDishesFromRestaurant,
@@ -34,6 +39,18 @@ export const dishesWS = {
   uploadDishImg,
 };
 
-export const restaurantWS = {
+const restaurantWS = {
 
-}
+};
+
+const userWS = {
+  getOwnerRestaurants,
+  getFavoriteRestaurants,
+  deleteAccount,
+};
+
+const reviewWS = {
+
+};
+
+export {authWS, dishesWS, restaurantWS, userWS};

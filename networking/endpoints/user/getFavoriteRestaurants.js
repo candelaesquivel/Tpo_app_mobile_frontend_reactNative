@@ -2,7 +2,7 @@ import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
 
-async function getFavoriteRestaurants(userId)
+export async function getFavoriteRestaurants(userId)
 {
   console.log("On Get Favorite Restaurants");
 
@@ -30,5 +30,3 @@ async function getFavoriteRestaurants(userId)
   }).finally(() => {
   })
 }
-
-export default getFavoriteRestaurants;
