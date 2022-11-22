@@ -1,7 +1,6 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {logoutUserAction} from '../../../redux/actions';
 import { CONSTANTS } from "../../../config";
 import { ToastAndroid } from "react-native";
 import {DeleteAccountScreenUI} from './DeleteAccountScreenUI';
