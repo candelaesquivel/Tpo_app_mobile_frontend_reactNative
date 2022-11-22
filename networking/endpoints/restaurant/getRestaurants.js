@@ -2,7 +2,7 @@ import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
 
-async function getRestaurants(userId)
+export async function getRestaurants(userId)
 {
   return axios.get(URL_SERVICES.RESTAURANTS_LIST, 
     {
@@ -13,5 +13,3 @@ async function getRestaurants(userId)
     return response.data;
   });
 }
-
-export default getRestaurants;

@@ -9,6 +9,9 @@ import { verifyRecoverToken } from "./auth/verifyRecoverToken";
 import {getOwnerRestaurants} from './user/getOwnerRestaurants';
 import {deleteAccount} from './user/deleteAccount';
 import { getFavoriteRestaurants } from "./user/getFavoriteRestaurants";
+import {changeRestaurantFavoriteStatus} from './user/changeRestaurantFavoriteStatus';
+import {uploadUserImg} from './user/uploadUserImg';
+import {updateUserData} from './user/updateUserData';
 
 // Dishes
 import { createDish } from "./dishes/createDish";
@@ -19,8 +22,17 @@ import { updateDish } from "./dishes/updateDish";
 import {uploadDishImg } from './dishes/uploadDishImg';
 
 // Restaurants
+import {getRestaurants} from './restaurant/getRestaurants';
+import { createRestaurant } from "./restaurant/createRestaurant";
+import {deleteRestaurant} from './restaurant/deleteRestaurant';
+import {getRestaurantInfo} from './restaurant/getRestaurantInfo';
+import { setCloseStatus } from "./restaurant/setCloseStatus";
+import { updateRestaurant } from "./restaurant/updateRestaurant";
+import { uploadRestaurantImg } from "./restaurant/uploadRestaurantImg";
 
 // Reviews
+import {createReview} from './reviews/createReview';
+import {getReviewsOfRestaurant} from './reviews/getReviewsOfRestaurant';
 
 const authWS = {
   loginGoogle,
@@ -40,17 +52,27 @@ const dishesWS = {
 };
 
 const restaurantWS = {
-
+  getRestaurants,
+  createRestaurant,
+  deleteRestaurant,
+  getRestaurantInfo,
+  setCloseStatus,
+  updateRestaurant,
+  uploadRestaurantImg,
 };
 
 const userWS = {
   getOwnerRestaurants,
   getFavoriteRestaurants,
   deleteAccount,
+  changeRestaurantFavoriteStatus,
+  uploadUserImg,
+  updateUserData
 };
 
 const reviewWS = {
-
+  createReview,
+  getReviewsOfRestaurant,
 };
 
-export {authWS, dishesWS, restaurantWS, userWS};
+export {authWS, dishesWS, restaurantWS, userWS, reviewWS};

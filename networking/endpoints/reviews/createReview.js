@@ -3,7 +3,7 @@ import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
 
 
-async function createReview(restaurantId,userId, reviewData){
+export async function createReview(restaurantId,userId, reviewData){
 
   const URL = URL_SERVICES.CREATE_REVIEW.replace('restaurantId', restaurantId).replace('userId', userId);
 
@@ -14,5 +14,3 @@ async function createReview(restaurantId,userId, reviewData){
   }).finally(() => {
   })
 }
-
-export default createReview;

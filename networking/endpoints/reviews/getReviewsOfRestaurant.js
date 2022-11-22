@@ -1,7 +1,8 @@
 import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
-async function getCommentsFromRestaurant(restaurantId) {
+
+export async function getReviewsOfRestaurant(restaurantId) {
 
     const url = URL_SERVICES.COMMENT_LIST.replace('restaurantId', restaurantId);
 
@@ -26,4 +27,4 @@ async function getCommentsFromRestaurant(restaurantId) {
      
     })
   }
-export default getCommentsFromRestaurant;
+  

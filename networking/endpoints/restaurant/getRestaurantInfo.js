@@ -3,7 +3,7 @@ import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
 
 
-export async function getRestaurantDetails(restaurantId){
+export async function getRestaurantInfo(restaurantId){
 
   const URL = URL_SERVICES.RESTAURANT_DETAIL.replace('id', restaurantId);
 
@@ -13,7 +13,6 @@ export async function getRestaurantDetails(restaurantId){
     return resp.data;
   }).catch(err => {
     console.error("WS Error: ", err);
-  }).finally(() => {
-
+    return null;
   })
 }
