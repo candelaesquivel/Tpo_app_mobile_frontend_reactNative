@@ -1,7 +1,8 @@
 import axios from "axios";
-import URL_SERVICES from "../config/config";
+import { CONSTANTS } from "../../../config";
+import { URL_SERVICES } from "../../../config/config";
 
-async function getDishesFromRestaurant(restaurantId){
+export async function getDishesFromRestaurant(restaurantId){
   const url = URL_SERVICES.DISH_LIST.replace('restaurantId', restaurantId);
 
   return axios.get(url).then( (response) => {
@@ -43,5 +44,3 @@ async function getDishesFromRestaurant(restaurantId){
   }).finally(() => {
   })
 }
-
-export default getDishesFromRestaurant;

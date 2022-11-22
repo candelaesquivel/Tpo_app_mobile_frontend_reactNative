@@ -1,7 +1,8 @@
 import axios from "axios";
-import URL_SERVICES from "../config/config"
+import { CONSTANTS } from "../../../config";
+import { URL_SERVICES } from "../../../config/config";
 
-async function getDishData(restaurantId, dishId)
+export async function getDishData(restaurantId, dishId)
 {
   const URL = URL_SERVICES.DISH_MODIFY.replace('restaurantId', restaurantId).replace('dishId', dishId);
   
@@ -14,6 +15,4 @@ async function getDishData(restaurantId, dishId)
   }).finally(() => {
     console.log('Dish founded');
   })
-}
-
-export default getDishData;
+};

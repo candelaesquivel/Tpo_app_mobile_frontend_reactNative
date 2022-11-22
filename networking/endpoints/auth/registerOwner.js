@@ -1,16 +1,11 @@
 import axios from "axios";
-import URL_SERVICES from "../config/config"
-import { MAX_HASH_LENGHT } from "../config/security";
+import { CONSTANTS } from "../../../config";
+import { URL_SERVICES } from "../../../config/config";
 
-async function createAccountOwner(userData)
+export async function registerOwner(userData)
 { 
   const user = {
     role : 'owner',
-    // google : {
-    //   name : '',
-    //   email : '',
-    //   id : '',
-    // },
     custom : {
       name : '',
       email : userData.email,
@@ -33,5 +28,3 @@ async function createAccountOwner(userData)
 
   })
 }
-
-export default createAccountOwner;

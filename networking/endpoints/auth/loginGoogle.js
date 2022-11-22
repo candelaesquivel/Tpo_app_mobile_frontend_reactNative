@@ -1,8 +1,8 @@
-import URL_SERVICES from '../config/config';
-import axios from 'axios';
-import { CONSTANTS } from '../config';
+import axios from "axios";
+import { CONSTANTS } from "../../../config";
+import { URL_SERVICES } from "../../../config/config";
 
-async function boundGoogleData(userInfo){
+export async function loginGoogle(userInfo){
 
   return axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, {
     role : CONSTANTS.ROLES.USER_ROLE,
@@ -24,7 +24,4 @@ async function boundGoogleData(userInfo){
     return null;
   }).finally(() => {
   })
-}
-
-
-export default boundGoogleData;
+};

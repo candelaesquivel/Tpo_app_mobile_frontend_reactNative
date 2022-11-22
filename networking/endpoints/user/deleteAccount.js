@@ -1,5 +1,6 @@
-import URL_SERVICES from "../config/config";
 import axios from "axios";
+import { CONSTANTS } from "../../../config";
+import { URL_SERVICES } from "../../../config/config";
 
 async function deleteAccount(userId){
   const URL = URL_SERVICES.DELETE_ACCOUNT.replace('id', userId);

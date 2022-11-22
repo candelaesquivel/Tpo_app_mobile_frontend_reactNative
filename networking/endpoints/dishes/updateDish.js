@@ -1,7 +1,8 @@
 import axios from "axios";
-import URL_SERVICES from "../config/config";
+import { CONSTANTS } from "../../../config";
+import { URL_SERVICES } from "../../../config/config";
 
-async function updateDish(restaurantId, dishId, dishData){
+export async function updateDish(restaurantId, dishId, dishData){
 
   const URL = URL_SERVICES.DISH_MODIFY.replace('restaurantId', restaurantId).replace(
     'dishId',
@@ -16,6 +17,4 @@ async function updateDish(restaurantId, dishId, dishData){
   }).finally(() => {
     
   })
-}
-
-export default updateDish;
+};

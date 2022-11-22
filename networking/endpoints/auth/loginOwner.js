@@ -1,8 +1,8 @@
-import URL_SERVICES from "../config/config";
-import axios from 'axios';
-import { CONSTANTS } from "../config";
+import axios from "axios";
+import { CONSTANTS } from "../../../config";
+import { URL_SERVICES } from "../../../config/config";
 
-async function loginOwner(userData)
+export async function loginOwner(userData)
 {
   return axios.post(URL_SERVICES.LOGIN, {
     email : userData.email,
@@ -15,6 +15,4 @@ async function loginOwner(userData)
     return null;
   }).finally(() => {
   })
-}
-
-export default loginOwner;
+};

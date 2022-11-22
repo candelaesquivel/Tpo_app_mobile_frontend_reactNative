@@ -1,5 +1,6 @@
 import axios from "axios";
-import URL_SERVICES from "../config/config";
+import { CONSTANTS } from "../../../config";
+import { URL_SERVICES } from "../../../config/config";
 
 export async function createRestaurant(ownerId, restaurantData){
 
