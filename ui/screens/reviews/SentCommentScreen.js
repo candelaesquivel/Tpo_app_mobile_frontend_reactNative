@@ -1,8 +1,7 @@
 import { useSelector
  } from "react-redux";
  import { useState } from "react";
- import createReview from "../../networking/createReview"
-import { ROUTES } from "..";
+import { ROUTES } from "../..";
 import { SentCommentScreenUI } from "./misc/SentCommentScreenUI";
 
 export default function SentCommentScreen({navigation, props}){

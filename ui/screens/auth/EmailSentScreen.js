@@ -1,10 +1,10 @@
 import { View } from "react-native";
-import { NavBar } from "../components/navBar";
-import { colorPalette } from "../styles/colors";
+import { NavBar } from "../../components/navBar";
+import { colorPalette } from "../../styles/colors";
 import { Text } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
-import I18n from "../../assets/localization/I18n";
-import { CONSTANTS } from "../../config";
+import I18n from "../../../assets/localization/I18n";
+import { CONSTANTS } from "../../../config";
 
 export function EmailSentScreen(props){
     return (

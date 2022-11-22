@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FilterScreenUI } from './filter/FilterScreenUI';
+import { FilterScreenUI } from './FilterScreenUI';
 
 export default function FilterScreen({navigation , props}) {
 

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { ROUTES } from '..';
+import { ROUTES } from '../..';
 import { GetDishesFromRestaurant } from '../../networking';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
-import { MenuRestaurantOwnerScreenUI } from './user/MenuRestaurantOwnerScreenUI';
+import { MenuRestaurantOwnerScreenUI } from '../user/MenuRestaurantOwnerScreenUI';
 
 function MenuRestaurantOwnerScreen({navigation,props}) {
 

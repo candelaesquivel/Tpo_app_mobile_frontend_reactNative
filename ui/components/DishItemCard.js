@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CONSTANTS} from '../../config';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
-import getDishData from '../../networking/getDishDetails';
+import { dishesWS } from '../../networking/endpoints';
 
 export default function DishItemCard({name = '', discount = 0, price = 100, dishId = '', isVegan = true, isGlutenFree = true, props}) {
   const priceDescount =(price)* ((100-discount)/100)

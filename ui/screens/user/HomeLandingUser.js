@@ -1,13 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
-import getRestaurants from '../../../networking/getRestaurants';
+import { restaurantWS } from '../../../networking/endpoints';
 import { useDispatch, useSelector } from 'react-redux'
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
-import toggleRestaurantFavorite from '../../../networking/toggleRestaurantFavorite';
 import {restaurantSelectedAction} from '../../../redux/actions';
 import { ROUTES } from '../..';
-import { getRestaurantDetails } from '../../../networking/getRestaurantInfo';
 import { HomeLandingUserUI } from './HomeLandingUserUI';
 
 function HomeLandingUser({navigation , props}) {

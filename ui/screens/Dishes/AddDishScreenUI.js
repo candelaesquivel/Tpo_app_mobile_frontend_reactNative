@@ -6,11 +6,11 @@ import { MyButton } from '../../components/button'
 import  Icon from 'react-native-vector-icons/MaterialIcons';
 import Carousal from '../../components/carousal';
 import { Theme } from '../../styles/Theme';
-import createDish from '../../../networking/createDish';
+import { dishesWS } from '../../../networking/endpoints';
 import { useSelector } from 'react-redux';
 import { CONSTANTS } from '../../../config';
 import { CustomAlert } from '../../components/CustomAlert';
-import{DishForm} from "../Dishes/DishForm"
+import{DishForm} from "./DishForm"
 
   
 const AddDishScreenUI = ({

@@ -1,17 +1,7 @@
-import { View, ScrollView , StyleSheet , Dimensions} from 'react-native'
 import React, { useState } from 'react'
-import { colorPalette } from '../styles/colors'
-import I18n from "../../assets/localization/I18n";
-import { MyButton } from '../components/button'
-import  Icon from 'react-native-vector-icons/MaterialIcons';
-import Carousal from '../components/carousal';
-import { Theme } from '../styles/Theme';
 import createDish from '../../networking/createDish';
 import { useSelector } from 'react-redux';
-import { CONSTANTS } from '../../config';
-import { CustomAlert } from '../components/CustomAlert';
-import { DishForm } from './Dishes/DishForm';
-import AddDishScreenUI from './Dishes/AddDishScreenUI';
+import AddDishScreenUI from './AddDishScreenUI';
 
 function AddDishScreen({navigation, props}) {
 

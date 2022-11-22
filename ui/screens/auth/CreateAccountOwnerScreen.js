@@ -1,9 +1,9 @@
 import { useState } from "react";
-import createAccountOwner from '../../../networking/createAccount';
 import { CONSTANTS } from "../../../config";
 import { ROUTES } from "../..";
 import { ToastAndroid } from "react-native"
 import { CreateAccountOwnerUI } from "./CreateAccountOwnerUI";
+import { authWS } from "../../../networking/endpoints";
 
 export function CreateAccountOwnerScreen({navigation, props}) {
 
@@ -14,7 +14,7 @@ export function CreateAccountOwnerScreen({navigation, props}) {
     });
 
     const onRegisterPress = async (e) => {
-      const result = await createAccountOwner(userData);
+      const result = await authWS.registerOwner(userData);
 
       if (result){
         setTimeout(() => {

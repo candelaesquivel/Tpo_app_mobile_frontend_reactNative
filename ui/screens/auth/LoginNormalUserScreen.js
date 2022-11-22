@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { ROUTES } from "../..";
-import boundGoogleData from "../../../networking/boundGoogleData";
 import GetLocation from 'react-native-get-location'
 import { useDispatch, useSelector } from "react-redux";
 import { CONSTANTS } from "../../../config";
 import { LoginNormalUserUI } from "./LoginNormalUserUI";
 import { loginUser } from "../../../redux/slices/userReducer";
+import { authWS } from "../../../networking/endpoints";
 
 function LoginUserScreen({navigation, props}){
   
@@ -63,7 +63,7 @@ function LoginUserScreen({navigation, props}){
 
               // Navigate to the Home screen when the user has successfully signed in
               if (userData.email != null){
-                const userInfo = await boundGoogleData(userData);
+                const userInfo = await authWS.loginGoogle(userData);
                 userData.id = userInfo.id;
                 dispatch(loginUser(userData));
               }

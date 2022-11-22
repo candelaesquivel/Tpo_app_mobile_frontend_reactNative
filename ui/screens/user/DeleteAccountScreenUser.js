@@ -1,11 +1,11 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import deleteAccount from '../../networking/deleteAccount';
-import {logoutUserAction} from '../../redux/actions';
-import { CONSTANTS } from "../../config";
+import {logoutUserAction} from '../../../redux/actions';
+import { CONSTANTS } from "../../../config";
 import { ToastAndroid } from "react-native";
-import { DeleteAccountScreenUI } from "./user/DeleteAccountScreenUI";
+import { DeleteAccountScreenUI } from "./DeleteAccountScreenUI";
+import 
 
 function DeleteAccountScreenUser({navigation, props}){
 

@@ -1,26 +1,17 @@
-import { View, Text , ScrollView , StyleSheet , Dimensions, ToastAndroid} from 'react-native'
+import { StyleSheet , ToastAndroid} from 'react-native'
 import React, { useState } from 'react'
-import {  Switch , Slider} from '@rneui/base'
-import { colorPalette } from '../styles/colors'
-import I18n from "../../assets/localization/I18n";
-import { InputText } from '../components/InputText'
-import { MyButton } from '../components/button'
-import  Icon from 'react-native-vector-icons/MaterialIcons';
-import Carousal from '../components/carousal';
-import { Theme } from '../styles/Theme';
+import { colorPalette } from '../../styles/colors'
+import { Theme } from '../../styles/Theme';
 import { useSelector } from 'react-redux';
-import updateDish from '../../networking/updateDish'
-import { deleteDish } from '../../networking/deleteDish';
-import { CustomAlert } from '../components/CustomAlert';
-import {ROUTES} from '../';
-import { AlertWithOptions } from '../components/AlertWithOptions';
-import { CONSTANTS } from '../../config';
-import { DishModifyScreenUI } from './Dishes/DishModifyScreenUI';
+import { dishesWS } from '../../../networking/endpoints';
+import {ROUTES} from '../..';
+import { CONSTANTS } from '../../../config';
+import { DishModifyScreenUI } from './DishModifyScreenUI';
 
 function DishModifyScreen({navigation, route, props}){
   
    
-    const dishId = route.params.id;
+  const dishId = route.params.id;
 
   const [dishData, setDishData] = useState({
     name : route.params.name,

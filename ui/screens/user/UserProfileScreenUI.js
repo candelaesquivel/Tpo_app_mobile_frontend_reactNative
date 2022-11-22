@@ -1,16 +1,10 @@
 import { View, Text, Dimensions } from 'react-native'
-import React, { useEffect } from 'react'
-import I18n from "../../../assets/localization/I18n";
+import React from 'react'
 import { colorPalette } from '../../styles/colors';
 import { InputText } from '../../components/InputText';
 import { Icon } from '@rneui/base'
 import { MyButton } from '../../components/button';
 import { StyleSheet } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { updateUserData } from '../../../networking/updateUserData';
-import { updateUserDataAction } from '../../../redux/actions';
-import { ToastAndroid } from 'react-native';
 import { CONSTANTS } from '../../../config';
 
 const UserProfileScreenUI = ({

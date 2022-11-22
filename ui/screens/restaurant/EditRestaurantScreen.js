@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { EditRestaurantScreenUI } from './restaurant/EditRestaurantScreenUI';
+import { EditRestaurantScreenUI } from './EditRestaurantScreenUI';
 
 function EditRestaurantScreen({navigation, props}) {
 

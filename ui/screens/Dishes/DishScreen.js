@@ -1,6 +1,6 @@
 import { View } from 'react-native'
-import DishCard from '../components/DishCard';
-import Carousal from '../components/carousal';
+import DishCard from '../../components/DishCard';
+import Carousal from '../../components/carousal';
 
 function DishScreen({navigation, route, props}){
 

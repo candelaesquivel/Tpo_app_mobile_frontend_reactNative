@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import loginOwner from "../../../networking/loginOwner";
 import { ROUTES } from "../..";
 import { useSelector, useDispatch } from 'react-redux'
 
 import { LoginOwnerUI } from "./LoginOwnerUI";
 import { loginUser, logoutUser } from "../../../redux/slices/userReducer";
+import { authWS } from "../../../networking/endpoints";
 
 function LoginOwnerScreen({navigation, props}){
 
@@ -42,13 +42,14 @@ function LoginOwnerScreen({navigation, props}){
     const onLoginPressed = async (event) => {
 
         try {
-          var userDataRes = await loginOwner(userData);
+          var userDataResp = await authWS.loginOwner(userData);
         } catch (error) {
+          console.log('Error: ', error);
           dispatch(logoutUser());
         }
 
-        if (userDataRes)
-          dispatch(loginUser(userDataRes));
+        if (userDataResp)
+          dispatch(loginUser(userDataResp));
         else{
           dispatch(logoutUser());
         }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { UserProfileScreenUI } from './UserProfileScreenUI';
 import {launchImageLibrary} from 'react-native-image-picker';
-import { uploadUserImg } from '../../../networking/uploadUserImg';
+import { userWS } from '../../../networking/endpoints';
 
 export default function UserProfileScreen({navigation, route, props}) {
 
@@ -31,9 +31,7 @@ export default function UserProfileScreen({navigation, route, props}) {
     // }
 
     try {
-      console.log('Tryying Upload');
       const result = await uploadUserImg(userId, userData.photo);
-      console.log('Upload finished')
     } catch (error) {
       
     }

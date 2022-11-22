@@ -4,9 +4,9 @@ import { GetFavoriteRestaurants } from '../../networking';;
 import { useDispatch, useSelector } from 'react-redux';
 import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
-import { restaurantSelectedAction } from '../../redux/actions';
-import { ROUTES } from '..';
-import { UserFavoriteRestaurantsScreenUI}  from './restaurant/UserFavoriteRestaurantsScreenUI';
+import { restaurantSelectedAction } from '../../../redux/actions';
+import { ROUTES } from '../..';
+import { UserFavoriteRestaurantsScreenUI}  from '../restaurant/UserFavoriteRestaurantsScreenUI';
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
   

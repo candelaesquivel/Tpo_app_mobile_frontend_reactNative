@@ -1,10 +1,10 @@
 import { ToastAndroid} from 'react-native'
 import React, { useState } from 'react'
-import { createRestaurant } from '../../networking/createRestaurant';
-import { CONSTANTS } from '../../config';
+import { restaurantWS } from '../../../networking/endpoints';
+import { CONSTANTS } from '../../../config';
 import { useSelector } from 'react-redux';
-import { RestaurantForm } from './restaurant/RestaurantForm';
-import { ROUTES } from '..';
+import { RestaurantForm } from './RestaurantForm';
+import { ROUTES } from '../..';
 import { useEffect } from 'react';
 
 function CreateRestaurantScreen({navigation, props}) {

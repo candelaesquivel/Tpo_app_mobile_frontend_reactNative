@@ -1,7 +1,7 @@
 import React, { useCallback, useState }  from 'react'
 import { ROUTES } from '../..';
 import { useSelector } from 'react-redux';
-import { GetOwnerRestaurants } from '../../../networking';
+import { userWS } from '../../../networking/endpoints';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { HomeLandingOwnerUI } from './HomeLandingOwnerUI';
 
@@ -15,7 +15,7 @@ function HomeOwnerUI({navigation, props}) {
   });
 
   const fillRestaurantList = async () => {
-    const rests = await GetOwnerRestaurants(ownerId);
+    const rests = await userWS.getOwnerRestaurants(ownerId);
 
     if (rests)
       setRestaurants(rests);

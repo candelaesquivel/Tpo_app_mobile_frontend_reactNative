@@ -3,10 +3,10 @@ import React, { useState , useEffect} from 'react'
 import { GetDishesFromRestaurant } from '../../networking';
 import { GetCommentsFromRestaurant } from '../../networking';
 import { useSelector } from 'react-redux';
-import { ROUTES } from '..';
+import { ROUTES } from '../..';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
-import { RestaurantProfileUserScreenUI } from './restaurant/RestaurantProfileUserScreenUI';
+import { RestaurantProfileUserScreenUI } from './RestaurantProfileUserScreenUI';
 
 function RestaurantProfileUserScreen({navigation, route, name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
