@@ -78,7 +78,7 @@ function CreateRestaurantScreen({navigation, props}) {
   const ownerId = useSelector(state => state.user.userId);
 
   const onCreateHandler = async (event) => {
-    const result = await createRestaurant(ownerId, restaurantData);
+    const result = await restaurantWS.createRestaurant(ownerId, restaurantData);
 
     if (result){
       setTimeout(() => {

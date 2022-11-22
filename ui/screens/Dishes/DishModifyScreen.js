@@ -29,7 +29,7 @@ function DishModifyScreen({navigation, route, props}){
 
 
   const onSavePress = async (event) => {
-    const result = await updateDish(currRestaurant, dishId, dishData);
+    const result = await dishesWS.updateDish(currRestaurant, dishId, dishData);
 
     if (result){
       setTimeout(() => {
@@ -53,7 +53,7 @@ function DishModifyScreen({navigation, route, props}){
 
   const onDeleteOptionsHandler = async (option) => {
     if (option == CONSTANTS.SCREEN_TEXTS.YES){
-      const result = await deleteDish(currRestaurant, dishId);
+      const result = await dishesWS.deleteDish(currRestaurant, dishId);
 
       console.log(result);
       if (result === 200)

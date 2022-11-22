@@ -2,7 +2,8 @@ import { useSelector
  } from "react-redux";
  import { useState } from "react";
 import { ROUTES } from "../..";
-import { SentCommentScreenUI } from "./misc/SentCommentScreenUI";
+import {SentCommentScreenUI} from './SentCommentScreenUI';
+import { reviewWS } from "../../../networking/endpoints";
 
 export default function SentCommentScreen({navigation, props}){
 
@@ -24,7 +25,7 @@ export default function SentCommentScreen({navigation, props}){
 
       const onCreatePress = async (event) => {
         console.log(reviewData)
-        const result= await createReview(currRestaurant,userId, reviewData);
+        const result= await reviewWS.createReview(currRestaurant,userId, reviewData);
         
         if (result)
           navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);

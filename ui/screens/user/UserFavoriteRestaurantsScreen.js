@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react'
 import { useState } from 'react';
-import { GetFavoriteRestaurants } from '../../networking';;
 import { useDispatch, useSelector } from 'react-redux';
-import toggleRestaurantFavorite from '../../networking/toggleRestaurantFavorite';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { restaurantSelectedAction } from '../../../redux/actions';
 import { ROUTES } from '../..';
-import { UserFavoriteRestaurantsScreenUI}  from '../restaurant/UserFavoriteRestaurantsScreenUI';
+import { userWS } from '../../../networking/endpoints';
+import { UserFavoriteRestaurantsScreenUI}  from '../user/UserFavoriteRestaurantsScreenUI';
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
   
@@ -19,7 +18,7 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
   const userId = useSelector(state => state.user.userId);
 
   const fillFavoriteRestaurantList = async () => {
-    const restos = await GetFavoriteRestaurants(userId);
+    const restos = await userWS.getFavoriteRestaurants(userId);
     setRestaurants(restos);
   }
 
@@ -37,7 +36,7 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
   );
 
   const onFavoriteIconPress = async (restaurantId) => {
-    const result = await toggleRestaurantFavorite(userId, restaurantId);
+    const result = await userWS.changeRestaurantFavoriteStatus(userId, restaurantId);
     setTrigggerSearch(true);
   }
 

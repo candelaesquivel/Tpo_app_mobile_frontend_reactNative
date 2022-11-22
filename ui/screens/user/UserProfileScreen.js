@@ -31,7 +31,7 @@ export default function UserProfileScreen({navigation, route, props}) {
     // }
 
     try {
-      const result = await uploadUserImg(userId, userData.photo);
+      const result = await userWS.uploadUserImg(userId, userData.photo);
     } catch (error) {
       
     }

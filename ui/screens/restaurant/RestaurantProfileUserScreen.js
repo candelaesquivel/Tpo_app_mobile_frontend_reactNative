@@ -1,12 +1,11 @@
 import { View, Text , FlatList , StyleSheet , Dimensions, ScrollView} from 'react-native'
 import React, { useState , useEffect} from 'react'
-import { GetDishesFromRestaurant } from '../../networking';
-import { GetCommentsFromRestaurant } from '../../networking';
 import { useSelector } from 'react-redux';
 import { ROUTES } from '../..';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
 import { RestaurantProfileUserScreenUI } from './RestaurantProfileUserScreenUI';
+import { dishesWS, reviewWS } from '../../../networking/endpoints';
 
 function RestaurantProfileUserScreen({navigation, route, name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
@@ -31,12 +30,12 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
   const restoId = useSelector((state) => state.user.restaurantSelectedId);
 
   const fillCommentsList = async () => {
-    const newComments = await GetCommentsFromRestaurant(restoId);
-    setComments(newComments);
+    const newComments = await reviewWS.getReviewsOfRestaurant(restoId);
+    // setComments(newComments);
   }
 
   const fillDishList = async () => {
-    const newDishes = await GetDishesFromRestaurant(restoId);
+    const newDishes = await dishesWS.getDishesFromRestaurant(restoId);
     setDishes(newDishes);
   }
 

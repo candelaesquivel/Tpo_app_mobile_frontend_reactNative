@@ -8,9 +8,8 @@ import { Theme } from "../../styles/Theme";
 import { CONSTANTS } from "../../../config";
 
 
-const DeleteAccountScreenUI = ({
+export const DeleteAccountScreenUI = ({
     onDeletePressHandler,
-
     props}) => {
   
     return (
@@ -104,6 +103,3 @@ const DeleteAccountScreenUI = ({
        
       },
 });
-
-  
-  export {DeleteAccountScreenUI}

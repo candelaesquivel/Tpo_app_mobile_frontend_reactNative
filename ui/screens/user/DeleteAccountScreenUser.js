@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {logoutUserAction} from '../../../redux/actions';
 import { CONSTANTS } from "../../../config";
 import { ToastAndroid } from "react-native";
-import { DeleteAccountScreenUI } from "./DeleteAccountScreenUI";
-import 
+import {DeleteAccountScreenUI} from './DeleteAccountScreenUI';
+import { userWS } from "../../../networking/endpoints";
 
 function DeleteAccountScreenUser({navigation, props}){
 
@@ -19,7 +19,7 @@ function DeleteAccountScreenUser({navigation, props}){
     }, [navigation])
 
     const onDeletePress = async (event) => {
-      const isDeleted = await deleteAccount(userId);
+      const isDeleted = await userWS.deleteAccount(userId);
 
       if (isDeleted)
       {

@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import createDish from '../../networking/createDish';
 import { useSelector } from 'react-redux';
 import AddDishScreenUI from './AddDishScreenUI';
-
+import { dishesWS } from '../../../networking/endpoints';
 function AddDishScreen({navigation, props}) {
 
   
@@ -53,7 +52,7 @@ function AddDishScreen({navigation, props}) {
   }
 
   const onSavePress = async (event) => {
-    const status = await createDish(currRestaurant, dishData);
+    const status = await dishesWS.createDish(currRestaurant, dishData);
 
     if (status === 201)
     {
