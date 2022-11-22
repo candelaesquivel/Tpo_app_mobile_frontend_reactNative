@@ -19,4 +19,4 @@ export {default as UserFavoritesRestaurants} from './user/UserFavoriteRestaurant
 export {default as EditRestaurant} from './restaurant/EditRestaurantScreen';
 export {default as SearchFilters} from './filter/FilterScreen';
 export {default as SentComment} from './reviews/SentCommentScreen';
-export {default as RecoverPasswordToken} from './RecoverPasswordToken';
+export {default as RecoverPasswordToken} from './auth/RecoverPasswordToken';

@@ -3,16 +3,11 @@ import React, { useState } from 'react'
 import { CONSTANTS } from "../../../config"
 import { Theme } from "../../styles/Theme"
 import { colorPalette } from "../../styles/colors"
-import { InputText } from "../../components/InputText"
-import { Slider } from "@rneui/themed"
-import I18n from "../../../assets/localization/I18n"
 import  Icon from 'react-native-vector-icons/MaterialIcons';
-import { View, Text , ScrollView , StyleSheet , Dimensions, ToastAndroid} from 'react-native'
-import { AlertWithOptions } from '../../components/AlertWithOptions';
-import { CustomAlert } from '../../components/CustomAlert';
+import { View, ScrollView , StyleSheet , Dimensions} from 'react-native'
 import Carousal from '../../components/carousal';
 import { MyButton } from '../../components/button';
-import {DishForm} from "../Dishes/DishForm"
+import { DishForm } from './DishForm';
 
 const DishModifyScreenUI = ({
   
