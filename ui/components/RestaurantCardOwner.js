@@ -1,42 +1,38 @@
-import React from 'react';
 import { View , StyleSheet , Dimensions, TouchableWithoutFeedback} from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
-import I18n from "../../assets/localization/I18n";
 import { Theme } from '../styles/Theme';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-import { ROUTES } from '..';
-import {restaurantSelectedAction} from '../../redux/actions'
 import { Image } from 'react-native';
 import { CONSTANTS } from '../../config';
 
-function RestaurantCardOwner({name = 'Rodizio', 
-
-address = 'Honduras 5500', score = 0, restaurantId = '', pictures = [],
+function RestaurantCardOwner({
+name = 'Rodizio', 
+address = 'Honduras 5500', 
+score = 0, 
+restaurantId = '', 
+pictures = [],
+onPhotoPressHandler,
+onMenuPressHandler,
 props}) {
 
   const showRating = score > 0;
-  const dispatcher = useDispatch();
-  const navigation = useNavigation();
-
-  const onMenuHandlerPress = (event) => {
-    dispatcher(restaurantSelectedAction(restaurantId));
-    navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
-  }
-
-  const onPhotoPress = (event) => {
-    dispatcher(restaurantSelectedAction(restaurantId));
-    navigation.navigate(ROUTES.RESTAURANT_EDIT_OWNER);
-  }
-
   const photo = pictures.length > 0 ? 
   'data:image/png;base64,' + pictures[0] : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==';
+
+  const onRestaurantPhotoHandler = (event) => {
+    if (onPhotoPressHandler)
+      onPhotoPressHandler(restaurantId);
+  }
+
+  const onRestaurantMenuHandler = (event) => {
+    if (onMenuPressHandler)
+      onMenuPressHandler(restaurantId);
+  }
 
   return (
       <Card>
         <View style={styles.global}>
-          <TouchableWithoutFeedback onPress={onPhotoPress}>
+          <TouchableWithoutFeedback onPress={onRestaurantPhotoHandler}>
             <Image source ={{
                 uri : photo,
               }}
@@ -64,7 +60,7 @@ props}) {
           }
 
           <View style={styles.globalFour} >
-            <Text  onPress={onMenuHandlerPress} style={styles.menu} >{CONSTANTS.SCREEN_TEXTS.MENU_LABEL}</Text>
+            <Text  onPress={onRestaurantMenuHandler} style={styles.menu} >{CONSTANTS.SCREEN_TEXTS.MENU_LABEL}</Text>
           </View>
 
          </View>

@@ -8,6 +8,8 @@ import { CONSTANTS } from "../../../config";
 export const HomeLandingOwnerUI = ({
 restaurants = [],
 onCreateRestaurantHandler,
+onPhotoPressHandler,
+onMenuPressHandler,
 props
 }) =>
 {
@@ -21,7 +23,13 @@ props
           }
           {
             restaurants.length !== 0 && 
-            <RestaurantFlatListOwner restaurants={restaurants}></RestaurantFlatListOwner>
+            <RestaurantFlatListOwner 
+              onMenuPressHandler={onMenuPressHandler}
+              onPhotoPressHandler={onPhotoPressHandler}
+              restaurants={restaurants}
+            >
+
+            </RestaurantFlatListOwner>
           }
       </View>
 
