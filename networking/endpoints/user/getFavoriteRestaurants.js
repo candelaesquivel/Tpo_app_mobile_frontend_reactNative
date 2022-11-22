@@ -4,29 +4,12 @@ import { URL_SERVICES } from "../../../config/config";
 
 export async function getFavoriteRestaurants(userId)
 {
-  console.log("On Get Favorite Restaurants");
-
-  let restaurants = [];
-
-  const url = URL_SERVICES.FAVORITE_RESTAURANTS_NORMAL_USER.replace('id', userId);
-
-
-  return axios.get(url).then( (response) => {
-    let restos = [];
-
-    response.data.forEach(itr => {
-      restos.push({
-        name : itr.name,
-        address : itr.address.neighborhood + ' ' + itr.address.streetNumber,
-        score : itr.averageRating.$numberDecimal,
-        restaurantId : itr.id,
-      });
-    });
-
-    return restos;
-
+  const URL = URL_SERVICES.FAVORITE_RESTAURANTS_NORMAL_USER.replace('id', userId);
+  return axios.get(URL).then( (response) => {
+    return response.data;
   }).catch(err =>{
     console.error('Error on Get Favorite Restaurants: ', err);
+    return;
   }).finally(() => {
   })
 }

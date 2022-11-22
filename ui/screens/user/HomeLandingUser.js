@@ -6,6 +6,7 @@ import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
 import { ROUTES } from '../..';
 import { HomeLandingUserUI } from './HomeLandingUserUI';
+import { selectRestaurant } from '../../../redux/slices/userReducer';
 
 function HomeLandingUser({navigation , props}) {
   
@@ -47,10 +48,13 @@ function HomeLandingUser({navigation , props}) {
   }
 
   const onPhotoPress = async (restaurantId) => {
-   dispatch(restaurantSelectedAction(restaurantId))
 
-   const restaurant = await restaurantWS.getRestaurantInfo(restaurantId);
-   navigation.navigate(ROUTES.RESTAURANT_VIEW_USER, restaurant);
+    dispatch(selectRestaurant(restaurantId));
+
+    const restaurant = await restaurantWS.getRestaurantInfo(restaurantId);
+
+    if (restaurant)
+      navigation.navigate(ROUTES.RESTAURANT_VIEW_USER, restaurant);
   }
 
   return (

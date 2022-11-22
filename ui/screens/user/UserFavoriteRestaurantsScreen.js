@@ -2,10 +2,10 @@ import React, { useCallback } from 'react'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
-import { restaurantSelectedAction } from '../../../redux/actions';
 import { ROUTES } from '../..';
 import { userWS } from '../../../networking/endpoints';
 import { UserFavoriteRestaurantsScreenUI}  from '../user/UserFavoriteRestaurantsScreenUI';
+import { selectRestaurant } from '../../../redux/slices/userReducer';
 
 function UserFavoritesRestaurantsScreen({navigation , props}) {
   
@@ -30,7 +30,9 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
 
         return () => {
           setTrigggerSearch(false);
-          setRestaurants([]);
+
+          if (!isFocused)
+            setRestaurants([]);
       }
     }, [triggerSearch, isFocused])
   );
@@ -41,15 +43,16 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
   }
 
   const onPhotoPress = (restaurantId) => {
-    dispatch(restaurantSelectedAction(restaurantId))
+    dispatch(selectRestaurant(restaurantId));
     navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
    }
 
   return (
-  <UserFavoriteRestaurantsScreenUI>
+  <UserFavoriteRestaurantsScreenUI
     restaurants={restaurants}
     onPhotoPressHandler={onPhotoPress}
     onFavoriteIconPressHandler={onFavoriteIconPress}
+  >
   </UserFavoriteRestaurantsScreenUI>
   )
 }
