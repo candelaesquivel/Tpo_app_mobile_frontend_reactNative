@@ -1,6 +1,6 @@
 import { View, StyleSheet, Dimensions, useWindowDimensions } from 'react-native'
 import React, { useEffect } from 'react'
-import { Icon } from "@rneui/themed";
+import { Icon } from "@rneui/base"
 import { DishFlatList } from '../../components/DishFlatList';
 import { CONSTANTS } from '../../../config';
 import EmptyScreenMessage from '../../components/EmptyScreenMessage';
