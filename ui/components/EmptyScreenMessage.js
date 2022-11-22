@@ -25,17 +25,15 @@ export default function EmptyScreenMessage({
 
 const styles = StyleSheet.create({
     global: {
-      height :  Dimensions.get('window').height,
-      width : Dimensions.get('window').width,
       opacity: 0.35,
     },
   
-    title : {
-      marginTop : "30%",
-      marginBottom : "10%",
-      alignSelf : 'center',
-      fontSize : Theme.font.LARGE,
-      color : colorPalette.Black,
-      },
-      });
+  title : {
+    marginTop : "30%",
+    marginBottom : "10%",
+    alignSelf : 'center',
+    fontSize : Theme.font.LARGE,
+    color : colorPalette.Black,
+    },
+});
       
