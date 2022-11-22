@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import AddDishScreenUI from './AddDishScreenUI';
 import { dishesWS } from '../../../networking/endpoints';
+import {AddDishScreenUI} from './AddDishScreenUI';
+
 function AddDishScreen({navigation, props}) {
 
   
@@ -66,20 +67,22 @@ function AddDishScreen({navigation, props}) {
   return (
 
    <AddDishScreenUI
-   onDismissAlertHandler={onDismissAlert}
-   dishDataName={dishData.name}
-   onNameChangedHandler={onNameChanged}
-   dishDataprice={dishData.price}
-   onPriceChangedHandler={onPriceChanged}
-   dishDataingredients={dishData.ingredients}
-   onIngredientChangeHandler={onIngredientChange}
-   dishDatadiscounts={dishData.discounts}
-   onDiscountChangeHandler={onDiscountChange}
-   dishDataisVegan={dishData.isVegan}
-   onIsVeganChangeHandler={onIsVeganChange}
-   dishDataisGlutenFree={dishData.isGlutenFree}
-   onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
-   onSavePressHandler={onSavePress}
+    name={dishData.name}
+    price={dishData.price}
+    ingredients={dishData.ingredients}
+    discount={dishData.discounts}
+    isVegan={dishData.isVegan}
+    isGlutenFree={dishData.isGlutenFree}
+
+    onDismissAlertHandler={onDismissAlert}
+    onNameChangedHandler={onNameChanged}
+    onPriceChangedHandler={onPriceChanged}
+    onIngredientChangeHandler={onIngredientChange}
+    onDiscountChangeHandler={onDiscountChange}
+    onIsVeganChangeHandler={onIsVeganChange}
+    onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
+    onSavePressHandler={onSavePress}
+
    >
    </AddDishScreenUI>
 

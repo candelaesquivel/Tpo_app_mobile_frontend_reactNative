@@ -13,14 +13,14 @@ import { CustomAlert } from '../../components/CustomAlert';
 import{DishForm} from "./DishForm"
 
   
-const AddDishScreenUI = ({
-    
-    dishDataName,   
-    dishDataprice,   
-    dishDataingredients,  
-    dishDatadiscounts, 
-    dishDataisVegan,
-    dishDataisGlutenFree,
+export const AddDishScreenUI = ({
+    name = '',
+    price = 0,
+    ingredients = '',
+    discount = 0,
+    isVegan = false,
+    isGlutenFree = false,
+
     onIsGlutenFreeChangeHandler,
     onIsVeganChangeHandler,
     onSavePressHandler,
@@ -35,6 +35,8 @@ const AddDishScreenUI = ({
   
     const [showCreateDishAlert, setShowCreateDish] = useState(false);
 
+   
+
     return (
         <ScrollView>
            <CustomAlert 
@@ -43,18 +45,18 @@ const AddDishScreenUI = ({
             iconName='restaurant'
             onRequestCloseHandler={onDismissAlertHandler}>
           </CustomAlert>
-         <Carousal></Carousal>
+          <Carousal></Carousal>
             <View style={styles.iconGlobal}>
                 <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
             </View>
             <View style={styles.global}>
                 <DishForm
-                  name={dishDataName} onNameChanged={onNameChangedhandler}
-                  price={dishDataprice} onPriceChanged={onPriceChangedHandler}
-                  ingredients={ dishDataingredients} onIngredientChange={onIngredientChangeHandler}
-                  discount={dishDatadiscounts} onDiscountChange={onDiscountChangeHandler}
-                  isVegan={dishDataisVegan} onIsVeganChange={onIsVeganChangeHandler}
-                  isGlutenFree={dishDataisGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChangeHandler}
+                  name={name} onNameChanged={onNameChangedhandler}
+                  price={price} onPriceChanged={onPriceChangedHandler}
+                  ingredients={ ingredients} onIngredientChange={onIngredientChangeHandler}
+                  discount={discount} onDiscountChange={onDiscountChangeHandler}
+                  isVegan={isVegan} onIsVeganChange={onIsVeganChangeHandler}
+                  isGlutenFree={isGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChangeHandler}
                 ></DishForm>
     
                 <View style={styles.buttons}>
@@ -93,8 +95,8 @@ const AddDishScreenUI = ({
     }
     ,
     iconPlus:{
-        marginRight: "3%" , 
-        marginTop : "3%" 
+        marginRight: 3 , 
+        marginTop : 3 
     },
     globalTwo:{
         width:'90%', 
@@ -107,17 +109,17 @@ const AddDishScreenUI = ({
       words :{
         fontSize: Theme.font.MEDIUM,
         color: colorPalette.Black, 
-        marginLeft : "4%" , 
-        marginBottom : "3%"
+        marginLeft : 4 , 
+        marginBottom : 3
     },
     switchContainer : {
         flexDirection:'row',
-        marginBottom : "3%"
+        marginBottom : 3
          
     },
     buttons : {
         flexDirection: 'row' , 
-        marginLeft : "6%"
+        marginLeft : 6
         },
   
     buttonsTwo : {
@@ -130,5 +132,3 @@ const AddDishScreenUI = ({
   
   });
  
-  
-  export {AddDishScreenUI};

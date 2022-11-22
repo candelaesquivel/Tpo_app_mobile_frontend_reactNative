@@ -72,14 +72,14 @@ const DishForm = ({
         maximumValue={100}
         step={1}
         allowTouchTrack={true}
-        trackStyle={styles.thumbStyleOne}
+        trackStyle={styles.trackStyle}
         thumbStyle={styles.thumbStyle}
         thumbProps={{
         children: (
             <Icon
             name="circle"
             type="font-awesome"
-            size={15}
+            size={20}
             reverse
             color={colorPalette.Orange}
       />
@@ -92,19 +92,19 @@ const DishForm = ({
         <Text style={styles.words}>
             {CONSTANTS.SCREEN_TEXTS.VEGAN_LABEL}    
         </Text>
-        <View style={{width:'18%'}}></View>
+        <View style={{width: '16%'}}></View>
         <Switch
             onChange={onIsVeganChange}
             value={isVegan} />
-    </View>
-    <View style={styles.switchContainer}>
-        <Text style={styles.words}>
-            {CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}       
-        </Text>
-        <Switch
-            onChange={onIsGlutenFreeChange}
-            value={isGlutenFree} />
-    </View>
+      </View>
+      <View style={styles.switchContainer}>
+          <Text style={styles.words}>
+              {CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}       
+          </Text>
+          <Switch
+              onChange={onIsGlutenFreeChange}
+              value={isGlutenFree} />
+      </View>
     <Text style={styles.words}>
       {CONSTANTS.SCREEN_TEXTS.CATEGORY_LABEL}    
     </Text>
@@ -115,7 +115,7 @@ const DishForm = ({
 
 const styles = StyleSheet.create({
   globalTwo:{
-      width:'90%', 
+      width: '100%',
       alignItems:'flex-start'
     },
     global:{
@@ -150,14 +150,14 @@ const styles = StyleSheet.create({
     height : Dimensions.get('window').height*0.05,
     marginLeft :"5%"
   },
-  thumbStyleOne : { 
-    height: "10%", 
-    backgroundColor:  'transparent' , 
+  trackStyle : {
+    height : '10%',
+    backgroundColor:  'transparent', 
     },
   
   thumbStyle : { 
-    height: 12, 
-    width: 12, 
+    height : 20,
+    width : 20,
     backgroundColor: 'transparent'
    },
    
