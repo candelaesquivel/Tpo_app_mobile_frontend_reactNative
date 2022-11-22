@@ -24,7 +24,8 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
       fillDishList();
 
       return () => {
-        setDishes([])
+        if (!isFocused)
+          setDishes([])
       }
     }, [isFocused])
   );
@@ -35,8 +36,8 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
 
   return (
     <MenuRestaurantOwnerScreenUI
-    dishes1={dishes}
-    onCreateDishPressHandler={onCreateDishPress}
+      dishes={dishes}
+      onCreateDishPressHandler={onCreateDishPress}
     ></MenuRestaurantOwnerScreenUI>
       )
 }

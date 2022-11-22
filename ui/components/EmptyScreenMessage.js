@@ -5,12 +5,14 @@ import {Theme} from "../styles/Theme"
 import {colorPalette} from "../styles/colors"
 import { Logo } from "../components/Logo";
  
-export default function EmptyScreenMessage(props) {
+export default function EmptyScreenMessage({
+  message
+}) {
   return (
     <View style={styles.global}>
         <Text
         style={styles.title} >
-        {props.message}
+        {message}
         </Text>
         <Logo 
         width={Dimensions.get('window').width*0.3} 

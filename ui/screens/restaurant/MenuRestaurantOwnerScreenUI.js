@@ -1,4 +1,4 @@
-import { View, StyleSheet, Dimensions } from 'react-native'
+import { View, StyleSheet, Dimensions, useWindowDimensions } from 'react-native'
 import React, { useEffect } from 'react'
 import { Icon } from "@rneui/themed";
 import { DishFlatList } from '../../components/DishFlatList';
@@ -7,53 +7,56 @@ import EmptyScreenMessage from '../../components/EmptyScreenMessage';
 import { colorPalette } from '../../styles/colors';
 
 const MenuRestaurantOwnerScreenUI = ({
-    dishes1,
+    dishes,
     onCreateDishPressHandler,
     props}) => {
-  
+
+    const {height, width} = useWindowDimensions();
+
     return (
-        <View style={styles.global}> 
-        <View style={{alignItems:'center'}}>
-          {dishes1.length === 0 && 
-            <EmptyScreenMessage
-            message={CONSTANTS.SCREEN_TEXTS.NOT_DISHES}
-            ></EmptyScreenMessage>
-          }
-          {
-            dishes1.length !== 0 && 
-            <DishFlatList dishes={dishes1}></DishFlatList>
-          }
-          <View style={styles.icon}>
-            <Icon
-              size={50}
-              name = 'pluscircle'
-              type = 'antdesign'
-              onPress={onCreateDishPressHandler}
-              containerStyle={styles.icon}	
-            >
-            </Icon>
+        <View style={styles.global}>
+          <Icon
+            size={50}
+            name = 'pluscircle'
+            type = 'antdesign'
+            onPress={onCreateDishPressHandler}
+            containerStyle={{
+              position : 'absolute',
+              top : height * 0.79,
+              left : width * 0.85,
+            }}
+          >
+          </Icon>
+          <View style={{alignItems:'center'}}>
+            {
+              dishes.length === 0 && 
+              <EmptyScreenMessage
+                message={CONSTANTS.SCREEN_TEXTS.NOT_DISHES}
+              >
+
+              </EmptyScreenMessage>
+            }
+            {
+              dishes.length !== 0 && 
+              <DishFlatList dishes={dishes}></DishFlatList>
+            }
+            
           </View>
-        </View>
       </View>
     )
   }
   
-  
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     category : {
       color: colorPalette.Black ,
        fontSize: 18 ,marginTop :10, fontWeight: 'bold'
     },
   
-    global : {
+  global : 
+  {
       alignItems:'center' , 
-      height : "100%"
+      height : Dimensions.get('window').height,
   },
-  icon : {
-    position: 'absolute',                                         
-    top:  Dimensions.get('screen').width * 0.84,                                                    
-    right: Dimensions.get('screen').width * 0.01, 
-  },
-  });
+});
   
-  export {MenuRestaurantOwnerScreenUI}
+export {MenuRestaurantOwnerScreenUI}
