@@ -9,6 +9,11 @@ import { CONSTANTS } from "../../../config";
 
 
 export const DeleteAccountScreenUI = ({
+    email,
+    password,
+    emailError,
+    onEmailChangeHandler,
+    onPasswordChangeHandler,
     onDeletePressHandler,
     props}) => {
   
@@ -36,7 +41,9 @@ export const DeleteAccountScreenUI = ({
                         placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
                         placeholderTextColor ={colorPalette.White}
                         color = {colorPalette.Orange}
-                        
+                        defaultValue = {email}
+                        errorMesssage = {emailError}
+                        onChangeText = {onEmailChangeHandler}
                         >
                     </InputText>
                     <InputText 
@@ -44,7 +51,8 @@ export const DeleteAccountScreenUI = ({
                         placeholderTextColor ={colorPalette.White}
                         color = {colorPalette.Orange}
                         secureTextEntry = {true}
-                    
+                        defaultValue = {password}
+                        onChangeText = {onPasswordChangeHandler}
                     ></InputText>
                 </View>
             </View>

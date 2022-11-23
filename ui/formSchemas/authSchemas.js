@@ -22,4 +22,10 @@ export const authSchemas = {
     email : yup.string().email(CONSTANTS.ERROR_MSGS.EMAIL_INVALID)
     .required(CONSTANTS.ERROR_MSGS.EMAIL_REQUIRED)
   }),
+
+  deleteAccount : yup.object().shape({
+    email : yup.string().email(CONSTANTS.ERROR_MSGS.EMAIL_INVALID)
+    .required(CONSTANTS.ERROR_MSGS.EMAIL_REQUIRED),
+    password : yup.string().required(CONSTANTS.ERROR_MSGS.PASSWORD_REQUIRED),
+  }),
 }
