@@ -9,6 +9,7 @@ import { CONSTANTS } from "../../../config"
 
 export const ForgotPasswordUI = ({
   email,
+  emailError = '',
   onEmailHandler,
   onRecoveryHandler,
   props
@@ -27,7 +28,8 @@ export const ForgotPasswordUI = ({
             placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
             placeholderTextColor ={colorPalette.White}
             height = '50%' 
-            onChange={onEmailHandler}
+            onChangeText = {onEmailHandler}
+            errorMessage = {emailError}
             ></InputText>
           </View> 
           </View>
