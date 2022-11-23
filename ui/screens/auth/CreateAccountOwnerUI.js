@@ -14,6 +14,9 @@ onEmailHandler,
 onPasswordHandler,
 onRepeatPassHandler,
 onRegisterHandler,
+emailError = '',
+passwordError =  '',
+repeatPasswordError = '',
 props
 }) => 
 {
@@ -26,29 +29,35 @@ props
           <View style={styles.input}>
               <View style={styles.inputTwo}>
                 <InputText
+                errorMessage = {emailError}
                 defaultValue={email}
                 placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL} 
                 placeholderTextColor ={colorPalette.White}
                 color={colorPalette.Orange} name = 'email'
-                onChange = {onEmailHandler}></InputText>
+                onChangeText = {onEmailHandler}
+                onChange = {onEmailHandler}>
+
+                </InputText>
 
                 <InputText
+                errorMessage={passwordError}
                 defaultValue={password}
                 secureTextEntry = {true} 
                 placeholder = {CONSTANTS.SCREEN_TEXTS.PASS_INPUT_LABEL} 
                 placeholderTextColor ={colorPalette.White}
                 color={colorPalette.Orange} 
                 name='password' 
-                onChange = {onPasswordHandler}></InputText>
+                onChangeText = {onPasswordHandler}></InputText>
 
                 <InputText
+                errorMessage={repeatPasswordError}
                 defaultValue={repeatPassword}
                 secureTextEntry = {true} 
                 placeholder = {CONSTANTS.SCREEN_TEXTS.VALID_PASS_INPUT_LABEL}
                 placeholderTextColor ={colorPalette.White}
                 color={colorPalette.Orange} 
                 name='repeatPassword' 
-                onChange = {onRepeatPassHandler}></InputText>
+                onChangeText = {onRepeatPassHandler}></InputText>
               </View>
              
           </View>
