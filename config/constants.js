@@ -119,6 +119,15 @@ export default  {
     TOKEN_INPUT : I18n.t('TokenInput'),
     TOKEN_PASSWORD : I18n.t('TokenpassInput'),
     TOKEN_BUTTON : I18n.t('send'),
-
   },
+
+  ERROR_MSGS : {
+    EMAIL_REQUIRED : I18n.t('emailRequired'),
+    EMAIL_INVALID : I18n.t('emailInvalid'),
+    PASSWORD_NOT_MATCH : I18n.t('passwordMatch'),
+    PASSWORD_REQUIRED : I18n.t('passwordRequired'),
+    PASSWORD_LENGTH : I18n.t('passwordLength'),
+  },
+
+  MIN_LENGTH_PASSWORD : 8,
 }

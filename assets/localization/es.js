@@ -100,6 +100,12 @@ export  default{
 
     TokenInput : "Ingrese el token",
     TokenpassInput : 'Ingrese nueva contraseña',
-    tokenScreen : "Cambiar contraseña "
+    tokenScreen : "Cambiar contraseña",
 
+    /// Error Messages
+    emailRequired : 'Se requiere un email',
+    emailInvalid : 'Email no valido',
+    passwordMatch : 'Las contraseñas no coinciden',
+    passwordLength : 'La contraseña debe tener al menos 8 caracteres',
+    passwordRequired : 'La contraseña es requerida'
 };
