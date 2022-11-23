@@ -4,16 +4,30 @@ import { ROUTES } from "../..";
 import { ToastAndroid } from "react-native"
 import { CreateAccountOwnerUI } from "./CreateAccountOwnerUI";
 import { authWS } from "../../../networking/endpoints";
+import { useFormik } from 'formik';
+import { authSchemas } from "../../formSchemas/authSchemas";
 
 export function CreateAccountOwnerScreen({navigation, props}) {
 
-    const [userData, setUserData] = useState({
-      email : '',
-      password : '',
-      repeatPassword : ''
+    const formik = useFormik({
+      initialValues : {
+        email : '',
+        password : '',
+        repeatPassword : '',
+      },
+      validationSchema : authSchemas.createAccount,
+      onSubmit(values) {
+        onRegisterPress(values);
+      }
     });
 
     const onRegisterPress = async (e) => {
+
+      const userData = {
+        email : formik.values.email,
+        password : formik.values.password,
+      };
+
       const result = await authWS.registerOwner(userData);
 
       if (result){
@@ -26,27 +40,18 @@ export function CreateAccountOwnerScreen({navigation, props}) {
       }
     }
 
-    const onEmailChange = ({ nativeEvent: { eventCount, target, text} }) => {
-      setUserData({...userData, 'email' : text})
-    }
-
-    const onPassChange = ({nativeEvent : {eventCount, target, text}}) => {
-      setUserData({...userData, 'password' : text})
-    }
-
-    const onRepeatPassChange = ({nativeEvent : {eventCount, target, text}}) => {
-      setUserData({...userData, 'repeatPassword' : text})
-    }
-
     return (
       <CreateAccountOwnerUI
-        email = {userData.email}
-        password = {userData.password}
-        repeatPassword = {userData.repeatPassword}
-        onRepeatPassHandler={onRepeatPassChange}
-        onPasswordHandler={onPassChange}
-        onEmailHandler={onEmailChange}
-        onRegisterHandler={onRegisterPress}
+        email = {formik.values.email}
+        password = {formik.values.password}
+        repeatPassword = {formik.values.repeatPassword}
+        onRepeatPassHandler={formik.handleChange('repeatPassword')}
+        onPasswordHandler={formik.handleChange('password')}
+        onEmailHandler={formik.handleChange('email')}
+        onRegisterHandler={formik.handleSubmit}
+        emailError={formik.errors.email}
+        passwordError={formik.errors.password}
+        repeatPasswordError={formik.errors.repeatPassword}
       >
       </CreateAccountOwnerUI>
     )
