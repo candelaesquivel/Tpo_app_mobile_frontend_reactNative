@@ -10,6 +10,8 @@ import { CONSTANTS } from "../../../config";
 export const LoginOwnerUI = ({
   email,
   password,
+  emailError = '',
+  passwordError = '',
   onEmailHandler,
   onPassHandler,
   onLoginHandler,
@@ -30,7 +32,8 @@ export const LoginOwnerUI = ({
               placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
               placeholderTextColor ={colorPalette.White}
               height = '50%' 
-              onChange={onEmailHandler}
+              onChangeText={onEmailHandler}
+              errorMessage={emailError}
             >
             </InputText>
             <InputText 
@@ -39,7 +42,9 @@ export const LoginOwnerUI = ({
               placeholder = {CONSTANTS.SCREEN_TEXTS.PASS_INPUT_LABEL}
               placeholderTextColor ={colorPalette.White}
               secureTextEntry = {true}
-              onChange = {onPassHandler}>
+              onChangeText = {onPassHandler}
+              errorMessage = {passwordError}
+              >
             </InputText>
             </View>
         </View>

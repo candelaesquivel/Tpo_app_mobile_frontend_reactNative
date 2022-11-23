@@ -5,25 +5,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import { LoginOwnerUI } from "./LoginOwnerUI";
 import { loginUser, logoutUser } from "../../../redux/slices/userReducer";
 import { authWS } from "../../../networking/endpoints";
+import { useFormik } from 'formik';
+import { authSchemas } from "../../formSchemas/authSchemas";
 
 function LoginOwnerScreen({navigation, props}){
 
   const isLogged = useSelector(state => state.user.isLogged);
+  const formik = useFormik({
+    initialValues : {
+      email : '',
+      password : '',
+    },
+    validationSchema : authSchemas.login,
+    onSubmit(values) {
+      onLoginPressed();
+    }
+  });
 
   const dispatch = useDispatch();
-
-  const [userData, setUserData] = useState({
-    email : '',
-    password : '',
-  })
-
-  const onEmailChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setUserData({...userData, 'email' : text})
-  }
-
-  const onPassChange = ({nativeEvent : {eventCount, target, text}}) => {
-    setUserData({...userData, 'password' : text})
-  }
 
     useEffect(() => {
         if (isLogged)
@@ -39,7 +38,12 @@ function LoginOwnerScreen({navigation, props}){
         navigation.navigate(ROUTES.CREATE_ACCOUNT_OWNER);
     }
 
-    const onLoginPressed = async (event) => {
+    const onLoginPressed = async () => {
+
+      const userData = {
+        email : formik.values.email,
+        password : formik.values.password,
+      };
 
         try {
           var userDataResp = await authWS.loginOwner(userData);
@@ -59,13 +63,15 @@ function LoginOwnerScreen({navigation, props}){
 
     return (
       <LoginOwnerUI
-        email={userData.email}
-        password={userData.password}
-        onEmailHandler={onEmailChange}
-        onPassHandler={onPassChange}
-        onLoginHandler={onLoginPressed}
+        email={formik.values.email}
+        password={formik.values.password}
+        onEmailHandler={formik.handleChange('email')}
+        onPassHandler={formik.handleChange('password')}
+        onLoginHandler={formik.handleSubmit}
         onRecoverLinkHandler={onRecoverTouched}
         onCreateLinkHandler={onCreateTouched}
+        emailError={formik.errors.email}
+        passwordError={formik.errors.password}
       ></LoginOwnerUI>
     )
 }
