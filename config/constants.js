@@ -127,6 +127,11 @@ export default  {
     PASSWORD_NOT_MATCH : I18n.t('passwordMatch'),
     PASSWORD_REQUIRED : I18n.t('passwordRequired'),
     PASSWORD_LENGTH : I18n.t('passwordLength'),
+
+    DISH_NAME_REQUIRED : I18n.t('dishNameRequired'),
+    DISH_PRICE_REQUIRED : I18n.t('dishPriceRequired'),
+    DISH_INGREDIENTS_REQUIRED : I18n.t('dishIngredientsRequired'),
+    DISH_CATEGORY_REQUIRED : I18n.t('dishCategoryRequired'),
   },
 
   MIN_LENGTH_PASSWORD : 8,

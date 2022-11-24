@@ -107,5 +107,10 @@ export  default{
     emailInvalid : 'Email no valido',
     passwordMatch : 'Las contraseñas no coinciden',
     passwordLength : 'La contraseña debe tener al menos 8 caracteres',
-    passwordRequired : 'La contraseña es requerida'
+    passwordRequired : 'La contraseña es requerida',
+
+    dishNameRequired : 'El nombre de plato es requerido',
+    dishPriceRequired : 'El precio del plato es requerido',
+    dishIngredientsRequired : 'Se requieren ingredientes',
+    dishCategoryRequired : 'Debe seleccionar una categoria',
 };

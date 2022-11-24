@@ -29,7 +29,7 @@ const DishForm = ({
     </Text>
     <InputText 
     defaultValue={name}
-    onChange = {onNameChanged}
+    onChangeText = {onNameChanged}
     textColor = {colorPalette.Black}
     placeholder=""
     color={colorPalette.White}
@@ -41,7 +41,7 @@ const DishForm = ({
     </Text>
     <InputText
     defaultValue={price}
-    onChange={onPriceChanged}
+    onChangeText={onPriceChanged}
     keyboardType = {'numeric'} 
     textColor = {colorPalette.Black}
     placeholder=""
@@ -54,7 +54,7 @@ const DishForm = ({
     </Text>
     <InputText
     defaultValue={ingredients}
-    onChange={onIngredientChange}
+    onChangeText={onIngredientChange}
     textColor = {colorPalette.Black}
     placeholder=""
     color={colorPalette.White}
@@ -94,7 +94,7 @@ const DishForm = ({
         </Text>
         <View style={{width: '16%'}}></View>
         <Switch
-            onChange={onIsVeganChange}
+            onValueChange={onIsVeganChange}
             value={isVegan} />
       </View>
       <View style={styles.switchContainer}>
@@ -102,7 +102,7 @@ const DishForm = ({
               {CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}       
           </Text>
           <Switch
-              onChange={onIsGlutenFreeChange}
+              onValueChange={onIsGlutenFreeChange}
               value={isGlutenFree} />
       </View>
     <Text style={styles.words}>

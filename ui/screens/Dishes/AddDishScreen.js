@@ -1,91 +1,90 @@
+import { useFormik } from 'formik';
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { dishesWS } from '../../../networking/endpoints';
+import { dishSchemas } from '../../formSchemas/dishSchemas';
 import {AddDishScreenUI} from './AddDishScreenUI';
 
 function AddDishScreen({navigation, props}) {
 
+  const formik = useFormik({
+    initialValues : {
+      name : '',
+      price : 0,
+      ingredients : [],
+      discount : 0,
+      isVegan : false,
+      isGlutenFree : false,
+      category : 'Plato Caliente',
+      photos : [],
+    },
+    
+    validationSchema : dishSchemas.createDish,
+    onSubmit(values) {
+      onSavePress();
+    }
+  });
   
   const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
   const [showDishCreateAlert, setShowCreateDishAlert] = useState(false);
-  const [dishData, setDishData] = useState({
-    name : '',
-    price : '',
-    ingredients : '',
-    discounts : 0,
-    isVegan : false,
-    isGlutenFree : false,
-    photos : [],
-    category : 'Plato Caliente',
-  });
 
-  const onNameChanged = ({ nativeEvent: { eventCount, target, text} }) => {
-    setDishData({...dishData, 'name' : text})
+  const onIngredientChange = (text) => {
+    formik.setFieldValue('ingredients', text.split(','));
   }
 
-  const onPriceChanged = ({ nativeEvent: { eventCount, target, text} }) => {
-    setDishData({...dishData, 'price' : text})
-  }
-
-  const onIngredientChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    const str = text.split(',');
-    setDishData({...dishData, 'ingredients' : str})
+  const onDiscountChange = (value) => {
+    formik.setFieldValue('discount', value);
   }
   
-  const onDiscountChange = (value) => {
-    setDishData({...dishData, 'discounts' : value})
+  const onIsVeganChange = (value) => {
+    formik.setFieldValue('isVegan', value);
   }
 
-  const onIsVeganChange = ({nativeEvent : {eventCount, target, value}}) => {
-    setDishData({...dishData, 'isVegan' : value})
-  }
-
-  const onIsGlutenFreeChange = ({nativeEvent : {eventCount, target, value}}) => {
-    setDishData({...dishData, 'isGlutenFree' : value})
-  }
-
-  const onCategoryChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setDishData({...dishData, 'category' : text})
+  const onIsGlutenFreeChange = (value) => {
+    formik.setFieldValue('isGlutenFree', value);
   }
 
   const onDismissAlert = (e) => {
     navigation.goBack();
   }
 
-  console.log('Dish Data: ', dishData);
-
-  const onSavePress = async (event) => {
+  const onSavePress = async () => {
     
-    const dish = await dishesWS.createDish(currRestaurant, dishData);
+    const dishData = {...formik.values};
 
-    if (dish)
-    {
-      setShowCreateDishAlert(true);
-      console.warn('Dish Created');
+    try {
+      const newDish = await dishesWS.createDish(currRestaurant, dishData);
+      if (newDish){
+        setShowCreateDishAlert(true);
+        console.warn('Dish Created');
+      }
+      else{
+        console.warn('Dish Cr')
+      }
+    } catch (error) {
+      
     }
-    else
-      console.warn("Status: ", dish);
   }
 
   return (
 
    <AddDishScreenUI
-    name={dishData.name}
-    price={dishData.price}
-    ingredients={dishData.ingredients}
-    discount={dishData.discounts}
-    isVegan={dishData.isVegan}
-    isGlutenFree={dishData.isGlutenFree}
+    name={formik.values.name}
+    price={formik.values.price}
+    ingredients={formik.values.ingredients.toString()}
+    discount={formik.values.discount}
+    isVegan={formik.values.isVegan}
+    isGlutenFree={formik.values.isGlutenFree}
     showCreateDishAlert={showDishCreateAlert}
 
     onDismissAlertHandler={onDismissAlert}
-    onNameChangedHandler={onNameChanged}
-    onPriceChangedHandler={onPriceChanged}
+    onNameChangedHandler={formik.handleChange('name')}
+    onPriceChangedHandler={formik.handleChange('price')}
     onIngredientChangeHandler={onIngredientChange}
     onDiscountChangeHandler={onDiscountChange}
     onIsVeganChangeHandler={onIsVeganChange}
     onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
-    onSavePressHandler={onSavePress}
+    onSavePressHandler={formik.handleSubmit}
 
    >
    </AddDishScreenUI>
