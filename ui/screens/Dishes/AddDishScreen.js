@@ -56,10 +56,8 @@ function AddDishScreen({navigation, props}) {
       const newDish = await dishesWS.createDish(currRestaurant, dishData);
       if (newDish){
         setShowCreateDishAlert(true);
-        console.warn('Dish Created');
       }
       else{
-        console.warn('Dish Cr')
       }
     } catch (error) {
       

@@ -9,6 +9,7 @@ import { colorPalette } from '../../styles/colors';
 const MenuRestaurantOwnerScreenUI = ({
     dishes,
     onCreateDishPressHandler,
+    onDishPhotoPressHandler,
     props}) => {
 
     const {height, width} = useWindowDimensions();
@@ -27,7 +28,12 @@ const MenuRestaurantOwnerScreenUI = ({
             }
             {
               dishes.length !== 0 && 
-              <DishFlatList dishes={dishes}></DishFlatList>
+              <DishFlatList 
+                onDishPhotoPressHandler={onDishPhotoPressHandler}  
+                dishes={dishes}
+              >
+
+              </DishFlatList>
             }
             
           </View>

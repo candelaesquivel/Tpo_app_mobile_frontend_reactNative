@@ -34,12 +34,16 @@ const userSlice = createSlice({
       state.restaurantSelectedId = action.payload;
     },
 
+    selectDish(state, action){
+      state.dishSelectedId = action.payload;
+    },
+
     logoutUser(state, action){
       return defaultState;
     }
   }
 });
 
-export const {loginUser, logoutUser, selectRestaurant} = userSlice.actions;
+export const {loginUser, logoutUser, selectRestaurant, selectDish} = userSlice.actions;
 
 export default userSlice.reducer;

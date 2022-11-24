@@ -31,6 +31,7 @@ const URL_SERVICES = {
   RESTAURANT_DETAIL : RESTAURANT_ROUTE + 'id',
   RESTAURANTS_LIST: RESTAURANT_ROUTE + '',
   DISH_CREATE: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes',
+  DISH_GET_INFO: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes/' + 'dishId',
   DISH_MODIFY: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes/' + 'dishId',
   DISH_LIST : RESTAURANT_ROUTE + 'restaurantId/' + 'dishes',
   COMMENT_LIST : RESTAURANT_ROUTE + 'restaurantId/' + 'reviews',
