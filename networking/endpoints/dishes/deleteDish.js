@@ -9,9 +9,9 @@ export async function deleteDish(restaurantId, dishId){
 
   return axios.delete(URL)
   .then(resp => {
-    return resp.status;
+    return resp.status === 200;
   }).catch(err => {
-    console.error(err);
+    console.error(err.response.data);
   }).finally(() => {
 
   });
