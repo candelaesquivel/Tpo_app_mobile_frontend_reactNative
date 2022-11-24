@@ -7,29 +7,36 @@ import { dishesWS } from '../../../networking/endpoints';
 import {ROUTES} from '../..';
 import { CONSTANTS } from '../../../config';
 import { DishModifyScreenUI } from './DishModifyScreenUI';
+import { useFormik } from 'formik';
+import {dishSchemas} from '../../formSchemas/dishSchemas';
 
 function DishModifyScreen({navigation, route, props}){
-  
    
   const dishId = route.params.id;
 
-  const [dishData, setDishData] = useState({
-    name : route.params.name,
-    price : route.params.price,
-    isVegan : route.params.isVegan,
-    isGlutenFree : route.params.isGlutenFree,
-    category : route.params.category,
-    ingredients : route.params.ingredients,
-    discounts : route.params.discounts,
-
+  const formik = useFormik({
+    initialValues : {
+      name : route.params.name ? route.params.name : '',
+      price : route.params.price ? route.params.price : 0,
+      ingredients : route.params.ingredients ? route.params.ingredients : [],
+      discounts : route.params.discounts ? route.params.discounts : 0,
+      isVegan : route.params.isVegan ? route.params.isVegan : false,
+      isGlutenFree : route.params.isGlutenFree ? route.params.isGlutenFree : false,
+      category : route.params.category ? route.params.category : 'Plato Caliente',
+      photos : route.params.photos ? route.params.photos : [],
+    },
+    
+    validationSchema : dishSchemas.createDish,
+    onSubmit(values) {
+      onSavePress();
+    }
   });
 
-  const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
+  const restaurantId = useSelector(state => state.user.restaurantSelectedId);
  
+  const onSavePress = async () => {
 
-
-  const onSavePress = async (event) => {
-    const result = await dishesWS.updateDish(currRestaurant, dishId, dishData);
+    const result = await dishesWS.updateDish(restaurantId, dishId, dishData);
 
     if (result){
       setTimeout(() => {
@@ -65,29 +72,20 @@ function DishModifyScreen({navigation, route, props}){
     }
   }
 
-  const onNameChanged = ({ nativeEvent: { eventCount, target, text} }) => {
-    setDishData({...dishData, 'name' : text})
+  const onIngredientChange = (text) => {
+    formik.setFieldValue('ingredients', text.split(','));
   }
 
-  const onPriceChanged = ({ nativeEvent: { eventCount, target, text} }) => {
-    setDishData({...dishData, 'price' : text})
-  }
-
-  const onIngredientChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    text.replace(' ', '')
-    setDishData({...dishData, 'ingredients' : text})
+  const onDiscountChange = (value) => {
+    formik.setFieldValue('discounts', value);
   }
   
-  const onDiscountChange = (value) => {
-    setDishData({...dishData, 'discounts' : value})
+  const onIsVeganChange = (value) => {
+    formik.setFieldValue('isVegan', value);
   }
 
-  const onIsVeganChange = ({nativeEvent : {eventCount, target, value}}) => {
-    setDishData({...dishData, 'isVegan' : value})
-  }
-
-  const onIsGlutenFreeChange = ({nativeEvent : {eventCount, target, value}}) => {
-    setDishData({...dishData, 'isGlutenFree' : value})
+  const onIsGlutenFreeChange = (value) => {
+    formik.setFieldValue('isGlutenFree', value);
   }
 
   const onCategoryChange = ({ nativeEvent: { eventCount, target, text} }) => {
@@ -95,24 +93,31 @@ function DishModifyScreen({navigation, route, props}){
   }
 
   return (
-<DishModifyScreenUI>
-  onDeleteOptionsHandler={onDeleteOptionsHandler}
-  onDeleteModalTouchHandler={onDeleteModalTouch}
-  dishDataName={dishData.name}
-  onNameChangedHandler={onNameChanged}
-  onPriceChangedHandler={onPriceChanged}
-  onIngredientChangeHandler={onIngredientChange}
-  onDiscountChangeHandlerHandler={onDiscountChange}
-  onIsVeganChangeHandler={onIsVeganChange}
-  onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
-  dishDataprice={dishData.price}
-  dishDataingredients={dishData.ingredients}
-  dishDatadiscounts={dishData.discounts}
-  dishDataisVegan={dishData.isVegan}
-  dishDataisGlutenFree={dishData.isGlutenFree}
-  onSavePressHandler={onSavePress}
-  onDeletePressHandler={onDeletePress}
-</DishModifyScreenUI>
+      <DishModifyScreenUI
+        onDeleteOptionsHandler={onDeleteOptionsHandler}
+        onDeleteModalTouchHandler={onDeleteModalTouch}
+        name={formik.values.name}
+        price={formik.values.price.toString()}
+        ingredients={formik.values.ingredients.toString()}
+        discount={formik.values.discounts}
+        isVegan={formik.values.isVegan}
+        isGlutenFree={formik.values.isGlutenFree}
+
+        onNameChangedHandler={formik.handleChange('name')}
+        onPriceChangedHandler={formik.handleChange('price')}
+        onIngredientChangeHandler={onIngredientChange}
+        onDiscountChangeHandlerHandler={onDiscountChange}
+        onIsVeganChangeHandler={onIsVeganChange}
+        onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
+
+        onSavePressHandler={onSavePress}
+        onDeletePressHandler={onDeletePress}
+
+        nameError={formik.errors.name}
+        priceError={formik.errors.price}
+        ingredientsError={formik.errors.ingredients}
+      >
+      </DishModifyScreenUI>
     
   )
 }

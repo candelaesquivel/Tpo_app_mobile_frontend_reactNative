@@ -11,12 +11,16 @@ import { DishForm } from './DishForm';
 
 const DishModifyScreenUI = ({
   
-  dishDataName,
-  dishDataprice,
-  dishDataingredients,
-  dishDatadiscounts,
-  dishDataisVegan,
-  dishDataisGlutenFree,
+  name = '',
+  price = 0,
+  ingredients = '',
+  discount = 0,
+  isVegan = false,
+  isGlutenFree = false,
+  nameError = '',
+  priceError = '',
+  ingredientsError = '',
+
   onSavePressHandler,
   onDeletePressHandler,
   onNameChangedHandler,
@@ -44,12 +48,12 @@ const DishModifyScreenUI = ({
       <View style={styles.global}>
 
           <DishForm
-            name={dishDataName} onNameChanged={onNameChangedHandler}
-            price={dishDataprice} onPriceChanged={onPriceChangedHandler}
-            ingredients={dishDataingredients} onIngredientChange={onIngredientChangeHandler}
-            discount={dishDatadiscounts} onDiscountChange={onDiscountChangeHandlerHandler}
-            isVegan={dishDataisVegan} onIsVeganChange={onIsVeganChangeHandler}
-            isGlutenFree={dishDataisGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChangeHandler}
+            name={name} onNameChanged={onNameChangedHandler} nameError={nameError}
+            price={price} onPriceChanged={onPriceChangedHandler} priceError={priceError}
+            ingredients={ingredients} onIngredientChange={onIngredientChangeHandler} ingredientsError={ingredientsError}
+            discount={discount} onDiscountChange={onDiscountChangeHandlerHandler}
+            isVegan={isVegan} onIsVeganChange={onIsVeganChangeHandler}
+            isGlutenFree={isGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChangeHandler}
           ></DishForm>
 
 
