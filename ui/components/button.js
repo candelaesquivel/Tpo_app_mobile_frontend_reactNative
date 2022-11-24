@@ -8,7 +8,7 @@ export function MyButton(props) {
             title={props.title}
             buttonStyle={{
                 borderRadius : 30,
-                backgroundColor : colorPalette.Orange
+                backgroundColor : props.backgroundColor ? props.backgroundColor :  colorPalette.Orange
             }}
 
             containerStyle={{

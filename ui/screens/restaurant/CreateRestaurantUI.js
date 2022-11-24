@@ -19,25 +19,50 @@ import { WeekButtons } from "../../components/WeekButton";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 
-const RestaurantForm = ({
+export const CreateRestaurantUI = ({
   name,
   isClosed = false,
+  foodTypes = [],
+  priceRange = '',
   region,
+  daysStatus,
   addressEntered,
   onCreateHandler,
   onNameHandler,
-  onToggleClose,
+  onIsCloseChangeHandler,
+  onFoodTypeChangeHandler,
+  onPriceRangeChangeHandler,
   onRegionHandler,
+  onOpenTimeChangeHandler,
+  onCloseTimeChangeHandler,
+  onDayBtnPressHandler,
   props
 }) => {
 
   const [showOpeningPicker, setOpeningPicker] = useState(false);
   const [showClosingPicker, setClosingPicker] = useState(false);
-  const [daysOpened, setDaysOpened] = useState([]);
 
-  const onDayBtnPress = (event) => {
+  const onOpenTimeChange = (event, date) => {
+    setOpeningPicker(false);
+
+    if (event.type === 'set'){
+      if (onOpenTimeChangeHandler)
+        onOpenTimeChangeHandler(date);
+    }
+
+  }
+
+  const onCloseTimeChange = (event, date) => {
+    setClosingPicker(false);
+
+    if (event.type === 'set'){
+      if (onCloseTimeChangeHandler)
+        onCloseTimeChangeHandler(date);
+    }
+
   }
 
   return (
@@ -53,7 +78,7 @@ const RestaurantForm = ({
         </Text>
         <InputText
           textColor={colorPalette.Black}
-          onChange={onNameHandler}
+          onChangeText={onNameHandler}
           defaultValue={name}
           color={colorPalette.White}
           placeholderTextColor = {colorPalette.Black}
@@ -131,11 +156,29 @@ const RestaurantForm = ({
         </MyButton>
   
         {
-            showOpeningPicker && <MyTimePicker></MyTimePicker>
+            showOpeningPicker && 
+            <RNDateTimePicker
+              value={new Date(1598051730000)}
+              mode={'time'}
+              display={'spinner'}
+              is24Hour={true}
+              onChange={onOpenTimeChange}
+            >
+
+            </RNDateTimePicker>
         }
         
         {
-            showClosingPicker &&  <MyTimePicker></MyTimePicker>
+            showClosingPicker &&  
+            <RNDateTimePicker
+              value={new Date(1598051730000)}
+              mode={'time'}
+              display={'spinner'}
+              is24Hour={true}
+              onChange={onCloseTimeChange}
+            >
+
+            </RNDateTimePicker>
         }
         
       </View>
@@ -143,21 +186,29 @@ const RestaurantForm = ({
       {/* Is Closed */}
       <View style={styles.closeSection}>
         <Text style={styles.closeSection.text}>{CONSTANTS.SCREEN_TEXTS.CLOSE_LABEL}</Text>
-        <Switch value={isClosed} onValueChange={onToggleClose}></Switch>
+        <Switch value={isClosed} onValueChange={onIsCloseChangeHandler}></Switch>
       </View>
 
       {/* Dropdown Containers */}
       <View style ={styles.dropdownContainer}>
-        <FoodTypesDropDown></FoodTypesDropDown>
+        <FoodTypesDropDown 
+          onChangeHandler={onFoodTypeChangeHandler}
+          selected={foodTypes}
+          >
+
+          </FoodTypesDropDown>
       </View>
       <View style ={styles.dropdownContainer}>
-          <PriceRangesDropdown></PriceRangesDropdown>
+          <PriceRangesDropdown 
+            onChangeHandler={onPriceRangeChangeHandler}
+            value = {priceRange}
+          ></PriceRangesDropdown>
       </View>
 
       <View style={styles.buttonContainer}>
         <WeekButtons
-          weekButtonHandler={onDayBtnPress}
-          weekButtonValues={daysOpened}
+          weekButtonHandler={onDayBtnPressHandler}
+          weekButtonValues={daysStatus}
         >
 
         </WeekButtons>
@@ -237,6 +288,3 @@ const styles = StyleSheet.create(
     flexDirection : 'row-reverse',
   }
 });
-
-
-export {RestaurantForm};

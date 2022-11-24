@@ -134,6 +134,10 @@ export default  {
     DISH_PRICE_REQUIRED : I18n.t('dishPriceRequired'),
     DISH_INGREDIENTS_REQUIRED : I18n.t('dishIngredientsRequired'),
     DISH_CATEGORY_REQUIRED : I18n.t('dishCategoryRequired'),
+
+    RESTO_NAME_REQUIRED: I18n.t('restaurantNameRequired'),
+    RESTO_FOOD_TYPE_REQUIRED : I18n.t('restaurantFoodTypeRequired'),
+    RESTO_PRICE_TYPE_REQUIRED : I18n.t('restaurantPriceTypeRequired'),
   },
 
   MIN_LENGTH_PASSWORD : 8,

@@ -5,12 +5,14 @@ import { colorPalette } from "../styles/colors";
 import { Theme } from '../styles/Theme';
 import { useState } from "react";
 
-export function PriceRangesDropdown({onChange = {}, props}){
+export function PriceRangesDropdown({onChangeHandler, value = '', props}){
 
-  const [value, setValue] = useState(null)
+  const valueIndex = CONSTANTS.PRICE_RANGES.indexOf(value);
 
-  const onSelectItem = (event) => {
-    setValue(event);
+  const onChangeValue = (item) => {
+    const value = item.label
+    if (onChangeHandler)
+      onChangeHandler(value)
   }
 
   return (
@@ -20,10 +22,10 @@ export function PriceRangesDropdown({onChange = {}, props}){
       itemTextStyle ={styles.placeholderStyle}   
       labelField='label'
       valueField='value'
-      value={value}
+      value={valueIndex}
       data={CONSTANTS.PRICE_RANGES}
       placeholder={'Precio'}
-      onChange={onSelectItem}
+      onChange={onChangeValue}
     >
     </Dropdown>
   )

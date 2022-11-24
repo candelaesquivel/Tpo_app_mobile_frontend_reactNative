@@ -2,10 +2,11 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { MyButton } from './button'
 import { CONSTANTS } from '../../config';
+import { colorPalette } from '../styles/colors';
 
 export const WeekButtons = ({
   weekButtonValues = [],
-  weekButtonHandler,
+  onDayBtnPressHandler,
   props
 }) => {
 
@@ -18,20 +19,33 @@ export const WeekButtons = ({
     CONSTANTS.SCREEN_TEXTS.SATURDAY_LETTER,
     CONSTANTS.SCREEN_TEXTS.SUNDAY_LETTER,
   ];
+  
+  const onButtonPress = (dayIndex) => {
+
+    if (onDayBtnPressHandler)
+      onDayBtnPressHandler(dayIndex);
+  }
 
   return (
     <View style={{marginTop:20, marginBottom : 20, flexDirection : "row"}}>
         {
           daysOfWeek.map((item, idx) => {
+
+            if (idx < weekButtonValues.length){
+              var enabled = weekButtonValues[idx] === true;
+            }
+
             return (
               <View key={idx}>
                 <View style={{width : 10}}></View>
                 <MyButton
-                  onPress={weekButtonHandler}
+                  onPress={(e) => onButtonPress(idx)}
                   key={idx}
                   title={item}
                   width={40}
-                  height={40}>
+                  height={40}
+                  backgroundColor = {!enabled ? colorPalette.Black : colorPalette.Orange}
+                  >
                 </MyButton>
               </View>
             )

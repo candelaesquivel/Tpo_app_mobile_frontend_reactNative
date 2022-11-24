@@ -3,9 +3,11 @@ import React, { useState } from 'react'
 import { restaurantWS } from '../../../networking/endpoints';
 import { CONSTANTS } from '../../../config';
 import { useSelector } from 'react-redux';
-import { RestaurantForm } from './RestaurantForm';
+import { CreateRestaurantUI } from './CreateRestaurantUI';
 import { ROUTES } from '../..';
 import { useEffect } from 'react';
+import { useFormik } from 'formik';
+import { restaurantSchema } from '../../formSchemas/restaurantSchemas';
 
 function CreateRestaurantScreen({navigation, props}) {
 
@@ -28,14 +30,7 @@ function CreateRestaurantScreen({navigation, props}) {
     longitudeDelta: 0.0421,
   });
 
-  const [addressEntered, setAddressEntered] = useState(false);
-
-  const [restaurantData, setRestaurantData] = useState({
-    name : '',
-    zipCode : '',
-    isClosed : false,
-    foodTypes : ['Mexicana'],
-    priceRange : '$',
+  const [hours, setHours] = useState({
     hours: {
       monday: {
         open: 1000,
@@ -66,18 +61,45 @@ function CreateRestaurantScreen({navigation, props}) {
         close: 1400
       }
     },
-    coordinates: {
-      type: "Point",
-      coordinates: [
-        -58.456,
-        -34.567
-      ]
-    },
   })
+
+  const formik = useFormik({
+    initialValues : {
+      name : '',
+      isClosed : false,
+      foodTypes : [],
+      priceRange : '',
+      zipCode : '3344',
+      days : [],
+      coordinates : {
+        type : 'Point',
+        coordinates : [
+          -58.456,
+          -34.567
+        ]
+      }
+    },
+    validationSchema : restaurantSchema.createRestaurant,
+    onSubmit(values) {
+      onCreatePress();
+    }
+  });
+
+  const [addressEntered, setAddressEntered] = useState(false);
 
   const ownerId = useSelector(state => state.user.userId);
 
-  const onCreateHandler = async (event) => {
+  const onCreatePress = async (event) => {
+
+    const restaurantData = {
+      ...formik.values,
+      ...hours,
+    }
+
+    console.log('Restaurant data: ', restaurantData);
+
+    return;
+
     const result = await restaurantWS.createRestaurant(ownerId, restaurantData);
 
     if (result){
@@ -90,39 +112,91 @@ function CreateRestaurantScreen({navigation, props}) {
       ToastAndroid.show('Error on Create Restaurant', ToastAndroid.SHORT);
   }
 
-  const onCloseHandler = (value) => {
-    setRestaurantData({...restaurantData, 'isClosed' : value})
+  const onIsCloseChange = (value) =>{
+    formik.setFieldValue('isClosed', value);
   }
 
-  const onNameChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setRestaurantData({...restaurantData, 'name' : text});
+  const onFoodTypeChange = (item) => {
+    console.warn(item);
+    formik.setFieldValue('foodTypes', item);
+  }
+
+  const onPriceRangeChange = (value) => {
+    formik.setFieldValue('priceRange', value);
+  }
+
+  // Receive a date object
+  const onOpenTimeChange = (time) => {
+
+    const hourInMinutes  = (time.getHours() * 60) + time.getMinutes();
+
+    console.log('Open Hour: ', hourInMinutes);
+
+    let oldHours = {}
+
+    Object.assign(oldHours, hours);
+
+    for (let dayField in oldHours.hours){
+      oldHours.hours[dayField].open = hourInMinutes;
+    }
+
+    console.log(oldHours);
+
+    setHours(oldHours);
+  }
+
+  // Receive a date object
+  const onCloseTimeChange = (time) => {
+    const hourInMinutes  = (time.getHours() * 60) + time.getMinutes();
+
+    let oldHours = {}
+
+    Object.assign(oldHours, hours);
+
+    for (let dayField in oldHours.hours){
+      oldHours.hours[dayField].close = hourInMinutes;
+    }
+
+    console.log(oldHours);
+
+    setHours(oldHours);
+  }
+
+  const onDayBtnPress = (day) => {
+
   }
 
   const onRegionChange = (data) => {
     setAddressEntered(true);
     setRegion(data);
 
-    setRestaurantData({...restaurantData, 'coordinates' : {
+    formik.values.setFieldValue('coordinates', {
       type: "Point",
       coordinates: [
         data.longitude,
         data.latitude
       ]
-    }})
+    });
   }
 
   return (
-    <RestaurantForm
-      name={restaurantData.name}
-      isClosed={restaurantData.isClosed}
-      region={region}
-      addressEntered={addressEntered}
-      onCreateHandler={onCreateHandler}
-      onNameHandler={onNameChange}
-      onToggleClose={onCloseHandler}
-      onRegionHandler={onRegionChange}
-   >
-  </RestaurantForm>
+      <CreateRestaurantUI
+        name={formik.values.name}
+        isClosed={formik.values.isClosed}
+        foodTypes={formik.values.foodTypes}
+        priceRange={formik.values.priceRange}
+        region={region}
+        addressEntered={addressEntered}
+        onCreateHandler={onCreatePress}
+        onNameHandler={formik.handleChange('name')}
+        onIsCloseChangeHandler={onIsCloseChange}
+        onFoodTypeChangeHandler={onFoodTypeChange}
+        onPriceRangeChangeHandler={onPriceRangeChange}
+        onRegionHandler={onRegionChange}
+        onOpenTimeChangeHandler={onOpenTimeChange}
+        onCloseTimeChangeHandler={onCloseTimeChange}
+    >
+    </CreateRestaurantUI>
   );
 }
 
