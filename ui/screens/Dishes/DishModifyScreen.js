@@ -32,6 +32,8 @@ function DishModifyScreen({navigation, route, props}){
     }
   });
 
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+
   const restaurantId = useSelector(state => state.user.restaurantSelectedId);
  
   const onSavePress = async () => {
@@ -50,10 +52,6 @@ function DishModifyScreen({navigation, route, props}){
     setShowConfirmDelete(true);
   }
 
-  const onDeleteConfirmTouch = (event) => {
-    setShowConfirmDelete(false);
-  }
-
   const onDeleteModalTouch = (event) => {
     navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
   }
@@ -70,6 +68,14 @@ function DishModifyScreen({navigation, route, props}){
     else if (option == CONSTANTS.SCREEN_TEXTS.NO){
       setShowConfirmDelete(false);
     }
+  }
+
+  const onConfirmDeletePress = (event) => {
+
+  }
+
+  const onCancelDeletePress = (event) => {
+    setShowConfirmDelete(false);
   }
 
   const onIngredientChange = (text) => {
@@ -94,6 +100,7 @@ function DishModifyScreen({navigation, route, props}){
 
   return (
       <DishModifyScreenUI
+        showConfirmDelete={showConfirmDelete}
         onDeleteOptionsHandler={onDeleteOptionsHandler}
         onDeleteModalTouchHandler={onDeleteModalTouch}
         name={formik.values.name}
@@ -112,6 +119,9 @@ function DishModifyScreen({navigation, route, props}){
 
         onSavePressHandler={onSavePress}
         onDeletePressHandler={onDeletePress}
+
+        onConfirmDeleteBtnHandler={onConfirmDeletePress}
+        onCancelBtnHandler={onCancelDeletePress}
 
         nameError={formik.errors.name}
         priceError={formik.errors.price}

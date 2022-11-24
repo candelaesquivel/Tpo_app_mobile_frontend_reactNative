@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { CONSTANTS } from "../../../config"
 import { Theme } from "../../styles/Theme"
 import { colorPalette } from "../../styles/colors"
@@ -8,6 +8,7 @@ import { View, ScrollView , StyleSheet , Dimensions} from 'react-native'
 import Carousal from '../../components/carousal';
 import { MyButton } from '../../components/button';
 import { DishForm } from './DishForm';
+import {AlertConfirm} from '../../components/AlertConfirm';
 
 const DishModifyScreenUI = ({
   
@@ -20,6 +21,7 @@ const DishModifyScreenUI = ({
   nameError = '',
   priceError = '',
   ingredientsError = '',
+  showConfirmDelete = false,
 
   onSavePressHandler,
   onDeletePressHandler,
@@ -29,19 +31,25 @@ const DishModifyScreenUI = ({
   onDiscountChangeHandlerHandler,
   onIsVeganChangeHandler,
   onIsGlutenFreeChangeHandler,
-  onDeleteOptionsHandler,
-  onDeleteModalTouchHandler,
+
+  onConfirmDeleteBtnHandler,
+  onCancelBtnHandler,
 
   props}) => {
 
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-
   return (
     <ScrollView>
-    {/* TODO :  <AlertWithOptions isVisible={showConfirmDelete} onOptionPress={onDeleteOptionsHandler}></AlertWithOptions>
-    <CustomAlert isVisible={showDeleteModal} onRequestCloseHandler={onDeleteModalTouchHandler} msgText={CONSTANTS.SCREEN_TEXTS.NOT_FAVORITES}></CustomAlert>  */}
-   <Carousal></Carousal>
+      <AlertConfirm
+        title={CONSTANTS.SCREEN_TEXTS.DELETE_DISH_LABEL}
+        bodyMsg={CONSTANTS.SCREEN_TEXTS.DELETE_DISH_CONFIRM_MSG}
+        confirmBtnTitle={CONSTANTS.SCREEN_TEXTS.DELETE_LABEL}
+        cancelBtnTitle={CONSTANTS.SCREEN_TEXTS.CANCEL_LABEL}
+        isOpen={showConfirmDelete}
+        onConfirmBtnHandler={onConfirmDeleteBtnHandler}
+        onCancelBtnHandler={onCancelBtnHandler}
+      >
+      </AlertConfirm>
+      <Carousal></Carousal>
       <View style={styles.iconGlobal}>
           <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
       </View>

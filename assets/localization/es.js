@@ -83,12 +83,14 @@ export  default{
     deleteDish : "Eliminar Plato",
     delete : "Eliminar",
     open : "Abierto : ",
+    cancel : 'Cancelar',
     
     dishCreated : 'Plato Creado',
     dishUpdated : 'Plato Modificado',
     restaurantCreated : 'Restaurante Creado',
     accountCreated : 'Cuenta Creada exitosamente',
     accountDeleted : 'Cuenta eliminada exitosamente',
+    confirmDishDelete : '¿Esta seguro de eliminar el plato?',
 
     mondayLetter : 'L',
     tuesdayLetter : 'M',
