@@ -11,33 +11,36 @@ import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
 import { dishesWS } from '../../networking/endpoints';
 
-export default function DishItemCard({name = '', discount = 0, price = 100, dishId = '', isVegan = true, isGlutenFree = true, props}) {
+export default function DishItemCard({
+  name = '', 
+  discount = 0, 
+  price = 100, 
+  dishId = '', 
+  isVegan = true, 
+  isGlutenFree = true, 
+  onDishPhotoPressHandler,
+  props}) 
+{
   const priceDescount =(price)* ((100-discount)/100)
   
-  const role = useSelector(state => state.user.role);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const restaurantId = useSelector(state => state.user.restaurantSelectedId);
 
-  const onPhotoPress = async (event) => {
-
-    const dishData = await getDishData(restaurantId, dishId);
-
-    if (role === CONSTANTS.ROLES.USER_ROLE)
-      navigation.navigate(ROUTES.DISH_USER_VIEW_STACK, dishData);
-    else if (role === CONSTANTS.ROLES.OWNER_ROLE)
-      navigation.navigate(ROUTES.DISH_MODIFY_STACK, dishData);
-  }
-
   const showDiscount = discount  > 0
+
+  const onDishPhotoPress = (event) => {
+    if (onDishPhotoPressHandler)
+      onDishPhotoPressHandler(dishId);
+  }
 
   return (
     <View style={styles.globalOne}>
       <Card>
         <View style={styles.globalTwo}>
           <Images.logo 
-            onPress={onPhotoPress} 
+            onPress={onDishPhotoPress} 
             width={"30%"}
             height={"90%"} 
           ></Images.logo>

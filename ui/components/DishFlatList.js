@@ -6,7 +6,7 @@ import { colorPalette } from "../styles/colors";
 import DishItemCard from "./DishItemCard";
 
 
-export function DishFlatList({dishes, props}){
+export function DishFlatList({dishes, onDishPhotoPressHandler, props}){
 
   const renderCategory = ({ section: { category } }) => (
       <Text style={style.header}>{category}</Text>
@@ -22,6 +22,7 @@ export function DishFlatList({dishes, props}){
       discount={item.discount}
       isVegan={item.isVegan}
       isGlutenFree={item.isGlutenFree}
+      onDishPhotoPress={onDishPhotoPressHandler}
       >
     </DishItemCard>)
   };
