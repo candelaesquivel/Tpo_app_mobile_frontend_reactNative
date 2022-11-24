@@ -9,16 +9,15 @@ import { Theme } from '../../styles/Theme';
 import { MyButton } from '../../components/button';
 import { DishFlatList } from '../../components/DishFlatList';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import MyWeekButtons from "../../components/WeekButton"
+import {WeekButtons} from '../../components/WeekButton';
 
 
 const RestaurantProfileUserScreenUI = ({
-  restoDataname,
-  restoDatarating,
-  restoDatapriceRange,
-  onPressCommentHandler,
-  comments1,
-  dishes1,
+  name = '',
+  rating = 5,
+  priceRange = '$',
+  comments = [],
+  dishes = [],
   showComments,
   showMap,
   showDishes,
@@ -26,20 +25,13 @@ const RestaurantProfileUserScreenUI = ({
   hourOpen2,
   hourClose,
   hourClose2,
-  onBtnPressHandler,
+  onSectionBtnPressHandler,
+  onSentCommentPressHandler,
+  onDishPhotoPressHandler,
   latitude,
   longitude,
-  
-    props}) => {
-      const CommentComponent = () => {
-        return (
-    
-             <CommentUserRestaurant
-              comments={comments1}
-             ></CommentUserRestaurant>
-    
-        )
-    }
+  props}) => {
+      
     
       const MapComponent = () => {
         region = {
@@ -62,85 +54,78 @@ const RestaurantProfileUserScreenUI = ({
         )
       }
    
-      const MenuComponent = () => {
-        return (       
-            <DishFlatList 
-             dishes={dishes1}
-             ></DishFlatList>   
-           
-        )
-      } 
-
     return (
       <View>
-
       <View style={styles.global}>
        <View style={styles.carousal}>
          <Carousal
            editBoolean={true}
          ></Carousal>
        </View>
-
-         <Text style={styles.title}>{restoDataname}</Text>
+         <Text style={styles.title}>{name}</Text>
          <View style={styles.globalThree}>
-           <Text style={styles.words} >{restoDatarating}</Text>
+           <Text style={styles.words} >{rating}</Text>
            <Icon name="star" color={colorPalette.Orange} size={20}></Icon>
-           <Text style={styles.words}>{"  -   "}{restoDatapriceRange}</Text>
+           <Text style={styles.words}>{"  -   "}{priceRange}</Text>
          </View>       
         <View style={styles.week}>
-          <MyWeekButtons></MyWeekButtons>
+          <WeekButtons></WeekButtons>
         </View>
         <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.OPEN_LABEL} {hourOpen}{hourOpen2} - {hourClose}{hourClose2}</Text>
-       <View style={styles.icons}>
-         <Icon
-          name='heart' 
-          type='font-awesome'
-           color={colorPalette.Orange}
-           ></Icon>
-         <Icon 
-         name='comment' 
-         type='font-awesome' 
-         color={colorPalette.Orange}
-         onPress={onPressCommentHandler}
-         ></Icon>
-         <Icon name='share' type='font-awesome' color={colorPalette.Orange}></Icon>
-       </View>
+        <View style={styles.icons}>
+          <Icon
+            name='heart' 
+            type='font-awesome'
+            color={colorPalette.Orange}
+            ></Icon>
+            <Icon 
+            name='comment' 
+            type='font-awesome' 
+            color={colorPalette.Orange}
+            onPress={onSentCommentPressHandler}
+            ></Icon>
+            <Icon name='share' type='font-awesome' color={colorPalette.Orange}></Icon>
+        </View>
+        {/* Buttons Section */}
+        <View style={styles.buttons}>
+          <MyButton
+            title={CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
+            width={Dimensions.get("window").width*0.3}
+            height={Dimensions.get("window").height*0.055}
+            onPress={(e) => {onSectionBtnPressHandler('map')} }
+          ></MyButton>
+          <MyButton
+            title={CONSTANTS.SCREEN_TEXTS.MENU_LABEL}
+            width={Dimensions.get("window").width*0.3}
+            height={Dimensions.get("window").height*0.055}
+            onPress={(e) => {onSectionBtnPressHandler('menu')} }
+          ></MyButton>
+          <MyButton
+            title={CONSTANTS.SCREEN_TEXTS.COMMENT_LABEL}
+            width={Dimensions.get("window").width*0.32}
+            height={Dimensions.get("window").height*0.055}
+            onPress={(e) => {onSectionBtnPressHandler('comment')} }
+          ></MyButton>
+        </View>
+        {
+          showComments && <CommentUserRestaurant comments={comments}/>
+        }
 
-       <View style={styles.buttons}>
-         <MyButton
-           title={CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
-           width={Dimensions.get("window").width*0.3}
-           height={Dimensions.get("window").height*0.055}
-           onPress={(e) => {onBtnPressHandler('map')} }
-         ></MyButton>
-         <MyButton
-           title={CONSTANTS.SCREEN_TEXTS.MENU_LABEL}
-           width={Dimensions.get("window").width*0.3}
-           height={Dimensions.get("window").height*0.055}
-           onPress={(e) => {onBtnPressHandler('menu')} }
-         ></MyButton>
-         <MyButton
-           title={CONSTANTS.SCREEN_TEXTS.COMMENT_LABEL}
-           width={Dimensions.get("window").width*0.32}
-           height={Dimensions.get("window").height*0.055}
-           onPress={(e) => {onBtnPressHandler('comment')} }
-         ></MyButton>
+        {
+          showMap && <MapComponent/>
+        }
+
+        {
+          showDishes && 
+          <DishFlatList 
+            dishes={dishes}
+            onDishPhotoPressHandler={onDishPhotoPressHandler}
+          >
+
+          </DishFlatList>   
+        }
       </View>
-     
-     {
-       showComments && <CommentComponent/>
-     }
-
-     {
-       showMap && <MapComponent/>
-     }
-
-     {
-       showDishes && <MenuComponent/>
-     }
-</View>
-  
-</View>
+    </View>
     )
   }
   

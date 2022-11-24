@@ -1,20 +1,21 @@
 import { View, Text , FlatList , StyleSheet , Dimensions, ScrollView} from 'react-native'
 import React, { useState , useEffect} from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ROUTES } from '../..';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { useCallback } from 'react';
 import { RestaurantProfileUserScreenUI } from './RestaurantProfileUserScreenUI';
 import { dishesWS, reviewWS } from '../../../networking/endpoints';
+import {selectDish} from '../../../redux/slices/userReducer';
 
 function RestaurantProfileUserScreen({navigation, route, name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
 calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sprops}) {
 
   const restoData = {
-    name : route.params.name,
-    rating : route.params.averageRating.toFixed(2),
-    priceRange : route.params.priceRange,
+    name : name,
+    rating : calification,
+    priceRange : priceRange,
   };
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
@@ -23,9 +24,8 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
   const [dishes, setDishes] = useState([]);
   const [comments, setComments] = useState([]);
 
-  const [forceRender, setForceRender] = useState(false);
-
   const isFocused = useIsFocused();
+  const dispatch = useDispatch();
 
   const restoId = useSelector((state) => state.user.restaurantSelectedId);
 
@@ -39,7 +39,7 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
     setDishes(newDishes);
   }
 
-  const onBtnPress = (component) => {
+  const onSectionBtnPress = (component) => {
 
     if (component === 'map')
     {
@@ -91,28 +91,37 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
   )
 
 
-  const onPressComment = (event) => {
+  const onSentCommentPress = (event) => {
     navigation.navigate(ROUTES.USER_SENT_COMMENT);
   }
+
+  const onDishPhotoPress = async (dishId) => {
+
+    dispatch(selectDish(dishId));
+
+    try {
+      var dishInfo = await dishesWS.getDishData(restoId, dishId);
+
+      if (dishInfo){
+        navigation.navigate(ROUTES.DISH_USER_VIEW_STACK, dishInfo);
+      }
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <RestaurantProfileUserScreenUI
-      restoDataname={restoData.name}
-      restoDatarating={restoData.rating}
-      restoDatapriceRange={restoData.priceRange}
-      onPressCommentHandler={onPressComment}
-      comments1={comments}
-      dishes1={dishes}
+      name = {name}
+      priceRange={priceRange}
+      comments={comments}
+      dishes={dishes}
       showComments={showComments}
       showMap={showMap}
       showDishes={showDishes}
-      onBtnPressHandler={onBtnPress}
-      hourOpen={10}
-      hourOpen2={'am'}
-      hourClose={20}
-      hourClose2={'pm'}
-      
-      latitude={-34.603722}
-      longitude={-58.381592}
+      onSectionBtnPressHandler={onSectionBtnPress}
+      onSentCommentPressHandler={onSentCommentPress}
+      onDishPhotoPressHandler={onDishPhotoPress}
       >
     </RestaurantProfileUserScreenUI>
   )

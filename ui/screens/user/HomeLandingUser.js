@@ -51,10 +51,15 @@ function HomeLandingUser({navigation , props}) {
 
     dispatch(selectRestaurant(restaurantId));
 
-    const restaurant = await restaurantWS.getRestaurantInfo(restaurantId);
+    try {
+      const restaurant = await restaurantWS.getRestaurantInfo(restaurantId);
+      console.log(restaurant);
 
-    if (restaurant)
-      navigation.navigate(ROUTES.RESTAURANT_VIEW_USER, restaurant);
+      if (restaurant)
+        navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
+    } catch (error) {
+      
+    }
   }
 
   return (
