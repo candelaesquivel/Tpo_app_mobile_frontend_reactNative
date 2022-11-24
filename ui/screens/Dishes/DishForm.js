@@ -14,6 +14,12 @@ const DishForm = ({
   discount = 0,
   isVegan = false,
   isGlutenFree = false,
+
+  nameError='',
+  priceError='',
+  ingredientsError='',
+  categoryError='',
+
   onNameChanged,
   onPriceChanged,
   onDiscountChange,
@@ -28,6 +34,7 @@ const DishForm = ({
         {CONSTANTS.SCREEN_TEXTS.NAME_LABEL}    
     </Text>
     <InputText 
+    errorMessage={nameError}
     defaultValue={name}
     onChangeText = {onNameChanged}
     textColor = {colorPalette.Black}
@@ -40,6 +47,7 @@ const DishForm = ({
       {CONSTANTS.SCREEN_TEXTS.PRICE_LABEL}
     </Text>
     <InputText
+    errorMessage={priceError}
     defaultValue={price}
     onChangeText={onPriceChanged}
     keyboardType = {'numeric'} 
@@ -53,6 +61,7 @@ const DishForm = ({
         {CONSTANTS.SCREEN_TEXTS.INGREDIENTS_LABEL}        
     </Text>
     <InputText
+    errorMessage={ingredientsError}
     defaultValue={ingredients}
     onChangeText={onIngredientChange}
     textColor = {colorPalette.Black}

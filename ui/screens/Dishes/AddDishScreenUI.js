@@ -22,6 +22,11 @@ export const AddDishScreenUI = ({
     isGlutenFree = false,
     showCreateDishAlert = false,
 
+    nameError='',
+    priceError='',
+    ingredientsError='',
+    categoryError='',
+
     onIsGlutenFreeChangeHandler,
     onIsVeganChangeHandler,
     onSavePressHandler,
@@ -48,10 +53,10 @@ export const AddDishScreenUI = ({
             </View>
             <View style={styles.global}>
                 <DishForm
-                  name={name} onNameChanged={onNameChangedHandler}
-                  price={price} onPriceChanged={onPriceChangedHandler}
-                  ingredients={ ingredients} onIngredientChange={onIngredientChangeHandler}
-                  discount={discount} onDiscountChange={onDiscountChangeHandler}
+                  name={name} onNameChanged={onNameChangedHandler} nameError={nameError}
+                  price={price} onPriceChanged={onPriceChangedHandler} priceError={priceError}
+                  ingredients={ ingredients} onIngredientChange={onIngredientChangeHandler} ingredientsError={ingredientsError}
+                  discount={discount} onDiscountChange={onDiscountChangeHandler} 
                   isVegan={isVegan} onIsVeganChange={onIsVeganChangeHandler}
                   isGlutenFree={isGlutenFree} onIsGlutenFreeChange={onIsGlutenFreeChangeHandler}
                 ></DishForm>

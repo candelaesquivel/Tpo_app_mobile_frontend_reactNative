@@ -77,6 +77,11 @@ function AddDishScreen({navigation, props}) {
     isGlutenFree={formik.values.isGlutenFree}
     showCreateDishAlert={showDishCreateAlert}
 
+    nameError={formik.errors.name}
+    priceError={formik.errors.price}
+    ingredientsError={formik.errors.ingredients}
+    categoryError={formik.errors.category}
+
     onDismissAlertHandler={onDismissAlert}
     onNameChangedHandler={formik.handleChange('name')}
     onPriceChangedHandler={formik.handleChange('price')}
