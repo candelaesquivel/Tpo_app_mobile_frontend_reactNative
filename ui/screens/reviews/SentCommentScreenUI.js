@@ -7,9 +7,10 @@ import { MyButton } from "../../components/button";
 import { CONSTANTS } from "../../../config";
 
 const SentCommentScreenUI = ({
-    reviewDatarating,
+    review = '',
+    rating = 1,
     onRatingChangedHandler,
-    onPriceChangedHandler,
+    onReviewChangeHandler,
     onCreatePressHandler,
     props}) => {
   
@@ -18,7 +19,7 @@ const SentCommentScreenUI = ({
             <Text style={styles.words}>{CONSTANTS.SCREEN_TEXTS.RATING_LABEL}</Text>
             <View style={styles.rating}>
                 <AirbnbRating 
-                    defaultRating={reviewDatarating}
+                    defaultRating={rating}
                     onFinishRating={onRatingChangedHandler}
                     reviews = {[]}
                     size = {30}
@@ -32,13 +33,14 @@ const SentCommentScreenUI = ({
                 height={Dimensions.get("window").height*0.1}
                 width={ Dimensions.get("window").width*0.6}
                 limitLenght={30}
-                onChange = {onPriceChangedHandler}
+                onChangeText = {onReviewChangeHandler}
+                defaultValue={review}
             ></InputText>
 
             <View style={styles.buttonsTwo}>
             < MyButton
                 onPress={onCreatePressHandler}
-                title={CONSTANTS.SCREEN_TEXTS.EMAIL_SENT_MSG}
+                title={CONSTANTS.SCREEN_TEXTS.SENT_COMMENT_LABEL}
                 width={ Dimensions.get("window").width*0.5}
                 height={Dimensions.get("window").height*0.07}
                 ></MyButton>

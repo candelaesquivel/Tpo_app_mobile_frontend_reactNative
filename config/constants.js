@@ -104,6 +104,8 @@ export default  {
     FILTER_MSG_INTRO : I18n.t('filterMessageIntro'),
     USER_LABEL : I18n.t('user'),
     OWNER_LABEL : I18n.t('owner'),
+    SENT_COMMENT_LABEL : I18n.t('sentCommentLabel'),
+
 
     PRICE_RANGE_LOW : I18n.t('$'),
     PRINCE_RANGE_MID : I18n.t('$$'),
@@ -135,10 +137,16 @@ export default  {
     DISH_INGREDIENTS_REQUIRED : I18n.t('dishIngredientsRequired'),
     DISH_CATEGORY_REQUIRED : I18n.t('dishCategoryRequired'),
 
+    REVIEW_TEXT_REQUIRED : I18n.t('reviewTextRequired'),
+    REVIEW_TEXT_MIN_LENGTH : I18n.t('reviewTextLengthMin'),
+
     RESTO_NAME_REQUIRED: I18n.t('restaurantNameRequired'),
     RESTO_FOOD_TYPE_REQUIRED : I18n.t('restaurantFoodTypeRequired'),
     RESTO_PRICE_TYPE_REQUIRED : I18n.t('restaurantPriceTypeRequired'),
   },
 
   MIN_LENGTH_PASSWORD : 8,
+  MIN_LENGTH_REVIEW_TEXT : 3,
+  MIN_RATING_VALUE : 1,
+  MAX_RATING_VALUE : 5,
 }

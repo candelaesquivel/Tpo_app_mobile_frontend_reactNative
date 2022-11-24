@@ -4,39 +4,49 @@ import { useSelector
 import { ROUTES } from "../..";
 import {SentCommentScreenUI} from './SentCommentScreenUI';
 import { reviewWS } from "../../../networking/endpoints";
+import { useFormik } from "formik";
+import {reviewSchema} from '../../formSchemas/reviewSchemas';
 
 export default function SentCommentScreen({navigation, props}){
 
     const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
     const userId = useSelector(state => state.user.userId);
 
-    const [reviewData, setReviewData] = useState({
+    const formik = useFormik({
+      initialValues : {
+        review : '',
         rating : 1,
-        comment : '',
-      });
-
-      const onRatingChanged = (value) => {
-        setReviewData({...reviewData, 'rating' : value})
+      },
+      validationSchema : reviewSchema.createReview,
+      onSubmit(values){
+        onCreatePress();
       }
-    
-      const onPriceChanged = ({ nativeEvent: { eventCount, target, text} }) => {
-        setReviewData({...reviewData, 'comment' : text})
-      }
+    })
 
-      const onCreatePress = async (event) => {
-        console.log(reviewData)
-        const result= await reviewWS.createReview(currRestaurant,userId, reviewData);
-        
+    const onRatingChange = (value) => {
+      formik.setFieldValue('rating', value)
+    }
+
+    const onCreatePress = async () => {
+      try {
+        const result= await reviewWS.createReview(currRestaurant, userId, formik.values);
         if (result)
           navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
+      } catch (error) {
+        
       }
+    }
     
+      console.log(formik.errors)
+
     return (
-     <SentCommentScreenUI>
-        reviewDatarating={reviewData.rating}
-        onRatingChangedHandler={onRatingChanged}
-        onPriceChangedHandler={onPriceChanged}
-        onCreatePressHandler={onCreatePress}
+     <SentCommentScreenUI
+        review={formik.values.review}
+        rating={formik.values.rating}
+        onReviewChangeHandler={formik.handleChange('review')}
+        onRatingChangedHandler={onRatingChange}
+        onCreatePressHandler={formik.handleSubmit}
+     >
      </SentCommentScreenUI>
     )
 }

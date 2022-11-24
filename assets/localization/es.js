@@ -84,6 +84,8 @@ export  default{
     delete : "Eliminar",
     open : "Abierto : ",
     cancel : 'Cancelar',
+    sentCommentLabel : 'Enviar Comentario',
+
     
     dishCreated : 'Plato Creado',
     dishUpdated : 'Plato Modificado',
@@ -115,4 +117,11 @@ export  default{
     dishPriceRequired : 'El precio del plato es requerido',
     dishIngredientsRequired : 'Se requieren ingredientes',
     dishCategoryRequired : 'Debe seleccionar una categoria',
+
+    reviewTextRequired : 'Se requiere ingresar un comentario',
+    reviewTextLengthMin : 'El comentario debe tener minimo 3 letras',
+
+    restaurantNameRequired : 'El nombre de restaurante no puede estar vacio',
+    restaurantFoodTypeRequired : 'Debe seleccionar una categoria de comidas',
+    restaurantPriceTypeRequired : 'Debe seleccionar un rango de precios',
 };
