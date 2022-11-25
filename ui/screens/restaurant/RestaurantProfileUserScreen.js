@@ -1,5 +1,4 @@
-import { View, Text , FlatList , StyleSheet , Dimensions, ScrollView} from 'react-native'
-import React, { useState , useEffect} from 'react'
+import React, { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { ROUTES } from '../..';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
@@ -12,11 +11,6 @@ function RestaurantProfileUserScreen({navigation, route, name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
 calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sprops}) {
 
-  const restoData = {
-    name : name,
-    rating : calification,
-    priceRange : priceRange,
-  };
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
   const [showDishes , setShowDishes]= useState(false);
