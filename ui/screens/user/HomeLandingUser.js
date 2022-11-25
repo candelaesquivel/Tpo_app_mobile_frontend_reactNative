@@ -38,10 +38,6 @@ function HomeLandingUser({navigation , props}) {
     }, [triggerSearch, isFocused])
   );
 
-  const onNameHandler = (value) => {
-    setName(value);
-  }
-
   const onFavoriteIconPress = async (restaurantId) => {
     const result = await userWS.changeRestaurantFavoriteStatus(userId, restaurantId);
     setTrigggerSearch(true);
@@ -56,7 +52,7 @@ function HomeLandingUser({navigation , props}) {
       console.log(restaurant);
 
       if (restaurant)
-        navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
+        navigation.navigate(ROUTES.RESTAURANT_VIEW_USER, restaurant);
     } catch (error) {
       
     }

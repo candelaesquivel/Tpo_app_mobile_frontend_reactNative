@@ -9,7 +9,13 @@ import {selectDish} from '../../../redux/slices/userReducer';
 
 function RestaurantProfileUserScreen({navigation, route, name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
-calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sprops}) {
+calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, props}) {
+
+  const restoData = {
+    name : route.params.name ? route.params.name  : 'Mudra',
+    calification : route.params.calification ? route.params.calification : 4,
+    priceRange : route.params.priceRange ? route.params.priceRange : '$$$$',
+  };
 
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
@@ -106,8 +112,9 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
 
   return (
     <RestaurantProfileUserScreenUI
-      name = {name}
-      priceRange={priceRange}
+      name = {restoData.name}
+      priceRange={restoData.priceRange}
+      rating = {restoData.rating}
       comments={comments}
       dishes={dishes}
       showComments={showComments}

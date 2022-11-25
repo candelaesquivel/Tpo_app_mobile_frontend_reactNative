@@ -17,8 +17,6 @@ const renderItem = ({ item }) => (
         
       ); 
 
-  console.log("Comment List: ", comments);
-
   return ( 
       <FlatList
           data={comments}
