@@ -31,7 +31,7 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
 
   const fillCommentsList = async () => {
     const newComments = await reviewWS.getReviewsOfRestaurant(restoId);
-    // setComments(newComments);
+    setComments(newComments);
   }
 
   const fillDishList = async () => {

@@ -7,24 +7,10 @@ export async function getReviewsOfRestaurant(restaurantId) {
     const url = URL_SERVICES.COMMENT_LIST.replace('restaurantId', restaurantId);
 
     return axios.get(url).then( (response) => {
-      
-      let comments = []
-
-      response.data.forEach((itr, idx) => {
-        comments.push({
-          user : itr.name,
-          rating : itr.rating,
-          comment : itr.comment,
-          idx : idx
-        });
-      });
-      return comments;
-  
+      return response.data;
     }).catch(err =>{
-      console.error(err);
+      console.error(err.response.data);
       return [];
-    }).finally(() => {
-     
     })
   }
   
