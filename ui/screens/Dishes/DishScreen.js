@@ -6,13 +6,13 @@ function DishScreen({navigation, route, props}){
 
     const dishData = 
     {
-      name : route.params.name,
-      price : route.params.price,
-      isVegan : route.params.isVegan,
-      isGlutenFree : route.params.isGlutenFree,
-      category : route.params.category,
-      ingredients : route.params.ingredients.split(','),
-      discount : route.params.discount,
+      name : route.params.name ? route.params.name : '',
+      price : route.params.price ? route.params.price : '',
+      isVegan : route.params.isVegan ? route.params.isVegan : false,
+      isGlutenFree : route.params.isGlutenFree ? route.params.isGlutenFree : false,
+      category : route.params.category ? route.params.category : '',
+      ingredients : route.params.ingredients ? route.params.ingredients.split(',') : '',
+      discount : route.params.discount ? route.params.discount : 0,
     };
 
     return (

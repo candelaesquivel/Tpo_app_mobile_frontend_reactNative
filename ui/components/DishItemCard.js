@@ -8,12 +8,10 @@ import { Theme } from '../styles/Theme';
 import { useDispatch, useSelector } from 'react-redux';
 import { CONSTANTS} from '../../config';
 import { useNavigation } from '@react-navigation/native';
-import { ROUTES } from '..';
-import { dishesWS } from '../../networking/endpoints';
 
 export default function DishItemCard({
   name = '', 
-  discount = 0, 
+  discounts = 0, 
   price = 100, 
   dishId = '', 
   isVegan = true, 
@@ -21,14 +19,8 @@ export default function DishItemCard({
   onDishPhotoPressHandler,
   props}) 
 {
-  const priceDescount =(price)* ((100-discount)/100)
-  
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
-
-  const restaurantId = useSelector(state => state.user.restaurantSelectedId);
-
-  const showDiscount = discount  > 0
+  const priceDescount =(price)* ((100-discounts)/100)
+  const showDiscount = discounts  > 0
 
   const onDishPhotoPress = (event) => {
     if (onDishPhotoPressHandler)
@@ -53,7 +45,7 @@ export default function DishItemCard({
                     showDiscount &&
                     <>
                       <Icon  name="local-offer" color={colorPalette.Orange} size={20}></Icon>
-                      <Text style={styles.wordsThree} marginBottom={30}>%{discount}</Text>   
+                      <Text style={styles.wordsThree} marginBottom={30}>%{discounts}</Text>   
                     </> 
                   }
               </View>
