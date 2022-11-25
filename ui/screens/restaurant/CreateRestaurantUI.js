@@ -1,5 +1,5 @@
 import { InputText } from "../../components/InputText";
-import { Text, TouchableOpacityBase } from "react-native";
+import { Text } from "react-native";
 import { Switch } from "react-native";
 import Carousal from "../../components/carousal";
 import { StyleSheet } from "react-native";
@@ -10,7 +10,6 @@ import { Icon } from "@rneui/themed";
 import { CONSTANTS } from "../../../config";
 import { ScrollView } from "react-native-gesture-handler";
 import { MyButton } from "../../components/button";
-import MyTimePicker from '../../components/TimePicker';
 import { useState } from "react";
 import { Dimensions } from "react-native";
 import { FoodTypesDropDown } from "../../components/FoodTypesDropdown";
