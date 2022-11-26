@@ -7,22 +7,11 @@ import { CreateRestaurantUI } from './CreateRestaurantUI';
 import { ROUTES } from '../..';
 import { useEffect } from 'react';
 import { useFormik } from 'formik';
+import { Dimensions } from "react-native";
 import { restaurantSchema } from '../../formSchemas/restaurantSchemas';
 
 function CreateRestaurantScreen({navigation, props}) {
 
-  useEffect(() => {
-    const mockFunction = (error) => {
-      if (error === 'VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.') 
-      return console.log("Virtualized List error was caught");
-      if (console.originalError) console.originalError(error)
-    }
-  
-    console.originalError = console.error
-    console.error = mockFunction
-    return () => { console.error = console.originalError }
-  }, [])
-  
   const [region, setRegion] = useState({
     latitude: -34.603722,
     longitude: -58.381592,
@@ -71,6 +60,14 @@ function CreateRestaurantScreen({navigation, props}) {
       priceRange : '',
       zipCode : '3344',
       days : [],
+      address : {
+        streetName : "",
+        streetNumber : '',
+        neighborhood : "",
+        city : "",
+        state : "",
+        country : ""
+      },
       coordinates : {
         type : 'Point',
         coordinates : [
@@ -97,8 +94,6 @@ function CreateRestaurantScreen({navigation, props}) {
     }
 
     console.log('Restaurant data: ', restaurantData);
-
-    return;
 
     const result = await restaurantWS.createRestaurant(ownerId, restaurantData);
 
@@ -130,8 +125,6 @@ function CreateRestaurantScreen({navigation, props}) {
 
     const hourInMinutes  = (time.getHours() * 60) + time.getMinutes();
 
-    console.log('Open Hour: ', hourInMinutes);
-
     let oldHours = {}
 
     Object.assign(oldHours, hours);
@@ -139,8 +132,6 @@ function CreateRestaurantScreen({navigation, props}) {
     for (let dayField in oldHours.hours){
       oldHours.hours[dayField].open = hourInMinutes;
     }
-
-    console.log(oldHours);
 
     setHours(oldHours);
   }
@@ -157,27 +148,27 @@ function CreateRestaurantScreen({navigation, props}) {
       oldHours.hours[dayField].close = hourInMinutes;
     }
 
-    console.log(oldHours);
-
     setHours(oldHours);
   }
 
-  const onDayBtnPress = (day) => {
-
+  const onAddressChange = (address) => {
+    formik.setFieldValue('zipCode', address.zipCode);
+    formik.setFieldValue('address', address);
   }
 
-  const onRegionChange = (data) => {
+  const onRegionChange = (region) => {
     setAddressEntered(true);
-    setRegion(data);
-
+    setRegion(region);
     formik.values.setFieldValue('coordinates', {
       type: "Point",
       coordinates: [
-        data.longitude,
-        data.latitude
+        region.longitude,
+        region.latitude
       ]
     });
   }
+
+  console.log('Formik Create Errors: ', formik.errors);
 
   return (
       <CreateRestaurantUI
@@ -192,6 +183,7 @@ function CreateRestaurantScreen({navigation, props}) {
         onIsCloseChangeHandler={onIsCloseChange}
         onFoodTypeChangeHandler={onFoodTypeChange}
         onPriceRangeChangeHandler={onPriceRangeChange}
+        onAddressChangeHandler={onAddressChange}
         onRegionHandler={onRegionChange}
         onOpenTimeChangeHandler={onOpenTimeChange}
         onCloseTimeChangeHandler={onCloseTimeChange}

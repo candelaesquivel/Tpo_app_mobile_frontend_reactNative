@@ -19,6 +19,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import RNDateTimePicker from "@react-native-community/datetimepicker";
+import { convertGoogleAddress, convertGoogleRegion } from "../../../config/utilities";
 
 
 export const CreateRestaurantUI = ({
@@ -34,7 +35,8 @@ export const CreateRestaurantUI = ({
   onIsCloseChangeHandler,
   onFoodTypeChangeHandler,
   onPriceRangeChangeHandler,
-  onRegionHandler,
+  onAddressChangeHandler = (address) => {},
+  onRegionChangeHandler = (region) => {},
   onOpenTimeChangeHandler,
   onCloseTimeChangeHandler,
   onDayBtnPressHandler,
@@ -94,13 +96,14 @@ export const CreateRestaurantUI = ({
             fetchDetails={true}
             onPress={
               (data, details = null) => {
-                console.log(details);
-                onRegionHandler({
-                  latitude: details.geometry.location.lat,
-                  longitude: details.geometry.location.lng,
-                  latitudeDelta: details.geometry.viewport.northeast.lat - details.geometry.viewport.southwest.lat,
-                  longitudeDelta: (details.geometry.viewport.northeast.lat - details.geometry.viewport.southwest.lat) * (Dimensions.get('window').width / Dimensions.get('window').height),
-                });
+                const newRegion = convertGoogleRegion(details);
+                const address = convertGoogleAddress(details);
+                
+                console.log('Address Obj: ', address);
+                console.log('Region Obj: ', newRegion);
+                
+                onRegionChangeHandler(newRegion);
+                onAddressChangeHandler(address);
               }
             }
             query={{
