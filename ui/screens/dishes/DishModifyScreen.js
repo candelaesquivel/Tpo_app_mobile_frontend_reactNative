@@ -18,7 +18,7 @@ function DishModifyScreen({navigation, route, props}){
     initialValues : {
       name : route.params.name ? route.params.name : '',
       price : route.params.price ? route.params.price : 0,
-      ingredients : route.params.ingredients ? route.params.ingredients : [],
+      ingredients : route.params.ingredients ? route.params.ingredients : '',
       discounts : route.params.discounts ? route.params.discounts : 0,
       isVegan : route.params.isVegan ? route.params.isVegan : false,
       isGlutenFree : route.params.isGlutenFree ? route.params.isGlutenFree : false,
@@ -38,13 +38,20 @@ function DishModifyScreen({navigation, route, props}){
  
   const onSavePress = async () => {
 
-    const result = await dishesWS.updateDish(restaurantId, dishId, dishData);
+    const dishData = {...formik.values};
 
-    if (result){
-      setTimeout(() => {
-        ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.DISH_UPDATED_MSG, ToastAndroid.SHORT);
-        navigation.goBack();
-      }, 200);
+    try {
+      const result = await dishesWS.updateDish(restaurantId, dishId, dishData);
+
+      if (result){
+        setTimeout(() => {
+          ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.DISH_UPDATED_MSG, ToastAndroid.SHORT);
+          navigation.goBack();
+        }, 200);
+      }
+      
+    } catch (error) {
+      
     }
   }
   
@@ -68,7 +75,7 @@ function DishModifyScreen({navigation, route, props}){
   }
 
   const onIngredientChange = (text) => {
-    formik.setFieldValue('ingredients', text.split(','));
+    formik.setFieldValue('ingredients', text.split(',').toString());
   }
 
   const onDiscountChange = (value) => {
@@ -91,7 +98,7 @@ function DishModifyScreen({navigation, route, props}){
       <DishModifyScreenUI
         name={formik.values.name}
         price={formik.values.price.toString()}
-        ingredients={formik.values.ingredients.toString()}
+        ingredients={formik.values.ingredients}
         discount={formik.values.discounts}
         isVegan={formik.values.isVegan}
         isGlutenFree={formik.values.isGlutenFree}
