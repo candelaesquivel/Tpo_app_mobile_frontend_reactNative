@@ -105,6 +105,7 @@ export default  {
     USER_LABEL : I18n.t('user'),
     OWNER_LABEL : I18n.t('owner'),
     SENT_COMMENT_LABEL : I18n.t('sentCommentLabel'),
+    SHARE_LABEL : I18n.t('shareSocial'),
 
 
     PRICE_RANGE_LOW : I18n.t('$'),

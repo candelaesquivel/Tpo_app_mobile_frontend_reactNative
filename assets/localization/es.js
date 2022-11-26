@@ -85,6 +85,7 @@ export  default{
     open : "Abierto : ",
     cancel : 'Cancelar',
     sentCommentLabel : 'Enviar Comentario',
+    shareSocial : 'Compartir restaurante',
 
     
     dishCreated : 'Plato Creado',

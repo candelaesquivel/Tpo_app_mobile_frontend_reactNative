@@ -6,6 +6,8 @@ import { useCallback } from 'react';
 import { RestaurantProfileUserScreenUI } from './RestaurantProfileUserScreenUI';
 import { dishesWS, reviewWS } from '../../../networking/endpoints';
 import {selectDish} from '../../../redux/slices/userReducer';
+import Share from 'react-native-share';
+import { CONSTANTS } from '../../../config';
 
 function RestaurantProfileUserScreen({navigation, route, name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
@@ -95,6 +97,17 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, pr
     navigation.navigate(ROUTES.USER_SENT_COMMENT);
   }
 
+  const onSharePress = async (event) => {
+    try {
+      await Share.open({
+        title : CONSTANTS.SCREEN_TEXTS.SHARE_LABEL,
+        message : restoData.name
+      })
+    } catch (error) {
+      
+    }
+  }
+
   const onDishPhotoPress = async (dishId) => {
 
     dispatch(selectDish(dishId));
@@ -123,6 +136,7 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, pr
       onSectionBtnPressHandler={onSectionBtnPress}
       onSentCommentPressHandler={onSentCommentPress}
       onDishPhotoPressHandler={onDishPhotoPress}
+      onSharePressHandler={onSharePress}
       >
     </RestaurantProfileUserScreenUI>
   )
