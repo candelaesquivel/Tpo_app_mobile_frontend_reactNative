@@ -27,7 +27,10 @@ function DrawerHeader({props}){
 
   return (
     <View style={style.container}>
-      <Logo width={60} height={60}></Logo>
+       <Logo
+       width={Dimensions.get('window').height*0.09} 
+       height={Dimensions.get('window').height*0.09}
+       ></Logo>
       <View onTouchStart={onIconPress}>
         {!userImg &&       
         <Icon onPress={onIconPress} name = 'account-circle' size = {96}></Icon>
@@ -43,13 +46,12 @@ const width = Dimensions.get('screen').width;
 
 const style = StyleSheet.create({
   container : {
-    height : Dimensions.get('window').height * 0.3,
+    height : Dimensions.get('window').height * 0.4,
     alignItems : 'center',
   },
 
   userImg: {
-    width: 110,
-    height: 110,
+   
     borderRadius: 110 / 2,
     borderWidth: 4,
     borderColor: colorPalette.White,

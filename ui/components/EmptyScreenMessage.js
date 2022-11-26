@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     },
   
   title : {
-    marginTop : "30%",
-    marginBottom : "10%",
+    marginTop : Dimensions.get('window').width*0.1,
+    marginBottom :Dimensions.get('window').width*0.1,
     alignSelf : 'center',
     fontSize : Theme.font.LARGE,
     color : colorPalette.Black,

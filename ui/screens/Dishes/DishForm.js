@@ -101,7 +101,7 @@ const DishForm = ({
         <Text style={styles.words}>
             {CONSTANTS.SCREEN_TEXTS.VEGAN_LABEL}    
         </Text>
-        <View style={{width: '16%'}}></View>
+        <View style={{width:  Dimensions.get("window").width*0.2 }}></View>
         <Switch
             onValueChange={onIsVeganChange}
             value={isVegan} />
@@ -157,16 +157,17 @@ const styles = StyleSheet.create({
   slider : {
     width: Dimensions.get('window').width*0.8, 
     height : Dimensions.get('window').height*0.05,
-    marginLeft :"5%"
+    marginLeft :Dimensions.get("window").width*0.05,
+    marginBottom :Dimensions.get("window").width*0.05
   },
   trackStyle : {
-    height : '10%',
+    height : Dimensions.get("window").width*0.01,
     backgroundColor:  'transparent', 
     },
   
   thumbStyle : { 
     height : 20,
-    width : 20,
+    width :  20,
     backgroundColor: 'transparent'
    },
    

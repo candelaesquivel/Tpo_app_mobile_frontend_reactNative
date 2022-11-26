@@ -113,7 +113,7 @@ export const CreateRestaurantUI = ({
               type: 'geocode'
             }}
             styles={{
-              width: '100%',
+              width:  Dimensions.get('window').width,
             }}
           />
         </SafeAreaView>
@@ -144,7 +144,7 @@ export const CreateRestaurantUI = ({
         < MyButton
           title= {CONSTANTS.SCREEN_TEXTS.OPEN_HOUR_LABEL} 
           width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
+          height={Dimensions.get("window").height*0.1}
           onPress={() =>{ setOpeningPicker(!showOpeningPicker)}}
         >
         </MyButton>
@@ -152,7 +152,7 @@ export const CreateRestaurantUI = ({
         < MyButton
           title= {CONSTANTS.SCREEN_TEXTS.CLOSE_HOUR_LABEL} 
           width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
+          height={Dimensions.get("window").height*0.1}
           onPress={() => {setClosingPicker(!showClosingPicker)}}
         >
         </MyButton>
@@ -218,7 +218,7 @@ export const CreateRestaurantUI = ({
         onPress={onCreateHandler}
         title= {CONSTANTS.SCREEN_TEXTS.CREATE_LABEL} 
         width={ Dimensions.get("window").width*0.5}
-        height={Dimensions.get("window").height*0.07}
+        height={Dimensions.get("window").height*0.1}
         >
         </MyButton>
       </View>
@@ -248,32 +248,32 @@ const styles = StyleSheet.create(
   closeSection : {
     flexDirection : "row",
     alignSelf : 'center',
-    marginBottom : "5%",
+    marginBottom : Dimensions.get('window').width*0.05,
 
     text : {
       fontSize: Theme.font.MEDIUM,
       color: colorPalette.Black, 
-      marginRight : 5,
+      marginRight :  Dimensions.get('window').width*0.03,
     }
   },
 
   words :{
     fontSize: Theme.font.MEDIUM,
     color: colorPalette.Black, 
-    marginLeft : "4%" , 
-    marginBottom : "3%"
+    marginLeft :  Dimensions.get('window').width*0.02 , 
+    marginBottom : Dimensions.get('window').width*0.02
   },
 
   dropdownContainer: {
-    width : "90%" , 
-    marginBottom : 10,
+    width :Dimensions.get('window').width*0.9 , 
+    marginBottom : Dimensions.get('window').width*0.02,
     alignSelf : 'center'
   },
 
   addressContainer: {
-    width: "90%",
+    width: Dimensions.get('window').width*0.9,
     alignSelf : 'center',
-    marginBottom : 10,
+    marginBottom :Dimensions.get('window').width*0.02,
   },
 
   mapContainer: {

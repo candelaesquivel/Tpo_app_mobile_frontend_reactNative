@@ -27,7 +27,7 @@ export const ForgotPasswordUI = ({
             color = {colorPalette.Orange} 
             placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
             placeholderTextColor ={colorPalette.White}
-            height = '50%' 
+            height = {Dimensions.get("window").height*0.05}
             onChangeText = {onEmailHandler}
             errorMessage = {emailError}
             ></InputText>
@@ -38,7 +38,7 @@ export const ForgotPasswordUI = ({
             title = {CONSTANTS.SCREEN_TEXTS.RECOVER_PASS_LABEL} 
             onPress = {onRecoveryHandler}
             width={ Dimensions.get("window").width*0.6}
-            height={Dimensions.get("window").height*0.07}
+            height={Dimensions.get("window").height*0.08}
             ></MyButton>
           </View>
         </View>
@@ -55,11 +55,11 @@ const styles = StyleSheet.create({
      height:Dimensions.get("window").height,
   },
   containerWhite : {
-     width : '100%',
-    height : '15%',
+    width : Dimensions.get("window").width,
+    height : Dimensions.get("window").height*0.25,
     backgroundColor : colorPalette.White,
-    marginTop : "35%",
-    marginBottom : "5%"
+    marginTop :Dimensions.get("window").height*0.055,
+    marginBottom : Dimensions.get("window").height*0.035
    },
    containerEmail : { 
      justifyContent : 'space-evenly',
@@ -70,11 +70,10 @@ const styles = StyleSheet.create({
      },
    containerEmailTwo : { 
      flexDirection : "column",
-       marginTop : "7%"
-     },
+     marginTop : Dimensions.get("window").height*0.05},
    button : {
      flexDirection :"column",
      justifyContent : "center",
-     marginTop : "5%"
+     marginTop : Dimensions.get("window").height*0.1
    },
  });

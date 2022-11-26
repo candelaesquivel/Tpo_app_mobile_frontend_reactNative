@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text , Dimensions } from 'react-native'
 import React from 'react'
 import { MyButton } from './button'
 import { CONSTANTS } from '../../config';
@@ -43,7 +43,7 @@ export const WeekButtons = ({
                   key={idx}
                   title={item}
                   width={40}
-                  height={40}
+                  height={Dimensions.get('window').height*0.072}
                   backgroundColor = {!enabled ? colorPalette.Black : colorPalette.Orange}
                   >
                 </MyButton>

@@ -68,7 +68,7 @@ props
              title = {CONSTANTS.SCREEN_TEXTS.CREATE_ACCOUNT_LABEL} 
              onPress = {onRegisterHandler}
              width={Dimensions.get("window").width*0.6}
-             height={Dimensions.get("window").height*0.07}
+             height={Dimensions.get("window").height*0.08}
              ></MyButton>
         </View>
   )
@@ -83,22 +83,22 @@ const styles = StyleSheet.create({
     backgroundColor : colorPalette.White
   },
   icon : {
-    width : '100%', 
-    marginTop :"20%",
-    marginBottom : "7%",
+    width : Dimensions.get("window").width, 
+    marginTop :Dimensions.get("window").width*0.07,
+    marginBottom : Dimensions.get("window").width*0.07,
     backgroundColor : colorPalette.White,
     alignItems : "center"
     },
     input : { 
       justifyContent : 'space-evenly',
       width : Dimensions.get("window").width*0.9,
-      height:Dimensions.get("window").height*0.3,
+      height:Dimensions.get("window").height*0.4,
        backgroundColor : colorPalette.LightOrange, 
       borderRadius : Theme.sizes.ROUNDED
   },
   inputTwo :{
     flexDirection :"column",
-    marginTop :"9%"
+    marginTop :Dimensions.get("window").width*0.08
   }
 
 });
