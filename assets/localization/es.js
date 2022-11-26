@@ -78,7 +78,7 @@ export  default{
     save : "Guardar",
     pricee : "Price",
     typeFood : "Tipo de comida",
-    deleteRestaurant : "Eliminar resto",
+    deleteRestaurant : "Eliminar Restaurante",
     create : "Crear",
     deleteDish : "Eliminar Plato",
     delete : "Eliminar",
@@ -94,6 +94,7 @@ export  default{
     accountCreated : 'Cuenta Creada exitosamente',
     accountDeleted : 'Cuenta eliminada exitosamente',
     confirmDishDelete : '¿Esta seguro de eliminar el plato?',
+    confirmRestaurantDelete : '¿Esta seguro de eliminar el restaurante?',
 
     mondayLetter : 'L',
     tuesdayLetter : 'M',

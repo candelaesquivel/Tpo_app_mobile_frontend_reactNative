@@ -30,6 +30,9 @@ const URL_SERVICES = {
   CREATE_RESTAURANT : RESTAURANT_ROUTE,
   RESTAURANT_DETAIL : RESTAURANT_ROUTE + 'id',
   RESTAURANTS_LIST: RESTAURANT_ROUTE + '',
+  DELETE_RESTAURANT : RESTAURANT_ROUTE + 'id',
+
+  // Dishes
   DISH_CREATE: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes',
   DISH_GET_INFO: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes/' + 'dishId',
   DISH_MODIFY: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes/' + 'dishId',

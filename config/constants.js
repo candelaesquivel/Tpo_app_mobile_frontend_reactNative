@@ -81,6 +81,7 @@ export default  {
     MAP_LABEL : I18n.t('map'),
     OPEN_HOUR_LABEL : I18n.t('opening'),
     DELETE_RESTAURANT_LABEL : I18n.t('deleteRestaurant'),
+    DELETE_RESTAURANT_CONFIRM_MSG : I18n.t('confirmRestaurantDelete'),
     COMMENT_LABEL : I18n.t('comment'),
     CLOSE_HOUR_LABEL : I18n.t('closing'),
     CLOSE_LABEL : I18n.t('close'),
