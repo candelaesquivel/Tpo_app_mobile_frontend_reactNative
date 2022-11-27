@@ -36,13 +36,15 @@ function EditRestaurantScreen({navigation, route, props}) {
         country : restoParams.country ? restoParams.country : ""
       },
       openingTimes :  restoParams.openingTimes ? 
-        restoParams.openingTimes.map(item => {return Date(item)}) : 
+        restoParams.openingTimes.map(item => {
+          return new Date(item)
+        }) : 
         Array(7).fill(undefined),
 
       closingTimes :  restoParams.closingTimes ? 
-      restoParams.closingTimes.map(item => {return Date(item)}) : 
+      restoParams.closingTimes.map(item => {return new Date(item)}) : 
       Array(7).fill(undefined),
-      coordinates : {
+      coordinates : restoParams.coordinates ? restoParams.coordinates : {
         type : 'Point',
         coordinates : [
           -58.456,
@@ -107,7 +109,8 @@ function EditRestaurantScreen({navigation, route, props}) {
 
   const onRegionChange = (region) => {
     setRegion(region);
-    formik.values.setFieldValue('coordinates', {
+
+    formik.setFieldValue('coordinates', {
       type: "Point",
       coordinates: [
         region.longitude,
@@ -119,7 +122,6 @@ function EditRestaurantScreen({navigation, route, props}) {
   const onSavePress = async () => {
     const restaurantData = {
       ...formik.values,
-      ...restoTimes,
     }
     try {
       const restaurant = await restaurantWS.updateRestaurant(restaurantData.id, restaurantData);
@@ -172,7 +174,7 @@ function EditRestaurantScreen({navigation, route, props}) {
         onFoodTypeChangeHandler={onFoodTypeChange}
         onPriceRangeChangeHandler={onPriceRangeChange}
         onAddressChangeHandler={onAddressChange}
-        onRegionHandler={onRegionChange}
+        onRegionChangeHandler={onRegionChange}
 
         onOpenTimeChangeHandler={onOpenTimeChange}
         onCloseTimeChangeHandler={onCloseTimeChange}
