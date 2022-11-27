@@ -32,8 +32,25 @@ export default function FilterScreen({navigation , props}) {
   }
 
   const onRatingChange = (value) => {
+
+    const currValue = formik.values.minRating;
+
+    if (currValue === value)
+      value = 0;
+
     formik.setFieldValue('minRating', value);
   }
+
+  const onCleanFiltersPress = (event) => {
+    formik.setValues({
+      maxDistance : 0,
+      minRating : 0,
+      restaurantTypes : [],
+      priceRange : '',
+    });
+  }
+
+  console.log('Formik Filter Create: ', formik.values);
   
   return (
     <FilterScreenUI
@@ -46,6 +63,7 @@ export default function FilterScreen({navigation , props}) {
       onRestaurantTypeChangeHandler={onRestaurantTypeChange}
       onPriceRangeChangeHandler={onPriceRangeChange}
       onRatingChangeHandler={onRatingChange}
+      onCleanFiltersPressHandler={onCleanFiltersPress}
 
     ></FilterScreenUI>
   )

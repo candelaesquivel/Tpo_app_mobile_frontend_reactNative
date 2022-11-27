@@ -86,6 +86,7 @@ export  default{
     cancel : 'Cancelar',
     sentCommentLabel : 'Enviar Comentario',
     shareSocial : 'Compartir restaurante',
+    clearFiltersLabel : 'Limpiar Filtros',
 
     
     dishCreated : 'Plato Creado',
