@@ -9,6 +9,7 @@ export default {
     CREATE_ACCOUNT_OWNER : 'CreateAccountOwner',
     FILTERS_SCREEN_STACK : 'FilterScreen',
     FORGET_PASSWORD : 'RecoveryPasswordScreen',
+    ERROR_MSG : 'ErrorMsgScreen',
    
     // Owner Routes
     OWNER_STACK : 'OwnerStackScreens',

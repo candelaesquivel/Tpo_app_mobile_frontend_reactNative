@@ -2,7 +2,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AddDish, CreateAccountOwner, CreateRestaurant, 
         DeleteAccountOwner, ForgetPassword, Home, LoginNormalUser,
         LoginOwner, MenuRestaurantOwner, DishUserView,RestaurantEdit,
-        ModifyDish , ProfileUserRestaurant, SearchFilters, RestaurantProfileUser,
+        ModifyDish , ProfileUserRestaurant, SearchFilters, 
+        RestaurantProfileUser, ErrorMsg,
          EditRestaurant, UserProfile , SentComment , RecoverPasswordToken } from "../ui/screens";
 import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
@@ -30,7 +31,8 @@ function MainNavigator(props){
             backgroundColor: colorPalette.Orange,
           },
           headerTintColor: colorPalette.White,
-        }}>           
+        }}>         
+        
             <Stack.Screen name = {ROUTES.HOME_SCREEN} component = {Home} options={{
               headerShown: false,
             }}></Stack.Screen>
@@ -111,6 +113,11 @@ function MainNavigator(props){
             options={{
               title : CONSTANTS.SCREEN_TITLES.TOKEN
             }}></Stack.Screen>
+
+        <Stack.Screen name = {ROUTES.ERROR_MSG} component = {ErrorMsg} options={{
+              headerShown: false,
+            }}></Stack.Screen>
+
             
         </Stack.Navigator>
     )
