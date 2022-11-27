@@ -23,6 +23,7 @@ export const ForgotPasswordUI = ({
         
           <View style={styles.containerEmail}>
           <View style={styles.containerEmailTwo}>
+          <View height={Dimensions.get("window").width*0.03}></View>
           <InputText 
             color = {colorPalette.Orange} 
             placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
@@ -57,20 +58,23 @@ const styles = StyleSheet.create({
   containerWhite : {
     width : Dimensions.get("window").width,
     height : Dimensions.get("window").height*0.25,
-    backgroundColor : colorPalette.White,
-    marginTop :Dimensions.get("window").height*0.055,
-    marginBottom : Dimensions.get("window").height*0.035
+    
+    marginTop :Dimensions.get("window").height*0.1,
+    marginBottom : Dimensions.get("window").height*0.02
    },
    containerEmail : { 
      justifyContent : 'space-evenly',
      width : Dimensions.get("window").width*0.9,
-     height:Dimensions.get("window").height*0.1,
-      backgroundColor : colorPalette.LightOrange, 
-      borderRadius : Theme.sizes.ROUNDED
+     height:Dimensions.get("window").height*0.15,
+      
      },
    containerEmailTwo : { 
      flexDirection : "column",
-     marginTop : Dimensions.get("window").height*0.05},
+     backgroundColor : colorPalette.LightOrange,
+     borderRadius : Theme.sizes.ROUNDED,
+     height : Dimensions.get("window").height*0.1,
+   
+    },
    button : {
      flexDirection :"column",
      justifyContent : "center",

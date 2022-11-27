@@ -24,11 +24,12 @@ export const LoginOwnerUI = ({
       <KeyboardAvoidingView>
       <View style={styles.headerWhite}></View>           
       <Logo
-        width={Dimensions.get('window').height*0.2} 
-        height={Dimensions.get('window').height*0.2}
+        width={Dimensions.get('window').height*0.15} 
+        height={Dimensions.get('window').height*0.1}
         ></Logo>
         <View style = {styles.logInContainer}>
             <View style = {styles.logInContainerTwo}>
+            <View height={Dimensions.get("window").width*0.08}></View>
             <InputText
               defaultValue = {email}
               color = {colorPalette.Orange} 
@@ -47,6 +48,8 @@ export const LoginOwnerUI = ({
               secureTextEntry = {true}
               onChangeText = {onPassHandler}
               errorMessage = {passwordError}
+              height = {Dimensions.get('window').height*0.02}
+              
               >
             </InputText>
             </View>
@@ -75,20 +78,22 @@ const styles = StyleSheet.create({
     backgroundColor : colorPalette.White,
   },
   headerWhite : {
-    height : Dimensions.get("window").width*0.02,
+    height : Dimensions.get("window").width*0.08,
   },
   logInContainer : {
-    width : Dimensions.get("window").width*0.9,
-    height:Dimensions.get("window").height*0.25,
-      borderRadius : Theme.sizes.ROUNDED,
-      backgroundColor : colorPalette.LightOrange,
-      marginTop : Dimensions.get("window").height*0.01,
-      marginBottom : Dimensions.get("window").height*0.01,
+ 
+    width : Dimensions.get("window").width*0.97,
+    height:Dimensions.get("window").height*0.2,
+     
+      marginTop : Dimensions.get("window").height*0.05,
+      marginBottom : Dimensions.get("window").height*0.1,
      
   },
   logInContainerTwo : {
     flexDirection : "column" ,
-    marginTop : Dimensions.get("window").height*0.015,
+    borderRadius : Theme.sizes.ROUNDED,
+    backgroundColor : colorPalette.Cream,
+
   },
   word : {
     color : colorPalette.Orange,

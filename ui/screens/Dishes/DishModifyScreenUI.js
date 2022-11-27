@@ -87,14 +87,14 @@ const DishModifyScreenUI = ({
             onPress={onSavePressHandler}
               title={CONSTANTS.SCREEN_TEXTS.SAVE_LABEL}
               width={ Dimensions.get("window").width*0.5}
-              height={Dimensions.get("window").height*0.1}
+              height={Dimensions.get("window").height*0.08}
               ></MyButton>
 
           < MyButton
               onPress = {onDeletePressHandler}
               title= {CONSTANTS.SCREEN_TEXTS.DELETE_DISH_LABEL}
               width={ Dimensions.get("window").width*0.5}
-              height={Dimensions.get("window").height*0.1}
+              height={Dimensions.get("window").height*0.08}
               ></MyButton>
           </View>
       

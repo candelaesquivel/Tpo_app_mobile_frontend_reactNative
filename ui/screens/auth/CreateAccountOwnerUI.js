@@ -28,6 +28,7 @@ props
           <KeyboardAvoidingView>
           <View style={styles.input}>
               <View style={styles.inputTwo}>
+                <View height={Dimensions.get("window").width*0.08}></View>
                 <InputText
                 errorMessage = {emailError}
                 defaultValue={email}
@@ -68,7 +69,7 @@ props
              title = {CONSTANTS.SCREEN_TEXTS.CREATE_ACCOUNT_LABEL} 
              onPress = {onRegisterHandler}
              width={Dimensions.get("window").width*0.6}
-             height={Dimensions.get("window").height*0.08}
+             height={Dimensions.get("window").height*0.09}
              ></MyButton>
         </View>
   )
@@ -84,21 +85,23 @@ const styles = StyleSheet.create({
   },
   icon : {
     width : Dimensions.get("window").width, 
-    marginTop :Dimensions.get("window").width*0.07,
-    marginBottom : Dimensions.get("window").width*0.07,
+    marginTop :Dimensions.get("window").width*0.1,
+    marginBottom : Dimensions.get("window").width*0.1,
     backgroundColor : colorPalette.White,
     alignItems : "center"
     },
     input : { 
       justifyContent : 'space-evenly',
       width : Dimensions.get("window").width*0.9,
-      height:Dimensions.get("window").height*0.4,
-       backgroundColor : colorPalette.LightOrange, 
-      borderRadius : Theme.sizes.ROUNDED
+      height:Dimensions.get("window").height*0.421,
+       backgroundColor : colorPalette.White, 
+     
   },
   inputTwo :{
     flexDirection :"column",
-    marginTop :Dimensions.get("window").width*0.08
+    backgroundColor : colorPalette.LightOrange,
+    borderRadius : Theme.sizes.ROUNDED,
+    
   }
 
 });

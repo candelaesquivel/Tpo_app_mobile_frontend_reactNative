@@ -110,6 +110,7 @@ const DishForm = ({
           <Text style={styles.words}>
               {CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}       
           </Text>
+          <View style={{width:  Dimensions.get("window").width*0.026 }}></View>
           <Switch
               onValueChange={onIsGlutenFreeChange}
               value={isGlutenFree} />
@@ -124,7 +125,7 @@ const DishForm = ({
 
 const styles = StyleSheet.create({
   globalTwo:{
-      width: '100%',
+      width: Dimensions.get('window').width,
       alignItems:'flex-start'
     },
     global:{
@@ -134,24 +135,23 @@ const styles = StyleSheet.create({
     words :{
       fontSize: Theme.font.MEDIUM,
       color: colorPalette.Black, 
-      marginLeft : "4%" , 
-      marginBottom : "3%"
+      marginLeft : Dimensions.get('window').width*0.04 , 
+      marginBottom : Dimensions.get('window').width*0.03
   },
   switchContainer : {
       flexDirection:'row',
-      marginBottom : "3%"
+      marginBottom : Dimensions.get('window').width*0.03
        
   },
   buttons : {
       flexDirection: 'row' , 
-      marginLeft : "6%"
+      marginLeft : Dimensions.get('window').width*0.06
       },
 
   buttonsTwo : {
       flexDirection: 'column' , 
       alignItems : "center" ,
-      width : "100%",
-      height : "75%" , 
+     
       
   },
   slider : {

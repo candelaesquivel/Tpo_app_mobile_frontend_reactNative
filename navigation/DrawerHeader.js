@@ -28,8 +28,8 @@ function DrawerHeader({props}){
   return (
     <View style={style.container}>
        <Logo
-       width={Dimensions.get('window').height*0.09} 
-       height={Dimensions.get('window').height*0.09}
+       width={Dimensions.get('window').height*0.1} 
+       height={Dimensions.get('window').height*0.1}
        ></Logo>
       <View onTouchStart={onIconPress}>
         {!userImg &&       

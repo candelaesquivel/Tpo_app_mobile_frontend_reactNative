@@ -37,6 +37,7 @@ export const DeleteAccountScreenUI = ({
         <KeyboardAvoidingView>
             <View style = {styles.container}>
                 <View style={styles.containerTwo}>
+                <View height={Dimensions.get("window").width*0.08}></View>
                     <InputText
                         placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
                         placeholderTextColor ={colorPalette.White}
@@ -81,32 +82,32 @@ export const DeleteAccountScreenUI = ({
         width :  Dimensions.get("window").width
        },
     containerWhite : {
-        width : '100%',
-        height :  Dimensions.get("window").height*0.15,
+        width : Dimensions.get("window").width,
+        height :  Dimensions.get("window").height*0.2,
         backgroundColor : colorPalette.White,
-        marginBottom : "5%",
-        marginTop : "20%"
+        
     },
     message : {
-    marginBottom : "5%",
-     marginRight : 10
+    marginBottom : Dimensions.get("window").width*0.04,
+    marginRight : 10
     },
     container : {
         justifyContent : 'space-evenly',
-        height :  Dimensions.get("window").height*0.2,
+        height :  Dimensions.get("window").height*0.25,
         width :  Dimensions.get("window").width*0.9, 
-        backgroundColor : colorPalette.LightOrange, 
-        borderRadius : Theme.sizes.ROUNDED,
+       
         
     },
     containerTwo : { 
         flexDirection : "column",
-          marginTop : "7%"
+          marginTop : Dimensions.get("window").width*0.09,
+          backgroundColor : colorPalette.Cream, 
+          borderRadius : Theme.sizes.ROUNDED,
         },
     button : {
         flexDirection :"column",
         justifyContent : "center",
-        marginTop : "5%",
+        marginTop : Dimensions.get("window").width*0.2,
         backgroundColor : colorPalette.White,
        
       },

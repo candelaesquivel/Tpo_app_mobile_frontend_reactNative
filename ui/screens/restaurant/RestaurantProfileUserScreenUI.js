@@ -177,7 +177,7 @@ const RestaurantProfileUserScreenUI = ({
         width :Dimensions.get('window').width ,
         height : Dimensions.get('window').height * 0.3,
         marginTop : Dimensions.get('window').height * 0.02,
-        marginBottom : -Dimensions.get('window').height * 0.24
+        marginBottom : -Dimensions.get('window').height * 0.22
       },
       wordButton : {
         fontSize: Theme.font.MEDIUM,
