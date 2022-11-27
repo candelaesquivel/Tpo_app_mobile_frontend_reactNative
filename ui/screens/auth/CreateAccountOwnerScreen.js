@@ -28,16 +28,22 @@ export function CreateAccountOwnerScreen({navigation, props}) {
         password : formik.values.password,
       };
 
-      const result = await authWS.registerOwner(userData);
+      try {
+        const result = await authWS.registerOwner(userData);
 
-      if (result){
-        setTimeout(() => {
-          ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.ACCOUNT_CREATED, ToastAndroid.SHORT);
-          navigation.navigate(ROUTES.LOGIN_OWNER);
-        }, 200);
+        if (result){
+          setTimeout(() => {
+            ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.ACCOUNT_CREATED, ToastAndroid.SHORT);
+            navigation.navigate(ROUTES.LOGIN_OWNER);
+          }, 200);
       }else{
 
       }
+      } catch (error) {
+        
+      }
+
+      
     }
 
     return (
