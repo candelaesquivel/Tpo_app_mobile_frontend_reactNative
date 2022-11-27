@@ -17,10 +17,9 @@ export async function loginGoogle(userInfo){
       longitude : userInfo.longitude
     },
   }).then(res => {
-    console.log("Google Resp Data:", res.data);
     return res.data;
   }).catch(err => {
-    console.log(err);
+    console.log(err.response.data);
     return null;
   }).finally(() => {
   })

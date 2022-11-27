@@ -47,8 +47,6 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
       var dishInfo = await dishesWS.getDishData(restoId, dishId);
 
       if (dishInfo){
-        console.log(dishInfo);
-
         navigation.navigate(ROUTES.DISH_MODIFY_STACK, dishInfo);
       }
     } catch (error) {
