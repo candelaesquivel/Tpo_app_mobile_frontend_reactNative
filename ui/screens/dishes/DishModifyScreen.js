@@ -75,7 +75,7 @@ function DishModifyScreen({navigation, route, props}){
   }
 
   const onIngredientChange = (text) => {
-    formik.setFieldValue('ingredients', text.split(',').toString());
+    formik.setFieldValue('ingredients', text);
   }
 
   const onDiscountChange = (value) => {
