@@ -1,6 +1,9 @@
 import { Dimensions } from "react-native";
 
-export function convertGoogleAddress(details = {}) {
+export function convertGoogleAddress(details = undefined) {
+
+  if (!details)
+    return {};
   
   const address = {
     streetNumber : details.address_components[0].long_name,
@@ -9,13 +12,16 @@ export function convertGoogleAddress(details = {}) {
     city : details.address_components[3].long_name,
     state : details.address_components[5].long_name,
     country : details.address_components[6].long_name,
-    zipCode : details.address_components[7].long_name,
+    zipCode : details.address_components[7] ? details.address_components[7].long_name : 'CP0000',
   };
 
   return address;
 };
 
-export function convertGoogleRegion(details = {}){
+export function convertGoogleRegion(details = undefined){
+  if (!details)
+    return {};
+    
   const newRegion = {
     latitude: details.geometry.location.lat,
     longitude: details.geometry.location.lng,

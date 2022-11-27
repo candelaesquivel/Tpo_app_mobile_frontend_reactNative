@@ -19,44 +19,11 @@ function CreateRestaurantScreen({navigation, props}) {
     longitudeDelta: 0.0421,
   });
 
-  const [hours, setHours] = useState({
-    hours: {
-      monday: {
-        open: 1000,
-        close: 1400
-      },
-      tuesday: {
-        open: 1000,
-        close: 1400
-      },
-      wednesday: {
-        open: 1000,
-        close: 1400
-      },
-      thursday: {
-        open: 1000,
-        close: 1400
-      },
-      friday: {
-        open: 1000,
-        close: 1400
-      },
-      saturday: {
-        open: 1000,
-        close: 1400
-      },
-      sunday: {
-        open: 1000,
-        close: 1400
-      }
-    },
-  })
-
   const formik = useFormik({
     initialValues : {
       name : '',
-      isClosed : false,
-      foodTypes : [],
+      isClosedOverwrite : false,
+      restaurantTypes : [],
       priceRange : '',
       zipCode : '3344',
       days : [],
@@ -68,6 +35,8 @@ function CreateRestaurantScreen({navigation, props}) {
         state : "",
         country : ""
       },
+      openingTimes : Array(7).fill(undefined),
+      closingTimes : Array(7).fill(undefined),
       coordinates : {
         type : 'Point',
         coordinates : [
@@ -77,8 +46,8 @@ function CreateRestaurantScreen({navigation, props}) {
       }
     },
     validationSchema : restaurantSchema.createRestaurant,
-    onSubmit(values) {
-      onCreatePress();
+    async onSubmit(values) {
+      await onCreatePress();
     }
   });
 
@@ -90,10 +59,7 @@ function CreateRestaurantScreen({navigation, props}) {
 
     const restaurantData = {
       ...formik.values,
-      ...hours,
     }
-
-    console.log('Restaurant data: ', restaurantData);
 
     const result = await restaurantWS.createRestaurant(ownerId, restaurantData);
 
@@ -108,12 +74,11 @@ function CreateRestaurantScreen({navigation, props}) {
   }
 
   const onIsCloseChange = (value) =>{
-    formik.setFieldValue('isClosed', value);
+    formik.setFieldValue('isClosedOverwrite', value);
   }
 
   const onFoodTypeChange = (item) => {
-    console.warn(item);
-    formik.setFieldValue('foodTypes', item);
+    formik.setFieldValue('restaurantTypes', item);
   }
 
   const onPriceRangeChange = (value) => {
@@ -121,34 +86,39 @@ function CreateRestaurantScreen({navigation, props}) {
   }
 
   // Receive a date object
-  const onOpenTimeChange = (time) => {
+  const onOpenTimeChange = (dayIndex, time) => {
 
-    const hourInMinutes  = (time.getHours() * 60) + time.getMinutes();
+    const newOpeningTimes = formik.values.openingTimes.map((item, idx) => {
+      if (idx === dayIndex || dayIndex === 0)
+        return time;
 
-    let oldHours = {}
+      return item;
+    });
 
-    Object.assign(oldHours, hours);
+    const newDays = newOpeningTimes.map((item, idx) => {
+      return item !== undefined
+    })
 
-    for (let dayField in oldHours.hours){
-      oldHours.hours[dayField].open = hourInMinutes;
-    }
-
-    setHours(oldHours);
+    formik.setFieldValue('days', newDays);
+    formik.setFieldValue('openingTimes', newOpeningTimes);
   }
 
   // Receive a date object
-  const onCloseTimeChange = (time) => {
-    const hourInMinutes  = (time.getHours() * 60) + time.getMinutes();
+  const onCloseTimeChange = (dayIndex, time) => {
 
-    let oldHours = {}
+    const newClosingTimes = formik.values.closingTimes.map((item, idx) => {
+      if (idx === dayIndex || dayIndex === 0)
+        return time;
 
-    Object.assign(oldHours, hours);
+      return item;
+    });
 
-    for (let dayField in oldHours.hours){
-      oldHours.hours[dayField].close = hourInMinutes;
-    }
+    const newDays = newClosingTimes.map((item, idx) => {
+      return item !== undefined
+    })
 
-    setHours(oldHours);
+    formik.setFieldValue('days', newDays);
+    formik.setFieldValue('closingTimes', newClosingTimes);
   }
 
   const onAddressChange = (address) => {
@@ -159,7 +129,8 @@ function CreateRestaurantScreen({navigation, props}) {
   const onRegionChange = (region) => {
     setAddressEntered(true);
     setRegion(region);
-    formik.values.setFieldValue('coordinates', {
+
+    formik.setFieldValue('coordinates', {
       type: "Point",
       coordinates: [
         region.longitude,
@@ -168,23 +139,23 @@ function CreateRestaurantScreen({navigation, props}) {
     });
   }
 
-  console.log('Formik Create Errors: ', formik.errors);
-
   return (
       <CreateRestaurantUI
         name={formik.values.name}
-        isClosed={formik.values.isClosed}
-        foodTypes={formik.values.foodTypes}
+        isClosedOverwrite={formik.values.isClosedOverwrite}
+        restaurantTypes={formik.values.restaurantTypes}
         priceRange={formik.values.priceRange}
         region={region}
+        openingTimes={formik.values.openingTimes}
+        closingTimes={formik.values.closingTimes}
         addressEntered={addressEntered}
-        onCreateHandler={onCreatePress}
+        onCreateHandler={formik.handleSubmit}
         onNameHandler={formik.handleChange('name')}
         onIsCloseChangeHandler={onIsCloseChange}
         onFoodTypeChangeHandler={onFoodTypeChange}
         onPriceRangeChangeHandler={onPriceRangeChange}
         onAddressChangeHandler={onAddressChange}
-        onRegionHandler={onRegionChange}
+        onRegionChangeHandler={onRegionChange}
         onOpenTimeChangeHandler={onOpenTimeChange}
         onCloseTimeChangeHandler={onCloseTimeChange}
     >
