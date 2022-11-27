@@ -13,8 +13,8 @@ function EditRestaurantScreen({navigation, route, props}) {
   const restoParams = route.params;
 
   const [region, setRegion] = useState({
-    latitude: restoParams.coordinates.coordinates[0] ? restoParams.coordinates.coordinates[0] : -34.603722,
-    longitude: restoParams.coordinates.coordinates[1] ? restoParams.coordinates.coordinates[1] : -58.381592,
+    latitude: restoParams ? restoParams.coordinates.coordinates[0] : -34.603722,
+    longitude: restoParams ? restoParams.coordinates.coordinates[1] : -58.381592,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
@@ -45,8 +45,8 @@ function EditRestaurantScreen({navigation, route, props}) {
       coordinates : {
         type : 'Point',
         coordinates : [
-          restoParams.coordinates.coordinates[0] ? restoParams.coordinates.coordinates[0] : -58.456,
-          restoParams.coordinates.coordinates[1] ? restoParams.coordinates.coordinates[1] : -34.567
+          -58.456,
+          -34.567
         ]
       }
     },

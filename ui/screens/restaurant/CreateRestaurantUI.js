@@ -40,6 +40,7 @@ export const CreateRestaurantUI = ({
   onRegionChangeHandler = (region) => {},
   onOpenTimeChangeHandler = (dayIndex, date) => {},
   onCloseTimeChangeHandler = (dayIndex, date) => {},
+  onUploadImgHandler = (event) => {},
   ...props
 }) => {
 
@@ -47,7 +48,7 @@ export const CreateRestaurantUI = ({
     <ScrollView keyboardShouldPersistTaps={'handled'}>
       <Carousal></Carousal>
       <View style={styles.addPhotoContainer}>
-        <Icon name='add' size={30}></Icon>
+        <Icon name='add' size={30} onPress={onUploadImgHandler}></Icon>
       </View>
       {/* Form Inputs */}
       <View style={styles.formContainer}>

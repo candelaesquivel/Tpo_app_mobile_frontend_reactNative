@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { Dimensions } from "react-native";
 import { restaurantSchema } from '../../formSchemas/restaurantSchemas';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 function CreateRestaurantScreen({navigation, props}) {
 
@@ -43,7 +44,8 @@ function CreateRestaurantScreen({navigation, props}) {
           -58.456,
           -34.567
         ]
-      }
+      },
+      pictures : [],
     },
     validationSchema : restaurantSchema.createRestaurant,
     async onSubmit(values) {
@@ -61,16 +63,27 @@ function CreateRestaurantScreen({navigation, props}) {
       ...formik.values,
     }
 
-    const result = await restaurantWS.createRestaurant(ownerId, restaurantData);
+    try {
+      const result = await restaurantWS.createRestaurant(ownerId, restaurantData);
+      console.log('Create Result: ', result);
+      
+      if (result){
+        if (restaurantData.images.length !== 0){
+          const imgUploadResult = await restaurantWS.uploadRestaurantImg(result.id, restaurantData.pictures);
 
-    if (result){
-      setTimeout(() => {
-        ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.RESTAURANT_CREATED_MSG, ToastAndroid.SHORT);
-        navigation.navigate(ROUTES.OWNER_HOME);
-      }, 200);
+          if (imgUploadResult){
+          }
+        }
+
+        setTimeout(() => {
+          ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.RESTAURANT_CREATED_MSG, ToastAndroid.SHORT);
+          navigation.navigate(ROUTES.OWNER_HOME);
+        }, 200);
+      }
+
+    } catch (error) {
+      ToastAndroid.show(error, ToastAndroid.SHORT);
     }
-    else
-      ToastAndroid.show('Error on Create Restaurant', ToastAndroid.SHORT);
   }
 
   const onIsCloseChange = (value) =>{
@@ -139,6 +152,22 @@ function CreateRestaurantScreen({navigation, props}) {
     });
   }
 
+  const onUploadImgPress = async (event) => {
+
+    try {
+      const images = await launchImageLibrary({
+        mediaType : 'photo',
+      });
+
+      if (images){
+        formik.setFieldValue('pictures', images.assets);
+      }
+
+    } catch (error) {
+      
+    }
+  }
+
   return (
       <CreateRestaurantUI
         name={formik.values.name}
@@ -158,6 +187,7 @@ function CreateRestaurantScreen({navigation, props}) {
         onRegionChangeHandler={onRegionChange}
         onOpenTimeChangeHandler={onOpenTimeChange}
         onCloseTimeChangeHandler={onCloseTimeChange}
+        onUploadImgHandler={onUploadImgPress}
     >
     </CreateRestaurantUI>
   );
