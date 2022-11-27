@@ -1,5 +1,5 @@
 import { InputText } from "../../components/InputText";
-import { Text, TouchableOpacityBase } from "react-native";
+import { Text } from "react-native";
 import { Switch } from "react-native";
 import Carousal from "../../components/carousal";
 import { StyleSheet } from "react-native";
@@ -10,7 +10,6 @@ import { Icon } from "@rneui/themed";
 import { CONSTANTS } from "../../../config";
 import { ScrollView } from "react-native-gesture-handler";
 import { MyButton } from "../../components/button";
-import MyTimePicker from '../../components/TimePicker';
 import { useState } from "react";
 import { Dimensions } from "react-native";
 import { FoodTypesDropDown } from "../../components/FoodTypesDropdown";
@@ -19,29 +18,54 @@ import { WeekButtons } from "../../components/WeekButton";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import RNDateTimePicker from "@react-native-community/datetimepicker";
+import { convertGoogleAddress, convertGoogleRegion } from "../../../config/utilities";
+import { AlertConfirm } from "../../components/AlertConfirm";
 
 
-const RestaurantForm = ({
+export const EditRestaurantUI = ({
   name,
-  isClosed = false,
+  isClosedOverwrite = false,
+  restaurantTypes = [],
+  priceRange = '',
   region,
   addressEntered,
-  onCreateHandler,
+
+  openingTimes=[],
+  closingTimes=[],
+  days = [],
+
   onNameHandler,
-  onToggleClose,
-  onRegionHandler,
+  onIsCloseChangeHandler,
+  onFoodTypeChangeHandler,
+  onPriceRangeChangeHandler,
+
+  onAddressChangeHandler = (address) => {},
+  onRegionChangeHandler = (region) => {},
+  onOpenTimeChangeHandler = (dayIndex, date) => {},
+  onCloseTimeChangeHandler = (dayIndex, date) => {},
+
+  onSavePressHandler,
+  onDeletePressHandler,
+  showConfirmDelete = false,
+  onConfirmDeleteBtnHandler,
+  onCancelBtnHandler,
+
   props
 }) => {
 
-  const [showOpeningPicker, setOpeningPicker] = useState(false);
-  const [showClosingPicker, setClosingPicker] = useState(false);
-  const [daysOpened, setDaysOpened] = useState([]);
-
-  const onDayBtnPress = (event) => {
-  }
-
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}>
+      <AlertConfirm
+        title={CONSTANTS.SCREEN_TEXTS.DELETE_RESTAURANT_LABEL}
+        bodyMsg={CONSTANTS.SCREEN_TEXTS.DELETE_RESTAURANT_CONFIRM_MSG}
+        confirmBtnTitle={CONSTANTS.SCREEN_TEXTS.DELETE_LABEL}
+        cancelBtnTitle={CONSTANTS.SCREEN_TEXTS.CANCEL_LABEL}
+        isOpen={showConfirmDelete}
+        onConfirmBtnHandler={onConfirmDeleteBtnHandler}
+        onCancelBtnHandler={onCancelBtnHandler}
+      >
+      </AlertConfirm>
       <Carousal></Carousal>
       <View style={styles.addPhotoContainer}>
         <Icon name='add' size={30}></Icon>
@@ -53,7 +77,7 @@ const RestaurantForm = ({
         </Text>
         <InputText
           textColor={colorPalette.Black}
-          onChange={onNameHandler}
+          onChangeText={onNameHandler}
           defaultValue={name}
           color={colorPalette.White}
           placeholderTextColor = {colorPalette.Black}
@@ -70,13 +94,15 @@ const RestaurantForm = ({
             fetchDetails={true}
             onPress={
               (data, details = null) => {
-                console.log(details);
-                onRegionHandler({
-                  latitude: details.geometry.location.lat,
-                  longitude: details.geometry.location.lng,
-                  latitudeDelta: details.geometry.viewport.northeast.lat - details.geometry.viewport.southwest.lat,
-                  longitudeDelta: (details.geometry.viewport.northeast.lat - details.geometry.viewport.southwest.lat) * (Dimensions.get('window').width / Dimensions.get('window').height),
-                });
+
+                if (!details)
+                  return;
+
+                const newRegion = convertGoogleRegion(details);
+                const address = convertGoogleAddress(details);
+                
+                onRegionChangeHandler(newRegion);
+                onAddressChangeHandler(address);
               }
             }
             query={{
@@ -114,58 +140,58 @@ const RestaurantForm = ({
 
       {/* Time Opening/Closing Section */}
       <View style={styles.hourContainer}>
-        < MyButton
-          title= {CONSTANTS.SCREEN_TEXTS.OPEN_HOUR_LABEL} 
-          width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
-          onPress={() =>{ setOpeningPicker(!showOpeningPicker)}}
+        <Text>{CONSTANTS.SCREEN_TEXTS.OPEN_HOUR_LABEL}</Text>
+        <WeekButtons
+          timesData={openingTimes}
+          onTimeSelectedHandler={onOpenTimeChangeHandler}
         >
-        </MyButton>
+        </WeekButtons>
+        <Text>{CONSTANTS.SCREEN_TEXTS.CLOSE_HOUR_LABEL}</Text>
+        <WeekButtons
+          timesData={closingTimes}
+          onTimeSelectedHandler={onCloseTimeChangeHandler}
+        >
+        </WeekButtons>
 
-        < MyButton
-          title= {CONSTANTS.SCREEN_TEXTS.CLOSE_HOUR_LABEL} 
-          width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
-          onPress={() => {setClosingPicker(!showClosingPicker)}}
-        >
-        </MyButton>
-  
-        {
-            showOpeningPicker && <MyTimePicker></MyTimePicker>
-        }
-        
-        {
-            showClosingPicker &&  <MyTimePicker></MyTimePicker>
-        }
-        
       </View>
       
       {/* Is Closed */}
       <View style={styles.closeSection}>
         <Text style={styles.closeSection.text}>{CONSTANTS.SCREEN_TEXTS.CLOSE_LABEL}</Text>
-        <Switch value={isClosed} onValueChange={onToggleClose}></Switch>
+        <Switch value={isClosedOverwrite} onValueChange={onIsCloseChangeHandler}></Switch>
       </View>
 
       {/* Dropdown Containers */}
       <View style ={styles.dropdownContainer}>
-        <FoodTypesDropDown></FoodTypesDropDown>
+        <FoodTypesDropDown 
+          onChangeHandler={onFoodTypeChangeHandler}
+          selected={restaurantTypes}
+          >
+
+          </FoodTypesDropDown>
       </View>
       <View style ={styles.dropdownContainer}>
-          <PriceRangesDropdown></PriceRangesDropdown>
+          <PriceRangesDropdown 
+            onChangeHandler={onPriceRangeChangeHandler}
+            value = {priceRange}
+          ></PriceRangesDropdown>
       </View>
 
       <View style={styles.buttonContainer}>
-        <WeekButtons
-          weekButtonHandler={onDayBtnPress}
-          weekButtonValues={daysOpened}
-        >
+        
 
-        </WeekButtons>
         <MyButton
-        onPress={onCreateHandler}
-        title= {CONSTANTS.SCREEN_TEXTS.CREATE_LABEL} 
-        width={ Dimensions.get("window").width*0.5}
-        height={Dimensions.get("window").height*0.07}
+          onPress={onSavePressHandler}
+          title= {CONSTANTS.SCREEN_TEXTS.SAVE_LABEL} 
+          width={ Dimensions.get("window").width*0.5}
+          height={Dimensions.get("window").height*0.07}
+        >
+        </MyButton>
+        <MyButton
+          onPress={onDeletePressHandler}
+          title= {CONSTANTS.SCREEN_TEXTS.DELETE_LABEL} 
+          width={ Dimensions.get("window").width*0.5}
+          height={Dimensions.get("window").height*0.07}
         >
         </MyButton>
       </View>
@@ -237,6 +263,3 @@ const styles = StyleSheet.create(
     flexDirection : 'row-reverse',
   }
 });
-
-
-export {RestaurantForm};

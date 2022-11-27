@@ -78,12 +78,15 @@ export  default{
     save : "Guardar",
     pricee : "Price",
     typeFood : "Tipo de comida",
-    deleteRestaurant : "Eliminar resto",
+    deleteRestaurant : "Eliminar Restaurante",
     create : "Crear",
     deleteDish : "Eliminar Plato",
     delete : "Eliminar",
     open : "Abierto : ",
     cancel : 'Cancelar',
+    sentCommentLabel : 'Enviar Comentario',
+    shareSocial : 'Compartir restaurante',
+
     
     dishCreated : 'Plato Creado',
     dishUpdated : 'Plato Modificado',
@@ -91,6 +94,7 @@ export  default{
     accountCreated : 'Cuenta Creada exitosamente',
     accountDeleted : 'Cuenta eliminada exitosamente',
     confirmDishDelete : '¿Esta seguro de eliminar el plato?',
+    confirmRestaurantDelete : '¿Esta seguro de eliminar el restaurante?',
 
     mondayLetter : 'L',
     tuesdayLetter : 'M',
@@ -115,4 +119,11 @@ export  default{
     dishPriceRequired : 'El precio del plato es requerido',
     dishIngredientsRequired : 'Se requieren ingredientes',
     dishCategoryRequired : 'Debe seleccionar una categoria',
+
+    reviewTextRequired : 'Se requiere ingresar un comentario',
+    reviewTextLengthMin : 'El comentario debe tener minimo 3 letras',
+
+    restaurantNameRequired : 'El nombre de restaurante no puede estar vacio',
+    restaurantFoodTypeRequired : 'Debe seleccionar una categoria de comidas',
+    restaurantPriceTypeRequired : 'Debe seleccionar un rango de precios',
 };

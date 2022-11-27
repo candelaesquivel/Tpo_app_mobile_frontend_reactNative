@@ -1,5 +1,4 @@
-import { View, Text , FlatList , StyleSheet , Dimensions, ScrollView} from 'react-native'
-import React, { useState , useEffect} from 'react'
+import React, { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { ROUTES } from '../..';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
@@ -7,16 +6,19 @@ import { useCallback } from 'react';
 import { RestaurantProfileUserScreenUI } from './RestaurantProfileUserScreenUI';
 import { dishesWS, reviewWS } from '../../../networking/endpoints';
 import {selectDish} from '../../../redux/slices/userReducer';
+import Share from 'react-native-share';
+import { CONSTANTS } from '../../../config';
 
 function RestaurantProfileUserScreen({navigation, route, name='Mudra',
 hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
-calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sprops}) {
+calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, props}) {
 
   const restoData = {
-    name : name,
-    rating : calification,
-    priceRange : priceRange,
+    name : route.params.name ? route.params.name  : 'Mudra',
+    calification : route.params.calification ? route.params.calification : 4,
+    priceRange : route.params.priceRange ? route.params.priceRange : '$$$$',
   };
+
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
   const [showDishes , setShowDishes]= useState(false);
@@ -31,7 +33,7 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
 
   const fillCommentsList = async () => {
     const newComments = await reviewWS.getReviewsOfRestaurant(restoId);
-    // setComments(newComments);
+    setComments(newComments);
   }
 
   const fillDishList = async () => {
@@ -95,6 +97,17 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
     navigation.navigate(ROUTES.USER_SENT_COMMENT);
   }
 
+  const onSharePress = async (event) => {
+    try {
+      await Share.open({
+        title : CONSTANTS.SCREEN_TEXTS.SHARE_LABEL,
+        message : restoData.name
+      })
+    } catch (error) {
+      
+    }
+  }
+
   const onDishPhotoPress = async (dishId) => {
 
     dispatch(selectDish(dishId));
@@ -112,8 +125,9 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
 
   return (
     <RestaurantProfileUserScreenUI
-      name = {name}
-      priceRange={priceRange}
+      name = {restoData.name}
+      priceRange={restoData.priceRange}
+      rating = {restoData.rating}
       comments={comments}
       dishes={dishes}
       showComments={showComments}
@@ -122,6 +136,7 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, sp
       onSectionBtnPressHandler={onSectionBtnPress}
       onSentCommentPressHandler={onSentCommentPress}
       onDishPhotoPressHandler={onDishPhotoPress}
+      onSharePressHandler={onSharePress}
       >
     </RestaurantProfileUserScreenUI>
   )

@@ -28,11 +28,11 @@ const RestaurantProfileUserScreenUI = ({
   onSectionBtnPressHandler,
   onSentCommentPressHandler,
   onDishPhotoPressHandler,
+  onSharePressHandler,
   latitude,
   longitude,
   props}) => {
       
-    
       const MapComponent = () => {
         region = {
           latitude: latitude,
@@ -84,7 +84,13 @@ const RestaurantProfileUserScreenUI = ({
             color={colorPalette.Orange}
             onPress={onSentCommentPressHandler}
             ></Icon>
-            <Icon name='share' type='font-awesome' color={colorPalette.Orange}></Icon>
+            <Icon 
+              name='share' 
+              type='font-awesome' 
+              color={colorPalette.Orange}
+              onPress={onSharePressHandler}
+              >
+            </Icon>
         </View>
         {/* Buttons Section */}
         <View style={styles.buttons}>

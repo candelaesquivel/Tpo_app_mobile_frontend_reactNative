@@ -19,21 +19,10 @@ export async function getDishesFromRestaurant(restaurantId){
           data : []
         });
 
-        idx = idx -1;
+        idx = idx - 1;
       }
 
-      const dishInfo = {
-        dishId : itr.id,
-        name : itr.name,
-        price : itr.price.$numberDecimal,
-        discount : itr.discounts.$numberDecimal,
-        isGlutenFree : itr.isGlutenFree,
-        isVegan : itr.isVegan
-      }
-
-      dishes[idx].data.push(dishInfo);
-
-
+      dishes[idx].data.push(itr);
     });
 
     return dishes;

@@ -7,6 +7,7 @@ import { loginUser, logoutUser } from "../../../redux/slices/userReducer";
 import { authWS } from "../../../networking/endpoints";
 import { useFormik } from 'formik';
 import { authSchemas } from "../../formSchemas/authSchemas";
+import { showToast } from "../../../redux/slices/feedBackReducer";
 
 function LoginOwnerScreen({navigation, props}){
 
@@ -48,12 +49,17 @@ function LoginOwnerScreen({navigation, props}){
         try {
           var userDataResp = await authWS.loginOwner(userData);
         } catch (error) {
-          console.log('Error: ', error);
           dispatch(logoutUser());
         }
 
-        if (userDataResp)
+        if (userDataResp){
+          dispatch(showToast({
+            title : 'Login',
+            message : 'Login Exitoso',
+            status : 'info',
+          }))
           dispatch(loginUser(userDataResp));
+        }
         else{
           dispatch(logoutUser());
         }

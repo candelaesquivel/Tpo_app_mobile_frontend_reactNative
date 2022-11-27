@@ -1,7 +1,7 @@
 import React, { useCallback, useState }  from 'react'
 import { ROUTES } from '../..';
 import { useDispatch, useSelector } from 'react-redux';
-import { userWS } from '../../../networking/endpoints';
+import { restaurantWS, userWS } from '../../../networking/endpoints';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { HomeLandingOwnerUI } from './HomeLandingOwnerUI';
 import { selectRestaurant } from '../../../redux/slices/userReducer';
@@ -38,8 +38,19 @@ function HomeOwnerUI({navigation, props}) {
     navigation.navigate(ROUTES.CREATE_RESTAURANT_STACK)
   }
 
-  const onRestaurantPhotoPress = (restaurantId) => {
+  const onRestaurantPhotoPress = async (restaurantId) => {
     dispatch(selectRestaurant(restaurantId));
+
+    try {
+      const restaurant = await restaurantWS.getRestaurantInfo(restaurantId);
+
+      if (restaurant){
+        navigation.navigate(ROUTES.RESTAURANT_EDIT_OWNER, restaurant);
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const onRestaurantMenuPress = (restaurantId) => {

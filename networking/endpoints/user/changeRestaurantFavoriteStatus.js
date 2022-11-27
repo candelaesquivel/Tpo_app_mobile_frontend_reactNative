@@ -5,7 +5,6 @@ import { URL_SERVICES } from "../../../config/config";
 export async function changeRestaurantFavoriteStatus(userId, restaurantId)
 { 
   const URL = URL_SERVICES.CHANGE_RESTAURANT_FAVORITE.replace('id', userId);
-  console.log(restaurantId);
   return axios.patch(URL, {
     restaurantId : restaurantId
   }).then(res => {

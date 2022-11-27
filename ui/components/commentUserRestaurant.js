@@ -6,54 +6,22 @@ import { Theme } from '../styles/Theme';
 import { colorPalette } from '../styles/colors';
 
 function CommentUserRestaurant({comments, props}) {
-//   const COMMENTS = [
-
-//     {
-//       userName:'anonimo1',
-//       comment: 'jnsdjcdnscjndskcn fajds',
-//       score :4
-  
-//       },
-      
-//     {
-//         userName:'anonimo2',
-//         comment: 'jnsdjcdnscjndskscn fajds',
-//        score:2
-//         },
-
-        
-//     {
-//         userName:'anonimo3',
-//         comment: 'jnsdjcdnsdcjndskcn fajds',
-//          score:1
-//         },
-//         {
-//           userName:'anonimo4',
-//           comment: 'jnsdjcdnscjndskcn fajds',
-//           score :4
-      
-//           },
-  
-
-// ];
   
 const renderItem = ({ item }) => (
 
       <Comment
-        userName={item.user}
+        userName={item.name}
         score={item.rating}
         comment={item.comment}
       ></Comment>   
         
       ); 
 
-  console.log("Comment List: ", comments);
-
   return ( 
       <FlatList
           data={comments}
           renderItem={renderItem}
-          keyExtractor ={item => item.idx}
+          keyExtractor={(item, index) => index}
           ListFooterComponent={<View style={{height : Dimensions.get('window').height * 0.12}}></View>}
           /> 
   )

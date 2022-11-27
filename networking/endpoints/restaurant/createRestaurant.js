@@ -1,16 +1,18 @@
 import axios from "axios";
-import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
 
 export async function createRestaurant(ownerId, restaurantData){
 
-  const URL = URL_SERVICES.CREATE_RESTAURANT.replace('userId', ownerId);
+  const dataToSent = {
+    ...restaurantData,
+    ownerId : ownerId
+  };
 
-  return await axios.post(URL, restaurantData)
+  return await axios.post(URL_SERVICES.CREATE_RESTAURANT, dataToSent)
   .then(resp => {
     return resp.data;
   }).catch(err => {
-    console.error('WS Error: ', err);
+    console.error('WS Error: ', err.response.data);
   }).finally(() => {
 
   })

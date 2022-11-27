@@ -3,6 +3,7 @@ import MainNavigator from './navigation/MainNavigator';
 import { Provider } from 'react-redux'
 import store from './redux/store';
 import {NativeBaseProvider} from 'native-base'
+import { ToastScreen } from './ui/screens/feedback/ToastScreen';
 import SplashScreen from 'react-native-splash-screen' 
 import { useEffect } from 'react';
 
@@ -14,9 +15,10 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <Provider store = {store}>
-        <NavigationContainer>
-          <MainNavigator></MainNavigator>
-        </NavigationContainer>
+          <ToastScreen></ToastScreen>
+          <NavigationContainer>
+            <MainNavigator></MainNavigator>
+          </NavigationContainer>
       </Provider>
     </NativeBaseProvider>
 

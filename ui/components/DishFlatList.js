@@ -16,10 +16,10 @@ export function DishFlatList({dishes, onDishPhotoPressHandler, props}){
 
     return (
     <DishItemCard
-      dishId={item.dishId}
+      dishId={item.id}
       name={item.name}
       price={item.price}
-      discount={item.discount}
+      discounts={item.discounts}
       isVegan={item.isVegan}
       isGlutenFree={item.isGlutenFree}
       onDishPhotoPressHandler={onDishPhotoPressHandler}

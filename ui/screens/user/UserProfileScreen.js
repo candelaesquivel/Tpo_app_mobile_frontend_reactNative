@@ -49,7 +49,6 @@ export default function UserProfileScreen({navigation, route, props}) {
       });
 
       if (result){
-        console.log('Not Error:');
         setUserData({
           ...userData,
           photo : result.assets[0],

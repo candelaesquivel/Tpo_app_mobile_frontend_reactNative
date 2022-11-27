@@ -8,9 +8,9 @@ export async function createReview(restaurantId,userId, reviewData){
   const URL = URL_SERVICES.CREATE_REVIEW.replace('restaurantId', restaurantId).replace('userId', userId);
 
   return axios.post(URL, reviewData).then(response => {
-    return response.status;
+    return response.status === 200
   }).catch(err => {
-    console.error(err);
-  }).finally(() => {
+    console.error(err.response.data);
+    return false;
   })
 }

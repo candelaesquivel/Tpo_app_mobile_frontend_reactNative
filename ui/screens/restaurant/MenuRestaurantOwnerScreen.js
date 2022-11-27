@@ -47,21 +47,11 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
       var dishInfo = await dishesWS.getDishData(restoId, dishId);
 
       if (dishInfo){
-        console.log(dishInfo);
-
         navigation.navigate(ROUTES.DISH_MODIFY_STACK, dishInfo);
       }
     } catch (error) {
       
     }
-
-    
-
-      // if (userRole === CONSTANTS.ROLES.OWNER_ROLE){
-      //   navigation.navigate(ROUTES.DISH_MODIFY_STACK, dishInfo);
-      // }else if (userRole === CONSTANTS.ROLES.USER_ROLE){
-      //   navigation.navigate(ROUTES.DISH_USER_VIEW_STACK, dishInfo);
-      // }
   }
 
   return (
