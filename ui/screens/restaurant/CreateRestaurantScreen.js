@@ -65,16 +65,8 @@ function CreateRestaurantScreen({navigation, props}) {
 
     try {
       const result = await restaurantWS.createRestaurant(ownerId, restaurantData);
-      console.log('Create Result: ', result);
       
       if (result){
-        if (restaurantData.images.length !== 0){
-          const imgUploadResult = await restaurantWS.uploadRestaurantImg(result.id, restaurantData.pictures);
-
-          if (imgUploadResult){
-          }
-        }
-
         setTimeout(() => {
           ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.RESTAURANT_CREATED_MSG, ToastAndroid.SHORT);
           navigation.navigate(ROUTES.OWNER_HOME);
