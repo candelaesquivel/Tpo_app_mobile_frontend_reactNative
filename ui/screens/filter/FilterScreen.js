@@ -6,12 +6,10 @@ import { setSearchFilters } from "../../../redux/slices/userReducer";
 
 export default function FilterScreen({navigation , props}) {
 
+
   const formik = useFormik({
     initialValues : {
-      distance : 0,
-      priceRange : '',
-      rating : 0,
-      restaurantTypes : [],
+      ...useSelector(state => state.user.filters)
     }
   })
 
@@ -22,7 +20,7 @@ export default function FilterScreen({navigation , props}) {
   }, [formik.values])
 
   const onDistanceChange = (value) => {
-    formik.setFieldValue('distance', value);
+    formik.setFieldValue('maxDistance', value);
   }
 
   const onRestaurantTypeChange = (value) => {
@@ -34,13 +32,13 @@ export default function FilterScreen({navigation , props}) {
   }
 
   const onRatingChange = (value) => {
-    formik.setFieldValue('rating', value);
+    formik.setFieldValue('minRating', value);
   }
-
+  
   return (
     <FilterScreenUI
-      distance={formik.values.distance}
-      rating = {formik.values.rating}
+      distance={formik.values.maxDistance}
+      rating = {formik.values.minRating}
       restaurantTypes = {formik.values.restaurantTypes}
       priceRange = {formik.values.priceRange}
 

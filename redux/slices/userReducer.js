@@ -13,10 +13,12 @@ const defaultState =
     dishSelectedId : '',
 
     ///Filter
-    filterDistance : 0,
-    filterRestaurantType : [],
-    filterRating : 0,
-    filterPriceRange : '',
+    filters : {
+      maxDistance : 0,
+      restaurantTypes : [],
+      minRating : 0,
+      priceRange : '',
+    }
 };
 
 const userSlice = createSlice({
@@ -49,10 +51,10 @@ const userSlice = createSlice({
     },
 
     setSearchFilters(state, action){
-      state.filterDistance = action.payload.distance,
-      state.filterPriceRange = action.payload.priceRange,
-      state.filterRestaurantType = action.payload.restaurantTypes,
-      state.filterRating = action.payload.rating
+      state.filters.maxDistance = action.payload.maxDistance,
+      state.filters.priceRange = action.payload.priceRange,
+      state.filters.restaurantTypes = action.payload.restaurantTypes,
+      state.filters.minRating = action.payload.minRating
     }
   }
 });
