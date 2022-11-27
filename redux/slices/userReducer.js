@@ -10,7 +10,13 @@ const defaultState =
     role : '',
     userImg : '',
     restaurantSelectedId : '',
-    dishSelectedId : ''
+    dishSelectedId : '',
+
+    ///Filter
+    filterDistance : 0,
+    filterRestaurantType : [],
+    filterRating : 0,
+    filterPriceRange : '',
 };
 
 const userSlice = createSlice({
@@ -40,10 +46,17 @@ const userSlice = createSlice({
 
     logoutUser(state, action){
       return defaultState;
+    },
+
+    setSearchFilters(state, action){
+      state.filterDistance = action.payload.distance,
+      state.filterPriceRange = action.payload.priceRange,
+      state.filterRestaurantType = action.payload.restaurantTypes,
+      state.filterRating = action.payload.rating
     }
   }
 });
 
-export const {loginUser, logoutUser, selectRestaurant, selectDish} = userSlice.actions;
+export const {loginUser, logoutUser, selectRestaurant, selectDish, setSearchFilters} = userSlice.actions;
 
 export default userSlice.reducer;

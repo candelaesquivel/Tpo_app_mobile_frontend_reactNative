@@ -5,30 +5,45 @@ import { Slider, Icon , AirbnbRating } from '@rneui/base'
 import { ButtonGroup } from "@rneui/themed";
 import { Theme } from '../../styles/Theme';
 import { CONSTANTS } from '../../../config';
+import { FoodTypesDropDown } from '../../components/FoodTypesDropdown';
+import { color } from 'react-native-reanimated';
 
 const FilterScreenUI = ({
+  distance = 0,
+  restaurantTypes = [],
+  priceRange = '',
+  rating = 0,
 
-    props}) => {
+  onDistanceChangeHandler = (value) => {},
+  onPriceRangeChangeHandler = (value) => {},
+  onRatingChangeHandler = (value) => {},
+  onRestaurantTypeChangeHandler = (value) => {},
 
-    const component1 = () => <Text style={styles.price}>{CONSTANTS.SCREEN_TEXTS.PRICE_RANGE_LOW}</Text>
-    const component2 = () => <Text style={styles.price}>{CONSTANTS.SCREEN_TEXTS.PRINCE_RANGE_MID}</Text>
-    const component3 = () => <Text style={styles.price}>{CONSTANTS.SCREEN_TEXTS.PRICE_RANGE_HIGH}</Text>
-    const component4 = () => <Text style={styles.price}>{CONSTANTS.SCREEN_TEXTS.PRICE_RANGE_ULTRA_HIGH}</Text>
+    ...props}) => {
 
-    const [value, setValue] = useState(0);
+    const priceRanges = [
+      CONSTANTS.SCREEN_TEXTS.PRICE_RANGE_LOW,
+      CONSTANTS.SCREEN_TEXTS.PRINCE_RANGE_MID,
+      CONSTANTS.SCREEN_TEXTS.PRICE_RANGE_HIGH,
+      CONSTANTS.SCREEN_TEXTS.PRICE_RANGE_ULTRA_HIGH,
+    ];
 
-    const buttons = [{ element: component1 }, { element: component2 }, { element: component3 }] ;
-    const buttons2 = [{ element: component1 }, { element: component2 }, { element: component3 }, { element: component4 }] ;
+    const priceRangeButtons = priceRanges.map((item, idx) => {
+      return {
+        element : () => {return <Text style={styles.price}>{item}</Text>}
+      }
+    });
+
     return (
    
     <View style={styles.global}>
     
-        <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.FILTER_MSG_INTRO}{value} {CONSTANTS.SCREEN_TEXTS.DISTANCE_UNIT_LABEL}</Text>
+        <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.FILTER_MSG_INTRO}{distance} {CONSTANTS.SCREEN_TEXTS.DISTANCE_UNIT_LABEL}</Text>
       
         <View style={styles.slider}>
             <Slider
-              value={value}
-              onValueChange={setValue}
+              value={distance}
+              onValueChange={onDistanceChangeHandler}
               maximumValue={20}
               minimumValue={0}
               step={1}
@@ -51,24 +66,31 @@ const FilterScreenUI = ({
         </View>
             
         <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.FOOD_TYPE_LABEL}</Text>
-            
-        <ButtonGroup
-          buttons={buttons}
-          containerStyle={styles.buttons}
-          />
+          
+        <View style={styles.dropdownContainer}>
+          <FoodTypesDropDown
+            selected={restaurantTypes}
+            onChangeHandler={onRestaurantTypeChangeHandler}
+          >
+
+          </FoodTypesDropDown>
+
+        </View>
         
         <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.PRICE_LABEL}</Text>
-              
+                
         <ButtonGroup
-        buttons={buttons2}
-        containerStyle={styles.buttons}
+          onPress={(index) => {onPriceRangeChangeHandler(priceRanges[index])}}
+          buttons={priceRangeButtons}
+          containerStyle={styles.buttons}
         />
   
         <Text style={styles.words}>{CONSTANTS.SCREEN_TEXTS.RATING_LABEL}</Text>
       
         <View style={styles.rating}>
-          <AirbnbRating 
-            defaultRating={3}
+          <AirbnbRating
+            onFinishRating={onRatingChangeHandler}
+            defaultRating={rating}
             reviews = {[]}
             size = {30}
             selectedColor = {colorPalette.Orange}
@@ -98,6 +120,11 @@ const FilterScreenUI = ({
   },
   rating : {
    marginTop : -Dimensions.get("window").width*0.1
+  },
+  dropdownContainer: {
+    width : "90%" , 
+    marginBottom : 10,
+    alignSelf : 'center'
   },
   thumbStyleOne : { 
     height: "10%", 

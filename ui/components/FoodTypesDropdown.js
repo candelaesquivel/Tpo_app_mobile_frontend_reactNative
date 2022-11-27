@@ -3,9 +3,8 @@ import { CONSTANTS } from "../../config";
 import { StyleSheet } from "react-native";
 import { colorPalette } from "../styles/colors";
 import { Theme } from '../styles/Theme';
-import { useState } from "react";
 
-export function FoodTypesDropDown({onChangeHandler, selected = [], props}){
+export function FoodTypesDropDown({onChangeHandler = () => {}, selected = [], props}){
 
   const onSelectItem = (item) => {
 
