@@ -5,7 +5,7 @@ import { Slider, Icon , AirbnbRating } from '@rneui/base'
 import { ButtonGroup } from "@rneui/themed";
 import { Theme } from '../../styles/Theme';
 import { CONSTANTS } from '../../../config';
-
+import { FoodTypesDropDown } from "../../components/FoodTypesDropdown";
 const FilterScreenUI = ({
 
     props}) => {
@@ -51,11 +51,17 @@ const FilterScreenUI = ({
         </View>
             
         <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.FOOD_TYPE_LABEL}</Text>
-            
-        <ButtonGroup
-          buttons={buttons}
-          containerStyle={styles.buttons}
-          />
+       <View style ={styles.dropdownContainer}>
+       <FoodTypesDropDown 
+          // onChangeHandler={onFoodTypeChangeHandler}
+           selected={[{ element: component1 }, { element: component2 }, { element: component3 }]}
+          >
+          </FoodTypesDropDown>
+
+       </View>
+       
+      
+      
         
         <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.PRICE_LABEL}</Text>
               
@@ -82,22 +88,22 @@ const FilterScreenUI = ({
   const styles = StyleSheet.create({
     global : {
     alignItems:'center' , 
-    height : "100%",
+    height : Dimensions.get("window").height,
   },
   words : {
     marginTop:Dimensions.get("window").width*0.1,  
-    marginBottom:"2%",
+    marginBottom:Dimensions.get("window").width*0.02,
     fontSize : 19,
-    marginLeft : "2%",
-    marginRight : "2%",
+    marginLeft : Dimensions.get("window").width*0.02,
+    marginRight : Dimensions.get("window").width*0.02,
     color : colorPalette.Black
   },
   slider : {
-    width: '90%', 
-    height : "5%"
+    width: Dimensions.get("window").width*0.9, 
+    height : Dimensions.get("window").width*0.05
   },
   rating : {
-   marginTop : -Dimensions.get("window").width*0.1
+   marginTop : -Dimensions.get("window").width*0.15
   },
   thumbStyleOne : { 
     height: "10%", 
@@ -114,15 +120,20 @@ const FilterScreenUI = ({
      right: 10
     },
     buttons : {
-      height: '6%',
+      height: Dimensions.get("window").height*0.06,
       backgroundColor : colorPalette.Orange, 
-       width : '80%',
+       width : Dimensions.get("window").width*0.8,
        marginBottom: -Dimensions.get("window").width*0.01,
       },
   
     price : {
       fontSize : Theme.font.MEDIUM,
       color : colorPalette.White
-    }
+    },
+    dropdownContainer: {
+      width : Dimensions.get("window").width*0.9 , 
+      marginBottom : 10,
+      alignSelf : 'center'
+    },
   });
   export {FilterScreenUI}
