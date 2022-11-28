@@ -113,6 +113,8 @@ export const EditRestaurantUI = ({
             }}
             styles={{
               width: '100%',
+              textInput: {color: '#000000'},
+              description: {color: '#000000'},
             }}
           />
         </SafeAreaView>

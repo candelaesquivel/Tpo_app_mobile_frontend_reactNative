@@ -63,7 +63,12 @@ function LoginUserScreen({navigation, props}){
               // Navigate to the Home screen when the user has successfully signed in
               if (userData.email != null){
                 const userInfo = await authWS.loginGoogle(userData);
+<<<<<<< HEAD
                 dispatch(loginUser(userInfo));
+=======
+                userData.id = "637c46eb27e975c9b3d150b6";
+                dispatch(loginUser(userData));
+>>>>>>> 5ad8a38 (Added marker to user view)
               }
             })
             .catch(error => {
