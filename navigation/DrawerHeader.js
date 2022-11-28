@@ -1,4 +1,4 @@
-import { Dimensions, View } from "react-native";
+import { Dimensions, useWindowDimensions, View } from "react-native";
 import { Logo } from "../ui/components/Logo";
 import { Icon } from "@rneui/base";
 import { Text } from "react-native";
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import { useNavigation } from "@react-navigation/native";
 import { ROUTES } from "../ui";
 import { colorPalette } from "../ui/styles/colors";
+import { Avatar } from "native-base";
 
 
 function DrawerHeader({props}){
@@ -30,6 +31,10 @@ function DrawerHeader({props}){
     navigation.navigate(ROUTES.USER_PROFILE);
   }
 
+  const {width, height} = useWindowDimensions();
+
+  console.log('W')
+
   return (
     <View style={style.container}>
        <Logo
@@ -40,7 +45,15 @@ function DrawerHeader({props}){
         {!userImg &&       
         <Icon onPress={onIconPress} name = 'account-circle' size = {96}></Icon>
         }
-        {userImg && <Image source={{uri : userImg}} style={style.userImg} />}
+        {userImg && 
+          <Avatar
+            source={{
+              uri : userImg,
+            }}
+            size = '2xl'
+          >
+          </Avatar>
+        }
       </View>
       <Text>{userName}</Text>
     </View>
@@ -56,7 +69,6 @@ const style = StyleSheet.create({
   },
 
   userImg: {
-   
     borderRadius: 110 / 2,
     borderWidth: 4,
     borderColor: colorPalette.White,
