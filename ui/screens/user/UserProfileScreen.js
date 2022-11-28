@@ -6,6 +6,9 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import { userWS } from '../../../networking/endpoints';
 import { loginUser } from '../../../redux/slices/userReducer';
 import { useFormik } from 'formik';
+import { useToast } from 'native-base';
+import { CONSTANTS } from '../../../config';
+import { ROUTES } from '../..';
 
 export default function UserProfileScreen({navigation, route, props}) {
 
@@ -24,13 +27,29 @@ export default function UserProfileScreen({navigation, route, props}) {
     }
   });
 
+  const toast = useToast();
+
   const dispatch = useDispatch();
 
   const onSavePress = async () => {
     console.log('On Save PRessed')
     try {
       const result = await userWS.updateUserData(userId, formik.values);
-      dispatch(loginUser(result));
+
+      if (result){
+        dispatch(loginUser(result));
+
+        setTimeout(() => {
+          toast.show({
+            title : CONSTANTS.SCREEN_TEXTS.USER_DATA_UPDATED,
+            duration : 1500,
+          })
+
+          navigation.navigate(ROUTES.HOME_NORMAL_USER);
+        }, 200);
+
+      }
+
 
     } catch (error) {
       
