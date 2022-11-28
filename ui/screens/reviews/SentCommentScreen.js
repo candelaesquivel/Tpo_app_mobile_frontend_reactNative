@@ -14,7 +14,7 @@ export default function SentCommentScreen({navigation, props}){
 
     const formik = useFormik({
       initialValues : {
-        review : '',
+        comment : '',
         rating : 1,
       },
       validationSchema : reviewSchema.createReview,
@@ -31,17 +31,19 @@ export default function SentCommentScreen({navigation, props}){
       try {
         const result= await reviewWS.createReview(currRestaurant, userId, formik.values);
         if (result)
-          navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
+          navigation.goBack();
       } catch (error) {
         
       }
     }
+
+    console.log('Formik sent review: ', formik.values);
     
     return (
      <SentCommentScreenUI
-        review={formik.values.review}
+        comment={formik.values.comment}
         rating={formik.values.rating}
-        onReviewChangeHandler={formik.handleChange('review')}
+        onCommentChangeHandler={formik.handleChange('comment')}
         onRatingChangedHandler={onRatingChange}
         onCreatePressHandler={formik.handleSubmit}
      >

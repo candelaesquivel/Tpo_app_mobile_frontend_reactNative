@@ -7,10 +7,10 @@ import { MyButton } from "../../components/button";
 import { CONSTANTS } from "../../../config";
 
 const SentCommentScreenUI = ({
-    review = '',
+    comment = '',
     rating = 1,
-    onRatingChangedHandler,
-    onReviewChangeHandler,
+    onRatingChangedHandler = (rating) => {},
+    onCommentChangeHandler = (comment) => {},
     onCreatePressHandler,
     props}) => {
   
@@ -33,8 +33,8 @@ const SentCommentScreenUI = ({
                 height={Dimensions.get("window").height*0.1}
                 width={ Dimensions.get("window").width*0.6}
                 limitLenght={30}
-                onChangeText = {onReviewChangeHandler}
-                defaultValue={review}
+                onChangeText = {onCommentChangeHandler}
+                defaultValue={comment}
             ></InputText>
 
             <View style={styles.buttonsTwo}>
