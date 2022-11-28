@@ -45,8 +45,8 @@ const MenuRestaurantOwnerScreenUI = ({
             onPress={onCreateDishPressHandler}
             containerStyle={{
               position : 'absolute',
-              top : height * 0.79,
-              left : width * 0.85,
+              top : Dimensions.get("window").height* 0.82,
+              left : Dimensions.get("window").width* 0.85,
             }}
           >
           </Icon>

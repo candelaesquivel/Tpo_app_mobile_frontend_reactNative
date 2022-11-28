@@ -69,14 +69,14 @@ const DishModifyScreenUI = ({
                   <MyButton
                   title= {CONSTANTS.SCREEN_TEXTS.CHOOSE_LABEL} 
                   width={ Dimensions.get("window").width*0.4}
-                  height={Dimensions.get("window").height*0.07}
+                  height={Dimensions.get("window").height*0.1}
                   fontSizeTitle={18}
                   ></MyButton>
 
                   <MyButton
                   title= {CONSTANTS.SCREEN_TEXTS.ADD_NEW_CATEGORY_LABEL} 
-                  width={ Dimensions.get("window").width*0.4}
-                  height={Dimensions.get("window").height*0.07}
+                  width={ Dimensions.get("window").width*0.5}
+                  height={Dimensions.get("window").height*0.1}
                   ></MyButton>
                
           </View>
@@ -87,14 +87,14 @@ const DishModifyScreenUI = ({
             onPress={onSavePressHandler}
               title={CONSTANTS.SCREEN_TEXTS.SAVE_LABEL}
               width={ Dimensions.get("window").width*0.5}
-              height={Dimensions.get("window").height*0.07}
+              height={Dimensions.get("window").height*0.08}
               ></MyButton>
 
           < MyButton
               onPress = {onDeletePressHandler}
               title= {CONSTANTS.SCREEN_TEXTS.DELETE_DISH_LABEL}
               width={ Dimensions.get("window").width*0.5}
-              height={Dimensions.get("window").height*0.07}
+              height={Dimensions.get("window").height*0.08}
               ></MyButton>
           </View>
       
@@ -110,38 +110,39 @@ const styles = StyleSheet.create({
   }
   ,
   iconPlus:{
-      marginRight: "3%" , 
-      marginTop : "3%" 
+    marginRight: Dimensions.get("window").height*0.03 , 
+    marginTop : Dimensions.get("window").height*0.03 
   },
   globalTwo:{
-      width:'90%', 
+    width:Dimensions.get("window").width*0.9, 
       alignItems:'flex-start'
     },
     global:{
       flexDirection : 'column',
-      alignItems : 'center'
+      alignItems : 'center',
+      
     },
     words :{
       fontSize: Theme.font.MEDIUM,
       color: colorPalette.Black, 
-      marginLeft : "4%" , 
-      marginBottom : "3%"
+      marginLeft : Dimensions.get("window").height*0.04 , 
+      marginBottom : Dimensions.get("window").height*0.03
   },
   switchContainer : {
       flexDirection:'row',
-      marginBottom : "3%"
+      marginBottom : Dimensions.get("window").height*0.03
        
   },
   buttons : {
       flexDirection: 'row' , 
-      marginLeft : "6%"
+      
       },
 
   buttonsTwo : {
       flexDirection: 'column' , 
       alignItems : "center" ,
-      width : "100%",
-      height : "75%" , 
+      width : Dimensions.get("window").width,
+      height : Dimensions.get("window").height*0.16 ,
       
   },
 });

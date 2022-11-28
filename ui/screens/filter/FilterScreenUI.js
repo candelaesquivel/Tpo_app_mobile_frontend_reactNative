@@ -127,22 +127,22 @@ const FilterScreenUI = ({
   const styles = StyleSheet.create({
     global : {
     alignItems:'center' , 
-    height : "100%",
+    height : Dimensions.get("window").height,
   },
   words : {
     marginTop:Dimensions.get("window").width*0.1,  
-    marginBottom:"2%",
+    marginBottom:Dimensions.get("window").width*0.02,
     fontSize : 19,
-    marginLeft : "2%",
-    marginRight : "2%",
+    marginLeft : Dimensions.get("window").width*0.02,
+    marginLeft : Dimensions.get("window").width*0.02,
     color : colorPalette.Black
   },
   slider : {
-    width: '90%', 
-    height : "5%"
+    width: Dimensions.get("window").width*0.9, 
+    height : Dimensions.get("window").width*0.05
   },
   rating : {
-   marginTop : -Dimensions.get("window").width*0.1
+   marginTop : -Dimensions.get("window").width*0.15
   },
   dropdownContainer: {
     marginTop : Dimensions.get('window').height * 0.1,
@@ -168,7 +168,7 @@ const FilterScreenUI = ({
       borderRadius : 5,
       height: '6%',
       backgroundColor : colorPalette.Cream, 
-       width : '80%',
+      width : Dimensions.get("window").width*0.8,
        marginBottom: -Dimensions.get("window").width*0.01,
     },
   

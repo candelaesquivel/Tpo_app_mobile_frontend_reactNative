@@ -23,6 +23,7 @@ const RecoverPasswordTokenUI = ({
           
             <View style={styles.containerEmail}>
             <View style={styles.containerEmailTwo}>
+            <View height={Dimensions.get("window").width*0.06}></View>
             <InputText 
               color = {colorPalette.Orange} 
               placeholder = {CONSTANTS.SCREEN_TEXTS.TOKEN_INPUT}
@@ -63,27 +64,28 @@ const RecoverPasswordTokenUI = ({
        height:Dimensions.get("window").height,
     },
     containerWhite : {
-       width : '100%',
-      height : '15%',
+      width : Dimensions.get("window").width,
+      height : Dimensions.get("window").height*0.3,
       backgroundColor : colorPalette.White,
-      marginTop : "35%",
-      marginBottom : "5%"
+      marginTop : Dimensions.get("window").width*0.15
+      
      },
      containerEmail : { 
         justifyContent : 'space-evenly',
         width : Dimensions.get("window").width*0.9,
-        height:Dimensions.get("window").height*0.2,
-        backgroundColor : colorPalette.LightOrange, 
-        borderRadius : Theme.sizes.ROUNDED
+        height:Dimensions.get("window").height*0.15,
+       
        },
      containerEmailTwo : { 
        flexDirection : "column",
-         marginTop : "7%"
+         marginTop : Dimensions.get("window").width*0.07,
+         backgroundColor : colorPalette.Cream, 
+         borderRadius : Theme.sizes.ROUNDED
        },
      button : {
        flexDirection :"column",
        justifyContent : "center",
-       marginTop : "5%"
+       marginTop : Dimensions.get("window").width*0.2
      },
    });
   

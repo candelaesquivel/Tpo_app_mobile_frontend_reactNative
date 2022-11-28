@@ -64,14 +64,14 @@ export const AddDishScreenUI = ({
                 <View style={styles.buttons}>
                         <MyButton
                         title= {I18n.t('chose')} 
-                        width={ Dimensions.get("window").width*0.4}
-                        height={Dimensions.get("window").height*0.07}
+                        width={ Dimensions.get("window").width*0.5}
+                        height={Dimensions.get("window").height*0.1}
                         ></MyButton>
     
                         <MyButton
                         title= {I18n.t('addNewCategory')} 
-                        width={ Dimensions.get("window").width*0.4}
-                        height={Dimensions.get("window").height*0.07}
+                        width={ Dimensions.get("window").width*0.5}
+                        height={Dimensions.get("window").height*0.1}
                         ></MyButton>
                      
                 </View>
@@ -82,7 +82,7 @@ export const AddDishScreenUI = ({
                     onPress={onSavePressHandler}
                     title={I18n.t('save')}
                     width={ Dimensions.get("window").width*0.5}
-                    height={Dimensions.get("window").height*0.07}
+                    height={Dimensions.get("window").height*0.1}
                     ></MyButton>
   
                 </View>
@@ -101,7 +101,7 @@ export const AddDishScreenUI = ({
         marginTop : 3 
     },
     globalTwo:{
-        width:'90%', 
+      width:Dimensions.get("window").width*0.9, 
         alignItems:'flex-start'
       },
       global:{
@@ -116,19 +116,20 @@ export const AddDishScreenUI = ({
     },
     switchContainer : {
         flexDirection:'row',
-        marginBottom : 3
+        marginBottom : Dimensions.get("window").width*0.03,
+      
          
     },
     buttons : {
         flexDirection: 'row' , 
-        marginLeft : 6
+        marginLeft : Dimensions.get("window").width*0.03
         },
   
     buttonsTwo : {
         flexDirection: 'column' , 
         alignItems : "center" ,
-        width : "100%",
-        height : "75%" , 
+        width : Dimensions.get("window").width,
+        height :Dimensions.get("window").height*0.12 ,  
         
     },
   

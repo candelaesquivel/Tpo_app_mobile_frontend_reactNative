@@ -101,7 +101,7 @@ const DishForm = ({
         <Text style={styles.words}>
             {CONSTANTS.SCREEN_TEXTS.VEGAN_LABEL}    
         </Text>
-        <View style={{width: '16%'}}></View>
+        <View style={{width:  Dimensions.get("window").width*0.2 }}></View>
         <Switch
             onValueChange={onIsVeganChange}
             value={isVegan} />
@@ -110,6 +110,7 @@ const DishForm = ({
           <Text style={styles.words}>
               {CONSTANTS.SCREEN_TEXTS.CELIAC_LABEL}       
           </Text>
+          <View style={{width:  Dimensions.get("window").width*0.026 }}></View>
           <Switch
               onValueChange={onIsGlutenFreeChange}
               value={isGlutenFree} />
@@ -124,7 +125,7 @@ const DishForm = ({
 
 const styles = StyleSheet.create({
   globalTwo:{
-      width: '100%',
+      width: Dimensions.get('window').width,
       alignItems:'flex-start'
     },
     global:{
@@ -134,39 +135,39 @@ const styles = StyleSheet.create({
     words :{
       fontSize: Theme.font.MEDIUM,
       color: colorPalette.Black, 
-      marginLeft : "4%" , 
-      marginBottom : "3%"
+      marginLeft : Dimensions.get('window').width*0.04 , 
+      marginBottom : Dimensions.get('window').width*0.03
   },
   switchContainer : {
       flexDirection:'row',
-      marginBottom : "3%"
+      marginBottom : Dimensions.get('window').width*0.03
        
   },
   buttons : {
       flexDirection: 'row' , 
-      marginLeft : "6%"
+      marginLeft : Dimensions.get('window').width*0.06
       },
 
   buttonsTwo : {
       flexDirection: 'column' , 
       alignItems : "center" ,
-      width : "100%",
-      height : "75%" , 
+     
       
   },
   slider : {
     width: Dimensions.get('window').width*0.8, 
     height : Dimensions.get('window').height*0.05,
-    marginLeft :"5%"
+    marginLeft :Dimensions.get("window").width*0.05,
+    marginBottom :Dimensions.get("window").width*0.05
   },
   trackStyle : {
-    height : '10%',
+    height : Dimensions.get("window").width*0.01,
     backgroundColor:  'transparent', 
     },
   
   thumbStyle : { 
     height : 20,
-    width : 20,
+    width :  20,
     backgroundColor: 'transparent'
    },
    

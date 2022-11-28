@@ -97,19 +97,19 @@ const RestaurantProfileUserScreenUI = ({
           <MyButton
             title={CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
             width={Dimensions.get("window").width*0.3}
-            height={Dimensions.get("window").height*0.055}
+            height={Dimensions.get("window").height*0.08}
             onPress={(e) => {onSectionBtnPressHandler('map')} }
           ></MyButton>
           <MyButton
             title={CONSTANTS.SCREEN_TEXTS.MENU_LABEL}
             width={Dimensions.get("window").width*0.3}
-            height={Dimensions.get("window").height*0.055}
+            height={Dimensions.get("window").height*0.08}
             onPress={(e) => {onSectionBtnPressHandler('menu')} }
           ></MyButton>
           <MyButton
             title={CONSTANTS.SCREEN_TEXTS.COMMENT_LABEL}
             width={Dimensions.get("window").width*0.32}
-            height={Dimensions.get("window").height*0.055}
+            height={Dimensions.get("window").height*0.08}
             onPress={(e) => {onSectionBtnPressHandler('comment')} }
           ></MyButton>
         </View>
@@ -145,14 +145,14 @@ const RestaurantProfileUserScreenUI = ({
     icons : {
       flexDirection:'row',
       justifyContent: 'space-evenly',
-      width :'100%',
-      marginTop : "1%"
+      width :Dimensions.get('window').width,
+      marginTop : Dimensions.get('window').width*0.01
        },
       carousal : {
         height : Dimensions.get('window').height * 0.3
       },
       title : {
-        fontSize : Theme.font.LARGE,
+        fontSize : Theme.font.MEDIUM,
         fontWeight : "bold",
         color : colorPalette.Black
       },
@@ -164,6 +164,7 @@ const RestaurantProfileUserScreenUI = ({
       globalThree : {
         flexDirection: 'row',
         alignItems: 'center',
+        height : Dimensions.get('window').height * 0.05,
   
       },
       week:{
@@ -173,10 +174,10 @@ const RestaurantProfileUserScreenUI = ({
       buttons : {
         flexDirection:'row',
         justifyContent: 'space-evenly',
-        width :'100%' ,
-        height : "30%",
-        marginTop : '2%',
-        marginBottom : -Dimensions.get('window').height * 0.24
+        width :Dimensions.get('window').width ,
+        height : Dimensions.get('window').height * 0.3,
+        marginTop : Dimensions.get('window').height * 0.02,
+        marginBottom : -Dimensions.get('window').height * 0.22
       },
       wordButton : {
         fontSize: Theme.font.MEDIUM,

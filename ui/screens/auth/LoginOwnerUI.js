@@ -23,15 +23,19 @@ export const LoginOwnerUI = ({
     <View style={styles.global}>
       <KeyboardAvoidingView>
       <View style={styles.headerWhite}></View>           
-        <Logo></Logo>
+      <Logo
+        width={Dimensions.get('window').height*0.15} 
+        height={Dimensions.get('window').height*0.1}
+        ></Logo>
         <View style = {styles.logInContainer}>
             <View style = {styles.logInContainerTwo}>
+            <View height={Dimensions.get("window").width*0.08}></View>
             <InputText
               defaultValue = {email}
               color = {colorPalette.Orange} 
               placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL}
               placeholderTextColor ={colorPalette.White}
-              height = '50%' 
+              height = {Dimensions.get('window').height*0.02}
               onChangeText={onEmailHandler}
               errorMessage={emailError}
             >
@@ -44,6 +48,8 @@ export const LoginOwnerUI = ({
               secureTextEntry = {true}
               onChangeText = {onPassHandler}
               errorMessage = {passwordError}
+              height = {Dimensions.get('window').height*0.02}
+              
               >
             </InputText>
             </View>
@@ -72,24 +78,26 @@ const styles = StyleSheet.create({
     backgroundColor : colorPalette.White,
   },
   headerWhite : {
-    height : "12%",
+    height : Dimensions.get("window").width*0.08,
   },
   logInContainer : {
-    width : Dimensions.get("window").width*0.9,
+ 
+    width : Dimensions.get("window").width*0.97,
     height:Dimensions.get("window").height*0.2,
-      borderRadius : Theme.sizes.ROUNDED,
-      backgroundColor : colorPalette.LightOrange,
-      marginTop : "5%",
-      marginBottom : "5%",
+     
+      marginTop : Dimensions.get("window").height*0.05,
+      marginBottom : Dimensions.get("window").height*0.1,
      
   },
   logInContainerTwo : {
     flexDirection : "column" ,
-    marginTop : "5%"
+    borderRadius : Theme.sizes.ROUNDED,
+    backgroundColor : colorPalette.Cream,
+
   },
   word : {
     color : colorPalette.Orange,
-     marginTop : 15,
+    marginTop : Dimensions.get("window").height*0.01,
      fontSize : Theme.font.SMALL
     },
    

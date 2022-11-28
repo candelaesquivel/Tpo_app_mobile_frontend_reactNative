@@ -37,15 +37,10 @@ props}) {
                 uri : photo,
               }}
               style ={{
-                width : '30%',
-                height : '90%'
+                width : Dimensions.get('window').width*0.3,
+                height : Dimensions.get('window').height*0.15
               }}></Image>
           </TouchableWithoutFeedback>
-        {/* <Images.logo 
-            width='20%' 
-            height={Dimensions.get('window').height*0.13}
-            onPress={onPhotoPress}
-          ></Images.logo> */}
 
           <View width={Dimensions.get('window').width*0.55}   style={styles.globalTwo} >
             <Text style={styles.title} >{name}</Text>
@@ -60,7 +55,10 @@ props}) {
           }
 
           <View style={styles.globalFour} >
-            <Text  onPress={onRestaurantMenuHandler} style={styles.menu} >{CONSTANTS.SCREEN_TEXTS.MENU_LABEL}</Text>
+            <Text  
+            onPress={onRestaurantMenuHandler} 
+            style={styles.menu}
+             >{CONSTANTS.SCREEN_TEXTS.MENU_LABEL}</Text>
           </View>
 
          </View>
@@ -75,13 +73,13 @@ export default RestaurantCardOwner;
 const styles = StyleSheet.create({
   global : {
     flexDirection: 'row', 
-    justifyContent : 'space-between' , 
-    width : "90%"
+    width: Dimensions.get('window').width*0.83,
+    height : Dimensions.get('window').height*0.18
   },
   globalTwo : {
     justifyContent : 'space-between',
-    marginLeft : "10%",
-    marginTop : "3%"
+    marginLeft :  Dimensions.get('window').width*0.02,
+   
   },
   globalThree : {
     flexDirection: 'row',
@@ -91,18 +89,19 @@ const styles = StyleSheet.create({
   globalFour :{
     direction: 'RLT',
     alignItems: 'flex-end',
-    
+    marginRight :  Dimensions.get('window').width*0.026,
+   
   },
   title :{
     fontSize: Theme.font.MEDIUM,
     color: colorPalette.Black, 
     fontWeight: 'bold', 
-    marginBottom : "2%"
+    marginBottom : Dimensions.get('window').width*0.02
 },
 address :{
   fontSize: Theme.font.SMALL,
   color: colorPalette.Black, 
-  marginBottom : "2%"
+  marginBottom : Dimensions.get('window').width*0.02
  
 },
 menu :{

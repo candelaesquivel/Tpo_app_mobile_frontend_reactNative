@@ -47,8 +47,8 @@ function RestaurantCardUser({
                 uri : photo,
               }}
               style ={{
-                width : '30%',
-                height : '90%'
+                width : Dimensions.get('window').width*0.3,
+                height : Dimensions.get('window').height*0.15
               }}></Image>
           </TouchableWithoutFeedback>
           <View width={Dimensions.get('window').width*0.55} style={styles.globalThree} >
@@ -77,7 +77,7 @@ export default RestaurantCardUser;
 const styles = StyleSheet.create({
   global:{
     alignItems : 'center' , 
-    width: '100%' 
+    width: Dimensions.get('window').width
   },
   globalTwo : {
     flexDirection: 'row', 
