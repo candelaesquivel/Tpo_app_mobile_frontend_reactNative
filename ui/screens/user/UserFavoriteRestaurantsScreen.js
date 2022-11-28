@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { ROUTES } from '../..';
-import { userWS } from '../../../networking/endpoints';
+import { userWS, restaurantWS } from '../../../networking/endpoints';
 import { UserFavoriteRestaurantsScreenUI}  from '../user/UserFavoriteRestaurantsScreenUI';
 import { selectRestaurant } from '../../../redux/slices/userReducer';
 
@@ -42,10 +42,18 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
     setTrigggerSearch(true);
   }
 
-  const onPhotoPress = (restaurantId) => {
+  const onPhotoPress = async (restaurantId) => {
     dispatch(selectRestaurant(restaurantId));
-    navigation.navigate(ROUTES.RESTAURANT_VIEW_USER);
-   }
+    try {
+      const restaurant = await restaurantWS.getRestaurantInfo(restaurantId);
+      console.log(restaurant);
+
+      if (restaurant)
+        navigation.navigate(ROUTES.RESTAURANT_VIEW_USER, restaurant);
+    } catch (error) {
+      
+    }
+  }
 
   return (
   <UserFavoriteRestaurantsScreenUI

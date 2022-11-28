@@ -8,13 +8,12 @@ import EmptyScreenMessage from '../../components/EmptyScreenMessage';
 
 const UserFavoriteRestaurantsScreenUI = ({
     restaurants = [],
-    onPhotoPressHandler,
-    onFavoriteIconPressHandler,
+    onPhotoPressHandler = (event) => {},
+    onFavoriteIconPressHandler = (event) => {},
     props}) => {
     
   return (
     <View>
-      <MySearchBar></MySearchBar>
       <View>
         {
           restaurants.length === 0 && 
@@ -26,8 +25,8 @@ const UserFavoriteRestaurantsScreenUI = ({
           restaurants.length !== 0 && 
           <RestaurantFlatListUser 
             restaurants={restaurants}
-            onPhotoPress={onPhotoPressHandler}
-            onFavoriteTouched={onFavoriteIconPressHandler}>
+            onPhotoPressHandler={onPhotoPressHandler}
+            onFavoriteIconPressHandler={onFavoriteIconPressHandler}>
           </RestaurantFlatListUser>
         }
       </View>

@@ -11,8 +11,8 @@ function RestaurantCardUser({
   score= 0, 
   favorite=true,
   restaurantId = '', 
-  onPhotoPressHandler, 
-  onFavoriteTouchHandler,
+  onPhotoPressHandler = (restaurantId) => {}, 
+  onFavoriteIconPressHandler = (restaurantId) => {},
   pictures=[],
   props}) {
 
@@ -21,7 +21,7 @@ function RestaurantCardUser({
   const FavoriteIcon = ({props}) => {
 
     const onFavoriteIconPress = (e) => {
-      onFavoriteTouchHandler(restaurantId);
+      onFavoriteIconPressHandler(restaurantId);
     }
 
     if (favorite)

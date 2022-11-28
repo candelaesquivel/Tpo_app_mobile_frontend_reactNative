@@ -7,8 +7,8 @@ import { RestaurantFlatListUser } from '../../components/RestaurantFlatListUser'
 const HomeLandingUserUI = ({
     restaurants = [], 
     searchText = '',
-    onFavoriteIconPressHandler,
-    onPhotoPressHandler,
+    onFavoriteIconPressHandler = (restaurantId) => {},
+    onPhotoPressHandler = (restaurantId) => {},
     onSearchBarTextChangeHandler = (text) => {},
     props}) => {
 
@@ -23,7 +23,7 @@ const HomeLandingUserUI = ({
         <View>
         <RestaurantFlatListUser
             restaurants={restaurants}
-            onFavoriteTouchHandler={onFavoriteIconPressHandler}
+            onFavoriteIconPressHandler={onFavoriteIconPressHandler}
             onPhotoPressHandler={onPhotoPressHandler}
          ></RestaurantFlatListUser>
         </View>

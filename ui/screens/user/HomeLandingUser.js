@@ -77,8 +77,8 @@ function HomeLandingUser({navigation , props}) {
    <HomeLandingUserUI
     restaurants={restaurants} 
     onSearchBarTextChange={formik.values.name}
-    onFavoriteIconPressHandler={onFavoriteIconPress}
     onPhotoPressHandler={onPhotoPress}
+    onFavoriteIconPressHandler={onFavoriteIconPress}
     onSearchBarTextChangeHandler={formik.handleChange('name')}
    >
    </HomeLandingUserUI>

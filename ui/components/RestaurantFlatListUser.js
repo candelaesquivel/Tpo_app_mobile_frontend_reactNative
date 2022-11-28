@@ -4,8 +4,8 @@ import RestaurantCardUser from '../components/RestaurantCardUser';
 
 export function RestaurantFlatListUser({
   restaurants = [], 
-  onPhotoPressHandler, 
-  onFavoriteTouchHandler, 
+  onPhotoPressHandler = (restaurantId) => {}, 
+  onFavoriteIconPressHandler = (restaurantId) => {}, 
   props}){
   const renderItem = ({ item }) => {
     return (
@@ -18,7 +18,7 @@ export function RestaurantFlatListUser({
           restaurantId = {item.restaurantId}
           pictures = {item.pictures}
           onPhotoPressHandler = {onPhotoPressHandler}
-          onFavoriteTouchHandler = {onFavoriteTouchHandler}
+          onFavoriteIconPressHandler = {onFavoriteIconPressHandler}
           >
           </RestaurantCardUser>
       </View>
