@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { View, Image } from 'react-native';
-import { Text, Card, Icon } from '@rneui/themed';
+import React from 'react';
+import { View } from 'react-native';
+import { Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
-import { SearchBar } from '@rneui/themed';
 import { Input } from '@rneui/base';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
-import I18n from '../../assets/localization/I18n';
 
 
 export default function MySearchBar({
-  text,
-  onTextHandler,
+  searchText = '',
+  textError = '',
+  onTextChangeHandler = (text) => {},
+  ...props
 }) {
 
   const navigation = useNavigation();
@@ -21,10 +21,10 @@ export default function MySearchBar({
 
   return (
     <View style={{alignItems : 'center' , width: '100%' , marginTop: "6%"}}>
-
       <Input
-        defaultValue={text}
-        onChangeText={onTextHandler}
+        defaultValue={searchText}
+        onChangeText={onTextChangeHandler}
+        errorMessage = {textError}
         leftIcon={<Icon name = 'search' color={colorPalette.White}></Icon>}
         rightIcon={<Icon onPress={onFilterIconPress} name = 'filter-list' color={colorPalette.White}></Icon>}
         placeholderTextColor={colorPalette.White}

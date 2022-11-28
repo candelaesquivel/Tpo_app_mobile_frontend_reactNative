@@ -6,13 +6,20 @@ import { RestaurantFlatListUser } from '../../components/RestaurantFlatListUser'
 
 const HomeLandingUserUI = ({
     restaurants = [], 
+    searchText = '',
     onFavoriteIconPressHandler,
     onPhotoPressHandler,
+    onSearchBarTextChangeHandler = (text) => {},
     props}) => {
 
     return (
         <View>
-        <MySearchBar></MySearchBar>
+        <MySearchBar
+          searchText = {searchText}
+          onTextChangeHandler={onSearchBarTextChangeHandler}
+        >
+
+        </MySearchBar>
         <View>
         <RestaurantFlatListUser
             restaurants={restaurants}

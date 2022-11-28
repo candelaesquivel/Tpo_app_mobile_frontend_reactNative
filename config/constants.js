@@ -84,6 +84,7 @@ export default  {
     DELETE_RESTAURANT_CONFIRM_MSG : I18n.t('confirmRestaurantDelete'),
     COMMENT_LABEL : I18n.t('comment'),
     CLOSE_HOUR_LABEL : I18n.t('closing'),
+    CLEAR_FILTERS_LABEL : I18n.t('clearFiltersLabel'),
     CLOSE_LABEL : I18n.t('close'),
     ACCOUNT_CREATED : I18n.t('accountCreated'),
     ACCOUNT_DELETED : I18n.t('accountDeleted'),

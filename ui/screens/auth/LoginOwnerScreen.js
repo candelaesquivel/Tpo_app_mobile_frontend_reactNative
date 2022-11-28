@@ -49,7 +49,6 @@ function LoginOwnerScreen({navigation, props}){
         try {
           var userDataResp = await authWS.loginOwner(userData);
         } catch (error) {
-          console.log('Error: ', error);
           dispatch(logoutUser());
         }
 

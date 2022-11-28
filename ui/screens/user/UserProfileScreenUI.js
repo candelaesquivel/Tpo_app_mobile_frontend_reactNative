@@ -8,10 +8,10 @@ import { StyleSheet } from 'react-native';
 import { CONSTANTS } from '../../../config';
 
 const UserProfileScreenUI = ({
-    userName,
-    onNameChangeHandler,
-    onSavePressHandler,
-    onImgUploadHandler,
+    userName = '',
+    onNameChangeHandler = (text) => {},
+    onSavePressHandler = () => {},
+    onImgUploadHandler = (image) => {},
     props}) => {
   
     return (
@@ -19,7 +19,7 @@ const UserProfileScreenUI = ({
         <Text style={style.nameLabel}>{CONSTANTS.SCREEN_TEXTS.NAME_LABEL}</Text>
   
         <InputText
-          onChange={onNameChangeHandler}
+          onChangeText={onNameChangeHandler}
           color={colorPalette.White} 
           defaultValue={userName} 
           textColor={colorPalette.Black}>

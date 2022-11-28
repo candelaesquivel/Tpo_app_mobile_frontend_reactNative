@@ -4,41 +4,56 @@ import { useState } from 'react';
 import { UserProfileScreenUI } from './UserProfileScreenUI';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { userWS } from '../../../networking/endpoints';
+import { loginUser } from '../../../redux/slices/userReducer';
+import { useFormik } from 'formik';
+import { useToast } from 'native-base';
+import { CONSTANTS } from '../../../config';
+import { ROUTES } from '../..';
 
 export default function UserProfileScreen({navigation, route, props}) {
 
   const userName = useSelector(state => state.user.userName);
   const userId = useSelector(state => state.user.userId);
+  const userState = useSelector(state => state.user);
 
-  const [userData, setUserData] = useState({
-    name : userName,
-    userId : userId,
-    photo : null,
+  const formik = useFormik({
+    initialValues : {
+      name : userName,
+      userId : userId,
+      photo : '',
+    },
+    async onSubmit(values){
+      await onSavePress();
+    }
   });
+
+  const toast = useToast();
 
   const dispatch = useDispatch();
 
-  const [name, setName] = useState(userName);
-
-  const onSavePress = async (e) => {
-
-    // const result = await updateUserData(userId, userData);
-
-    // if (result)
-    // {
-    //   dispatch(updateUserDataAction(result));
-    //   ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.USER_DATA_UPDATED, ToastAndroid.SHORT);
-    // }
-
+  const onSavePress = async () => {
+    console.log('On Save PRessed')
     try {
-      const result = await userWS.uploadUserImg(userId, userData.photo);
+      const result = await userWS.updateUserData(userId, formik.values);
+
+      if (result){
+        dispatch(loginUser(result));
+
+        setTimeout(() => {
+          toast.show({
+            title : CONSTANTS.SCREEN_TEXTS.USER_DATA_UPDATED,
+            duration : 1500,
+          })
+
+          navigation.navigate(ROUTES.HOME_NORMAL_USER);
+        }, 200);
+
+      }
+
+
     } catch (error) {
       
     }
-  }
-
-  const onNameChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setName(text);
   }
 
   const onImgUploadPress = async (e) => {
@@ -49,11 +64,7 @@ export default function UserProfileScreen({navigation, route, props}) {
       });
 
       if (result){
-        console.log('Not Error:');
-        setUserData({
-          ...userData,
-          photo : result.assets[0],
-        });
+        formik.setFieldValue('photo', result.assets[0]);
       }
     } catch (error) {
       console.log('Error:');
@@ -61,13 +72,11 @@ export default function UserProfileScreen({navigation, route, props}) {
     }
   }
 
-  console.log('User Data: ', userData);
-
   return (
     <UserProfileScreenUI
-      userName={userName}
-      onNameChangeHandler={onNameChange}
-      onSavePressHandler={onSavePress}
+      userName={formik.values.name}
+      onNameChangeHandler={formik.handleChange('name')}
+      onSavePressHandler={formik.handleSubmit}
       onImgUploadHandler={onImgUploadPress}
     >
     </UserProfileScreenUI>

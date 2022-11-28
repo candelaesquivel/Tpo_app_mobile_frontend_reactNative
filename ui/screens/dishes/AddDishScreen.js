@@ -11,7 +11,7 @@ function AddDishScreen({navigation, props}) {
     initialValues : {
       name : '',
       price : 0,
-      ingredients : [],
+      ingredients : '',
       discount : 0,
       isVegan : false,
       isGlutenFree : false,
@@ -29,7 +29,7 @@ function AddDishScreen({navigation, props}) {
   const [showDishCreateAlert, setShowCreateDishAlert] = useState(false);
 
   const onIngredientChange = (text) => {
-    formik.setFieldValue('ingredients', text.split(','));
+    formik.setFieldValue('ingredients', text);
   }
 
   const onDiscountChange = (value) => {

@@ -2,14 +2,17 @@ import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
 
-export async function getRestaurants(userId)
-{
+export async function getRestaurants(searchParams)
+{ 
+
   return axios.get(URL_SERVICES.RESTAURANTS_LIST, 
     {
       params : {
-        userId : userId
+        ...searchParams,
       },
   }).then((response) => {
     return response.data;
+  }).catch(err => {
+    console.log('Error on Get Restaurants Searrch: ', err.response.data);
   });
 }

@@ -4,7 +4,7 @@ import { URL_SERVICES } from "../../../config/config";
 
 export async function loginGoogle(userInfo){
 
-  return axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, {
+  const googleData = {
     role : CONSTANTS.ROLES.USER_ROLE,
     google : {
       name : userInfo.name,
@@ -16,11 +16,12 @@ export async function loginGoogle(userInfo){
       latitude : userInfo.latitude,
       longitude : userInfo.longitude
     },
-  }).then(res => {
-    console.log("Google Resp Data:", res.data);
+  }
+
+  return axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, googleData).then(res => {
     return res.data;
   }).catch(err => {
-    console.log(err);
+    console.log('Error on Google Login: ', err.response.data);
     return null;
   }).finally(() => {
   })

@@ -25,23 +25,25 @@ import { AlertConfirm } from "../../components/AlertConfirm";
 
 export const EditRestaurantUI = ({
   name,
-  isClosed = false,
-  foodTypes = [],
+  isClosedOverwrite = false,
+  restaurantTypes = [],
   priceRange = '',
   region,
-  daysStatus,
   addressEntered,
+
+  openingTimes=[],
+  closingTimes=[],
+  days = [],
 
   onNameHandler,
   onIsCloseChangeHandler,
   onFoodTypeChangeHandler,
   onPriceRangeChangeHandler,
+
   onAddressChangeHandler = (address) => {},
   onRegionChangeHandler = (region) => {},
-
-  onOpenTimeChangeHandler,
-  onCloseTimeChangeHandler,
-  onDayBtnPressHandler,
+  onOpenTimeChangeHandler = (dayIndex, date) => {},
+  onCloseTimeChangeHandler = (dayIndex, date) => {},
 
   onSavePressHandler,
   onDeletePressHandler,
@@ -51,29 +53,6 @@ export const EditRestaurantUI = ({
 
   props
 }) => {
-
-  const [showOpeningPicker, setOpeningPicker] = useState(false);
-  const [showClosingPicker, setClosingPicker] = useState(false);
-
-  const onOpenTimeChange = (event, date) => {
-    setOpeningPicker(false);
-
-    if (event.type === 'set'){
-      if (onOpenTimeChangeHandler)
-        onOpenTimeChangeHandler(date);
-    }
-
-  }
-
-  const onCloseTimeChange = (event, date) => {
-    setClosingPicker(false);
-
-    if (event.type === 'set'){
-      if (onCloseTimeChangeHandler)
-        onCloseTimeChangeHandler(date);
-    }
-
-  }
 
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}>
@@ -115,11 +94,12 @@ export const EditRestaurantUI = ({
             fetchDetails={true}
             onPress={
               (data, details = null) => {
+
+                if (!details)
+                  return;
+
                 const newRegion = convertGoogleRegion(details);
                 const address = convertGoogleAddress(details);
-                
-                console.log('Address Obj: ', address);
-                console.log('Region Obj: ', newRegion);
                 
                 onRegionChangeHandler(newRegion);
                 onAddressChangeHandler(address);
@@ -160,61 +140,32 @@ export const EditRestaurantUI = ({
 
       {/* Time Opening/Closing Section */}
       <View style={styles.hourContainer}>
-        < MyButton
-          title= {CONSTANTS.SCREEN_TEXTS.OPEN_HOUR_LABEL} 
-          width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
-          onPress={() =>{ setOpeningPicker(!showOpeningPicker)}}
+        <Text>{CONSTANTS.SCREEN_TEXTS.OPEN_HOUR_LABEL}</Text>
+        <WeekButtons
+          timesData={openingTimes}
+          onTimeSelectedHandler={onOpenTimeChangeHandler}
         >
-        </MyButton>
-
-        < MyButton
-          title= {CONSTANTS.SCREEN_TEXTS.CLOSE_HOUR_LABEL} 
-          width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
-          onPress={() => {setClosingPicker(!showClosingPicker)}}
+        </WeekButtons>
+        <Text>{CONSTANTS.SCREEN_TEXTS.CLOSE_HOUR_LABEL}</Text>
+        <WeekButtons
+          timesData={closingTimes}
+          onTimeSelectedHandler={onCloseTimeChangeHandler}
         >
-        </MyButton>
-  
-        {
-            showOpeningPicker && 
-            <RNDateTimePicker
-              value={new Date(1598051730000)}
-              mode={'time'}
-              display={'spinner'}
-              is24Hour={true}
-              onChange={onOpenTimeChange}
-            >
+        </WeekButtons>
 
-            </RNDateTimePicker>
-        }
-        
-        {
-            showClosingPicker &&  
-            <RNDateTimePicker
-              value={new Date(1598051730000)}
-              mode={'time'}
-              display={'spinner'}
-              is24Hour={true}
-              onChange={onCloseTimeChange}
-            >
-
-            </RNDateTimePicker>
-        }
-        
       </View>
       
       {/* Is Closed */}
       <View style={styles.closeSection}>
         <Text style={styles.closeSection.text}>{CONSTANTS.SCREEN_TEXTS.CLOSE_LABEL}</Text>
-        <Switch value={isClosed} onValueChange={onIsCloseChangeHandler}></Switch>
+        <Switch value={isClosedOverwrite} onValueChange={onIsCloseChangeHandler}></Switch>
       </View>
 
       {/* Dropdown Containers */}
       <View style ={styles.dropdownContainer}>
         <FoodTypesDropDown 
           onChangeHandler={onFoodTypeChangeHandler}
-          selected={foodTypes}
+          selected={restaurantTypes}
           >
 
           </FoodTypesDropDown>
@@ -227,12 +178,8 @@ export const EditRestaurantUI = ({
       </View>
 
       <View style={styles.buttonContainer}>
-        <WeekButtons
-          weekButtonHandler={onDayBtnPressHandler}
-          weekButtonValues={daysStatus}
-        >
+        
 
-        </WeekButtons>
         <MyButton
           onPress={onSavePressHandler}
           title= {CONSTANTS.SCREEN_TEXTS.SAVE_LABEL} 

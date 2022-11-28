@@ -1,14 +1,17 @@
 import { View, Text , Dimensions } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { MyButton } from './button'
 import { CONSTANTS } from '../../config';
 import { colorPalette } from '../styles/colors';
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 
 export const WeekButtons = ({
-  weekButtonValues = [],
-  onDayBtnPressHandler,
-  props
+  timesData = [],
+  onTimeSelectedHandler = (dayIndex, date) => {},
+  ...props
 }) => {
+
+  let currDay = 0;
 
   const daysOfWeek = [
     CONSTANTS.SCREEN_TEXTS.MONDAY_LETTER,
@@ -19,11 +22,31 @@ export const WeekButtons = ({
     CONSTANTS.SCREEN_TEXTS.SATURDAY_LETTER,
     CONSTANTS.SCREEN_TEXTS.SUNDAY_LETTER,
   ];
-  
+
+  const onTimeSelected = (event, date) => {
+
+    if (event.type === 'set'){
+      onTimeSelectedHandler(currDay, date);
+    }
+  }
+
+
   const onButtonPress = (dayIndex) => {
 
-    if (onDayBtnPressHandler)
-      onDayBtnPressHandler(dayIndex);
+    if (timesData.length === 0)
+      return;
+
+    currDay = dayIndex;
+
+    const currValue = timesData[dayIndex] ? new Date(timesData[dayIndex]) : new Date();
+
+    DateTimePickerAndroid.open({
+      value : currValue,
+      mode : 'time',
+      display : 'spinner',
+      is24Hour : true,
+      onChange : onTimeSelected,
+    });
   }
 
   return (
@@ -31,8 +54,9 @@ export const WeekButtons = ({
         {
           daysOfWeek.map((item, idx) => {
 
-            if (idx < weekButtonValues.length){
-              var enabled = weekButtonValues[idx] === true;
+            var enabled = false;
+            if (idx < timesData.length){
+              enabled = timesData[idx] !== undefined
             }
 
             return (

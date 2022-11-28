@@ -19,7 +19,12 @@ function DrawerHeader({props}){
     return state.user.userName;
   })
 
-  let userImg = useSelector(state => state.user.userImg);
+  const userImg = useSelector(state => {
+    if (state.user.userImg !== '')
+      return 'data:image/png;base64,' + state.user.userImg
+
+    return state.user.userImg;
+  });
 
   const onIconPress = (event) => {
     navigation.navigate(ROUTES.USER_PROFILE);
@@ -46,7 +51,7 @@ const width = Dimensions.get('screen').width;
 
 const style = StyleSheet.create({
   container : {
-    height : Dimensions.get('window').height * 0.4,
+    height : Dimensions.get('window').height * 0.38,
     alignItems : 'center',
   },
 

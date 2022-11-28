@@ -3,6 +3,7 @@ import { ForgotPasswordUI } from "./ForgotPasswordUI"
 import { ROUTES } from "../../";
 import { useFormik } from 'formik';
 import { authSchemas } from "../../formSchemas/authSchemas";
+import { authWS } from "../../../networking/endpoints";
 
 
 function ForgetPasswordScreen({navigation, props}) {
@@ -12,14 +13,23 @@ function ForgetPasswordScreen({navigation, props}) {
         email : '',
       },
       validationSchema : authSchemas.forgotPassword,
-      onSubmit(values){
-        onRecoveryTouch()
+      async onSubmit(values){
+        await onRecoveryTouch()
       }
     });
 
 
-    const onRecoveryTouch = () => {
-      navigation.navigate(ROUTES.RECOVER_PASSWORD_TOKEN);
+    const onRecoveryTouch = async () => {
+
+      try {
+        const result = await authWS.recoverPassword(formik.values.email);
+
+        if (result)
+          navigation.navigate(ROUTES.RECOVER_PASSWORD_TOKEN);
+
+      } catch (error) {
+        
+      }
     }
 
     return (

@@ -10,7 +10,15 @@ const defaultState =
     role : '',
     userImg : '',
     restaurantSelectedId : '',
-    dishSelectedId : ''
+    dishSelectedId : '',
+
+    ///Filter
+    filters : {
+      maxDistance : 0,
+      restaurantTypes : [],
+      minRating : 0,
+      priceRange : '',
+    }
 };
 
 const userSlice = createSlice({
@@ -19,8 +27,9 @@ const userSlice = createSlice({
 
   reducers : {
     loginUser(state, action) {
-      state.token = action.payload.token;
-      state.userImg = action.payload.userImg;
+
+      state.token = action.payload.accessToken;
+      state.userImg = action.payload.profilePicture;
       state.userName = action.payload.name;
       state.userId = action.payload.id;
       state.email = action.payload.email;
@@ -40,10 +49,19 @@ const userSlice = createSlice({
 
     logoutUser(state, action){
       return defaultState;
+    },
+
+    setSearchFilters(state, action){
+      state.filters.maxDistance = action.payload.maxDistance,
+      state.filters.priceRange = action.payload.priceRange,
+      state.filters.restaurantTypes = action.payload.restaurantTypes,
+      state.filters.minRating = action.payload.minRating
     }
+
+
   }
 });
 
-export const {loginUser, logoutUser, selectRestaurant, selectDish} = userSlice.actions;
+export const {loginUser, logoutUser, selectRestaurant, selectDish, setSearchFilters} = userSlice.actions;
 
 export default userSlice.reducer;

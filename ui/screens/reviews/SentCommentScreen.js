@@ -37,8 +37,6 @@ export default function SentCommentScreen({navigation, props}){
       }
     }
     
-      console.log(formik.errors)
-
     return (
      <SentCommentScreenUI
         review={formik.values.review}

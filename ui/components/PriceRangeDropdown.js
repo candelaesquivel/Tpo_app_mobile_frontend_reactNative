@@ -7,7 +7,9 @@ import { useState } from "react";
 
 export function PriceRangesDropdown({onChangeHandler, value = '', props}){
 
-  const valueIndex = CONSTANTS.PRICE_RANGES.indexOf(value);
+  const valueData = CONSTANTS.PRICE_RANGES.find(item => {
+    return item.label === value;
+  });
 
   const onChangeValue = (item) => {
     const value = item.label
@@ -22,7 +24,7 @@ export function PriceRangesDropdown({onChangeHandler, value = '', props}){
       itemTextStyle ={styles.placeholderStyle}   
       labelField='label'
       valueField='value'
-      value={valueIndex}
+      value={valueData}
       data={CONSTANTS.PRICE_RANGES}
       placeholder={'Precio'}
       onChange={onChangeValue}
