@@ -53,7 +53,7 @@ function HomeLandingUser({navigation , props}) {
   );
 
   const onFavoriteIconPress = async (restaurantId) => {
-    const result = await userWS.changeRestaurantFavoriteStatus(userId, restaurantId);
+    const result = await userWS.changeRestaurantFavoriteStatus(userId, restaurantId, dispatch);
     setTrigggerSearch(true);
   }
 

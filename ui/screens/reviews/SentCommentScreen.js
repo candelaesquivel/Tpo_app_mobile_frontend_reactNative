@@ -1,4 +1,4 @@
-import { useSelector
+import { useDispatch, useSelector
  } from "react-redux";
  import { useState } from "react";
 import { ROUTES } from "../..";
@@ -11,6 +11,7 @@ export default function SentCommentScreen({navigation, props}){
 
     const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
     const userId = useSelector(state => state.user.userId);
+    const dispatch = useDispatch();
 
     const formik = useFormik({
       initialValues : {
@@ -29,7 +30,7 @@ export default function SentCommentScreen({navigation, props}){
 
     const onCreatePress = async () => {
       try {
-        const result= await reviewWS.createReview(currRestaurant, userId, formik.values);
+        const result= await reviewWS.createReview(currRestaurant, userId, formik.values, dispatch);
         if (result)
           navigation.goBack();
       } catch (error) {

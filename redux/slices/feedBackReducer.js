@@ -17,7 +17,16 @@ const feedbackSlice = createSlice({
       state.status = action.payload.status,
       state.title = action.payload.title,
       state.message = action.payload.message
-      return state;
+    },
+
+    showSuccessToast(state, action){
+      state.status = 'success',
+      state.message = action.payload
+    },
+
+    showErrorToast(state, action){
+      state.status = 'error',
+      state.message = action.payload
     },
 
     restoreToast(state, action){
@@ -26,6 +35,6 @@ const feedbackSlice = createSlice({
   }
 });
 
-export const {showToast, restoreToast} = feedbackSlice.actions;
+export const {showToast, restoreToast, showErrorToast, showSuccessToast} = feedbackSlice.actions;
 
 export default feedbackSlice.reducer;
