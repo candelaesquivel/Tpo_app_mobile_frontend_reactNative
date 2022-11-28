@@ -2,24 +2,23 @@ import { DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navi
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { useDispatch } from "react-redux";
-import I18n from "../assets/localization/I18n";
 import { ROUTES } from "../ui";
 import DrawerHeader from "./DrawerHeader";
-import { logoutUserAction } from "../redux/actions";
 import { LogoutIcon, DeleteIcon } from "./DrawerIcons";
+import { CONSTANTS } from "../config";
+import { logoutUser } from "../redux/slices/userReducer";
+
 const DrawerOptionsUser = (props) => {
 
   const navigator = useNavigation();
   const dispatch = useDispatch();
 
   const onDeletePress = (event) => {
-    console.log('On Delete Drawer Option Press');
     navigator.navigate(ROUTES.DELETE_ACCOUNT_OWNER_STACK);
   }
 
   const onLogoutPress = (event) => {
-    console.log('On Logut User Drawer');
-    dispatch(logoutUserAction());
+    dispatch(logoutUser());
     navigator.navigate(ROUTES.LOGIN_NORMAL_USER);
   }
 
@@ -30,12 +29,12 @@ const DrawerOptionsUser = (props) => {
       </DrawerItemList>
       <DrawerItem
         icon={LogoutIcon}
-        label={I18n.t('logout')}
+        label={CONSTANTS.SCREEN_TEXTS.LOGOUT_LABEL}
         onPress={onLogoutPress}
       />
       <DrawerItem
         icon={DeleteIcon}
-        label={I18n.t('deleteAccount')}
+        label={CONSTANTS.SCREEN_TEXTS.DELETE_ACOOUNT_LABEL}
         onPress={onDeletePress}
       />
     </DrawerContentScrollView>

@@ -5,12 +5,14 @@ import {Theme} from "../styles/Theme"
 import {colorPalette} from "../styles/colors"
 import { Logo } from "../components/Logo";
  
-export default function EmptyScreenMessage(props) {
+export default function EmptyScreenMessage({
+  message
+}) {
   return (
     <View style={styles.global}>
         <Text
         style={styles.title} >
-        {props.message}
+        {message}
         </Text>
         <Logo 
         width={Dimensions.get('window').width*0.3} 
@@ -23,17 +25,15 @@ export default function EmptyScreenMessage(props) {
 
 const styles = StyleSheet.create({
     global: {
-      height :  Dimensions.get('window').height,
-      width : Dimensions.get('window').width,
       opacity: 0.35,
     },
   
-    title : {
-      marginTop : "30%",
-      marginBottom : "10%",
-      alignSelf : 'center',
-      fontSize : Theme.font.LARGE,
-      color : colorPalette.Black,
-      },
-      });
+  title : {
+    marginTop : Dimensions.get('window').width*0.1,
+    marginBottom :Dimensions.get('window').width*0.1,
+    alignSelf : 'center',
+    fontSize : Theme.font.LARGE,
+    color : colorPalette.Black,
+    },
+});
       

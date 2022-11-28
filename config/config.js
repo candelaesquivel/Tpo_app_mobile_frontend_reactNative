@@ -1,7 +1,8 @@
 // For local server development, uncomment the following line:
 const URL_API = 'http://10.0.2.2:8080/api/v1/';
 // const URL_API = "https://morfando.azurewebsites.net/api/v1/";
-console.log('url', URL_API);
+
+const TIMEOUT = 5000;
 
 const RESTAURANT_ROUTE = URL_API + 'restaurants/';
 const USER_ROUTE = URL_API + 'users/';
@@ -14,20 +15,28 @@ const URL_SERVICES = {
   LOGOUT: USER_ROUTE + 'logout',
   RECOVER_PASSWORD: USER_ROUTE + 'recoverPassword',
   DELETE_ACCOUNT : USER_ROUTE + 'id/',
+  
 
   // User Routes
   UPDATE_USER_DATA : USER_ROUTE + 'id/',
   GET_USER_INFO: USER_ROUTE + '',
-  UPLOAD_USER_IMAGE: USER_ROUTE + '/image',
+  UPLOAD_USER_IMAGE: USER_ROUTE + 'id/' + 'image',
   FAVORITE_RESTAURANTS_NORMAL_USER: USER_ROUTE + 'id/' + 'favorites',
   RESTAURANTS_OWNER: USER_ROUTE + 'id/' + 'restaurants',
   CHANGE_RESTAURANT_FAVORITE : USER_ROUTE + 'id/' + 'favorites',
 
 
   // Restaurants
-  CREATE_RESTAURANT : RESTAURANT_ROUTE  + 'userId',
+  CREATE_RESTAURANT : RESTAURANT_ROUTE,
+  RESTAURANT_DETAIL : RESTAURANT_ROUTE + 'id',
   RESTAURANTS_LIST: RESTAURANT_ROUTE + '',
+  DELETE_RESTAURANT : RESTAURANT_ROUTE + 'id',
+  UPDATE_RESTAURANT : RESTAURANT_ROUTE + 'id',
+  UPLOAD_RESTAURANT_IMAGE : RESTAURANT_ROUTE  + 'id',
+
+  // Dishes
   DISH_CREATE: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes',
+  DISH_GET_INFO: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes/' + 'dishId',
   DISH_MODIFY: RESTAURANT_ROUTE + 'restaurantId/' + 'dishes/' + 'dishId',
   DISH_LIST : RESTAURANT_ROUTE + 'restaurantId/' + 'dishes',
   COMMENT_LIST : RESTAURANT_ROUTE + 'restaurantId/' + 'reviews',
@@ -38,4 +47,4 @@ const URL_SERVICES = {
   HEALTH_CHECK: URL_API + 'health',
 };
 
-export default URL_SERVICES;
+export {URL_SERVICES, URL_API, TIMEOUT};

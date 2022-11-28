@@ -27,13 +27,6 @@ const DishCard = ({
       )
      }
 
-     const renderItem = ({ item }) => (
-        <View style={styles.ingredients}>
-          <Icon name="circle"  color={colorPalette.Black} size={7}></Icon>
-          <Text style={styles.ingredientsWords}>{item}</Text>
-        </View>       
-    );
-
   return (
     <ScrollView>
       <Carousal></Carousal>

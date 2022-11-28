@@ -3,14 +3,13 @@ import { CONSTANTS } from "../../config";
 import { StyleSheet } from "react-native";
 import { colorPalette } from "../styles/colors";
 import { Theme } from '../styles/Theme';
-import { useState } from "react";
 
-export function FoodTypesDropDown({onChange = {}, props}){
+export function FoodTypesDropDown({onChangeHandler = () => {}, selected = [], props}){
 
-  const [selected, setSelected] = useState([]);
+  const onSelectItem = (item) => {
 
-  const onSelectItem = (event) => {
-    setSelected(event);
+    if (onChangeHandler)
+      onChangeHandler(item)
   }
 
   return (

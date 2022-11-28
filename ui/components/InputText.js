@@ -5,6 +5,7 @@ export function InputText(props){
 
     return (
         <Input 
+          errorMessage={props.errorMessage ? props.errorMessage : ''}
           keyboardType={props.keyboardType ? props.keyboardType : 'default'}
           defaultValue={props.defaultValue ? props.defaultValue : ''}
           secureTextEntry = {props.secureTextEntry}
@@ -37,6 +38,7 @@ export function InputText(props){
               height : props.inputHeight
             }}
           onChange = {props.onChange}
+          onChangeText = {props.onChangeText}
         >
         </Input>
     )
