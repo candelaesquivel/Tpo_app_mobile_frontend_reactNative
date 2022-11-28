@@ -104,10 +104,15 @@ export const CreateRestaurantUI = ({
               {CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
             </Text>
             <MapView
+              toolbarEnabled={true}
               style={styles.map}
               provider={PROVIDER_GOOGLE}
               region={region}
-            />
+            >
+              <Marker
+                coordinate={region}
+              />
+            </MapView>
           </View>
           :
           <></>
