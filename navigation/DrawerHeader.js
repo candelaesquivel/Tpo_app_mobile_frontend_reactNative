@@ -19,7 +19,12 @@ function DrawerHeader({props}){
     return state.user.userName;
   })
 
-  let userImg = useSelector(state => state.user.userImg);
+  const userImg = useSelector(state => {
+    if (state.user.userImg !== '')
+      return 'data:image/png;base64,' + state.user.userImg
+
+    return state.user.userImg;
+  });
 
   const onIconPress = (event) => {
     navigation.navigate(ROUTES.USER_PROFILE);

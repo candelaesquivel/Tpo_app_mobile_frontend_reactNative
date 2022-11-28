@@ -27,8 +27,9 @@ const userSlice = createSlice({
 
   reducers : {
     loginUser(state, action) {
-      state.token = action.payload.token;
-      state.userImg = action.payload.userImg;
+
+      state.token = action.payload.accessToken;
+      state.userImg = action.payload.profilePicture;
       state.userName = action.payload.name;
       state.userId = action.payload.id;
       state.email = action.payload.email;
@@ -56,6 +57,8 @@ const userSlice = createSlice({
       state.filters.restaurantTypes = action.payload.restaurantTypes,
       state.filters.minRating = action.payload.minRating
     }
+
+
   }
 });
 

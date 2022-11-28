@@ -49,7 +49,6 @@ function LoginUserScreen({navigation, props}){
 
           GetLocation.getCurrentPosition({timeout:50000, enableHighAccuracy:true})
             .then(async latestLocation => {
-
               let userData = {
                 email : info.user.email, 
                 name : info.user.name, 
@@ -59,13 +58,12 @@ function LoginUserScreen({navigation, props}){
                 longitude: latestLocation.longitude,
                 role : CONSTANTS.ROLES.USER_ROLE,
                 accessToken : 'this is a token',
-              }
+              };
 
               // Navigate to the Home screen when the user has successfully signed in
               if (userData.email != null){
                 const userInfo = await authWS.loginGoogle(userData);
-                userData.id = userInfo.id;
-                dispatch(loginUser(userData));
+                dispatch(loginUser(userInfo));
               }
             })
             .catch(error => {

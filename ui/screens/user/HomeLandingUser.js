@@ -33,8 +33,6 @@ function HomeLandingUser({navigation , props}) {
       ...filterParams,
     };
 
-    console.log('Search Params: ', searchParams);
-
     const restos = await restaurantWS.getRestaurants(searchParams);
     setRestaurants(restos);
   }

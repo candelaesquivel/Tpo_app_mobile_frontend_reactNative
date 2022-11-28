@@ -17,13 +17,15 @@ export async function updateUserData(userId, userData){
   fileData.append('file', imgData);
 
   return await Promise.all([
-    axios.patch(USER_URL, userData),
-    axios.post(IMG_URL, fileData, { headers : { "Content-Type": "multipart/form-data" }})
+    await axios.patch(USER_URL, userData),
+    await axios.post(IMG_URL, fileData, { headers : { "Content-Type": "multipart/form-data" }})
   ]).then(
     axios.spread(
       ({data : user}, {data : image}) => {
         console.log('User Response: ', user);
         console.log('Image Response: ', image);
+
+        return image;
       })
   ).catch(err => {
     console.log('Error on All: ', err.response.data);
