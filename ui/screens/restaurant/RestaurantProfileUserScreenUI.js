@@ -38,7 +38,7 @@ const RestaurantProfileUserScreenUI = ({
   ...props}) => {
       
       const MapComponent = () => {
-        console.log(latitude, longitude)
+        console.log("region", region)
         return (
           <View style={styles.mapContainer}>
           <Text style={styles.words}>
