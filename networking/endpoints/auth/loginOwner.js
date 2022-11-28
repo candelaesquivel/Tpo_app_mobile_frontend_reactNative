@@ -5,7 +5,7 @@ import { URL_SERVICES } from "../../../config/config";
 export async function loginOwner(userData)
 {
   return axios.post(URL_SERVICES.LOGIN, {
-    email : userData.email,
+    email : userData.email.toLowerCase(),
     password : userData.password,
   }).then(res => {
     res.data.role = CONSTANTS.ROLES.OWNER_ROLE;

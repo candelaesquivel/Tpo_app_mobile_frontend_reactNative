@@ -13,6 +13,20 @@ import { launchImageLibrary } from 'react-native-image-picker';
 
 function CreateRestaurantScreen({navigation, props}) {
 
+  useEffect(() => {
+    // Gaby: The virtualized list error is caused by an issue with the autocomplete library not liking ScrollViews.
+    // This is a workaround to fix the issue.
+    const mockFunction = (error) => {
+      if (error === 'VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.') 
+      return console.log("Virtualized List error was caught");
+      if (console.originalError) console.originalError(error)
+    }
+  
+    console.originalError = console.error
+    console.error = mockFunction
+    return () => { console.error = console.originalError }
+  }, [])
+
   const [region, setRegion] = useState({
     latitude: -34.603722,
     longitude: -58.381592,

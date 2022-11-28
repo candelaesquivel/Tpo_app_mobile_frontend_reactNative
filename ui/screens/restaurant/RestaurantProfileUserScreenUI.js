@@ -8,7 +8,7 @@ import Carousal from '../../components/carousal';
 import { Theme } from '../../styles/Theme';
 import { MyButton } from '../../components/button';
 import { DishFlatList } from '../../components/DishFlatList';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import {WeekButtons} from '../../components/WeekButton';
 
 
@@ -38,6 +38,7 @@ const RestaurantProfileUserScreenUI = ({
   ...props}) => {
       
       const MapComponent = () => {
+        console.log("region", region)
         return (
           <View style={styles.mapContainer}>
           <Text style={styles.words}>
@@ -47,7 +48,12 @@ const RestaurantProfileUserScreenUI = ({
             style={styles.map}
             provider={PROVIDER_GOOGLE}
             region={region}
-          />
+          >
+            <Marker
+              title={name}
+              coordinate={region}
+            />
+          </MapView>
         </View>
         )
       }
