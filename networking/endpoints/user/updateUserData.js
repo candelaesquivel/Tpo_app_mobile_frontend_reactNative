@@ -4,24 +4,28 @@ import { URL_SERVICES } from "../../../config/config";
 
 export async function updateUserData(userId, userData){
 
-  const URL = URL_SERVICES.UPDATE_USER_DATA.replace('id', userId);
+  const USER_URL = URL_SERVICES.UPDATE_USER_DATA.replace('id', userId);
+  const IMG_URL = URL_SERVICES.UPLOAD_USER_IMAGE.replace('id', userId);
 
-  return await axios.patch(URL, userData)
-  .then(resp => {
+  const imgData = {
+    name : userData.photo.fileName,
+    type : userData.photo.type,
+    uri : userData.photo.uri
+  }
 
-    const dictField = resp.data.role === CONSTANTS.ROLES.OWNER_ROLE ? 'custom' : 'google';
+  const fileData = new FormData();
+  fileData.append('file', imgData);
 
-    let newUser = {
-      userName : resp.data[dictField].name
-    }
-
-    return newUser;
-  })
-  .catch(err => {
-    console.error('Error on Update User Data WS: ', err);
-    return null;
-  })
-  .finally(() => {
-
+  return await Promise.all([
+    axios.patch(USER_URL, userData),
+    axios.post(IMG_URL, fileData, { headers : { "Content-Type": "multipart/form-data" }})
+  ]).then(
+    axios.spread(
+      ({data : user}, {data : image}) => {
+        console.log('User Response: ', user);
+        console.log('Image Response: ', image);
+      })
+  ).catch(err => {
+    console.log('Error on All: ', err.response.data);
   })
 }

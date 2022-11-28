@@ -22,16 +22,9 @@ export default function UserProfileScreen({navigation, route, props}) {
 
   const onSavePress = async (e) => {
 
-    // const result = await updateUserData(userId, userData);
-
-    // if (result)
-    // {
-    //   dispatch(updateUserDataAction(result));
-    //   ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.USER_DATA_UPDATED, ToastAndroid.SHORT);
-    // }
-
     try {
-      const result = await userWS.uploadUserImg(userId, userData.photo);
+      const result = await userWS.updateUserData(userId, userData);
+
     } catch (error) {
       
     }
