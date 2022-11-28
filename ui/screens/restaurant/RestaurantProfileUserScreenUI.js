@@ -24,9 +24,9 @@ const RestaurantProfileUserScreenUI = ({
     latitudeDelta: 0.01,
     longitudeDelta: 0.01
   },
-  showComments,
-  showMap,
-  showDishes,
+  showComments = false,
+  showMap = false,
+  showDishes = false,
   hourOpen,
   hourOpen2,
   hourClose,
@@ -35,9 +35,7 @@ const RestaurantProfileUserScreenUI = ({
   onSentCommentPressHandler,
   onDishPhotoPressHandler,
   onSharePressHandler,
-  latitude,
-  longitude,
-  props}) => {
+  ...props}) => {
       
       const MapComponent = () => {
         return (

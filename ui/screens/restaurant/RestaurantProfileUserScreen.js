@@ -127,8 +127,6 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
     }
   }
 
-  console.log('Resto Region: ', restoData.region);
-
   return (
     <RestaurantProfileUserScreenUI
       name = {restoData.name}

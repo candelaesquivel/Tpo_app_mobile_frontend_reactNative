@@ -113,8 +113,8 @@ function EditRestaurantScreen({navigation, route, props}) {
     formik.setFieldValue('coordinates', {
       type: "Point",
       coordinates: [
-        region.longitude,
-        region.latitude
+        region.latitude,
+        region.longitude
       ]
     });
   }
