@@ -10,7 +10,7 @@ export async function getRestaurantInfo(restaurantId){
   return axios.get(URL).then(resp => {
     return resp.data;
   }).catch(err => {
-    console.error("WS Error: ", err);
+    console.error("WS Error Get Restaurant Details: ", err.response.data);
     return null;
   })
 }

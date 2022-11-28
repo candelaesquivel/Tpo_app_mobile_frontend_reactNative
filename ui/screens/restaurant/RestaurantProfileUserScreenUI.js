@@ -18,6 +18,12 @@ const RestaurantProfileUserScreenUI = ({
   priceRange = '$',
   comments = [],
   dishes = [],
+  region = {
+    latitude: -34.6018,
+    longitude: -58.424,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01
+  },
   showComments,
   showMap,
   showDishes,
@@ -34,12 +40,6 @@ const RestaurantProfileUserScreenUI = ({
   props}) => {
       
       const MapComponent = () => {
-        region = {
-          latitude: latitude,
-          longitude: longitude,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-        }
         return (
           <View style={styles.mapContainer}>
           <Text style={styles.words}>

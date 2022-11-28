@@ -9,15 +9,19 @@ import {selectDish} from '../../../redux/slices/userReducer';
 import Share from 'react-native-share';
 import { CONSTANTS } from '../../../config';
 
-function RestaurantProfileUserScreen({navigation, route, name='Mudra',
-hourOpen=10,hourOpen2='am',hourClose=20,hourClose2='pm',
-calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, props}) {
+function RestaurantProfileUserScreen({navigation, route, props}) {
 
   const restoData = {
-    name : route.params.name ? route.params.name  : 'Mudra',
-    calification : route.params.calification ? route.params.calification : 4,
-    priceRange : route.params.priceRange ? route.params.priceRange : '$$$$',
+    ...route.params,
+    region : {
+      latitude : route.params.coordinates.coordinates[0],
+      longitude : route.params.coordinates.coordinates[1],
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
+    }
   };
+
+  console.log('Resto Params: ', route.params);
 
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
@@ -123,11 +127,14 @@ calification=4, priceRange='$$$$', latitude=-34.603722, longitude=-58.381592, pr
     }
   }
 
+  console.log('Resto Region: ', restoData.region);
+
   return (
     <RestaurantProfileUserScreenUI
       name = {restoData.name}
       priceRange={restoData.priceRange}
-      rating = {restoData.rating}
+      rating = {restoData.averageRating}
+      region = {restoData.region}
       comments={comments}
       dishes={dishes}
       showComments={showComments}
