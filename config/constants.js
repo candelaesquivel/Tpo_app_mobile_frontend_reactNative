@@ -82,7 +82,7 @@ export default  {
     OPEN_HOUR_LABEL : I18n.t('opening'),
     DELETE_RESTAURANT_LABEL : I18n.t('deleteRestaurant'),
     DELETE_RESTAURANT_CONFIRM_MSG : I18n.t('confirmRestaurantDelete'),
-    COMMENT_LABEL : I18n.t('comment'),
+    COMMENT_LABEL : I18n.t('comments'),
     CLOSE_HOUR_LABEL : I18n.t('closing'),
     CLEAR_FILTERS_LABEL : I18n.t('clearFiltersLabel'),
     CLOSE_LABEL : I18n.t('close'),
@@ -114,6 +114,7 @@ export default  {
     CLOSE : I18n.t('close'),
     TYPE_FOOD : I18n.t('typeFood'),
     SEARCH : I18n.t('search'),
+    CLOSE_REST : I18n.t('closeRest'),
 
 
 
@@ -137,6 +138,9 @@ export default  {
 
   ERROR_MSGS : {
     ERROR_MESSAGE : I18n.t('error'),
+
+    ERROR_NAME_SHORT :I18n.t('nameShort'),
+    ERROR_NAME_LONG :I18n.t('nameLong'),
 
     EMAIL_REQUIRED : I18n.t('emailRequired'),
     EMAIL_INVALID : I18n.t('emailInvalid'),
@@ -169,6 +173,9 @@ export default  {
     DISH_PRICE_REQUIRED : I18n.t('dishPriceRequired'),
     DISH_INGREDIENTS_REQUIRED : I18n.t('dishIngredientsRequired'),
     DISH_CATEGORY_REQUIRED : I18n.t('dishCategoryRequired'),
+
+    USER_NAME_REQUIRED :  I18n.t('userNameRequired'),
+
 
     REVIEW_TEXT_REQUIRED : I18n.t('reviewTextRequired'),
     REVIEW_TEXT_MIN_LENGTH : I18n.t('reviewTextLengthMin'),

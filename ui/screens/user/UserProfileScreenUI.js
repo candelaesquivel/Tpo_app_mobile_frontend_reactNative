@@ -10,6 +10,7 @@ import { Theme } from '../../styles/Theme';
 
 const UserProfileScreenUI = ({
     userName = '',
+    userNameError,
     onNameChangeHandler = (text) => {},
     onSavePressHandler = () => {},
     onImgUploadHandler = (image) => {},
@@ -17,9 +18,10 @@ const UserProfileScreenUI = ({
   
     return (
         <View style={style.container}>
-        <Text style={style.nameLabel}>{CONSTANTS.SCREEN_TEXTS.NAME_LABEL}</Text>
-  
+        <Text style={style.nameLabel}>{CONSTANTS.SCREEN_TEXTS.NAME_LABEL}</Text>   
+             
         <InputText
+         errorMessage = {userNameError}
           onChangeText={onNameChangeHandler}
           color={colorPalette.White} 
           defaultValue={userName} 

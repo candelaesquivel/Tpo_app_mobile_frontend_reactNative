@@ -113,11 +113,13 @@ export  default{
     TokenpassInput : 'Ingrese nueva contraseña',
     tokenScreen : "Cambiar contraseña",
 
+    closeRest : "Cerrado Temporalmente",
+
     /// Error Messages
     error : "ERROR:",
     emailRequired : 'Se requiere un email',
     emailInvalid : 'Email no valido',
-    tokenInvalid : 'Token no valido debe ser un numero',
+    tokenInvalid : 'Token no valido',
     tokenRequired : 'Se requiere un token',
     passwordMatch : 'Las contraseñas no coinciden',
     passwordLength : 'La contraseña debe tener al menos 8 caracteres',
@@ -137,6 +139,8 @@ export  default{
     getRestaurantFav : 'Error on Get Favorite Restaurants: ',
     getOwnerRestE : "Error on Get Owner Restaurants: ",
     getDishE : "Dish Data WS Error: ",
+    nameShort : "El nombre debe tener como minimo 2 letras",
+    nameLong : "El nombre debe tener como maximo 50 letras",
 
 
     dishNameRequired : 'El nombre de plato es requerido',
@@ -146,6 +150,8 @@ export  default{
 
     reviewTextRequired : 'Se requiere ingresar un comentario',
     reviewTextLengthMin : 'El comentario debe tener minimo 3 letras',
+
+    userNameRequired : 'Se requiere ingresar un nombre',
 
     restaurantNameRequired : 'El nombre de restaurante no puede estar vacio',
     restaurantFoodTypeRequired : 'Debe seleccionar una categoria de comidas',

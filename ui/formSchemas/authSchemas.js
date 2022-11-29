@@ -24,8 +24,7 @@ export const authSchemas = {
   }),
 
  tokenForgotPassword : yup.object().shape({
-  token : yup.number().typeError(CONSTANTS.ERROR_MSGS.TOKEN_INVALID).positive().integer()
-  .required(CONSTANTS.ERROR_MSGS.TOKEN_REQUIRED),
+  token : yup.string(CONSTANTS.ERROR_MSGS.TOKEN_INVALID).required(CONSTANTS.ERROR_MSGS.TOKEN_REQUIRED),
   password : yup.string().min(CONSTANTS.MIN_LENGTH_PASSWORD,
     ({ }) => CONSTANTS.ERROR_MSGS.PASSWORD_LENGTH)
     .required(CONSTANTS.ERROR_MSGS.PASSWORD_REQUIRED),
