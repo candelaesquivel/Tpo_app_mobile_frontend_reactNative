@@ -8,7 +8,7 @@ export async function getFavoriteRestaurants(userId)
   return axios.get(URL).then( (response) => {
     return response.data;
   }).catch(err =>{
-    console.error('Error on Get Favorite Restaurants: ', err.response.data);
+    console.error(CONSTANTS.ERROR_MSGS.ERROR_GET_REST_FAV, err.response.data);
     return;
   })
 }

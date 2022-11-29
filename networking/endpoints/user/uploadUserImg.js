@@ -27,6 +27,6 @@ export async function uploadUserImg(userId, image){
   });
 
  } catch (error) {
-  console.log("ERROR:", error)
+  console.log(CONSTANTS.ERROR_MSGS.ERROR_MESSAGE, error)
  }
 }

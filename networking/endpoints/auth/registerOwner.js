@@ -22,7 +22,7 @@ export async function registerOwner(userData)
     return false;
 
   }).catch(err =>{
-    console.err("WS Register Error: ", err.response.data);
+    console.err(CONSTANTS.ERROR_MSGS.ERROR_REGISTER_OWNER, err.response.data);
     return false;
   })
 }

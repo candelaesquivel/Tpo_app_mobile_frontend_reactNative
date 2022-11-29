@@ -9,7 +9,7 @@ export async function getOwnerRestaurants(ownerId)
   return axios.get(url).then( (response) => {
     return response.data;
   }).catch(err =>{
-    console.error("Error on Get Owner Restaurants: ", err);
+    console.error(CONSTANTS.ERROR_MSGS.ERROR_GET_REST_OWNER, err);
   }).finally(() => {
   })
 }

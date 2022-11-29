@@ -12,7 +12,7 @@ export async function updateDish(restaurantId, dishId, dishData){
   return axios.patch(URL, dishData).then(resp => {
     return resp.data;
   }).catch(err => {
-    console.error('Error on Update dish: ', err.response.data);
+    console.error(CONSTANTS.ERROR_MSGS.ERROR_UPD_DISHES, err.response.data);
     return null;
   })
 };

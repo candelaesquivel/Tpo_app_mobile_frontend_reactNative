@@ -9,7 +9,7 @@ export async function getDishData(restaurantId, dishId)
   return axios.get(URL).then((resp) => {
     return resp.data;
   }).catch(err => {
-    console.error("Dish Data WS Error: ", err.response.data)
+    console.error(CONSTANTS.ERROR_MSGS.ERROR_GET_DISH, err.response.data)
     return null;
   }).finally(() => {
   })

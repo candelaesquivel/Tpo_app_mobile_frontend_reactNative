@@ -1,5 +1,6 @@
 import axios from "axios";
 import { URL_SERVICES } from "../../../config/config";
+import { CONSTANTS } from "../../../config";
 
 export async function createRestaurant(ownerId, restaurantData){
 
@@ -12,7 +13,7 @@ export async function createRestaurant(ownerId, restaurantData){
   .then(resp => {
     return resp.data;
   }).catch(err => {
-    console.error('WS Error: ', err.response.data);
+    console.error( CONSTANTS.ERROR_MSGS.ERROR_CREATE_REST, err.response.data);
   }).finally(() => {
 
   })

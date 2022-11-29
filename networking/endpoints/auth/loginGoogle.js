@@ -21,7 +21,7 @@ export async function loginGoogle(userInfo){
   return axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, googleData).then(res => {
     return res.data;
   }).catch(err => {
-    console.log('Error on Google Login: ', err.response.data);
+    console.log(CONSTANTS.ERROR_MSGS.ERROR_LOGIN_GOOGLE, err.response.data);
     return null;
   }).finally(() => {
   })

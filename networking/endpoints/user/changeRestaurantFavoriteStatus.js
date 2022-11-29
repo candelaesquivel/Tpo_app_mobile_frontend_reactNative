@@ -13,7 +13,7 @@ export async function changeRestaurantFavoriteStatus(userId, restaurantId, dispa
     return;
   }).catch(err => {
     dispatch(showErrorToast(err.response.data.message));
-    console.error("Error on Toggle Restaurant Favorite Status: ", err);
+    console.error(CONSTANTS.ERROR_MSGS.ERROR_REST_FAV, err);
     return;
   });
 }

@@ -15,7 +15,7 @@ export async function deleteRestaurant(restaurantId){
       return false;
 
   } catch (error) {
-    console.log('Restaurant WS Delete Error: ', error.response.data);
+    console.log(CONSTANTS.ERROR_MSGS.ERROR_DELETE_REST, error.response.data);
   }
   
 }

@@ -10,7 +10,7 @@ export async function updateRestaurant(restoId = '', restoData = {}){
   .then(response => {
     return response.data;
   }).catch(error => {
-    console.log('Error on WS Update Resto: ', error.response.data);
+    console.log(CONSTANTS.ERROR_MSGS.ERROR_UPDATE_REST, error.response.data);
   })
   
 }
