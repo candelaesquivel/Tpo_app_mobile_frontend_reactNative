@@ -165,7 +165,7 @@ export default function Carousal({
       </AlertConfirm>
         <View style={styles.carousalContainer}>
           {
-            data.map((item) => {
+            data.map((item, idx) => {
 
             if (!item)
               return;
@@ -173,7 +173,7 @@ export default function Carousal({
             return (
               <ItemElement
                 onDeletePhotoPressHandler={onDeletePress}
-                key={item.id}
+                key={idx}
                 height={height}
                 width={width}
                 fileName={item.fileName}
