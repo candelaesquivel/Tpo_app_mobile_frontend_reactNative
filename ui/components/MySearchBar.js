@@ -5,6 +5,8 @@ import { colorPalette } from '../styles/colors';
 import { Input } from '@rneui/base';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES } from '..';
+import { Theme } from '../styles/Theme';
+import {CONSTANTS} from '../../config';
 
 
 export default function MySearchBar({
@@ -28,10 +30,10 @@ export default function MySearchBar({
         leftIcon={<Icon name = 'search' color={colorPalette.White}></Icon>}
         rightIcon={<Icon onPress={onFilterIconPress} name = 'filter-list' color={colorPalette.White}></Icon>}
         placeholderTextColor={colorPalette.White}
-        placeholder={'Buscar'}
+        placeholder={CONSTANTS.SCREEN_TEXTS.SEARCH}
         inputContainerStyle={{backgroundColor: colorPalette.Cream, 
-          borderBottomColor : 'transparent',
-          borderRadius : 5
+          borderBottomColor : Theme.color.TRANSPARENT,
+          borderRadius : Theme.sizes.SMALL_ROUNDED
         }}
         leftIconContainerStyle={{
           paddingLeft : 10
@@ -41,11 +43,11 @@ export default function MySearchBar({
         }}
         inputStyle={{ color: colorPalette.White,
           borderBottomWidth : 0,
-          borderColor : 'transparent',
-          underlineColorAndroid :'transparent',
-          backgroundColor : 'transparent'
+          borderColor : Theme.color.TRANSPARENT,
+          underlineColorAndroid :Theme.color.TRANSPARENT,
+          backgroundColor : Theme.color.TRANSPARENT
         }}
-        underlineColorAndroid =  {'transparent'}
+        underlineColorAndroid =  {Theme.color.TRANSPARENT}
       >
       </Input>
 

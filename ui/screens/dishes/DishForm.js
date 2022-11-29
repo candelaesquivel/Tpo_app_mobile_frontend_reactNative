@@ -162,13 +162,13 @@ const styles = StyleSheet.create({
   },
   trackStyle : {
     height : Dimensions.get("window").width*0.01,
-    backgroundColor:  'transparent', 
+    backgroundColor:  Theme.color.TRANSPARENT, 
     },
   
   thumbStyle : { 
     height : 20,
     width :  20,
-    backgroundColor: 'transparent'
+    backgroundColor: Theme.color.TRANSPARENT
    },
    
 });

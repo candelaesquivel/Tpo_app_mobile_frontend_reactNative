@@ -86,6 +86,11 @@ export  default{
     sentCommentLabel : 'Enviar Comentario',
     shareSocial : 'Compartir restaurante',
     clearFiltersLabel : 'Limpiar Filtros',
+    danger : "danger",
+    unStyled : 'unstyled',
+    coolGray : "coolGray",
+    typeFood : 'Tipo de Comida',
+    search : 'Buscar',
 
     
     dishCreated : 'Plato Creado',

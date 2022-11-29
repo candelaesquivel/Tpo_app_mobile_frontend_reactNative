@@ -6,6 +6,7 @@ import { InputText } from './InputText';
 import I18n from '../../assets/localization/I18n';
 import { useEffect, useState } from 'react';
 import { CONSTANTS } from '../../config';
+import { Theme } from '../styles/Theme';
 
 export default function OverlayMessage(props) {
 
@@ -14,8 +15,8 @@ export default function OverlayMessage(props) {
         const Message1 = () => {
             return (
                 <View style={{flexDirection: 'row', justifyContent:'space-evenly', width: '100%'}}>
-                 <Text style={{  fontSize: 25,color: colorPalette.Orange}} >{CONSTANTS.SCREEN_TEXTS.YES}</Text>
-                <Text style={{  fontSize: 25,color: colorPalette.Orange}}>{CONSTANTS.SCREEN_TEXTS.NO}</Text>
+                 <Text style={{  fontSize: Theme.font.LARGE,color: colorPalette.Orange}} >{CONSTANTS.SCREEN_TEXTS.YES}</Text>
+                <Text style={{  fontSize: Theme.font.LARGE,color: colorPalette.Orange}}>{CONSTANTS.SCREEN_TEXTS.NO}</Text>
                 </View>
                
     
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
     textPrimary: {
       marginVertical: 50,
       textAlign: 'center',
-      fontSize: 25,
+      fontSize: Theme.font.LARGE,
       color: colorPalette.Orange,
     },
  

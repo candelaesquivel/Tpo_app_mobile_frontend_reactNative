@@ -91,11 +91,11 @@ const styles = StyleSheet.create({
     words :{
       fontSize: Theme.font.LARGE,
       color: colorPalette.Black, 
-      fontWeight: "bold",
+      fontWeight: Theme.font.FONTWEIGHT,
   },
   wordsTwo :{
     color: colorPalette.Black ,
-     fontSize: 18
+     fontSize: Theme.font.SMALL_TWO
     },
     wordsThree : {
       color: colorPalette.Orange , 

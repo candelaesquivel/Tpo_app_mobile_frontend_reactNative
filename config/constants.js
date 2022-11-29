@@ -93,6 +93,7 @@ export default  {
     DELETE_ACOOUNT_LABEL : I18n.t('deleteAccount'),
     DELETE_ACCOUNT_INTRO_MSG : I18n.t('messageDeleteAccount'),
     DELETE_LABEL : I18n.t('delete'),
+    DANGER_LABEL : I18n.t('danger'),
     CANCEL_LABEL : I18n.t('cancel'),
     DELETE_DISH_LABEL : I18n.t('deleteDish'),
     DELETE_DISH_CONFIRM_MSG : I18n.t('confirmDishDelete'),
@@ -108,6 +109,12 @@ export default  {
     OWNER_LABEL : I18n.t('owner'),
     SENT_COMMENT_LABEL : I18n.t('sentCommentLabel'),
     SHARE_LABEL : I18n.t('shareSocial'),
+    UNSTYLED_LABEL : I18n.t('unStyled'),
+    COOLGRAY_LABEL : I18n.t('coolGray'),
+    CLOSE : I18n.t('close'),
+    TYPE_FOOD : I18n.t('typeFood'),
+    SEARCH : I18n.t('search'),
+
 
 
     PRICE_RANGE_LOW : I18n.t('$'),
@@ -167,6 +174,8 @@ export default  {
     RESTO_FOOD_TYPE_REQUIRED : I18n.t('restaurantFoodTypeRequired'),
     RESTO_PRICE_TYPE_REQUIRED : I18n.t('restaurantPriceTypeRequired'),
   },
+
+
 
   MIN_LENGTH_PASSWORD : 8,
   MIN_LENGTH_REVIEW_TEXT : 3,

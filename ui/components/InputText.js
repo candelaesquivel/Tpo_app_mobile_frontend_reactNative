@@ -1,5 +1,6 @@
 import { Input } from "@rneui/themed";
 import {colorPalette} from "../styles/colors";
+import { Theme } from "../styles/Theme";
 
 export function InputText(props){
 
@@ -17,7 +18,7 @@ export function InputText(props){
            
           }}
           style={{
-              borderRadius : 30, 
+              borderRadius : Theme.sizes.BUTTON_ROUNDED, 
               borderWidth : props.borderWidth,
               borderColor : props.borderColor,
               backgroundColor : props.color,
@@ -33,7 +34,7 @@ export function InputText(props){
           }}
           inputContainerStyle={{
               borderColor : props.borderColor,
-              borderBottomColor : 'transparent',
+              borderBottomColor : Theme.color.TRANSPARENT,
               borderRadius : 0,
               height : props.inputHeight
             }}

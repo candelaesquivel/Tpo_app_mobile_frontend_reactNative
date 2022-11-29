@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
  title :{
     fontSize: Theme.font.MEDIUM,
     color: colorPalette.Black, 
-    fontWeight: 'bold', 
+    fontWeight: Theme.font.FONTWEIGHT, 
     marginStart :"5%",    
   },
 });
