@@ -140,6 +140,9 @@ export default  {
 
     EMAIL_REQUIRED : I18n.t('emailRequired'),
     EMAIL_INVALID : I18n.t('emailInvalid'),
+    TOKEN_REQUIRED : I18n.t('tokenRequired'),
+    TOKEN_INVALID : I18n.t('tokenInvalid'),
+    
 
     ERROR_LOGIN_GOOGLE : I18n.t('loginGoogle'),
     ERROR_LOGIN_OWNER : I18n.t('loginOwner'),

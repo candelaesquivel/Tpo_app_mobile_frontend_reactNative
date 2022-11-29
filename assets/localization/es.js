@@ -117,6 +117,8 @@ export  default{
     error : "ERROR:",
     emailRequired : 'Se requiere un email',
     emailInvalid : 'Email no valido',
+    tokenInvalid : 'Token no valido debe ser un numero',
+    tokenRequired : 'Se requiere un token',
     passwordMatch : 'Las contraseñas no coinciden',
     passwordLength : 'La contraseña debe tener al menos 8 caracteres',
     passwordRequired : 'La contraseña es requerida',

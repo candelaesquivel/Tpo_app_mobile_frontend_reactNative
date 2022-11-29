@@ -10,7 +10,12 @@ import { Theme } from "../../styles/Theme"
 import { CONSTANTS } from "../../../config"
 
 const RecoverPasswordTokenUI = ({
-   
+  token,
+  password,
+  tokenError = '',
+  passwordError =  '',
+  onTokenHandler,
+  onPasswordHandler,
   
     props}) => {
   
@@ -25,18 +30,24 @@ const RecoverPasswordTokenUI = ({
             <View style={styles.containerEmailTwo}>
             <View height={Dimensions.get("window").width*0.06}></View>
             <InputText 
+               defaultValue={token}
+              errorMessage = {tokenError}
+              onChangeText = {onTokenHandler}
               color = {colorPalette.Orange} 
               placeholder = {CONSTANTS.SCREEN_TEXTS.TOKEN_INPUT}
               placeholderTextColor ={colorPalette.White}
               height = '50%' 
-              //onChange={onEmailHandler}
+             
               ></InputText>
               <InputText 
+              defaultValue={password}
+              errorMessage = {passwordError}
+              onChangeText = {onPasswordHandler}
               color = {colorPalette.Orange} 
               placeholder = {CONSTANTS.SCREEN_TEXTS.TOKEN_PASSWORD}
               placeholderTextColor ={colorPalette.White}
               height = '50%' 
-              //onChange={onEmailHandler}
+              
               ></InputText>
             </View> 
             </View>
