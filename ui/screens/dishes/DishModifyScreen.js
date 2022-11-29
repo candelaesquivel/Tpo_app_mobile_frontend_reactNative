@@ -9,6 +9,9 @@ import { CONSTANTS } from '../../../config';
 import { DishModifyScreenUI } from './DishModifyScreenUI';
 import { useFormik } from 'formik';
 import {dishSchemas} from '../../formSchemas/dishSchemas';
+import { launchImageLibrary } from 'react-native-image-picker';
+import { Buffer } from "buffer";
+
 
 function DishModifyScreen({navigation, route, props}){
    
@@ -23,7 +26,7 @@ function DishModifyScreen({navigation, route, props}){
       isVegan : route.params.isVegan ? route.params.isVegan : false,
       isGlutenFree : route.params.isGlutenFree ? route.params.isGlutenFree : false,
       category : route.params.category ? route.params.category : 'Plato Caliente',
-      photos : route.params.photos ? route.params.photos : [],
+      pictures : route.params.pictures ? route.params.pictures : [],
     },
     
     validationSchema : dishSchemas.createDish,
@@ -33,6 +36,8 @@ function DishModifyScreen({navigation, route, props}){
   });
 
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [showConfirmPhotoDelete, setshowConfirmPhotoDelete] = useState(false);
+
 
   const restaurantId = useSelector(state => state.user.restaurantSelectedId);
  
@@ -51,7 +56,7 @@ function DishModifyScreen({navigation, route, props}){
       }
       
     } catch (error) {
-      
+      console.log('Error Update Call WS: ', error)
     }
   }
   
@@ -68,6 +73,26 @@ function DishModifyScreen({navigation, route, props}){
       console.warn(error);
       
     }
+  }
+
+  const onCancelDeletePhotoPress = (event) => {
+    setshowConfirmPhotoDelete(false);
+  }
+
+  const onConfirmDeletePhotoPress = (photoFileName) => {
+    setshowConfirmPhotoDelete(false);
+
+    const pictures = [];
+
+    formik.values.pictures.forEach(item => {
+      if (!item)
+        return;
+
+        if (item.fileName !== photoFileName)
+          pictures.push(item);
+    });
+
+    formik.setFieldValue('pictures', pictures);
   }
 
   const onCancelDeletePress = (event) => {
@@ -94,6 +119,28 @@ function DishModifyScreen({navigation, route, props}){
     setDishData({...dishData, 'category' : text})
   }
 
+  const onDeletePhotoPress = async (event) => {
+    setshowConfirmPhotoDelete(true);
+  }
+
+  const onUploadImgPress = async (event) => {
+
+    try {
+      const images = await launchImageLibrary({
+        mediaType : 'photo',
+        includeBase64 : true,
+      });
+
+      if (images){
+        const pictures = [].concat(formik.values.pictures, images.assets);
+        formik.setFieldValue('pictures', pictures);
+      }
+
+    } catch (error) {
+      
+    }
+  }
+
   return (
       <DishModifyScreenUI
         name={formik.values.name}
@@ -102,6 +149,7 @@ function DishModifyScreen({navigation, route, props}){
         discount={formik.values.discounts}
         isVegan={formik.values.isVegan}
         isGlutenFree={formik.values.isGlutenFree}
+        pictures = {formik.values.pictures}
 
         onNameChangedHandler={formik.handleChange('name')}
         onPriceChangedHandler={formik.handleChange('price')}
@@ -109,6 +157,8 @@ function DishModifyScreen({navigation, route, props}){
         onDiscountChangeHandlerHandler={onDiscountChange}
         onIsVeganChangeHandler={onIsVeganChange}
         onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
+        onUploadImgPressHandler={onUploadImgPress}
+        onDeletePhotoPressHandler={onDeletePhotoPress}
 
         onSavePressHandler={onSavePress}
         onDeletePressHandler={onDeletePress}
@@ -116,6 +166,10 @@ function DishModifyScreen({navigation, route, props}){
         showConfirmDelete={showConfirmDelete}
         onConfirmDeleteBtnHandler={onConfirmDeletePress}
         onCancelBtnHandler={onCancelDeletePress}
+
+        showConfirmDeletePhoto={showConfirmPhotoDelete}
+        onConfirmDeletePhotoHandler={onConfirmDeletePhotoPress}
+        onCancelDeletePhotoHandler={onCancelDeletePhotoPress}
 
         nameError={formik.errors.name}
         priceError={formik.errors.price}
