@@ -1,5 +1,5 @@
 import React from 'react';
-import { View ,StyleSheet} from 'react-native';
+import { View ,StyleSheet, Dimensions} from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import I18n from "../../assets/localization/I18n";
@@ -33,7 +33,7 @@ export default function DishItemCard({
         <View style={styles.globalTwo}>
           <Images.logo 
             onPress={onDishPhotoPress} 
-            width={"30%"}
+            width={Dimensions.get('window').width*0.3}
             height={"90%"} 
           ></Images.logo>
           <View width={"70%"}  style={styles.global} >

@@ -45,61 +45,61 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
     setDishes(newDishes);
   }
 
-  const onSectionBtnPress = (component) => {
+  // const onSectionBtnPress = (component) => {
 
-    if (component === 'map')
-    {
-      setComments([]);
-      setDishes([]);
-      setShowComments(false);
-      setShowDishes(false);
-      setShowMap(true);
-    }
+  //   if (component === 'map')
+  //   {
+  //     setComments([]);
+  //     setDishes([]);
+  //     setShowComments(false);
+  //     setShowDishes(false);
+  //     setShowMap(true);
+  //   }
 
-    if (component === 'menu')
-    {
-      setComments([]);
-      setShowComments(false);
-      setShowDishes(true);
-      setShowMap(false);
-    }
+  //   if (component === 'menu')
+  //   {
+  //     setComments([]);
+  //     setShowComments(false);
+  //     setShowDishes(true);
+  //     setShowMap(false);
+  //   }
 
-    if (component === 'comment')
-    {
-      setDishes([]);
-      setShowComments(true);
-      setShowDishes(false);
-      setShowMap(false);
-      
-    }
-  }
+  //   if (component === 'comment')
+  //   {
+  //     setDishes([]);
+  //     setShowComments(true);
+  //     setShowDishes(false);
+  //     setShowMap(false);
 
-  useFocusEffect(
-    useCallback(() => {
+  //   }
+  // }
 
-      if (showComments)
-        fillCommentsList();
+  // useFocusEffect(
+  //   useCallback(() => {
 
-      if (showDishes)
-        fillDishList();
+  //     // if (showComments)
+  //       fillCommentsList();
 
-      return () => {
+  //     if (showDishes)
+  //       fillDishList();
 
-        if (!isFocused){
-          setShowComments(false);
-          setShowDishes(false);
-          setShowMap(false);
-          setDishes([]);
-          setComments([]);
-        }
-      }
-    }, [isFocused, showDishes, showComments])
-  )
+  //     return () => {
+
+  //       if (!isFocused){
+  //         setShowComments(false);
+  //         setShowDishes(false);
+  //         setShowMap(false);
+  //         setDishes([]);
+  //         setComments([]);
+  //       }
+  //     }
+  //   }, [isFocused, showDishes, showComments])
+  // )
 
 
-  const onSentCommentPress = (event) => {
-    navigation.navigate(ROUTES.USER_SENT_COMMENT);
-  }
+   const onSentCommentPress = (event) => {
+    navigation.navigate(ROUTES.USER_SENT_COMMENT );
+   }
 
   const onSharePress = async (event) => {
     try {
@@ -108,7 +108,7 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
         message : restoData.name
       })
     } catch (error) {
-      
+
     }
   }
 
@@ -123,9 +123,41 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
         navigation.navigate(ROUTES.DISH_USER_VIEW_STACK, dishInfo);
       }
     } catch (error) {
-      
+
     }
   }
+
+  const onMapPress = (event) => {
+    navigation.navigate(ROUTES.BUTTON_SCREEN, {
+      showMap: true,
+      showComments :false,
+      showDishes :false,
+      regionMap :restoData.region,
+      comments: [],
+      dishes: [], });
+  }
+  const onCommentPress = async  (event) => {
+    await fillCommentsList();
+    navigation.navigate(ROUTES.BUTTON_SCREEN, {
+      showMap: false,
+      showComments :true,
+      showDishes :false,
+      regionMap :"",
+      comments: comments,
+      dishes: [], });
+  }
+  const onMenuPress = async (event) => {
+     await fillDishList();
+    navigation.navigate(ROUTES.BUTTON_SCREEN, {
+      showMap:false ,
+      showComments :false,
+      showDishes :true,
+      regionMap :"",
+      comments: [],
+      dishes: dishes,
+     });
+  }
+  
 
   return (
     <RestaurantProfileUserScreenUI
@@ -138,10 +170,14 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
       showComments={showComments}
       showMap={showMap}
       showDishes={showDishes}
-      onSectionBtnPressHandler={onSectionBtnPress}
+      closeRest={restoData.isClosedOverwrite}
+      //onSectionBtnPressHandler={onSectionBtnPress}
       onSentCommentPressHandler={onSentCommentPress}
-      onDishPhotoPressHandler={onDishPhotoPress}
+      //onDishPhotoPressHandler={onDishPhotoPress}
       onSharePressHandler={onSharePress}
+      onMapPressHandler={onMapPress}
+      onCommentPressHandler={onCommentPress}
+      onMenuPressHandler={onMenuPress}
       >
     </RestaurantProfileUserScreenUI>
   )

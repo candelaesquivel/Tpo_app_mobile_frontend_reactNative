@@ -113,11 +113,13 @@ const FilterScreenUI = ({
             selectedColor = {colorPalette.Orange}
               ></AirbnbRating>
         </View>
-        
-        <MyButton title={CONSTANTS.SCREEN_TEXTS.CLEAR_FILTERS_LABEL}
-          onPress={onCleanFiltersPressHandler}
-        
-        ></MyButton>
+        <View style={styles.button}>
+          <MyButton title={CONSTANTS.SCREEN_TEXTS.CLEAR_FILTERS_LABEL}
+            onPress={onCleanFiltersPressHandler}
+          
+          ></MyButton>
+        </View>
+       
 
       </View>
     )
@@ -175,6 +177,9 @@ const FilterScreenUI = ({
     price : {
       fontSize : Theme.font.MEDIUM,
       color : colorPalette.White
+    },
+    button : {
+      marginTop : Dimensions.get("window").width*0.08
     }
   });
   export {FilterScreenUI}

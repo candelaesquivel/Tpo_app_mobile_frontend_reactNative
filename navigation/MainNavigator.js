@@ -4,7 +4,8 @@ import { AddDish, CreateAccountOwner, CreateRestaurant,
         LoginOwner, MenuRestaurantOwner, DishUserView,RestaurantEdit,
         ModifyDish , ProfileUserRestaurant, SearchFilters, 
         RestaurantProfileUser, ErrorMsg,
-         EditRestaurant, UserProfile , SentComment , RecoverPasswordToken } from "../ui/screens";
+         EditRestaurant, UserProfile , SentComment , RecoverPasswordToken,
+         ButtonSrn } from "../ui/screens";
 import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
@@ -118,7 +119,9 @@ function MainNavigator(props){
               headerShown: false,
             }}></Stack.Screen>
 
-            
+       <Stack.Screen name = {ROUTES.BUTTON_SCREEN} component={ ButtonSrn} options = {{
+             title : "" 
+             }}></Stack.Screen>
         </Stack.Navigator>
     )
 }
