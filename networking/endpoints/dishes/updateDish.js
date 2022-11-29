@@ -9,10 +9,11 @@ export async function updateDish(restaurantId, dishId, dishData){
     dishId
   );
 
-  return axios.patch(URL, dishData).then(resp => {
+  return axios.patch(URL, dishData)
+  .then(resp => {
     return resp.data;
   }).catch(err => {
-    console.error('Error on Update dish: ', err.response.data);
+    console.error('Error on Update dish WS: ', err.response);
     return null;
   })
 };
