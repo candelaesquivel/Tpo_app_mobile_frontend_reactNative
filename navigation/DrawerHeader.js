@@ -4,13 +4,14 @@ import { Icon } from "@rneui/base";
 import { Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { ImageBackground, Image } from "react-native";
-
+import Theme from "../ui/styles/Theme"
 import { useSelector } from 'react-redux'
-import { useNavigation } from "@react-navigation/native";
+import { ThemeProvider, useNavigation } from "@react-navigation/native";
 import { ROUTES } from "../ui";
 import { colorPalette } from "../ui/styles/colors";
 import { Avatar } from "native-base";
 import { getBase64Uri } from "../config/utilities";
+import { ThemeConsumer } from "@rneui/themed";
 
 
 function DrawerHeader({props}){
@@ -48,7 +49,9 @@ function DrawerHeader({props}){
           {userPictures.length === 0 && userName[0]}
         </Avatar>
       </View>
-      <Text>{userName}</Text>
+       <Text >{userName}</Text>
+   
+      
     </View>
   )
 }
@@ -57,7 +60,7 @@ const width = Dimensions.get('screen').width;
 
 const style = StyleSheet.create({
   container : {
-    height : Dimensions.get('window').height * 0.38,
+    height : Dimensions.get('window').height * 0.43,
     alignItems : 'center',
   },
 
@@ -66,5 +69,7 @@ const style = StyleSheet.create({
     borderWidth: 4,
     borderColor: colorPalette.White,
   },
+
+ 
 })
 export default DrawerHeader;

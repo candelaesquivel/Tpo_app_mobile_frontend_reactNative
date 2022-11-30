@@ -137,4 +137,67 @@ export  default{
     restaurantNameRequired : 'El nombre de restaurante no puede estar vacio',
     restaurantFoodTypeRequired : 'Debe seleccionar una categoria de comidas',
     restaurantPriceTypeRequired : 'Debe seleccionar un rango de precios',
+
+    // Messages backend
+    internetError : "Sin conexión a Internet",
+    serverError : "Error en el servidor",
+
+    //Auth
+    registerAccount : "Usuario creado exitosamente",
+    registerAccountError : "No se pudo crear el usuario",
+    
+    loginMessage : "Login exitoso",
+    loginError : "Usuario no encontrado",
+    logOutMessage : "LogOut exitoso",
+    logOutError : "No se pudo realizar el Logout ",
+
+    deleteAccountError : "No se pudo eliminar el usuario",
+    deleteAccountMsj : "Usuario eliminado",
+
+    //Recover password user
+    recoverPasswordEmailError : "El email no tiene un usuario asociado",
+    recoverPasswordEmailSent :"El email fue enviado",
+    recoverPasswordTokenError :"El token no es valido",
+    recoverPasswordToken :"Su contraseña fue modificada",
+
+    // Image 
+    imageMessageError : "No se pudo subir la imagen",
+    imageMessage : "Imagen subida exitosamente",
+
+    //Modify data of owner and user
+    modifyDataError : "No se pudo modificar su información",
+    modifyData : "Se modificó exitosamente su información",
+
+    //Create restaurant
+    restaurantCreateError : "No se puedo crear el restaurante",
+    restaurantCreate : "Restaurante creado exitosamente",
+
+    //Modify data restaurant
+    restaurantmodifyDataError : "No se pudo modificar la información del restaurante",
+    restaurantmodifyData : "Se modificó exitosamente la información del restaurante",
+
+    //Delete restaurant
+    deleteRestaurantError : "No se pudo eliminar el restaurante",
+    deleteRestaurant : "Restaurante eliminado",
+
+    //Review restaurant
+    reviewRestaurantError : "No se pudo enviar el comentario",
+    reviewRestaurant : "Comentario enviado",
+
+    //Create dish
+    dishCreateError : "No se puedo crear el plato",
+    dishCreate : "Plato creado exitosamente",
+
+    //Modify data dish
+    dishmodifyDataError : "No se pudo modificar la información del plato",
+    dishmodifyData : "Se modificó exitosamente la información del plato",
+
+    //Category dish
+    dishmodifyCategoryError : "No se pudo modificar la categoria del plato",
+    dishmodifyCategory : "Categoría del plato modificada exitosamente",
+
+     //Delete dish
+     deletedishError : "No se pudo eliminar el plato",
+     deletedish : "Plato eliminado",
+
 };

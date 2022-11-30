@@ -160,6 +160,72 @@ export default  {
     RESTO_NAME_REQUIRED: I18n.t('restaurantNameRequired'),
     RESTO_FOOD_TYPE_REQUIRED : I18n.t('restaurantFoodTypeRequired'),
     RESTO_PRICE_TYPE_REQUIRED : I18n.t('restaurantPriceTypeRequired'),
+
+     // Messages backend
+     INTERNET_ERROR : I18n.t('internetError'),
+     SERVER_ERROR : I18n.t('serverError'),
+     
+     //Auth
+     REGISTER_ACCOUNT :  I18n.t('registerAccount'),
+     REGISTER_ACCOUNT_ERROR :  I18n.t('registerAccountError'),
+
+     LOGIN_ACCOUNT :  I18n.t('loginMessage'),
+     LOGIN_ACCOUNT_ERROR :  I18n.t('loginError'),
+     LOGIN_ACCOUNT :  I18n.t('registerAccount'),
+
+     LOGOUT_ACCOUNT :  I18n.t('logOutMessage'),
+     LOGOUT_ACCOUNT_ERROR :  I18n.t('logOutError'),
+
+     DELETE_ACCOUNT :  I18n.t('deleteAccountMsj'),
+     DELETE_ACCOUNT_ERROR :  I18n.t('deleteAccountError'),
+ 
+     //Recover password user
+     RECOVER_PASSW_EMAIL :  I18n.t('recoverPasswordEmailSent'),
+     RECOVER_PASSW_ERROR_EMAIL :  I18n.t('recoverPasswordEmailError'),
+
+     RECOVER_PASSW_TOKEN :  I18n.t('recoverPasswordToken'),
+     RECOVER_PASSW_ERROR_TOKEN :  I18n.t('recoverPasswordTokenError'),     
+ 
+     // Image 
+     IMAGE_MSG :  I18n.t('imageMessage'),
+     IMAGE_MSG_ERROR :  I18n.t('imageMessageError'),
+
+     //Modify data of owner and user
+     MODIFY_DATA_MSG :  I18n.t('modifyData'),
+     MODIFY_DATA_MSG_ERROR :  I18n.t('modifyDataError'),
+ 
+     //Create restaurant
+     RESTAURANT_CREATE :  I18n.t('restaurantCreate'),
+     RESTAURANT_CREATE_ERROR :  I18n.t('restaurantCreateError'),
+ 
+     //Modify data restaurant
+     MODIFY_DATA_REST :  I18n.t('restaurantmodifyData'),
+     MODIFY_DATA_REST_ERROR :  I18n.t('restaurantmodifyDataError'),
+ 
+     //Delete restaurant
+     DELETE_REST :  I18n.t('deleteRestaurant'),
+     DELETE_REST_ERROR :  I18n.t('deleteRestaurantError'),
+ 
+     //Review restaurant
+     REVIEW_REST :  I18n.t('reviewRestaurant'),
+     REVIEW_REST_ERROR :  I18n.t('reviewRestaurantError'),
+ 
+    //Create dish
+    DISH_CREATE :  I18n.t('dishCreate'),
+    DISH_CREATE_ERROR :  I18n.t('dishCreateError'),
+ 
+    //Modify data dish
+    MODIFY_DATA_DISH :  I18n.t('dishmodifyData'),
+    MODIFY_DATA_DISH_ERROR :  I18n.t('dishmodifyDataError'),
+
+     //Category dish
+     MODIFY_CATEGORY_DISH :  I18n.t('dishmodifyCategory'),
+     MODIFY_CATEGORY_DISH_ERROR :  I18n.t('dishmodifyCategoryError'),
+
+    //Delete dish
+    DELETE_DISH :  I18n.t('deletedish'),
+    DELETE_DISH_ERROR :  I18n.t('deletedishError'),
+  
   },
 
 
