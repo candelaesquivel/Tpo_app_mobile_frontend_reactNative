@@ -176,7 +176,7 @@ export default  {
      LOGOUT_ACCOUNT :  I18n.t('logOutMessage'),
      LOGOUT_ACCOUNT_ERROR :  I18n.t('logOutError'),
 
-     DELETE_ACCOUNT :  I18n.t('deleteAccount'),
+     DELETE_ACCOUNT :  I18n.t('deleteAccountMsj'),
      DELETE_ACCOUNT_ERROR :  I18n.t('deleteAccountError'),
  
      //Recover password user

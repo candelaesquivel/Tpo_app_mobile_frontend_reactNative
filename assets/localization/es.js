@@ -152,7 +152,7 @@ export  default{
     logOutError : "No se pudo realizar el Logout ",
 
     deleteAccountError : "No se pudo eliminar el usuario",
-    deleteAccount : "Usuario eliminado",
+    deleteAccountMsj : "Usuario eliminado",
 
     //Recover password user
     recoverPasswordEmailError : "El email no tiene un usuario asociado",
