@@ -77,11 +77,6 @@ const Item = ({ title, image, height, width, fileName, onPress,
   </TouchableOpacity>
 );
 
-// Default On Press Action
-const handlePress = (item) => {
-  console.log("Pressed", item.id);
-};
-
 // Carousal Component
 export default function Carousal({
   data = DATA,
@@ -92,7 +87,7 @@ export default function Carousal({
   onCancelDeletePhotoHandler = (event) => {},
   onDeletePhotoPressHandler = (fileName) => {},
   showConfirmDeletePhoto = false,
-  onPress = handlePress,
+  onPress = (item) => {},
   ItemElement = Item,
 }) {
 

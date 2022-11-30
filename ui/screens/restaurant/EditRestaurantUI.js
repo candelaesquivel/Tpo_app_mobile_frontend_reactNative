@@ -29,7 +29,8 @@ export const EditRestaurantUI = ({
   restaurantTypes = [],
   priceRange = '',
   region,
-  addressEntered,
+  addressEntered = '',
+  pictures = [],
 
   openingTimes=[],
   closingTimes=[],
@@ -44,6 +45,12 @@ export const EditRestaurantUI = ({
   onRegionChangeHandler = (region) => {},
   onOpenTimeChangeHandler = (dayIndex, date) => {},
   onCloseTimeChangeHandler = (dayIndex, date) => {},
+
+  onUploadImgPressHandler = (event) => {},
+  showConfirmPhotoDelete = false,
+  onConfirmDeletePhotoPressHandler = (fileName) => {},
+  onCancelDeletePhotoPressHandler = (event) => {},
+  onDeletePhotoPressHandler = (event) => {},
 
   onSavePressHandler,
   onDeletePressHandler,
@@ -66,9 +73,18 @@ export const EditRestaurantUI = ({
         onCancelBtnHandler={onCancelBtnHandler}
       >
       </AlertConfirm>
-      <Carousal></Carousal>
+      
+      <Carousal
+        data={pictures}
+        showConfirmDeletePhoto={showConfirmPhotoDelete}
+        onConfirmDeletePhotoHandler={onConfirmDeletePhotoPressHandler}
+        onCancelDeletePhotoHandler={onCancelDeletePhotoPressHandler}
+        onDeletePhotoPressHandler={onDeletePhotoPressHandler}
+      >
+
+      </Carousal>
       <View style={styles.addPhotoContainer}>
-        <Icon name='add' size={30}></Icon>
+        <Icon name='add' size={30} onPress={onUploadImgPressHandler}></Icon>
       </View>
       {/* Form Inputs */}
       <View style={styles.formContainer}>
