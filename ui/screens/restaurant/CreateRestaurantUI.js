@@ -28,8 +28,10 @@ export const CreateRestaurantUI = ({
   restaurantTypes = [],
   priceRange = '',
   region = {},
+  pictures = [],
   openingTimes=[],
   closingTimes=[],
+  showConfirmDeletePhoto = false,
   addressEntered,
   onCreateHandler,
   onNameHandler,
@@ -41,12 +43,21 @@ export const CreateRestaurantUI = ({
   onOpenTimeChangeHandler = (dayIndex, date) => {},
   onCloseTimeChangeHandler = (dayIndex, date) => {},
   onUploadImgHandler = (event) => {},
+  onConfirmDeletePhotoHandler = (fileName = '') => {},
+  onCancelDeletePhotoHandler = (fileName = '') => {},
+  onDeletePhotoPressHandler = (event) => {},
   ...props
 }) => {
 
   return (
     <ScrollView keyboardShouldPersistTaps={'handled'}>
-      <Carousal></Carousal>
+      <Carousal
+        data={pictures}
+        showConfirmDeletePhoto={showConfirmDeletePhoto}
+        onConfirmDeletePhotoHandler={onConfirmDeletePhotoHandler}
+        onCancelDeletePhotoHandler={onCancelDeletePhotoHandler}
+        onDeletePhotoPressHandler={onDeletePhotoPressHandler}
+      ></Carousal>
       <View style={styles.addPhotoContainer}>
         <Icon name='add' size={30} onPress={onUploadImgHandler}></Icon>
       </View>

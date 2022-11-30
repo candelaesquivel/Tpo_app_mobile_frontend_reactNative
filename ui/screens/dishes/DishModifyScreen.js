@@ -158,7 +158,6 @@ function DishModifyScreen({navigation, route, props}){
         onIsVeganChangeHandler={onIsVeganChange}
         onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
         onUploadImgPressHandler={onUploadImgPress}
-        onDeletePhotoPressHandler={onDeletePhotoPress}
 
         onSavePressHandler={onSavePress}
         onDeletePressHandler={onDeletePress}
@@ -170,6 +169,7 @@ function DishModifyScreen({navigation, route, props}){
         showConfirmDeletePhoto={showConfirmPhotoDelete}
         onConfirmDeletePhotoHandler={onConfirmDeletePhotoPress}
         onCancelDeletePhotoHandler={onCancelDeletePhotoPress}
+        onDeletePhotoPressHandler={onDeletePhotoPress}
 
         nameError={formik.errors.name}
         priceError={formik.errors.price}
