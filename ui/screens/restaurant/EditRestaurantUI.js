@@ -184,14 +184,14 @@ export const EditRestaurantUI = ({
           onPress={onSavePressHandler}
           title= {CONSTANTS.SCREEN_TEXTS.SAVE_LABEL} 
           width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
+          height={Dimensions.get("window").height*0.1}
         >
         </MyButton>
         <MyButton
           onPress={onDeletePressHandler}
           title= {CONSTANTS.SCREEN_TEXTS.DELETE_LABEL} 
           width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
+          height={Dimensions.get("window").height*0.1}
         >
         </MyButton>
       </View>
