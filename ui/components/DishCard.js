@@ -11,7 +11,7 @@ import Carousal from './carousal';
 
 
 const DishCard = ({
-  name = 'Tarta de Atún', 
+  name = '', 
   isVegan = false, 
   isGlutenFree = false, 
   ingredients = [], 
@@ -61,12 +61,12 @@ const styles = StyleSheet.create({
 },
   titleWord : {
   color: colorPalette.Black , 
-  fontWeight: 'bold',
+  fontWeight: Theme.font.FONTWEIGHT,
   fontSize : Theme.font.LARGE,
   },
   container : {
     alignSelf : 'center',
-    borderRadius: 30,
+    borderRadius: Theme.sizes.BUTTON_ROUNDED,
     marginTop : 20,
     flexDirection : 'column',
     width : Dimensions.get('screen').width * 0.9,

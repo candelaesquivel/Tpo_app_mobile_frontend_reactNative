@@ -9,6 +9,7 @@ import { useFormik } from 'formik';
 import { useToast } from 'native-base';
 import { CONSTANTS } from '../../../config';
 import { ROUTES } from '../..';
+import { userSchemas } from '../../formSchemas/userSchema';
 
 export default function UserProfileScreen({navigation, route, props}) {
 
@@ -22,6 +23,7 @@ export default function UserProfileScreen({navigation, route, props}) {
       userId : userId,
       photo : '',
     },
+    validationSchema : userSchemas.userName,
     async onSubmit(values){
       await onSavePress();
     }
@@ -75,6 +77,7 @@ export default function UserProfileScreen({navigation, route, props}) {
   return (
     <UserProfileScreenUI
       userName={formik.values.name}
+      userNameError={formik.errors.name}
       onNameChangeHandler={formik.handleChange('name')}
       onSavePressHandler={formik.handleSubmit}
       onImgUploadHandler={onImgUploadPress}

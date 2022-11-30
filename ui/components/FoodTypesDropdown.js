@@ -21,7 +21,7 @@ export function FoodTypesDropDown({onChangeHandler = () => {}, selected = [], pr
       valueField='label'
       value={selected}
       data={CONSTANTS.FOOD_TYPES}
-      placeholder={'Tipo de Comida'}
+      placeholder={CONSTANTS.SCREEN_TEXTS.TYPE_FOOD}
       onChange={onSelectItem}
     >
     </MultiSelect>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   dropdown: {
     height: 50,
     borderColor: colorPalette.Orange,
-    borderRadius: 5,
+    borderRadius: Theme.sizes.SMALL_ROUNDED,
     paddingHorizontal: 10, borderWidth:1,
   },
    

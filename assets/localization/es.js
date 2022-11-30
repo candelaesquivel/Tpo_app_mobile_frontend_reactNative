@@ -87,6 +87,8 @@ export  default{
     sentCommentLabel : 'Enviar Comentario',
     shareSocial : 'Compartir restaurante',
     clearFiltersLabel : 'Limpiar Filtros',
+    typeFood : 'Tipo de Comida',
+    search : 'Buscar',
 
     
     dishCreated : 'Plato Creado',
@@ -109,12 +111,18 @@ export  default{
     TokenpassInput : 'Ingrese nueva contraseña',
     tokenScreen : "Cambiar contraseña",
 
+    closeRest : "Cerrado Temporalmente",
+
     /// Error Messages
     emailRequired : 'Se requiere un email',
     emailInvalid : 'Email no valido',
+    tokenInvalid : 'Token no valido',
+    tokenRequired : 'Se requiere un token',
     passwordMatch : 'Las contraseñas no coinciden',
     passwordLength : 'La contraseña debe tener al menos 8 caracteres',
     passwordRequired : 'La contraseña es requerida',
+    nameShort : "El nombre debe tener como minimo 2 letras",
+    nameLong : "El nombre debe tener como maximo 50 letras",
 
     dishNameRequired : 'El nombre de plato es requerido',
     dishPriceRequired : 'El precio del plato es requerido',
@@ -123,6 +131,8 @@ export  default{
 
     reviewTextRequired : 'Se requiere ingresar un comentario',
     reviewTextLengthMin : 'El comentario debe tener minimo 3 letras',
+
+    userNameRequired : 'Se requiere ingresar un nombre',
 
     restaurantNameRequired : 'El nombre de restaurante no puede estar vacio',
     restaurantFoodTypeRequired : 'Debe seleccionar una categoria de comidas',

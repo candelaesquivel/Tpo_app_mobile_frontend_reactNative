@@ -1,5 +1,5 @@
 import React from 'react';
-import { View ,StyleSheet} from 'react-native';
+import { View ,StyleSheet, Dimensions} from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import I18n from "../../assets/localization/I18n";
@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
     words :{
       fontSize: Theme.font.LARGE,
       color: colorPalette.Black, 
-      fontWeight: "bold",
+      fontWeight: Theme.font.FONTWEIGHT,
   },
   wordsTwo :{
     color: colorPalette.Black ,
-     fontSize: 18
+     fontSize: Theme.font.SMALL_TWO
     },
     wordsThree : {
       color: colorPalette.Orange , 

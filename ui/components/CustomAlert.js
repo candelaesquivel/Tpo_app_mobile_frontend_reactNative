@@ -3,6 +3,7 @@ import { Text } from "react-native";
 import { colorPalette } from "../styles/colors";
 import { StyleSheet } from "react-native";
 import { Icon, Overlay } from "@rneui/base";
+import { Theme } from "../styles/Theme";
 
 const CustomAlert = ({isVisible = false, iconName='', msgText = '', 
 onRequestCloseHandler = {}, onYesHandler={}, onNoHandler={}, props}) => {
@@ -30,7 +31,7 @@ const style = StyleSheet.create({
   },
 
   overlay : {
-    borderRadius : 30,
+    borderRadius : Theme.sizes.BUTTON_ROUNDED,
     flexDirection : 'column',
     alignContent : 'center',
     backgroundColor : colorPalette.White,
@@ -42,7 +43,7 @@ const style = StyleSheet.create({
   firstText: {
     marginVertical: 50,
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: Theme.font.LARGE,
     color: colorPalette.Orange,
   },
 })

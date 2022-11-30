@@ -43,7 +43,7 @@ const style = StyleSheet.create({
   header :{
     fontSize: Theme.font.MEDIUM,
     color: colorPalette.Black, 
-    fontWeight: 'bold', 
+    fontWeight: Theme.font.FONTWEIGHT, 
     marginStart :"5%",
     marginTop : "2%",
     

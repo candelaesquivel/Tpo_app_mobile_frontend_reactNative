@@ -82,7 +82,7 @@ export default  {
     OPEN_HOUR_LABEL : I18n.t('opening'),
     DELETE_RESTAURANT_LABEL : I18n.t('deleteRestaurant'),
     DELETE_RESTAURANT_CONFIRM_MSG : I18n.t('confirmRestaurantDelete'),
-    COMMENT_LABEL : I18n.t('comment'),
+    COMMENT_LABEL : I18n.t('comments'),
     CLOSE_HOUR_LABEL : I18n.t('closing'),
     CLEAR_FILTERS_LABEL : I18n.t('clearFiltersLabel'),
     CLOSE_LABEL : I18n.t('close'),
@@ -93,6 +93,7 @@ export default  {
     DELETE_ACOOUNT_LABEL : I18n.t('deleteAccount'),
     DELETE_ACCOUNT_INTRO_MSG : I18n.t('messageDeleteAccount'),
     DELETE_LABEL : I18n.t('delete'),
+    DANGER_LABEL : I18n.t('danger'),
     CANCEL_LABEL : I18n.t('cancel'),
     DELETE_DISH_LABEL : I18n.t('deleteDish'),
     DELETE_DISH_CONFIRM_MSG : I18n.t('confirmDishDelete'),
@@ -108,6 +109,13 @@ export default  {
     OWNER_LABEL : I18n.t('owner'),
     SENT_COMMENT_LABEL : I18n.t('sentCommentLabel'),
     SHARE_LABEL : I18n.t('shareSocial'),
+    UNSTYLED_LABEL : I18n.t('unStyled'),
+    COOLGRAY_LABEL : I18n.t('coolGray'),
+    CLOSE : I18n.t('close'),
+    TYPE_FOOD : I18n.t('typeFood'),
+    SEARCH : I18n.t('search'),
+    CLOSE_REST : I18n.t('closeRest'),
+
 
 
     PRICE_RANGE_LOW : I18n.t('$'),
@@ -129,6 +137,9 @@ export default  {
   },
 
   ERROR_MSGS : {
+    ERROR_NAME_SHORT :I18n.t('nameShort'),
+    ERROR_NAME_LONG :I18n.t('nameLong'),
+
     EMAIL_REQUIRED : I18n.t('emailRequired'),
     EMAIL_INVALID : I18n.t('emailInvalid'),
     PASSWORD_NOT_MATCH : I18n.t('passwordMatch'),
@@ -140,6 +151,9 @@ export default  {
     DISH_INGREDIENTS_REQUIRED : I18n.t('dishIngredientsRequired'),
     DISH_CATEGORY_REQUIRED : I18n.t('dishCategoryRequired'),
 
+    USER_NAME_REQUIRED :  I18n.t('userNameRequired'),
+
+
     REVIEW_TEXT_REQUIRED : I18n.t('reviewTextRequired'),
     REVIEW_TEXT_MIN_LENGTH : I18n.t('reviewTextLengthMin'),
 
@@ -147,6 +161,8 @@ export default  {
     RESTO_FOOD_TYPE_REQUIRED : I18n.t('restaurantFoodTypeRequired'),
     RESTO_PRICE_TYPE_REQUIRED : I18n.t('restaurantPriceTypeRequired'),
   },
+
+
 
   MIN_LENGTH_PASSWORD : 8,
   MIN_LENGTH_REVIEW_TEXT : 3,

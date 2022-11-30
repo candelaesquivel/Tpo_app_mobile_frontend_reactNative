@@ -14,6 +14,7 @@ import { colorPalette } from "../styles/colors";
 import {getBase64Uri} from '../../config/utilities'
 import { CONSTANTS } from "../../config";
 import { AlertConfirm } from "./AlertConfirm";
+import { Theme } from "../styles/Theme";
 
 
 // Default Sample Data
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
   },
-  imageContainer: { backgroundColor: 'transparent'  },
+  imageContainer: { backgroundColor: Theme.color.TRANSPARENT  },
   item: {
     backgroundColor: "rgba(91, 91, 91, 0.3)",
     marginVertical: 8,
@@ -215,7 +216,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     color: '#fff',
-    fontWeight: "bold",
+    fontWeight: Theme.font.FONTWEIGHT,
   },
   subtitle: {
     color: '#fff',

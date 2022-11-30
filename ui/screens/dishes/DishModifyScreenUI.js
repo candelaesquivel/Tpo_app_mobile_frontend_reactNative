@@ -84,7 +84,7 @@ const DishModifyScreenUI = ({
                   title= {CONSTANTS.SCREEN_TEXTS.CHOOSE_LABEL} 
                   width={ Dimensions.get("window").width*0.4}
                   height={Dimensions.get("window").height*0.1}
-                  fontSizeTitle={18}
+                  fontSizeTitle={Theme.font.SMALL_TWO}
                   ></MyButton>
 
                   <MyButton

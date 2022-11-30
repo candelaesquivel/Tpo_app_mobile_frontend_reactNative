@@ -1,5 +1,6 @@
 import { Button } from "@rneui/themed";
 import { colorPalette } from "../styles/colors";
+import { Theme } from "../styles/Theme";
 
 export function MyButton(props) {
     return (
@@ -7,7 +8,7 @@ export function MyButton(props) {
         onPress={props.onPress}
             title={props.title}
             buttonStyle={{
-                borderRadius : 30,
+                borderRadius : Theme.sizes.BUTTON_ROUNDED,
                 backgroundColor : props.backgroundColor ? props.backgroundColor :  colorPalette.Orange
             }}
 
@@ -17,7 +18,7 @@ export function MyButton(props) {
             }}
 
             titleStyle={{
-                fontSize : 20,
+                fontSize : Theme.font.MEDIUM,
               
             }}
         >
