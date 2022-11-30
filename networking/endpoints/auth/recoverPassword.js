@@ -14,6 +14,6 @@ export async function recoverPassword(email){
     return false;
 
   }).catch(err => {
-    console.log(CONSTANTS.ERROR_MSGS.ERROR_RECOVER_PASSW, err.response.data);
+    console.log('Error on Recover Password: ', err.response.data);
   });  
 }

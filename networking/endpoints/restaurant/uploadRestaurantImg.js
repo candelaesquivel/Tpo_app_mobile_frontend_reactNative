@@ -26,7 +26,7 @@ export async function uploadRestaurantImg(restaurantId, pictures){
     });
   
    } catch (error) {
-      console.log(CONSTANTS.ERROR_MSGS.ERROR_MESSAGE, error.response.data);
+      console.log("ERROR:", error.response.data);
    }
 
 }

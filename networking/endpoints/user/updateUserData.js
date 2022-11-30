@@ -28,6 +28,6 @@ export async function updateUserData(userId, userData){
         return image;
       })
   ).catch(err => {
-    console.log( CONSTANTS.ERROR_MSGS.ERROR_MESSAGE, err.response.data);
+    console.log('Error on All: ', err.response.data);
   })
 }

@@ -13,6 +13,6 @@ export async function getRestaurants(searchParams)
   }).then((response) => {
     return response.data;
   }).catch(err => {
-    console.log(CONSTANTS.ERROR_MSGS.ERROR_GET_RESTAURANTS_SEARCH, err.response.data);
+    console.log('Error on Get Restaurants Searrch: ', err.response.data);
   });
 }

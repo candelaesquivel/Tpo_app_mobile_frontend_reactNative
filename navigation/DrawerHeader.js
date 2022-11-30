@@ -4,6 +4,7 @@ import { Icon } from "@rneui/base";
 import { Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { ImageBackground, Image } from "react-native";
+
 import { useSelector } from 'react-redux'
 import { useNavigation } from "@react-navigation/native";
 import { ROUTES } from "../ui";
@@ -32,7 +33,7 @@ function DrawerHeader({props}){
 
   const {width, height} = useWindowDimensions();
 
- 
+  console.log('W')
 
   return (
     <View style={style.container}>

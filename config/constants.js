@@ -137,34 +137,11 @@ export default  {
   },
 
   ERROR_MSGS : {
-    ERROR_MESSAGE : I18n.t('error'),
-
     ERROR_NAME_SHORT :I18n.t('nameShort'),
     ERROR_NAME_LONG :I18n.t('nameLong'),
 
     EMAIL_REQUIRED : I18n.t('emailRequired'),
     EMAIL_INVALID : I18n.t('emailInvalid'),
-    TOKEN_REQUIRED : I18n.t('tokenRequired'),
-    TOKEN_INVALID : I18n.t('tokenInvalid'),
-    
-
-    ERROR_LOGIN_GOOGLE : I18n.t('loginGoogle'),
-    ERROR_LOGIN_OWNER : I18n.t('loginOwner'),
-    ERROR_RECOVER_PASSW :  I18n.t('recoverPasswordE'),
-    ERROR_REGISTER_OWNER : I18n.t('registerOwner'),
-    ERROR_GET_DISHES : I18n.t('getDishes'),
-    ERROR_UPD_DISHES : I18n.t('updateDishes'),
-    ERROR_CREATE_REST :  I18n.t('createRestaurant'),
-    ERROR_DELETE_REST :  I18n.t('deleteRestaurantE'),
-    ERROR_GET_REST_INFO :  I18n.t('getRestaurantInfoE'),
-    ERROR_GET_RESTAURANTS_SEARCH :  I18n.t('getRestaurantsSearch'),
-    ERROR_UPDATE_REST :  I18n.t('updateRestoE'),
-    ERROR_REST_FAV :  I18n.t('restaurantfav'),
-    ERROR_GET_REST_FAV :  I18n.t('getRestaurantFav'),
-    ERROR_GET_REST_OWNER : I18n.t('getOwnerRestE'),
-    ERROR_GET_DISH : I18n.t('getDishE'),
-
-
     PASSWORD_NOT_MATCH : I18n.t('passwordMatch'),
     PASSWORD_REQUIRED : I18n.t('passwordRequired'),
     PASSWORD_LENGTH : I18n.t('passwordLength'),
