@@ -12,7 +12,7 @@ export async function createRestaurant(ownerId, restaurantData){
   .then(resp => {
     return resp.data;
   }).catch(err => {
-    console.error('WS Error: ', err.response.data);
+    console.error('WS Create Restaurant Error: ', err.response.data);
   }).finally(() => {
 
   })

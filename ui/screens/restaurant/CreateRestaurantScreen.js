@@ -149,6 +149,7 @@ function CreateRestaurantScreen({navigation, props}) {
     try {
       const images = await launchImageLibrary({
         mediaType : 'photo',
+        includeBase64 : true,
       });
 
       if (images){
