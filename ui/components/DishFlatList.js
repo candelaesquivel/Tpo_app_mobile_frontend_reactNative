@@ -22,6 +22,7 @@ export function DishFlatList({dishes, onDishPhotoPressHandler, props}){
       discounts={item.discounts}
       isVegan={item.isVegan}
       isGlutenFree={item.isGlutenFree}
+      pictures={item.pictures}
       onDishPhotoPressHandler={onDishPhotoPressHandler}
       >
     </DishItemCard>)

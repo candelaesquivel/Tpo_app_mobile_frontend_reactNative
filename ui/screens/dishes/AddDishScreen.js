@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { dishesWS } from '../../../networking/endpoints';
 import { dishSchemas } from '../../formSchemas/dishSchemas';
 import {AddDishScreenUI} from './AddDishScreenUI';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 function AddDishScreen({navigation, props}) {
 
@@ -12,11 +13,11 @@ function AddDishScreen({navigation, props}) {
       name : '',
       price : 0,
       ingredients : '',
-      discount : 0,
+      discounts : 0,
       isVegan : false,
       isGlutenFree : false,
       category : 'Plato Caliente',
-      photos : [],
+      pictures : [],
     },
     
     validationSchema : dishSchemas.createDish,
@@ -33,7 +34,7 @@ function AddDishScreen({navigation, props}) {
   }
 
   const onDiscountChange = (value) => {
-    formik.setFieldValue('discount', value);
+    formik.setFieldValue('discounts', value);
   }
   
   const onIsVeganChange = (value) => {
@@ -50,15 +51,30 @@ function AddDishScreen({navigation, props}) {
 
   const onSavePress = async () => {
     
-    const dishData = {...formik.values};
-
     try {
-      const newDish = await dishesWS.createDish(currRestaurant, dishData);
+      const newDish = await dishesWS.createDish(currRestaurant, {...formik.values});
       if (newDish){
         setShowCreateDishAlert(true);
       }
       else{
       }
+    } catch (error) {
+      console.log('Error: ', error);
+    }
+  }
+
+  const onUploadImgPress = async (event) => {
+
+    try {
+      const images = await launchImageLibrary({
+        mediaType : 'photo',
+        includeBase64 : true
+      });
+
+      if (images){
+        formik.setFieldValue('pictures', images.assets);
+      }
+
     } catch (error) {
       
     }
@@ -70,9 +86,10 @@ function AddDishScreen({navigation, props}) {
     name={formik.values.name}
     price={formik.values.price}
     ingredients={formik.values.ingredients.toString()}
-    discount={formik.values.discount}
+    discount={formik.values.discounts}
     isVegan={formik.values.isVegan}
     isGlutenFree={formik.values.isGlutenFree}
+    pictures={formik.values.pictures}
     showCreateDishAlert={showDishCreateAlert}
 
     nameError={formik.errors.name}
@@ -88,6 +105,7 @@ function AddDishScreen({navigation, props}) {
     onIsVeganChangeHandler={onIsVeganChange}
     onIsGlutenFreeChangeHandler={onIsGlutenFreeChange}
     onSavePressHandler={formik.handleSubmit}
+    onUploadImgPressHandler={onUploadImgPress}
 
    >
    </AddDishScreenUI>

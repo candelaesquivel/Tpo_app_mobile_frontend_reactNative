@@ -35,7 +35,7 @@ export const AddDishScreenUI = ({
     onPriceChangedHandler,
     onDiscountChangeHandler,
     onIngredientChangeHandler,
-
+    onUploadImgPressHandler = (img) => {},
     props
   }) => {
   
@@ -49,7 +49,7 @@ export const AddDishScreenUI = ({
           </CustomAlert>
           <Carousal></Carousal>
             <View style={styles.iconGlobal}>
-                <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
+                <Icon name = 'add' size={30} style={styles.iconPlus} onPress={onUploadImgPressHandler}></Icon>
             </View>
             <View style={styles.global}>
                 <DishForm

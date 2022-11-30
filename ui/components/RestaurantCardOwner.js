@@ -4,6 +4,8 @@ import { colorPalette } from '../styles/colors';
 import { Theme } from '../styles/Theme';
 import { Image } from 'react-native';
 import { CONSTANTS } from '../../config';
+import { Avatar } from "native-base";
+import { getBase64Uri } from '../../config/utilities';
 
 function RestaurantCardOwner({
 name = 'Rodizio', 
@@ -16,10 +18,8 @@ onMenuPressHandler,
 props}) {
 
   const showRating = score > 0;
-  const photo = pictures.length > 0 ? 
-  'data:image/png;base64,' + pictures[0] : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==';
 
-  const onRestaurantPhotoHandler = (event) => {
+  const onRestaurantPhotoPress = (event) => {
     if (onPhotoPressHandler)
       onPhotoPressHandler(restaurantId);
   }
@@ -29,18 +29,18 @@ props}) {
       onMenuPressHandler(restaurantId);
   }
 
+  const imgFromBack = pictures.length > 0 ?  getBase64Uri(pictures[0]) : 'https://bit.ly/broken-link'; 
+
   return (
       <Card>
         <View style={styles.global}>
-          <TouchableWithoutFeedback onPress={onRestaurantPhotoHandler}>
-            <Image source ={{
-                uri : photo,
-              }}
-              style ={{
-                width : Dimensions.get('window').width*0.3,
-                height : Dimensions.get('window').height*0.15
-              }}></Image>
-          </TouchableWithoutFeedback>
+          <Avatar
+            bg="amber.500"
+            source={{uri : imgFromBack}}
+            size={'xl'}
+            onTouchEnd={onRestaurantPhotoPress}
+          >
+          </Avatar>
 
           <View width={Dimensions.get('window').width*0.55}   style={styles.globalTwo} >
             <Text style={styles.title} >{name}</Text>

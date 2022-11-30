@@ -54,6 +54,7 @@ function CreateRestaurantScreen({navigation, props}) {
   });
 
   const [addressEntered, setAddressEntered] = useState(false);
+  const [showConfirmDeletePhoto, setshowConfirmPhotoDelete] = useState(false);
 
   const ownerId = useSelector(state => state.user.userId);
 
@@ -149,15 +150,41 @@ function CreateRestaurantScreen({navigation, props}) {
     try {
       const images = await launchImageLibrary({
         mediaType : 'photo',
+        includeBase64 : true,
       });
 
       if (images){
-        formik.setFieldValue('pictures', images.assets);
+        const pictures = [].concat(formik.values.pictures, images.assets);
+        formik.setFieldValue('pictures', pictures);
       }
 
     } catch (error) {
       
     }
+  }
+
+  const onDeletePhotoPress = (event) => {
+    setshowConfirmPhotoDelete(true);
+  }
+
+  const onCancelDeletePhotoPress = (event) => {
+    setshowConfirmPhotoDelete(false);
+  }
+
+  const onConfirmDeletePhotoPress = (photoFileName) => {
+    setshowConfirmPhotoDelete(false);
+
+    const pictures = [];
+
+    formik.values.pictures.forEach(item => {
+      if (!item)
+        return;
+
+        if (item.fileName !== photoFileName)
+          pictures.push(item);
+    });
+
+    formik.setFieldValue('pictures', pictures);
   }
 
   return (
@@ -167,6 +194,7 @@ function CreateRestaurantScreen({navigation, props}) {
         restaurantTypes={formik.values.restaurantTypes}
         priceRange={formik.values.priceRange}
         region={region}
+        pictures = {formik.values.pictures}
         openingTimes={formik.values.openingTimes}
         closingTimes={formik.values.closingTimes}
         addressEntered={addressEntered}
@@ -180,6 +208,11 @@ function CreateRestaurantScreen({navigation, props}) {
         onOpenTimeChangeHandler={onOpenTimeChange}
         onCloseTimeChangeHandler={onCloseTimeChange}
         onUploadImgHandler={onUploadImgPress}
+
+        showConfirmDeletePhoto={showConfirmDeletePhoto}
+        onConfirmDeletePhotoHandler={onConfirmDeletePhotoPress}
+        onCancelDeletePhotoHandler={onCancelDeletePhotoPress}
+        onDeletePhotoPressHandler={onDeletePhotoPress}
     >
     </CreateRestaurantUI>
   );
