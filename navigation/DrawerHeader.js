@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ROUTES } from "../ui";
 import { colorPalette } from "../ui/styles/colors";
 import { Avatar } from "native-base";
+import { getBase64Uri } from "../config/utilities";
 
 
 function DrawerHeader({props}){
@@ -20,11 +21,8 @@ function DrawerHeader({props}){
     return state.user.userName;
   })
 
-  const userImg = useSelector(state => {
-    if (state.user.userImg !== '')
-      return 'data:image/png;base64,' + state.user.userImg
-
-    return state.user.userImg;
+  const userPictures = useSelector(state => {
+    return state.user.pictures;
   });
 
   const onIconPress = (event) => {
@@ -33,7 +31,7 @@ function DrawerHeader({props}){
 
   const {width, height} = useWindowDimensions();
 
-  console.log('W')
+  const imgFromBack = userPictures.length > 0 ?  getBase64Uri(userPictures[0]) : 'https://bit.ly/broken-link'; 
 
   return (
     <View style={style.container}>
@@ -42,18 +40,13 @@ function DrawerHeader({props}){
        height={Dimensions.get('window').height*0.1}
        ></Logo>
       <View onTouchStart={onIconPress}>
-        {!userImg &&       
-        <Icon onPress={onIconPress} name = 'account-circle' size = {96}></Icon>
-        }
-        {userImg && 
-          <Avatar
-            source={{
-              uri : userImg,
-            }}
-            size = '2xl'
+        <Avatar
+            bg="green.500"
+            source={{uri : imgFromBack}}
+            size='xl'
           >
-          </Avatar>
-        }
+          {userPictures.length === 0 && userName[0]}
+        </Avatar>
       </View>
       <Text>{userName}</Text>
     </View>

@@ -8,7 +8,7 @@ const defaultState =
     userName : '',
     isLogged : false,
     role : '',
-    userImg : '',
+    pictures : [],
     restaurantSelectedId : '',
     dishSelectedId : '',
 
@@ -29,7 +29,7 @@ const userSlice = createSlice({
     loginUser(state, action) {
 
       state.token = action.payload.accessToken;
-      state.userImg = action.payload.profilePicture;
+      state.pictures = action.payload.pictures;
       state.userName = action.payload.name;
       state.userId = action.payload.id;
       state.email = action.payload.email;

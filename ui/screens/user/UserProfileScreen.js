@@ -16,12 +16,13 @@ export default function UserProfileScreen({navigation, route, props}) {
   const userName = useSelector(state => state.user.userName);
   const userId = useSelector(state => state.user.userId);
   const userState = useSelector(state => state.user);
+  const userPictures = useSelector(state => state.user.pictures);
 
   const formik = useFormik({
     initialValues : {
       name : userName,
       userId : userId,
-      photo : '',
+      pictures : userPictures,
     },
     validationSchema : userSchemas.userName,
     async onSubmit(values){
@@ -62,11 +63,12 @@ export default function UserProfileScreen({navigation, route, props}) {
 
     try {
       const result = await launchImageLibrary({
-        mediaType : 'photo'
+        mediaType : 'photo',
+        includeBase64 : true,
       });
 
       if (result){
-        formik.setFieldValue('photo', result.assets[0]);
+        formik.setFieldValue('pictures', result.assets);
       }
     } catch (error) {
       console.log('Error:');

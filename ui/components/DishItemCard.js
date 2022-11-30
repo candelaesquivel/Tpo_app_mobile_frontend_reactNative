@@ -6,7 +6,6 @@ import I18n from "../../assets/localization/I18n";
 import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
 import { Image } from 'react-native';
-import { Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { CONSTANTS} from '../../config';
 import { useNavigation } from '@react-navigation/native';
