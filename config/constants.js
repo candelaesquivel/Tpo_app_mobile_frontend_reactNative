@@ -217,7 +217,11 @@ export default  {
     //Modify data dish
     MODIFY_DATA_DISH :  I18n.t('dishmodifyData'),
     MODIFY_DATA_DISH_ERROR :  I18n.t('dishmodifyDataError'),
-    
+
+     //Category dish
+     MODIFY_CATEGORY_DISH :  I18n.t('dishmodifyCategory'),
+     MODIFY_CATEGORY_DISH_ERROR :  I18n.t('dishmodifyCategoryError'),
+
     //Delete dish
     DELETE_DISH :  I18n.t('deletedish'),
     DELETE_DISH_ERROR :  I18n.t('deletedishError'),

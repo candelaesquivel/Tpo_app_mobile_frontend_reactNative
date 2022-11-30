@@ -192,6 +192,10 @@ export  default{
     dishmodifyDataError : "No se pudo modificar la información del plato",
     dishmodifyData : "Se modificó exitosamente la información del plato",
 
+    //Category dish
+    dishmodifyCategoryError : "No se pudo modificar la categoria del plato",
+    dishmodifyCategory : "Categoría del plato modificada exitosamente",
+
      //Delete dish
      deletedishError : "No se pudo eliminar el plato",
      deletedish : "Plato eliminado",
