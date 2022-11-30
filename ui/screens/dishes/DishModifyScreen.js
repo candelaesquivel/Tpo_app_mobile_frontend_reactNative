@@ -36,7 +36,7 @@ function DishModifyScreen({navigation, route, props}){
   });
 
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-  const [showConfirmPhotoDelete, setshowConfirmPhotoDelete] = useState(false);
+  const [showConfirmPhotoDelete, setShowConfirmPhotoDelete] = useState(false);
 
 
   const restaurantId = useSelector(state => state.user.restaurantSelectedId);
@@ -76,11 +76,11 @@ function DishModifyScreen({navigation, route, props}){
   }
 
   const onCancelDeletePhotoPress = (event) => {
-    setshowConfirmPhotoDelete(false);
+    setShowConfirmPhotoDelete(false);
   }
 
   const onConfirmDeletePhotoPress = (photoFileName) => {
-    setshowConfirmPhotoDelete(false);
+    setShowConfirmPhotoDelete(false);
 
     const pictures = [];
 
@@ -120,7 +120,7 @@ function DishModifyScreen({navigation, route, props}){
   }
 
   const onDeletePhotoPress = async (event) => {
-    setshowConfirmPhotoDelete(true);
+    setShowConfirmPhotoDelete(true);
   }
 
   const onUploadImgPress = async (event) => {
