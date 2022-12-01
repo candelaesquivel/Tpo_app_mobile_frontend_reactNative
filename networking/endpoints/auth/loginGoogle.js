@@ -1,6 +1,7 @@
 import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
+import { setClientToken } from "../../api";
 
 export async function loginGoogle(userInfo){
 
@@ -17,8 +18,10 @@ export async function loginGoogle(userInfo){
       longitude : userInfo.longitude
     },
   }
-
+  
   return axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, googleData).then(res => {
+    const token = res.data.token;
+    setClientToken(token)
     return res.data;
   }).catch(err => {
     console.log('Error on Google Login: ', err.response.data);

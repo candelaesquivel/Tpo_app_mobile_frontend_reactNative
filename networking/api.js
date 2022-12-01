@@ -4,13 +4,9 @@ import { TIMEOUT, URL_API } from "../config/config";
 axios.defaults.baseURL = URL_API;
 axios.defaults.timeout = TIMEOUT;
 
-function setClientToken(token){
+export function setClientToken(token){
+  console.log('Client Token: ', token);
   axios.defaults.headers.common = {
-    'Authorization' : token
+    'x-access-token' : token
   };
-};
-
-module.exports = {
-  axios,
-  setClientToken
 };
