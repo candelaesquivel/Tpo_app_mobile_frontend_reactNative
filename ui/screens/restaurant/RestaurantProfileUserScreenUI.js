@@ -44,8 +44,8 @@ const RestaurantProfileUserScreenUI = ({
   closeRest,
   ...props}) => {
   
-    let openHour = openDate.getHours() + ':' + openDate.getMinutes();
-    let closeHour = closeDate.getHours() + ':' + closeDate.getMinutes();
+    let openHour = openDate.getHours() - 3 + ':' + openDate.getMinutes();
+    let closeHour = closeDate.getHours() - 3 + ':' + closeDate.getMinutes();
 
     return (
       <View>
