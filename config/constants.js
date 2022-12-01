@@ -39,7 +39,10 @@ export default  {
     SENT_COMMENT : I18n.t('sentCommentTitle'),
     CREATE_RESTAURANT : I18n.t('createRestaurantTitle'),
     FILTERS : I18n.t('filtersTitle'),
-    TOKEN : I18n.t('tokenScreen')
+    TOKEN : I18n.t('tokenScreen'),
+    CATEGORY :I18n.t('categoryTitle'),
+    CATEGORY_TEXT : I18n.t('categoryText'),
+    CATEGORY_DROPDOWN :I18n.t('categoryDropdown'),
   },
 
   SCREEN_TEXTS : {

@@ -89,6 +89,9 @@ export  default{
     clearFiltersLabel : 'Limpiar Filtros',
     typeFood : 'Tipo de Comida',
     search : 'Buscar',
+    categoryTitle: "Categoría del plato",
+    categoryText : "Ingrese una nueva categoría :",
+    categoryDropdown : "Categorías del restaurante",
 
     
     dishCreated : 'Plato Creado',

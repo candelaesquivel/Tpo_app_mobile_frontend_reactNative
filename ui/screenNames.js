@@ -37,4 +37,5 @@ export default {
     USER_SENT_COMMENT : "SentCommentScreen",
 
     BUTTON_SCREEN : "ButtonScreen",
+    CATEGORY_SCREEN : "CategoryRestaurantScreen",
 };

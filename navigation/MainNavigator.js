@@ -5,7 +5,7 @@ import { AddDish, CreateAccountOwner, CreateRestaurant,
         ModifyDish , ProfileUserRestaurant, SearchFilters, 
         RestaurantProfileUser, ErrorMsg,
          EditRestaurant, UserProfile , SentComment , RecoverPasswordToken,
-         ButtonSrn } from "../ui/screens";
+         ButtonSrn,CategorySrn } from "../ui/screens";
 import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
@@ -34,6 +34,10 @@ function MainNavigator(props){
           headerTintColor: colorPalette.White,
         }}>         
         
+            <Stack.Screen name = {ROUTES.CATEGORY_SCREEN} component = {CategorySrn} options={{
+              title : CONSTANTS.SCREEN_TITLES.CATEGORY ,
+            }}></Stack.Screen>
+
             <Stack.Screen name = {ROUTES.HOME_SCREEN} component = {Home} options={{
               headerShown: false,
             }}></Stack.Screen>
@@ -123,6 +127,9 @@ function MainNavigator(props){
              title : "" 
              }}></Stack.Screen>
         </Stack.Navigator>
+
+     
+     
     )
 }
 
