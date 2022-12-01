@@ -2,7 +2,7 @@ import { StyleSheet , ToastAndroid} from 'react-native'
 import React, { useState } from 'react'
 import { colorPalette } from '../../styles/colors'
 import { Theme } from '../../styles/Theme';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { dishesWS } from '../../../networking/endpoints';
 import {ROUTES} from '../..';
 import { CONSTANTS } from '../../../config';
@@ -40,13 +40,14 @@ function DishModifyScreen({navigation, route, props}){
 
 
   const restaurantId = useSelector(state => state.user.restaurantSelectedId);
- 
+  const dispatch = useDispatch();
+
   const onSavePress = async () => {
 
     const dishData = {...formik.values};
 
     try {
-      const result = await dishesWS.updateDish(restaurantId, dishId, dishData);
+      const result = await dishesWS.updateDish(restaurantId, dishId, dishData, dispatch);
 
       if (result){
         setTimeout(() => {
@@ -66,7 +67,7 @@ function DishModifyScreen({navigation, route, props}){
 
   const onConfirmDeletePress = async (event) => {
     try {
-      const result = await dishesWS.deleteDish(restaurantId, dishId);
+      const result = await dishesWS.deleteDish(restaurantId, dishId, dispatch);
       if (result)
         navigation.navigate(ROUTES.MENU_RESTAURANT_OWNER_STACK);
     } catch (error) {

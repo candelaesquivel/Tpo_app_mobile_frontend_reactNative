@@ -38,7 +38,7 @@ export default function UserProfileScreen({navigation, route, props}) {
   const onSavePress = async () => {
 
     try {
-      const result = await userWS.updateUserData(userId, formik.values);
+      const result = await userWS.updateUserData(userId, formik.values, dispatch);
 
       if (result){
         dispatch(loginUser(result));

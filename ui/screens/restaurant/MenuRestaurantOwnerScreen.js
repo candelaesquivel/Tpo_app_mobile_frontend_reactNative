@@ -19,7 +19,7 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
   const dispatch = useDispatch();
 
   const fillDishList = async () => {
-    const newDishes = await dishesWS.getDishesFromRestaurant(restoId);
+    const newDishes = await dishesWS.getDishesFromRestaurant(restoId, dispatch);
     setDishes(newDishes);
   }
 
@@ -44,7 +44,7 @@ function MenuRestaurantOwnerScreen({navigation,props}) {
     dispatch(selectDish(dishId));
 
     try {
-      var dishInfo = await dishesWS.getDishData(restoId, dishId);
+      var dishInfo = await dishesWS.getDishData(restoId, dishId, dispatch);
 
       if (dishInfo){
         navigation.navigate(ROUTES.DISH_MODIFY_STACK, dishInfo);

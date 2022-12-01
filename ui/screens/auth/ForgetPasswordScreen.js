@@ -4,6 +4,7 @@ import { ROUTES } from "../../";
 import { useFormik } from 'formik';
 import { authSchemas } from "../../formSchemas/authSchemas";
 import { authWS } from "../../../networking/endpoints";
+import { useDispatch } from "react-redux";
 
 
 function ForgetPasswordScreen({navigation, props}) {
@@ -18,11 +19,12 @@ function ForgetPasswordScreen({navigation, props}) {
       }
     });
 
-
+    const dispatch = useDispatch();
+    
     const onRecoveryTouch = async () => {
 
       try {
-        const result = await authWS.recoverPassword(formik.values.email);
+        const result = await authWS.recoverPassword(formik.values.email, dispatch);
 
         if (result)
           navigation.navigate(ROUTES.RECOVER_PASSWORD_TOKEN);

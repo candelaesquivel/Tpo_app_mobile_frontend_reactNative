@@ -33,7 +33,7 @@ function HomeLandingUser({navigation , props}) {
       ...filterParams,
     };
 
-    const restos = await restaurantWS.getRestaurants(searchParams);
+    const restos = await restaurantWS.getRestaurants(searchParams, dispatch);
     setRestaurants(restos);
   }
 
@@ -62,7 +62,7 @@ function HomeLandingUser({navigation , props}) {
     dispatch(selectRestaurant(restaurantId));
 
     try {
-      const restaurant = await restaurantWS.getRestaurantInfo(restaurantId);
+      const restaurant = await restaurantWS.getRestaurantInfo(restaurantId, dispatch);
       console.log(restaurant);
 
       if (restaurant)

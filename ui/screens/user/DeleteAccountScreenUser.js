@@ -25,13 +25,15 @@ function DeleteAccountScreenUser({navigation, props}){
     },
   });
 
+  const dispatch = useDispatch();
+  
     const onDeletePress = async () => {
       const userData = {
         email : formik.values.email,
         password : formik.values.password,
       };
 
-      const isDeleted = await userWS.deleteAccount(userId, formik.values);
+      const isDeleted = await userWS.deleteAccount(userId, formik.values, dispatch);
 
       if (isDeleted)
       {

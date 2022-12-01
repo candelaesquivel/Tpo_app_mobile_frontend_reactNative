@@ -5,8 +5,8 @@ import { getHttpCodeMessage } from "../../../config/utilities";
 import { setClientToken } from "../../api";
 import { showErrorToast, showSuccessToast} from "../../../redux/slices/feedBackReducer";
 
-export async function getDishesFromRestaurant(restaurantId){
-  const url = URL_SERVICES.DISH_LIST.replace('restaurantId', restaurantId, dispatch = undefined);
+export async function getDishesFromRestaurant(restaurantId, dispatch = undefined){
+  const url = URL_SERVICES.DISH_LIST.replace('restaurantId', restaurantId);
 
   return axios.get(url).then( (response) => {
     let dishes = []

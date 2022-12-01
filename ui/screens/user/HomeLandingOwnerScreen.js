@@ -17,7 +17,7 @@ function HomeOwnerUI({navigation, props}) {
   });
 
   const fillRestaurantList = async () => {
-    const rests = await userWS.getOwnerRestaurants(ownerId);
+    const rests = await userWS.getOwnerRestaurants(ownerId, dispatch);
 
     if (rests)
       setRestaurants(rests);
@@ -42,7 +42,7 @@ function HomeOwnerUI({navigation, props}) {
     dispatch(selectRestaurant(restaurantId));
 
     try {
-      const restaurant = await restaurantWS.getRestaurantInfo(restaurantId);
+      const restaurant = await restaurantWS.getRestaurantInfo(restaurantId, dispatch);
 
       if (restaurant){
         navigation.navigate(ROUTES.RESTAURANT_EDIT_OWNER, restaurant);

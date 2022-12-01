@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { dishesWS } from '../../../networking/endpoints';
 import { dishSchemas } from '../../formSchemas/dishSchemas';
 import {AddDishScreenUI} from './AddDishScreenUI';
@@ -25,6 +25,8 @@ function AddDishScreen({navigation, props}) {
       onSavePress();
     }
   });
+
+  const dispatch = useDispatch();
   
   const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
   const [showDishCreateAlert, setShowCreateDishAlert] = useState(false);
@@ -52,7 +54,7 @@ function AddDishScreen({navigation, props}) {
   const onSavePress = async () => {
     
     try {
-      const newDish = await dishesWS.createDish(currRestaurant, {...formik.values});
+      const newDish = await dishesWS.createDish(currRestaurant, {...formik.values}, dispatch);
       if (newDish){
         setShowCreateDishAlert(true);
       }

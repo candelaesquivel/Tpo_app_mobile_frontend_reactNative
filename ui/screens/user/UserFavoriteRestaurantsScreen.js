@@ -18,7 +18,7 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
   const userId = useSelector(state => state.user.userId);
 
   const fillFavoriteRestaurantList = async () => {
-    const restos = await userWS.getFavoriteRestaurants(userId);
+    const restos = await userWS.getFavoriteRestaurants(userId, dispatch);
     setRestaurants(restos);
   }
 
@@ -45,7 +45,7 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
   const onPhotoPress = async (restaurantId) => {
     dispatch(selectRestaurant(restaurantId));
     try {
-      const restaurant = await restaurantWS.getRestaurantInfo(restaurantId);
+      const restaurant = await restaurantWS.getRestaurantInfo(restaurantId, dispatch);
       console.log(restaurant);
 
       if (restaurant)

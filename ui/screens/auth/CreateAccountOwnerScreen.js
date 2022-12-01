@@ -6,6 +6,7 @@ import { CreateAccountOwnerUI } from "./CreateAccountOwnerUI";
 import { authWS } from "../../../networking/endpoints";
 import { useFormik } from 'formik';
 import { authSchemas } from "../../formSchemas/authSchemas";
+import { useDispatch } from "react-redux";
 
 export function CreateAccountOwnerScreen({navigation, props}) {
 
@@ -21,6 +22,8 @@ export function CreateAccountOwnerScreen({navigation, props}) {
       }
     });
 
+    const dispatch = useDispatch();
+
     const onRegisterPress = async (e) => {
 
       const userData = {
@@ -29,7 +32,7 @@ export function CreateAccountOwnerScreen({navigation, props}) {
       };
 
       try {
-        const result = await authWS.registerOwner(userData);
+        const result = await authWS.registerOwner(userData, dispatch);
 
         if (result){
           setTimeout(() => {

@@ -47,7 +47,7 @@ function LoginOwnerScreen({navigation, props}){
       };
 
         try {
-          var userDataResp = await authWS.loginOwner(userData);
+          var userDataResp = await authWS.loginOwner(userData, dispatch);
         } catch (error) {
           dispatch(logoutUser());
         }

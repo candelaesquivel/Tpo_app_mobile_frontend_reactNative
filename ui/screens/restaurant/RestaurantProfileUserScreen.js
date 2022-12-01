@@ -34,12 +34,12 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
   const restoId = useSelector((state) => state.user.restaurantSelectedId);
 
   const fillCommentsList = async () => {
-    const newComments = await reviewWS.getReviewsOfRestaurant(restoId);
+    const newComments = await reviewWS.getReviewsOfRestaurant(restoId, dispatch);
     setComments(newComments);
   }
 
   const fillDishList = async () => {
-    const newDishes = await dishesWS.getDishesFromRestaurant(restoId);
+    const newDishes = await dishesWS.getDishesFromRestaurant(restoId, dispatch);
     setDishes(newDishes);
   }
 
@@ -63,7 +63,7 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
     dispatch(selectDish(dishId));
 
     try {
-      var dishInfo = await dishesWS.getDishData(restoId, dishId);
+      var dishInfo = await dishesWS.getDishData(restoId, dishId, dispatch);
 
       if (dishInfo){
         navigation.navigate(ROUTES.DISH_USER_VIEW_STACK, dishInfo);
