@@ -60,7 +60,6 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
     }
   }
 
-  console.log('Address: ', restoData.address);
 
   const onMapPress = (event) => {
     navigation.navigate(ROUTES.BUTTON_SCREEN, {
