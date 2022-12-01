@@ -43,6 +43,11 @@ const URL_SERVICES = {
   DISH_DELETE : RESTAURANT_ROUTE + 'restaurantId/' + 'dishes/' + 'dishId',
   CREATE_REVIEW :RESTAURANT_ROUTE + 'restaurantId/' + 'reviews/'+"userId",
 
+  // Categories
+  CREATE_CATEGORY : RESTAURANT_ROUTE + 'restaurantId/' + 'categories',
+  DELETE_CATEGORY : RESTAURANT_ROUTE + 'restaurantId/' + 'categories',
+  GET_CATEGORIES : RESTAURANT_ROUTE + 'restaurantId/' + 'categories',
+
   // Status Server check
   HEALTH_CHECK: URL_API + 'health',
 };

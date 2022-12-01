@@ -22,3 +22,4 @@ export {default as SentComment} from './reviews/SentCommentScreen';
 export {default as RecoverPasswordToken} from './auth/RecoverPasswordToken';
 export {default as ErrorMsg} from './errors/ErrorMsgScreen';
 export {default as ButtonSrn} from './restaurant/ButtonScreen';
+export {default as RestaurantCategories} from './restaurant/RestaurantCategoriesScreen';

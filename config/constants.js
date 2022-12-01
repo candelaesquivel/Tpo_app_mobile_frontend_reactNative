@@ -39,7 +39,9 @@ export default  {
     SENT_COMMENT : I18n.t('sentCommentTitle'),
     CREATE_RESTAURANT : I18n.t('createRestaurantTitle'),
     FILTERS : I18n.t('filtersTitle'),
-    TOKEN : I18n.t('tokenScreen')
+    TOKEN : I18n.t('tokenScreen'),
+    CATEGORY :I18n.t('categoryTitle'),
+
   },
 
   SCREEN_TEXTS : {
@@ -116,12 +118,13 @@ export default  {
     SEARCH : I18n.t('search'),
     CLOSE_REST : I18n.t('closeRest'),
 
-
+    CATEGORY_LIST :I18n.t('categoryDropdown'),
 
     PRICE_RANGE_LOW : I18n.t('$'),
     PRINCE_RANGE_MID : I18n.t('$$'),
     PRICE_RANGE_HIGH : I18n.t('$$$'),
     PRICE_RANGE_ULTRA_HIGH : I18n.t('$$$$'),
+    USER_PICTURE_LABEL : I18n.t('actualPicture'),
 
     MONDAY_LETTER : I18n.t('mondayLetter'),
     TUESDAY_LETTER : I18n.t('tuesdayLetter'),

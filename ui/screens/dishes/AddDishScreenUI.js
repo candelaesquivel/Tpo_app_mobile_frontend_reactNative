@@ -17,6 +17,7 @@ export const AddDishScreenUI = ({
     name = '',
     price = 0,
     ingredients = '',
+    category = '',
     discount = 0,
     isVegan = false,
     isGlutenFree = false,
@@ -26,6 +27,7 @@ export const AddDishScreenUI = ({
     priceError='',
     ingredientsError='',
     categoryError='',
+    categories = [],
 
     onIsGlutenFreeChangeHandler,
     onIsVeganChangeHandler,
@@ -36,9 +38,18 @@ export const AddDishScreenUI = ({
     onDiscountChangeHandler,
     onIngredientChangeHandler,
     onUploadImgPressHandler = (img) => {},
+    onAddCategoryPressHandler = (event) => {},
+    onCategorySelectedChangeHandler = (event) => {},
     props
   }) => {
-  
+    
+    const categoryData = categories.map((item, idx) => {
+      return {
+        label : item,
+        value : idx,
+      }
+    })
+
     return (
         <ScrollView>
            <CustomAlert 
@@ -53,6 +64,8 @@ export const AddDishScreenUI = ({
             </View>
             <View style={styles.global}>
                 <DishForm
+                  selectedCategory={category}
+                  categories={categoryData} onCategoryChangeHandler={onCategorySelectedChangeHandler}
                   name={name} onNameChanged={onNameChangedHandler} nameError={nameError}
                   price={price} onPriceChanged={onPriceChangedHandler} priceError={priceError}
                   ingredients={ ingredients} onIngredientChange={onIngredientChangeHandler} ingredientsError={ingredientsError}
@@ -62,18 +75,13 @@ export const AddDishScreenUI = ({
                 ></DishForm>
     
                 <View style={styles.buttons}>
-                        <MyButton
-                        title= {I18n.t('chose')} 
-                        width={ Dimensions.get("window").width*0.5}
-                        height={Dimensions.get("window").height*0.1}
-                        ></MyButton>
-    
-                        <MyButton
-                        title= {I18n.t('addNewCategory')} 
-                        width={ Dimensions.get("window").width*0.5}
-                        height={Dimensions.get("window").height*0.1}
-                        ></MyButton>
-                     
+                  <MyButton
+                  onPress={onAddCategoryPressHandler}
+                  title= {I18n.t('addNewCategory')} 
+                  width={ Dimensions.get("window").width*0.5}
+                  height={Dimensions.get("window").height*0.1}
+                  >
+                  </MyButton>
                 </View>
                    
                 <View style={styles.buttonsTwo}>

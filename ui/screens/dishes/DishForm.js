@@ -6,6 +6,7 @@ import { InputText } from "../../components/InputText"
 import { Slider } from "@rneui/themed"
 import I18n from "../../../assets/localization/I18n"
 import  Icon from 'react-native-vector-icons/MaterialIcons';
+import { Dropdown } from "react-native-element-dropdown"
 
 const DishForm = ({
   name = '',
@@ -14,6 +15,8 @@ const DishForm = ({
   discount = 0,
   isVegan = false,
   isGlutenFree = false,
+  categories = [],
+  selectedCategory = '',
 
   nameError='',
   priceError='',
@@ -26,6 +29,7 @@ const DishForm = ({
   onIngredientChange,
   onIsGlutenFreeChange,
   onIsVeganChange,
+  onCategoryChangeHandler = (item) => {},
   props}) => {
 
   return (
@@ -115,9 +119,24 @@ const DishForm = ({
               onValueChange={onIsGlutenFreeChange}
               value={isGlutenFree} />
       </View>
-    <Text style={styles.words}>
-      {CONSTANTS.SCREEN_TEXTS.CATEGORY_LABEL}    
-    </Text>
+      <View>
+        <Dropdown
+          style={[styles.dropdown]}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          inputSearchStyle={styles.inputSearchStyle}
+          data={categories}
+          maxHeight={300}
+          labelField="label"
+          valueField="value"
+          value={categories.find(item => item.label === selectedCategory)}
+          placeholder={CONSTANTS.SCREEN_TITLES.CATEGORY_DROPDOWN}
+          onChange={(item) => onCategoryChangeHandler(item.label)}
+        />
+      </View>
+      <Text style={styles.words}>
+        {CONSTANTS.SCREEN_TEXTS.CATEGORY_LABEL}    
+      </Text>
     </View>
   )
 }
@@ -170,6 +189,16 @@ const styles = StyleSheet.create({
     width :  20,
     backgroundColor: Theme.color.TRANSPARENT
    },
+
+   dropdown: {
+    width :Dimensions.get("window").width*0.9,
+    height :Dimensions.get("window").height*0.09,
+    borderColor: colorPalette.Orange,
+    borderRadius: Theme.sizes.SMALL_ROUNDED,
+    paddingHorizontal: 10, borderWidth:1,
+    marginBottom :Dimensions.get("window").height*0.04, 
+    marginTop :Dimensions.get("window").height*0.08, 
+  },
    
 });
 

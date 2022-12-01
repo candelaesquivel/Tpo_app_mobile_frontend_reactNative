@@ -5,6 +5,10 @@ import { dishesWS } from '../../../networking/endpoints';
 import { dishSchemas } from '../../formSchemas/dishSchemas';
 import {AddDishScreenUI} from './AddDishScreenUI';
 import { launchImageLibrary } from 'react-native-image-picker';
+import {ROUTES} from '../..';
+import { useIsFocused, useFocusEffect } from '@react-navigation/native';
+import { useCallback } from 'react';
+import { categoriesWS } from '../../../networking/endpoints';
 
 function AddDishScreen({navigation, props}) {
 
@@ -16,7 +20,7 @@ function AddDishScreen({navigation, props}) {
       discounts : 0,
       isVegan : false,
       isGlutenFree : false,
-      category : 'Plato Caliente',
+      category : '',
       pictures : [],
     },
     
@@ -26,10 +30,35 @@ function AddDishScreen({navigation, props}) {
     }
   });
 
+  const [categories, setCategories] = useState([])
   const dispatch = useDispatch();
-  
+  const isFocused = useIsFocused();
+  const restaurantId = useSelector(state => state.user.restaurantSelectedId);
+
+  const fillCategoriesList = async () => {
+    try {
+      const newCategories = await categoriesWS.getCategoriesFromRestaurant(restaurantId, dispatch);
+      if (newCategories){
+        setCategories(newCategories);
+      }
+    } catch (error) {
+      
+    }
+  }
+
   const currRestaurant = useSelector(state => state.user.restaurantSelectedId);
   const [showDishCreateAlert, setShowCreateDishAlert] = useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+
+      fillCategoriesList();
+
+      return () => {
+        
+      }
+    }, [isFocused])
+  );
 
   const onIngredientChange = (text) => {
     formik.setFieldValue('ingredients', text);
@@ -82,17 +111,30 @@ function AddDishScreen({navigation, props}) {
     }
   }
 
+  const onCategorySelectedChange = (item) => {
+    formik.setFieldValue('category', item);
+  }
+
+  const onAddCategoryPress = (event) => {
+    navigation.navigate(ROUTES.CATEGORY_SCREEN);
+  }
+
   return (
 
    <AddDishScreenUI
     name={formik.values.name}
     price={formik.values.price}
+    categories={categories}
+    category = {formik.values.category}
     ingredients={formik.values.ingredients.toString()}
     discount={formik.values.discounts}
     isVegan={formik.values.isVegan}
     isGlutenFree={formik.values.isGlutenFree}
     pictures={formik.values.pictures}
     showCreateDishAlert={showDishCreateAlert}
+
+    onAddCategoryPressHandler={onAddCategoryPress}
+    onCategorySelectedChangeHandler={onCategorySelectedChange}
 
     nameError={formik.errors.name}
     priceError={formik.errors.price}

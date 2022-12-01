@@ -8,4 +8,8 @@ export const dishSchemas = {
     ingredients : yup.string().min(2,CONSTANTS.ERROR_MSGS.MIN_INGREDIENTS).required(CONSTANTS.ERROR_MSGS.DISH_INGREDIENTS_REQUIRED),
     category : yup.string().required(CONSTANTS.ERROR_MSGS.DISH_CATEGORY_REQUIRED),
   }),
+
+  category : yup.object().shape({
+    category : yup.string().min(2).required(CONSTANTS.ERROR_MSGS.DISH_NAME_REQUIRED),
+  }),
 };

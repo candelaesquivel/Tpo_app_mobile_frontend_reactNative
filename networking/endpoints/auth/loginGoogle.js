@@ -21,10 +21,10 @@ export async function loginGoogle(userInfo, dispatch = undefined){
     },
   }
   
-  return await axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, googleData).then(res => {
+  return await axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, googleData).then(response => {
 
-    if (res.data){
-      const token = res.data.token;
+    if (response.data){
+      const token = response.data.token;
       setClientToken(token);
       if (response.data){
         const msg = getHttpCodeMessage(response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
@@ -33,11 +33,12 @@ export async function loginGoogle(userInfo, dispatch = undefined){
           dispatch(showSuccessToast(msg));
       }
 
-      return res.data;
+      return response.data;
     }
     
   }).catch(err => {
 
+    console.log(err);
     if (err.response){
       const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
 

@@ -44,8 +44,6 @@ export function convertGoogleRegion(details = undefined){
 
 export function getHttpCodeMessage(statusCode = 0, endpointType){
 
-  console.log('Status Code: ', statusCode);
-
   let messages = [];
 
   switch (endpointType){

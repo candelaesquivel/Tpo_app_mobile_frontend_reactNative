@@ -31,6 +31,11 @@ import { updateRestaurant } from "./restaurant/updateRestaurant";
 import {createReview} from './reviews/createReview';
 import {getReviewsOfRestaurant} from './reviews/getReviewsOfRestaurant';
 
+// Categories
+import { createCategory } from "./menuCategories/createCategory";
+import {deleteCategory} from './menuCategories/deleteCategory';
+import { getCategoriesFromRestaurant } from "./menuCategories/getCategoriesForRestaurant";
+
 const authWS = {
   loginGoogle,
   loginOwner,
@@ -45,6 +50,12 @@ const dishesWS = {
   getDishesFromRestaurant,
   getDishData,
   updateDish,
+};
+
+const categoriesWS = {
+  createCategory,
+  deleteCategory,
+  getCategoriesFromRestaurant,
 };
 
 const restaurantWS = {
@@ -69,4 +80,4 @@ const reviewWS = {
   getReviewsOfRestaurant,
 };
 
-export {authWS, dishesWS, restaurantWS, userWS, reviewWS};
+export {authWS, dishesWS, restaurantWS, userWS, reviewWS, categoriesWS};

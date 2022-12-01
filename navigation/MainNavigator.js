@@ -5,7 +5,7 @@ import { AddDish, CreateAccountOwner, CreateRestaurant,
         ModifyDish , ProfileUserRestaurant, SearchFilters, 
         RestaurantProfileUser, ErrorMsg,
          EditRestaurant, UserProfile , SentComment , RecoverPasswordToken,
-         ButtonSrn } from "../ui/screens";
+         ButtonSrn, RestaurantCategories } from "../ui/screens";
 import { OwnerRestaurantProfile } from "../ui/screens";
 import { ROUTES } from "../ui";
 import DrawerOwnerNavigator from "./DrawerOwnerNavigator";
@@ -115,13 +115,17 @@ function MainNavigator(props){
               title : CONSTANTS.SCREEN_TITLES.TOKEN
             }}></Stack.Screen>
 
-        <Stack.Screen name = {ROUTES.ERROR_MSG} component = {ErrorMsg} options={{
+            <Stack.Screen name = {ROUTES.ERROR_MSG} component = {ErrorMsg} options={{
               headerShown: false,
             }}></Stack.Screen>
 
-       <Stack.Screen name = {ROUTES.BUTTON_SCREEN} component={ ButtonSrn} options = {{
+            <Stack.Screen name = {ROUTES.BUTTON_SCREEN} component={ ButtonSrn} options = {{
              title : "" 
              }}></Stack.Screen>
+
+            <Stack.Screen name = {ROUTES.CATEGORY_SCREEN} component = {RestaurantCategories} options={{
+              title : CONSTANTS.SCREEN_TITLES.CATEGORY,
+            }}></Stack.Screen>
         </Stack.Navigator>
     )
 }
