@@ -97,6 +97,7 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
       showComments={showComments}
       showMap={showMap}
       showDishes={showDishes}
+      pictures={restoData.pictures}
       closeRest={restoData.isClosedOverwrite}
       //onSectionBtnPressHandler={onSectionBtnPress}
       onSentCommentPressHandler={onSentCommentPress}

@@ -15,6 +15,7 @@ const DishCard = ({
   isVegan = false, 
   isGlutenFree = false, 
   ingredients = [], 
+  pictures = [],
   price = 0}) => 
 {
 
@@ -29,7 +30,7 @@ const DishCard = ({
 
   return (
     <ScrollView>
-      <Carousal></Carousal>
+      <Carousal data={pictures}></Carousal>
       <Card containerStyle={styles.container}>
         <Card.Title style={styles.titleWord}>{name}</Card.Title>
         {isVegan && <DishDetail iconName='leaf' iconType='font-awesome-5' detail={CONSTANTS.SCREEN_TEXTS.VEGAN_LABEL}></DishDetail>}

@@ -24,6 +24,7 @@ const RestaurantProfileUserScreenUI = ({
     latitudeDelta: 0.01,
     longitudeDelta: 0.01
   },
+  pictures=[],
   showDishes = false,
   hourOpen,
   hourOpen2,
@@ -63,6 +64,7 @@ const RestaurantProfileUserScreenUI = ({
       <View style={styles.global}>
        <View style={styles.carousal}>
          <Carousal
+            data={pictures}
            editBoolean={true}
          ></Carousal>
        </View>

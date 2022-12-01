@@ -13,7 +13,9 @@ function DishScreen({navigation, route, props}){
       category : route.params.category ? route.params.category : '',
       ingredients : route.params.ingredients ? route.params.ingredients.split(',') : '',
       discount : route.params.discount ? route.params.discount : 0,
+      pictures : route.params.pictures ? route.params.pictures : [],
     };
+
 
     return (
             <DishCard
@@ -23,6 +25,7 @@ function DishScreen({navigation, route, props}){
               price = {dishData.price}
               discount = {dishData.discount}
               ingredients={dishData.ingredients}
+              pictures={dishData.pictures}
             ></DishCard>
     )
 }
