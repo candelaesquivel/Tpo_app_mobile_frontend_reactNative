@@ -17,7 +17,7 @@ import { PriceRangesDropdown } from "../../components/PriceRangeDropdown";
 import { WeekButtons } from "../../components/WeekButton";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { convertGoogleAddress, convertGoogleRegion } from "../../../config/utilities";
 
@@ -104,6 +104,8 @@ export const CreateRestaurantUI = ({
             }}
             styles={{
               width:  Dimensions.get('window').width,
+              textInput: {color: '#000000'},
+              description: {color: '#000000'},
             }}
           />
         </SafeAreaView>
@@ -118,7 +120,14 @@ export const CreateRestaurantUI = ({
               style={styles.map}
               provider={PROVIDER_GOOGLE}
               region={region}
-            />
+              toolbarEnabled={true}
+            >
+              <Marker
+                title={CONSTANTS.SCREEN_TEXTS.ADDRESS_LABEL}
+                coordinate={region}
+              >
+              </Marker>
+            </MapView>
           </View>
           :
           <></>

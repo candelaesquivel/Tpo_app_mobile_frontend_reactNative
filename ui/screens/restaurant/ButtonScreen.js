@@ -3,7 +3,7 @@ import React, { useState , useEffect} from 'react'
 import CommentUserRestaurant from '../../components/commentUserRestaurant';
 import { CONSTANTS } from "../../../config";
 import { DishFlatList } from '../../components/DishFlatList';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import { Theme } from '../../styles/Theme';
 import { colorPalette } from '../../styles/colors';
 
@@ -43,7 +43,14 @@ function ButtonScreen({ navigation, route, props})
               style={styles.map}
               provider={PROVIDER_GOOGLE}
               region={screenData.regionMap}
-            />
+            >
+              <Marker
+                title={CONSTANTS.SCREEN_TEXTS.ADDRESS_LABEL}
+                coordinate={screenData.regionMap}
+              >
+              </Marker>
+            </MapView>
+            
           </View>
           </ScrollView>
           

@@ -11,7 +11,19 @@ function EditRestaurantScreen({navigation, route}) {
 
   const restoParams = route.params;
 
-  console.log('Params: ', restoParams);
+  useEffect(() => {
+    // Gaby: The virtualized list error is caused by an issue with the autocomplete library not liking ScrollViews.
+    // This is a workaround to fix the issue.
+    const mockFunction = (error) => {
+      if (error === 'VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.') 
+      return console.log("Virtualized List error was caught");
+      if (console.originalError) console.originalError(error)
+    }
+
+    console.originalError = console.error
+    console.error = mockFunction
+    return () => { console.error = console.originalError }
+  }, [])
 
   const [region, setRegion] = useState({
     latitude: restoParams ? restoParams.coordinates.coordinates[0] : -34.603722,
@@ -182,9 +194,6 @@ function EditRestaurantScreen({navigation, route}) {
       
     }
   }
-
-  console.log('Formik. Errors: ', formik.errors);
-
 
   return (
     <EditRestaurantUI

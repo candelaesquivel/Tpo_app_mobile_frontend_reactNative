@@ -17,7 +17,7 @@ import { PriceRangesDropdown } from "../../components/PriceRangeDropdown";
 import { WeekButtons } from "../../components/WeekButton";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { convertGoogleAddress, convertGoogleRegion } from "../../../config/utilities";
 import { AlertConfirm } from "../../components/AlertConfirm";
@@ -28,8 +28,8 @@ export const EditRestaurantUI = ({
   isClosedOverwrite = false,
   restaurantTypes = [],
   priceRange = '',
-  region,
-  addressEntered = '',
+  region = undefined,
+  addressEntered = false,
   pictures = [],
 
   openingTimes=[],
@@ -129,6 +129,8 @@ export const EditRestaurantUI = ({
             }}
             styles={{
               width: '100%',
+              textInput: {color: '#000000'},
+              description: {color: '#000000'},
             }}
           />
         </SafeAreaView>
@@ -143,7 +145,15 @@ export const EditRestaurantUI = ({
               style={styles.map}
               provider={PROVIDER_GOOGLE}
               region={region}
-            />
+            >
+            <Marker
+              title={CONSTANTS.SCREEN_TEXTS.ADDRESS_LABEL}
+              coordinate={region}
+            >
+            </Marker>
+
+            </MapView>
+            
           </View>
           :
           <></>

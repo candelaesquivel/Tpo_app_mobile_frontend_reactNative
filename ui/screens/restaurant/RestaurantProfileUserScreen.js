@@ -21,8 +21,6 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
     }
   };
 
-  console.log('Resto Params: ', route.params);
-
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
   const [showDishes , setShowDishes]= useState(false);
@@ -45,61 +43,9 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
     setDishes(newDishes);
   }
 
-  // const onSectionBtnPress = (component) => {
-
-  //   if (component === 'map')
-  //   {
-  //     setComments([]);
-  //     setDishes([]);
-  //     setShowComments(false);
-  //     setShowDishes(false);
-  //     setShowMap(true);
-  //   }
-
-  //   if (component === 'menu')
-  //   {
-  //     setComments([]);
-  //     setShowComments(false);
-  //     setShowDishes(true);
-  //     setShowMap(false);
-  //   }
-
-  //   if (component === 'comment')
-  //   {
-  //     setDishes([]);
-  //     setShowComments(true);
-  //     setShowDishes(false);
-  //     setShowMap(false);
-
-  //   }
-  // }
-
-  // useFocusEffect(
-  //   useCallback(() => {
-
-  //     // if (showComments)
-  //       fillCommentsList();
-
-  //     if (showDishes)
-  //       fillDishList();
-
-  //     return () => {
-
-  //       if (!isFocused){
-  //         setShowComments(false);
-  //         setShowDishes(false);
-  //         setShowMap(false);
-  //         setDishes([]);
-  //         setComments([]);
-  //       }
-  //     }
-  //   }, [isFocused, showDishes, showComments])
-  // )
-
-
-   const onSentCommentPress = (event) => {
+  const onSentCommentPress = (event) => {
     navigation.navigate(ROUTES.USER_SENT_COMMENT );
-   }
+  }
 
   const onSharePress = async (event) => {
     try {
