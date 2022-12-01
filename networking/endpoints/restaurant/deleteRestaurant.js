@@ -1,21 +1,32 @@
 import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
+import { getHttpCodeMessage } from "../../../config/utilities";
+import { setClientToken } from "../../api";
+import { showErrorToast, showSuccessToast} from "../../../redux/slices/feedBackReducer";
 
-export async function deleteRestaurant(restaurantId){
+export async function deleteRestaurant(restaurantId, dispatch = undefined){
 
   const URL = URL_SERVICES.DELETE_RESTAURANT.replace('id', restaurantId);
 
-  try {
-    const response = await axios.delete(URL);
+  return axios.delete(URL).then(response => {
+    if (response.data){
+      const msg = getHttpCodeMessage(response.status, CONSTANTS.ENPOINT_TYPE.DELETE_RESTAURANT);
 
-    if (response.status === 200)
-      return true;
-    else
-      return false;
+      if (dispatch && msg)
+        dispatch(showSuccessToast(msg));
+    }
 
-  } catch (error) {
-    console.log('Restaurant WS Delete Error: ', error.response.data);
-  }
-  
+    return response.status === 200;
+
+  }).catch(err => {
+    console.log('Restaurant WS Delete Error: ', err);
+
+    if (err.response){
+      const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.DELETE_RESTAURANT);
+
+      if (dispatch && msg)
+        dispatch(showErrorToast(msg));
+    }
+  });
 }

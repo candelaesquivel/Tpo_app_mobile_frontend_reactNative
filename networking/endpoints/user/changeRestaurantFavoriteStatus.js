@@ -1,19 +1,31 @@
 import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
+import { getHttpCodeMessage } from "../../../config/utilities";
+import { setClientToken } from "../../api";
 import { showErrorToast, showSuccessToast} from "../../../redux/slices/feedBackReducer";
 
-export async function changeRestaurantFavoriteStatus(userId, restaurantId, dispatch)
+export async function changeRestaurantFavoriteStatus(userId, restaurantId, dispatch = undefined)
 { 
   const URL = URL_SERVICES.CHANGE_RESTAURANT_FAVORITE.replace('id', userId);
   return axios.patch(URL, {
     restaurantId : restaurantId
-  }).then(res => {
-    dispatch(showSuccessToast('User Favorite Updated'));
-    return;
+  }).then(response => {
+    if (response.data){
+      const msg = getHttpCodeMessage(response.status, CONSTANTS.ENPOINT_TYPE.UPDATE_FAVORITE_STATUS);
+
+      if (dispatch && msg)
+        dispatch(showSuccessToast(msg));
+    }
+    return response.data;
+
   }).catch(err => {
-    dispatch(showErrorToast(err.response.data.message));
-    console.error("Error on Toggle Restaurant Favorite Status: ", err);
+    if (err.response){
+      const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.UPDATE_FAVORITE_STATUS);
+
+      if (dispatch && msg)
+        dispatch(showErrorToast(msg));
+    }
     return;
   });
 }

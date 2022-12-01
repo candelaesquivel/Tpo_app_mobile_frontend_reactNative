@@ -10,7 +10,6 @@ import {getOwnerRestaurants} from './user/getOwnerRestaurants';
 import {deleteAccount} from './user/deleteAccount';
 import { getFavoriteRestaurants } from "./user/getFavoriteRestaurants";
 import {changeRestaurantFavoriteStatus} from './user/changeRestaurantFavoriteStatus';
-import {uploadUserImg} from './user/uploadUserImg';
 import {updateUserData} from './user/updateUserData';
 
 // Dishes
@@ -19,7 +18,6 @@ import { deleteDish } from "./dishes/deleteDish";
 import {getDishesFromRestaurant} from "./dishes/getDishesFromRestaurant";
 import {getDishData} from './dishes/getDishData';
 import { updateDish } from "./dishes/updateDish";
-import {uploadDishImg } from './dishes/uploadDishImg';
 
 // Restaurants
 import {getRestaurants} from './restaurant/getRestaurants';
@@ -28,7 +26,6 @@ import {deleteRestaurant} from './restaurant/deleteRestaurant';
 import {getRestaurantInfo} from './restaurant/getRestaurantInfo';
 import { setCloseStatus } from "./restaurant/setCloseStatus";
 import { updateRestaurant } from "./restaurant/updateRestaurant";
-import { uploadRestaurantImg } from "./restaurant/uploadRestaurantImg";
 
 // Reviews
 import {createReview} from './reviews/createReview';
@@ -48,7 +45,6 @@ const dishesWS = {
   getDishesFromRestaurant,
   getDishData,
   updateDish,
-  uploadDishImg,
 };
 
 const restaurantWS = {
@@ -58,7 +54,6 @@ const restaurantWS = {
   getRestaurantInfo,
   setCloseStatus,
   updateRestaurant,
-  uploadRestaurantImg,
 };
 
 const userWS = {
@@ -66,7 +61,6 @@ const userWS = {
   getFavoriteRestaurants,
   deleteAccount,
   changeRestaurantFavoriteStatus,
-  uploadUserImg,
   updateUserData
 };
 

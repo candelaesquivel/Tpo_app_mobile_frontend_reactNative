@@ -1,15 +1,29 @@
 import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
+import { getHttpCodeMessage } from "../../../config/utilities";
+import { setClientToken } from "../../api";
+import { showErrorToast, showSuccessToast} from "../../../redux/slices/feedBackReducer";
 
-export async function getReviewsOfRestaurant(restaurantId) {
+export async function getReviewsOfRestaurant(restaurantId, dispatch = undefined) {
 
     const url = URL_SERVICES.COMMENT_LIST.replace('restaurantId', restaurantId);
 
     return axios.get(url).then( (response) => {
+      if (response.data){
+        const msg = getHttpCodeMessage(response.status, CONSTANTS.ENPOINT_TYPE.GET_REVIEWS);
+  
+        if (dispatch && msg)
+          dispatch(showSuccessToast(msg));
+      }
       return response.data;
     }).catch(err =>{
-      console.error(err.response.data);
+      if (err.response){
+        const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.GET_REVIEWS);
+  
+        if (dispatch && msg)
+          dispatch(showErrorToast(msg));
+      }
       return [];
     })
   }

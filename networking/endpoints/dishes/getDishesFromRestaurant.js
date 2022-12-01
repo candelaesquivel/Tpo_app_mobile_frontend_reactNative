@@ -1,9 +1,12 @@
 import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
+import { getHttpCodeMessage } from "../../../config/utilities";
+import { setClientToken } from "../../api";
+import { showErrorToast, showSuccessToast} from "../../../redux/slices/feedBackReducer";
 
 export async function getDishesFromRestaurant(restaurantId){
-  const url = URL_SERVICES.DISH_LIST.replace('restaurantId', restaurantId);
+  const url = URL_SERVICES.DISH_LIST.replace('restaurantId', restaurantId, dispatch = undefined);
 
   return axios.get(url).then( (response) => {
     let dishes = []
@@ -25,10 +28,22 @@ export async function getDishesFromRestaurant(restaurantId){
       dishes[idx].data.push(itr);
     });
 
+    if (response.data){
+      const msg = getHttpCodeMessage(response.status, CONSTANTS.ENPOINT_TYPE.GET_RESTAURANT_DISHES);
+
+      if (dispatch && msg)
+        dispatch(showSuccessToast(msg));
+    }
+
     return dishes;
 
   }).catch(err =>{
-    console.error("Get dishes from Restaurant Error: ", err.response.data);
+    if (err.response){
+      const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.GET_RESTAURANT_DISHES);
+
+      if (dispatch && msg)
+        dispatch(showErrorToast(msg));
+    }
     return [];
   }).finally(() => {
   })

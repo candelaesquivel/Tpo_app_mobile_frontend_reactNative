@@ -1,11 +1,12 @@
 import React, { useState , useEffect} from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ROUTES } from '../..';
 import { useFormik } from 'formik';
 import { EditRestaurantUI } from './EditRestaurantUI';
 import { restaurantSchema } from '../../formSchemas/restaurantSchemas';
 import { restaurantWS } from '../../../networking/endpoints';
 import { launchImageLibrary } from 'react-native-image-picker';
+import { useEffect } from 'react';
 
 function EditRestaurantScreen({navigation, route}) {
 
@@ -73,7 +74,7 @@ function EditRestaurantScreen({navigation, route}) {
     }
   });
 
-
+  const dispatch = useDispatch();
   const [addressEntered, setAddressEntered] = useState(true);
 
 
@@ -140,7 +141,7 @@ function EditRestaurantScreen({navigation, route}) {
     }
 
     try {
-      const restaurant = await restaurantWS.updateRestaurant(restaurantData.id, restaurantData);
+      const restaurant = await restaurantWS.updateRestaurant(restaurantData.id, restaurantData, dispatch);
 
       if (restaurant){
         navigation.navigate(ROUTES.OWNER_HOME);
@@ -158,7 +159,7 @@ function EditRestaurantScreen({navigation, route}) {
   const onConfirmDeletePress = async () => {
 
     try {
-      const result = await restaurantWS.deleteRestaurant(formik.values.id);
+      const result = await restaurantWS.deleteRestaurant(formik.values.id, dispatch);
       if (result){
         navigation.navigate(ROUTES.OWNER_HOME);
         

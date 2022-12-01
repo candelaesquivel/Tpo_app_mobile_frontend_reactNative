@@ -5,7 +5,7 @@ import { getHttpCodeMessage } from "../../../config/utilities";
 import { setClientToken } from "../../api";
 import { showErrorToast, showSuccessToast} from "../../../redux/slices/feedBackReducer";
 
-export async function loginGoogle(userInfo, dispatch){
+export async function loginGoogle(userInfo, dispatch = undefined){
 
   const googleData = {
     role : CONSTANTS.ROLES.USER_ROLE,
@@ -26,22 +26,24 @@ export async function loginGoogle(userInfo, dispatch){
     if (res.data){
       const token = res.data.token;
       setClientToken(token);
-      const msg = getHttpCodeMessage(res.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
-
-      if (dispatch)
-        dispatch(showSuccessToast(msg));
+      if (response.data){
+        const msg = getHttpCodeMessage(response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
+  
+        if (dispatch && msg)
+          dispatch(showSuccessToast(msg));
+      }
 
       return res.data;
     }
     
   }).catch(err => {
 
-    const msg = getHttpCodeMessage(res.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
+    if (err.response){
+      const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
 
-    if (dispatch && msg)
-      dispatch(showErrorToast(msg));
-
-    console.log('Error on Google Login: ', err);
+      if (dispatch && msg)
+        dispatch(showErrorToast(msg));
+    }
     return null;
   })
 };

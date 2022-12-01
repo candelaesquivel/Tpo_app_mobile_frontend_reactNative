@@ -2,7 +2,7 @@ import { ToastAndroid} from 'react-native'
 import React, { useState } from 'react'
 import { restaurantWS } from '../../../networking/endpoints';
 import { CONSTANTS } from '../../../config';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CreateRestaurantUI } from './CreateRestaurantUI';
 import { ROUTES } from '../..';
 import { useEffect } from 'react';
@@ -10,6 +10,7 @@ import { useFormik } from 'formik';
 import { Dimensions } from "react-native";
 import { restaurantSchema } from '../../formSchemas/restaurantSchemas';
 import { launchImageLibrary } from 'react-native-image-picker';
+import { LogBox } from 'react-native';
 
 function CreateRestaurantScreen({navigation, props}) {
 
@@ -26,7 +27,6 @@ function CreateRestaurantScreen({navigation, props}) {
       isClosedOverwrite : false,
       restaurantTypes : [],
       priceRange : '',
-      zipCode : '3344',
       days : [],
       address : {
         streetName : "",
@@ -34,7 +34,8 @@ function CreateRestaurantScreen({navigation, props}) {
         neighborhood : "",
         city : "",
         state : "",
-        country : ""
+        country : "",
+        zipCode : ''
       },
       openingTimes : Array(7).fill(undefined),
       closingTimes : Array(7).fill(undefined),
@@ -52,6 +53,8 @@ function CreateRestaurantScreen({navigation, props}) {
       await onCreatePress();
     }
   });
+
+  const dispatch = useDispatch();
 
   const [addressEntered, setAddressEntered] = useState(false);
   const [showConfirmDeletePhoto, setshowConfirmPhotoDelete] = useState(false);
@@ -79,13 +82,10 @@ function CreateRestaurantScreen({navigation, props}) {
     }
 
     try {
-      const result = await restaurantWS.createRestaurant(ownerId, restaurantData);
+      const result = await restaurantWS.createRestaurant(ownerId, restaurantData, dispatch);
       
       if (result){
-        setTimeout(() => {
-          ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.RESTAURANT_CREATED_MSG, ToastAndroid.SHORT);
-          navigation.navigate(ROUTES.OWNER_HOME);
-        }, 200);
+        navigation.navigate(ROUTES.OWNER_HOME);
       }
 
     } catch (error) {
