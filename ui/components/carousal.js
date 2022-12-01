@@ -137,7 +137,7 @@ export default function Carousal({
 
   const onCancelDeletePhotoPress = (event) => {
     onCancelDeletePhotoHandler();
-    setDelFile('');
+    setDeleteFileName('');
   }
 
   return (
@@ -150,8 +150,8 @@ export default function Carousal({
         onContentSizeChange={() => scrollView.current.scrollToEnd()}
       >
       <AlertConfirm
-        title={CONSTANTS.SCREEN_TEXTS.DELETE_DISH_LABEL}
-        bodyMsg={CONSTANTS.SCREEN_TEXTS.DELETE_DISH_CONFIRM_MSG}
+        title={CONSTANTS.SCREEN_TEXTS.DELETE_PHOTO_LABEL}
+        bodyMsg={CONSTANTS.SCREEN_TEXTS.DELETE_PHOTO_CONFIRM_MSG}
         confirmBtnTitle={CONSTANTS.SCREEN_TEXTS.DELETE_LABEL}
         cancelBtnTitle={CONSTANTS.SCREEN_TEXTS.CANCEL_LABEL}
         isOpen={showConfirmDeletePhoto}

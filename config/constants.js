@@ -101,6 +101,8 @@ export default  {
     CANCEL_LABEL : I18n.t('cancel'),
     DELETE_DISH_LABEL : I18n.t('deleteDish'),
     DELETE_DISH_CONFIRM_MSG : I18n.t('confirmDishDelete'),
+    DELETE_PHOTO_CONFIRM_MSG : I18n.t('deleteDishConfirm'),
+    DELETE_PHOTO_LABEL : I18n.t('deletePhotoLabel'),
     EMAIL_SENT_MSG : I18n.t('messageEmailSent'),
     FORGOT_PASSWORD_LABEL:  I18n.t('forgotPassword'),
     SENT_LABEL : I18n.t('sent'),

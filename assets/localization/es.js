@@ -103,6 +103,8 @@ export  default{
     accountDeleted : 'Cuenta eliminada exitosamente',
     confirmDishDelete : '¿Esta seguro de eliminar el plato?',
     confirmRestaurantDelete : '¿Esta seguro de eliminar el restaurante?',
+    deleteDishConfirm : '¿Esta seguro de eliminar la foto?',
+    deletePhotoLabel : 'Eliminar Foto',
 
     mondayLetter : 'L',
     tuesdayLetter : 'M',
