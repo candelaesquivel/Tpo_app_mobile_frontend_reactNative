@@ -22,6 +22,7 @@ export function DishFlatList({dishes, onDishPhotoPressHandler, props}){
       discounts={item.discounts}
       isVegan={item.isVegan}
       isGlutenFree={item.isGlutenFree}
+      pictures={item.pictures}
       onDishPhotoPressHandler={onDishPhotoPressHandler}
       >
     </DishItemCard>)
@@ -42,7 +43,7 @@ const style = StyleSheet.create({
   header :{
     fontSize: Theme.font.MEDIUM,
     color: colorPalette.Black, 
-    fontWeight: 'bold', 
+    fontWeight: Theme.font.FONTWEIGHT, 
     marginStart :"5%",
     marginTop : "2%",
     

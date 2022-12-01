@@ -1,16 +1,29 @@
-import { ToastAndroid} from 'react-native'
 import React, { useState } from 'react'
-import { CONSTANTS } from '../../../config';
 import { useSelector } from 'react-redux';
 import { ROUTES } from '../..';
 import { useFormik } from 'formik';
 import { EditRestaurantUI } from './EditRestaurantUI';
 import { restaurantSchema } from '../../formSchemas/restaurantSchemas';
 import { restaurantWS } from '../../../networking/endpoints';
+import { launchImageLibrary } from 'react-native-image-picker';
 
-function EditRestaurantScreen({navigation, route, props}) {
+function EditRestaurantScreen({navigation, route}) {
 
   const restoParams = route.params;
+
+  useEffect(() => {
+    // Gaby: The virtualized list error is caused by an issue with the autocomplete library not liking ScrollViews.
+    // This is a workaround to fix the issue.
+    const mockFunction = (error) => {
+      if (error === 'VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.') 
+      return console.log("Virtualized List error was caught");
+      if (console.originalError) console.originalError(error)
+    }
+
+    console.originalError = console.error
+    console.error = mockFunction
+    return () => { console.error = console.originalError }
+  }, [])
 
   const [region, setRegion] = useState({
     latitude: restoParams ? restoParams.coordinates.coordinates[0] : -34.603722,
@@ -28,12 +41,13 @@ function EditRestaurantScreen({navigation, route, props}) {
       priceRange : restoParams.priceRange ? restoParams.priceRange : '',
       zipCode : restoParams.zipCode ? restoParams.zipCode : '',
       address : {
-        streetName : restoParams.streetName ? restoParams.streetName : "",
-        streetNumber : restoParams.streetNumber ? restoParams.streetNumber : '',
-        neighborhood : restoParams.neighborhood ? restoParams.neighborhood : "",
-        city : restoParams.city ? restoParams.city : "",
-        state : restoParams.state ? restoParams.state : "",
-        country : restoParams.country ? restoParams.country : ""
+        streetName : restoParams.address.streetName ? restoParams.address.streetName : "",
+        streetNumber : restoParams.address.streetNumber ? restoParams.address.streetNumber : '',
+        neighborhood : restoParams.address.neighborhood ? restoParams.address.neighborhood : "",
+        city : restoParams.address.city ? restoParams.address.city : "",
+        state : restoParams.address.state ? restoParams.address.state : "",
+        country : restoParams.address.country ? restoParams.address.country : "",
+        zipCode : restoParams.address.zipCode ? restoParams.address.zipCode : '',
       },
       openingTimes :  restoParams.openingTimes ? 
         restoParams.openingTimes.map(item => {
@@ -50,10 +64,11 @@ function EditRestaurantScreen({navigation, route, props}) {
           -58.456,
           -34.567
         ]
-      }
+      },
+      pictures : restoParams ? restoParams.pictures : [],
     },
     validationSchema : restaurantSchema.createRestaurant,
-    async onSubmit(values) {
+    async onSubmit() {
       await onSavePress();
     }
   });
@@ -61,9 +76,9 @@ function EditRestaurantScreen({navigation, route, props}) {
 
   const [addressEntered, setAddressEntered] = useState(true);
 
-  const ownerId = useSelector(state => state.user.userId);
 
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [showConfirmPhotoDelete, setShowConfirmPhotoDelete] = useState(false);
 
   const onIsCloseChange = (value) =>{
     formik.setFieldValue('isClosedOverwrite', value);
@@ -103,7 +118,6 @@ function EditRestaurantScreen({navigation, route, props}) {
   }
 
   const onAddressChange = (address) => {
-    formik.setFieldValue('zipCode', address.zipCode);
     formik.setFieldValue('address', address);
   }
 
@@ -120,9 +134,11 @@ function EditRestaurantScreen({navigation, route, props}) {
   }
 
   const onSavePress = async () => {
+    console.log('On Save Press: ');
     const restaurantData = {
       ...formik.values,
     }
+
     try {
       const restaurant = await restaurantWS.updateRestaurant(restaurantData.id, restaurantData);
 
@@ -135,11 +151,11 @@ function EditRestaurantScreen({navigation, route, props}) {
     }
   }
 
-  const onDeletePress = (event) => {
+  const onDeletePress = () => {
     setShowConfirmDelete(true);
   }
 
-  const onConfirmDeletePress = async (event) => {
+  const onConfirmDeletePress = async () => {
 
     try {
       const result = await restaurantWS.deleteRestaurant(formik.values.id);
@@ -153,8 +169,30 @@ function EditRestaurantScreen({navigation, route, props}) {
     }
   }
 
-  const onCancelDeletePress = (event) => {
+  const onCancelDeletePress = () => {
     setShowConfirmDelete(false);
+  }
+
+  const onDeletePhotoPress = async () => {
+    setShowConfirmPhotoDelete(true);
+  }
+
+  const onUploadImgPress = async () => {
+
+    try {
+      const images = await launchImageLibrary({
+        mediaType : 'photo',
+        includeBase64 : true,
+      });
+
+      if (images){
+        const pictures = [].concat(formik.values.pictures, images.assets);
+        formik.setFieldValue('pictures', pictures);
+      }
+
+    } catch (error) {
+      
+    }
   }
 
   return (
@@ -165,6 +203,7 @@ function EditRestaurantScreen({navigation, route, props}) {
         priceRange={formik.values.priceRange}
         region={region}
         addressEntered={true}
+        pictures={formik.values.pictures}
 
         openingTimes={formik.values.openingTimes}
         closingTimes={formik.values.closingTimes}
@@ -181,10 +220,16 @@ function EditRestaurantScreen({navigation, route, props}) {
 
         onSavePressHandler={formik.handleSubmit}
         onDeletePressHandler={onDeletePress}
+        onUploadImgPressHandler={onUploadImgPress}
 
         showConfirmDelete={showConfirmDelete}
         onConfirmDeleteBtnHandler={onConfirmDeletePress}
         onCancelBtnHandler={onCancelDeletePress}
+
+        showConfirmPhotoDelete={showConfirmPhotoDelete}
+        onConfirmDeletePhotoPressHandler={onConfirmDeletePress}
+        onCancelDeletePhotoPressHandler={onCancelDeletePress}
+        onDeletePhotoPressHandler={onDeletePhotoPress}
     >
     </EditRestaurantUI>
   )

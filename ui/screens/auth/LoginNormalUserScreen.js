@@ -46,7 +46,7 @@ function LoginUserScreen({navigation, props}){
             showPlayServicesUpdateDialog: true,
           });
           const info = await GoogleSignin.signIn();
-
+          
           GetLocation.getCurrentPosition({timeout:50000, enableHighAccuracy:true})
             .then(async latestLocation => {
               let userData = {
@@ -63,11 +63,12 @@ function LoginUserScreen({navigation, props}){
               // Navigate to the Home screen when the user has successfully signed in
               if (userData.email != null){
                 const userInfo = await authWS.loginGoogle(userData);
-                dispatch(loginUser(userInfo));
+                if (userInfo)
+                  dispatch(loginUser(userInfo));
               }
             })
             .catch(error => {
-              console.warn("Error getting location: ", error);
+              console.log("Error getting location: ", error);
             })
 
         } catch (error) {

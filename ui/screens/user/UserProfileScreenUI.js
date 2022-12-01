@@ -6,9 +6,11 @@ import { Icon } from '@rneui/base'
 import { MyButton } from '../../components/button';
 import { StyleSheet } from 'react-native';
 import { CONSTANTS } from '../../../config';
+import { Theme } from '../../styles/Theme';
 
 const UserProfileScreenUI = ({
     userName = '',
+    userNameError,
     onNameChangeHandler = (text) => {},
     onSavePressHandler = () => {},
     onImgUploadHandler = (image) => {},
@@ -16,9 +18,10 @@ const UserProfileScreenUI = ({
   
     return (
         <View style={style.container}>
-        <Text style={style.nameLabel}>{CONSTANTS.SCREEN_TEXTS.NAME_LABEL}</Text>
-  
+        <Text style={style.nameLabel}>{CONSTANTS.SCREEN_TEXTS.NAME_LABEL}</Text>   
+             
         <InputText
+         errorMessage = {userNameError}
           onChangeText={onNameChangeHandler}
           color={colorPalette.White} 
           defaultValue={userName} 
@@ -52,11 +55,11 @@ const UserProfileScreenUI = ({
     nameLabel : {
       marginBottom : 20,
       marginLeft : 20,
-      fontSize : 20,
+      fontSize : Theme.font.MEDIUM,
       color : colorPalette.Black
     },
     addPictureLabel :{
-      fontSize : 20,
+      fontSize : Theme.font.MEDIUM,
       color : colorPalette.Black,
       width : Dimensions.get('window').width * 0.45,
       marginLeft : 20

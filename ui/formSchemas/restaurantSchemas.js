@@ -12,8 +12,8 @@ export const restaurantSchema = {
       neighborhood : yup.string().required(),
       city : yup.string().required(),
       state : yup.string().required(),
-      country : yup.string().required()
+      country : yup.string().required(),
+      zipCode : yup.string().required(),
     }).required(),
-    zipCode : yup.string().required(),
   })
 }

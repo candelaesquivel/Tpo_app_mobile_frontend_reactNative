@@ -5,6 +5,7 @@ import { DishFlatList } from '../../components/DishFlatList';
 import { CONSTANTS } from '../../../config';
 import EmptyScreenMessage from '../../components/EmptyScreenMessage';
 import { colorPalette } from '../../styles/colors';
+import { Theme } from '../../styles/Theme';
 
 const MenuRestaurantOwnerScreenUI = ({
     dishes,
@@ -57,7 +58,8 @@ const MenuRestaurantOwnerScreenUI = ({
 const styles = StyleSheet.create({
     category : {
       color: colorPalette.Black ,
-       fontSize: 18 ,marginTop :10, fontWeight: 'bold'
+       fontSize: Theme.font.SMALL_TWO ,marginTop :10, 
+       fontWeight: Theme.font.FONTWEIGHT,
     },
   
   global : 

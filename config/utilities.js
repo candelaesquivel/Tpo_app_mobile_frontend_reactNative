@@ -18,6 +18,15 @@ export function convertGoogleAddress(details = undefined) {
   return address;
 };
 
+export function getBase64Uri(img){
+
+  if (img.uri && !img.base64)
+    return `data:${img.type};base64,${img.uri}`;
+  else{
+    return `data:${img.type};base64,${img.base64}`;
+  }
+}
+
 export function convertGoogleRegion(details = undefined){
   if (!details)
     return {};

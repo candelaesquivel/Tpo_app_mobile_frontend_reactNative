@@ -68,8 +68,23 @@ function CreateRestaurantScreen({navigation, props}) {
   });
 
   const [addressEntered, setAddressEntered] = useState(false);
+  const [showConfirmDeletePhoto, setshowConfirmPhotoDelete] = useState(false);
 
   const ownerId = useSelector(state => state.user.userId);
+
+  useEffect(() => {
+    // Gaby: The virtualized list error is caused by an issue with the autocomplete library not liking ScrollViews.
+    // This is a workaround to fix the issue.
+    const mockFunction = (error) => {
+      if (error === 'VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.') 
+      return console.log("Virtualized List error was caught");
+      if (console.originalError) console.originalError(error)
+    }
+
+    console.originalError = console.error
+    console.error = mockFunction
+    return () => { console.error = console.originalError }
+  }, [])
 
   const onCreatePress = async (event) => {
 
@@ -163,15 +178,41 @@ function CreateRestaurantScreen({navigation, props}) {
     try {
       const images = await launchImageLibrary({
         mediaType : 'photo',
+        includeBase64 : true,
       });
 
       if (images){
-        formik.setFieldValue('pictures', images.assets);
+        const pictures = [].concat(formik.values.pictures, images.assets);
+        formik.setFieldValue('pictures', pictures);
       }
 
     } catch (error) {
       
     }
+  }
+
+  const onDeletePhotoPress = (event) => {
+    setshowConfirmPhotoDelete(true);
+  }
+
+  const onCancelDeletePhotoPress = (event) => {
+    setshowConfirmPhotoDelete(false);
+  }
+
+  const onConfirmDeletePhotoPress = (photoFileName) => {
+    setshowConfirmPhotoDelete(false);
+
+    const pictures = [];
+
+    formik.values.pictures.forEach(item => {
+      if (!item)
+        return;
+
+        if (item.fileName !== photoFileName)
+          pictures.push(item);
+    });
+
+    formik.setFieldValue('pictures', pictures);
   }
 
   return (
@@ -181,6 +222,7 @@ function CreateRestaurantScreen({navigation, props}) {
         restaurantTypes={formik.values.restaurantTypes}
         priceRange={formik.values.priceRange}
         region={region}
+        pictures = {formik.values.pictures}
         openingTimes={formik.values.openingTimes}
         closingTimes={formik.values.closingTimes}
         addressEntered={addressEntered}
@@ -194,6 +236,11 @@ function CreateRestaurantScreen({navigation, props}) {
         onOpenTimeChangeHandler={onOpenTimeChange}
         onCloseTimeChangeHandler={onCloseTimeChange}
         onUploadImgHandler={onUploadImgPress}
+
+        showConfirmDeletePhoto={showConfirmDeletePhoto}
+        onConfirmDeletePhotoHandler={onConfirmDeletePhotoPress}
+        onCancelDeletePhotoHandler={onCancelDeletePhotoPress}
+        onDeletePhotoPressHandler={onDeletePhotoPress}
     >
     </CreateRestaurantUI>
   );

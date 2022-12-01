@@ -8,7 +8,7 @@ import Carousal from '../../components/carousal';
 import { Theme } from '../../styles/Theme';
 import { MyButton } from '../../components/button';
 import { DishFlatList } from '../../components/DishFlatList';
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import {WeekButtons} from '../../components/WeekButton';
 
 
@@ -24,39 +24,39 @@ const RestaurantProfileUserScreenUI = ({
     latitudeDelta: 0.01,
     longitudeDelta: 0.01
   },
-  showComments = false,
-  showMap = false,
   showDishes = false,
   hourOpen,
   hourOpen2,
   hourClose,
   hourClose2,
-  onSectionBtnPressHandler,
+  //onSectionBtnPressHandler,
   onSentCommentPressHandler,
-  onDishPhotoPressHandler,
+ // onDishPhotoPressHandler,
   onSharePressHandler,
+
+  onMapPressHandler,
+  onCommentPressHandler,
+  onMenuPressHandler,
+  closeRest,
   ...props}) => {
       
-      const MapComponent = () => {
-        console.log("region", region)
-        return (
-          <View style={styles.mapContainer}>
-          <Text style={styles.words}>
-            {CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
-          </Text>
-          <MapView
-            style={styles.map}
-            provider={PROVIDER_GOOGLE}
-            region={region}
-          >
-            <Marker
-              title={name}
-              coordinate={region}
-            />
-          </MapView>
-        </View>
-        )
-      }
+      // const MapComponent = () => {
+      //   return (
+      //     <ScrollView>
+      //       <View style={styles.mapContainer}>
+      //       <Text style={styles.words}>
+      //         {CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
+      //       </Text>
+      //       <MapView
+      //         style={styles.map}
+      //         provider={PROVIDER_GOOGLE}
+      //         region={region}
+      //       />
+      //     </View>
+      //     </ScrollView>
+          
+      //   )
+      // }
    
     return (
       <View>
@@ -77,17 +77,13 @@ const RestaurantProfileUserScreenUI = ({
         </View>
         <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.OPEN_LABEL} {hourOpen}{hourOpen2} - {hourClose}{hourClose2}</Text>
         <View style={styles.icons}>
-          <Icon
-            name='heart' 
-            type='font-awesome'
-            color={colorPalette.Orange}
-            ></Icon>
             <Icon 
             name='comment' 
             type='font-awesome' 
             color={colorPalette.Orange}
             onPress={onSentCommentPressHandler}
             ></Icon>
+            <View style={styles.view}></View>
             <Icon 
               name='share' 
               type='font-awesome' 
@@ -96,34 +92,31 @@ const RestaurantProfileUserScreenUI = ({
               >
             </Icon>
         </View>
+       {  closeRest && <Text style={styles.close}> {CONSTANTS.SCREEN_TEXTS.CLOSE_REST}</Text>} 
         {/* Buttons Section */}
         <View style={styles.buttons}>
           <MyButton
             title={CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
-            width={Dimensions.get("window").width*0.3}
+            width={Dimensions.get("window").width*0.29}
             height={Dimensions.get("window").height*0.08}
-            onPress={(e) => {onSectionBtnPressHandler('map')} }
+            onPress={onMapPressHandler }
           ></MyButton>
           <MyButton
             title={CONSTANTS.SCREEN_TEXTS.MENU_LABEL}
-            width={Dimensions.get("window").width*0.3}
+            width={Dimensions.get("window").width*0.29}
             height={Dimensions.get("window").height*0.08}
-            onPress={(e) => {onSectionBtnPressHandler('menu')} }
+            onPress={onMenuPressHandler }
           ></MyButton>
           <MyButton
             title={CONSTANTS.SCREEN_TEXTS.COMMENT_LABEL}
-            width={Dimensions.get("window").width*0.32}
+            width={Dimensions.get("window").width*0.38}
             height={Dimensions.get("window").height*0.08}
-            onPress={(e) => {onSectionBtnPressHandler('comment')} }
+            onPress={onCommentPressHandler}
           ></MyButton>
         </View>
-        {
-          showComments && <CommentUserRestaurant comments={comments}/>
-        }
 
-        {
-          showMap && <MapComponent/>
-        }
+    
+        {/* 
 
         {
           showDishes && 
@@ -133,7 +126,8 @@ const RestaurantProfileUserScreenUI = ({
           >
 
           </DishFlatList>   
-        }
+        } */}
+
       </View>
     </View>
     )
@@ -148,16 +142,17 @@ const RestaurantProfileUserScreenUI = ({
     },
     icons : {
       flexDirection:'row',
-      justifyContent: 'space-evenly',
+      justifyContent: 'center',
       width :Dimensions.get('window').width,
-      marginTop : Dimensions.get('window').width*0.01
+      marginTop : Dimensions.get('window').width*0.02,
+      marginBottom : Dimensions.get('window').width*0.02
        },
       carousal : {
         height : Dimensions.get('window').height * 0.3
       },
       title : {
-        fontSize : Theme.font.MEDIUM,
-        fontWeight : "bold",
+        fontSize : Theme.font.LARGE,
+        fontWeight : Theme.font.FONTWEIGHT,
         color : colorPalette.Black
       },
       words : {
@@ -172,31 +167,40 @@ const RestaurantProfileUserScreenUI = ({
   
       },
       week:{
-          marginBottom : -Dimensions.get('window').height * 0.02,
-          marginTop :  -Dimensions.get('window').height * 0.02
+          marginBottom : -Dimensions.get('window').width*0.02,
+          marginTop :  -Dimensions.get('window').width*0.02
       },
       buttons : {
         flexDirection:'row',
         justifyContent: 'space-evenly',
         width :Dimensions.get('window').width ,
         height : Dimensions.get('window').height * 0.3,
-        marginTop : Dimensions.get('window').height * 0.02,
-        marginBottom : -Dimensions.get('window').height * 0.22
+        marginTop : Dimensions.get('window').width*0.02,
+        marginBottom : -Dimensions.get('window').width*0.02
+      },
+      view : {
+        width :Dimensions.get('window').height * 0.03
       },
       wordButton : {
         fontSize: Theme.font.MEDIUM,
         fontFamily :'Roboto' ,
          color : colorPalette.Black
         },
-        mapContainer: {
-          alignSelf: 'center',
-          height: 250,
-          width: 250,
-        },
+
+        close : {
+          color :colorPalette.Rojo,
+          fontSize: Theme.font.MEDIUM,
+          fontWeight : Theme.font.FONTWEIGHT,
+        }
+        // mapContainer: {
+        //   alignSelf: 'center',
+        //   height: 250,
+        //   width: 250,
+        // },
       
-        map: {
-          ...StyleSheet.absoluteFillObject,
-        },
+        // map: {
+        //   ...StyleSheet.absoluteFillObject,
+        // },
   });
   
   export {RestaurantProfileUserScreenUI}

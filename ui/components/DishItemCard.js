@@ -1,21 +1,26 @@
 import React from 'react';
-import { View ,StyleSheet} from 'react-native';
+import { View ,StyleSheet, Dimensions} from 'react-native';
 import { Text, Card, Icon } from '@rneui/themed';
 import { colorPalette } from '../styles/colors';
 import I18n from "../../assets/localization/I18n";
 import Images from '../../assets/images/index';
 import { Theme } from '../styles/Theme';
+import { Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { CONSTANTS} from '../../config';
 import { useNavigation } from '@react-navigation/native';
+import { Avatar } from 'native-base';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {getBase64Uri} from '../../config/utilities';
 
 export default function DishItemCard({
-  name = '', 
+  name = '',  
   discounts = 0, 
   price = 100, 
   dishId = '', 
   isVegan = true, 
   isGlutenFree = true, 
+  pictures = [],
   onDishPhotoPressHandler,
   props}) 
 {
@@ -27,15 +32,19 @@ export default function DishItemCard({
       onDishPhotoPressHandler(dishId);
   }
 
+  const imgFromBack = pictures.length > 0 ?  getBase64Uri(pictures[0]) : 'https://bit.ly/broken-link'; 
+
   return (
     <View style={styles.globalOne}>
       <Card>
         <View style={styles.globalTwo}>
-          <Images.logo 
-            onPress={onDishPhotoPress} 
-            width={"30%"}
-            height={"90%"} 
-          ></Images.logo>
+          <Avatar
+            bg="green.500"
+            source={{uri : imgFromBack}}
+            size='xl'
+            onTouchEnd={onDishPhotoPress}
+          >
+          </Avatar>
           <View width={"70%"}  style={styles.global} >
             <Text style={styles.words} >{name}</Text>
               {showDiscount && <Text style={styles.discount}> {CONSTANTS.SCREEN_TEXTS.PRICE_SYMBOL}{price}</Text>}
@@ -91,11 +100,11 @@ const styles = StyleSheet.create({
     words :{
       fontSize: Theme.font.LARGE,
       color: colorPalette.Black, 
-      fontWeight: "bold",
+      fontWeight: Theme.font.FONTWEIGHT,
   },
   wordsTwo :{
     color: colorPalette.Black ,
-     fontSize: 18
+     fontSize: Theme.font.SMALL_TWO
     },
     wordsThree : {
       color: colorPalette.Orange , 

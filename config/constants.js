@@ -82,7 +82,7 @@ export default  {
     OPEN_HOUR_LABEL : I18n.t('opening'),
     DELETE_RESTAURANT_LABEL : I18n.t('deleteRestaurant'),
     DELETE_RESTAURANT_CONFIRM_MSG : I18n.t('confirmRestaurantDelete'),
-    COMMENT_LABEL : I18n.t('comment'),
+    COMMENT_LABEL : I18n.t('comments'),
     CLOSE_HOUR_LABEL : I18n.t('closing'),
     CLEAR_FILTERS_LABEL : I18n.t('clearFiltersLabel'),
     CLOSE_LABEL : I18n.t('close'),
@@ -93,6 +93,7 @@ export default  {
     DELETE_ACOOUNT_LABEL : I18n.t('deleteAccount'),
     DELETE_ACCOUNT_INTRO_MSG : I18n.t('messageDeleteAccount'),
     DELETE_LABEL : I18n.t('delete'),
+    DANGER_LABEL : I18n.t('danger'),
     CANCEL_LABEL : I18n.t('cancel'),
     DELETE_DISH_LABEL : I18n.t('deleteDish'),
     DELETE_DISH_CONFIRM_MSG : I18n.t('confirmDishDelete'),
@@ -108,6 +109,13 @@ export default  {
     OWNER_LABEL : I18n.t('owner'),
     SENT_COMMENT_LABEL : I18n.t('sentCommentLabel'),
     SHARE_LABEL : I18n.t('shareSocial'),
+    UNSTYLED_LABEL : I18n.t('unStyled'),
+    COOLGRAY_LABEL : I18n.t('coolGray'),
+    CLOSE : I18n.t('close'),
+    TYPE_FOOD : I18n.t('typeFood'),
+    SEARCH : I18n.t('search'),
+    CLOSE_REST : I18n.t('closeRest'),
+
 
 
     PRICE_RANGE_LOW : I18n.t('$'),
@@ -129,6 +137,9 @@ export default  {
   },
 
   ERROR_MSGS : {
+    ERROR_NAME_SHORT :I18n.t('nameShort'),
+    ERROR_NAME_LONG :I18n.t('nameLong'),
+
     EMAIL_REQUIRED : I18n.t('emailRequired'),
     EMAIL_INVALID : I18n.t('emailInvalid'),
     PASSWORD_NOT_MATCH : I18n.t('passwordMatch'),
@@ -140,13 +151,84 @@ export default  {
     DISH_INGREDIENTS_REQUIRED : I18n.t('dishIngredientsRequired'),
     DISH_CATEGORY_REQUIRED : I18n.t('dishCategoryRequired'),
 
+    USER_NAME_REQUIRED :  I18n.t('userNameRequired'),
+
+
     REVIEW_TEXT_REQUIRED : I18n.t('reviewTextRequired'),
     REVIEW_TEXT_MIN_LENGTH : I18n.t('reviewTextLengthMin'),
 
     RESTO_NAME_REQUIRED: I18n.t('restaurantNameRequired'),
     RESTO_FOOD_TYPE_REQUIRED : I18n.t('restaurantFoodTypeRequired'),
     RESTO_PRICE_TYPE_REQUIRED : I18n.t('restaurantPriceTypeRequired'),
+
+     // Messages backend
+     INTERNET_ERROR : I18n.t('internetError'),
+     SERVER_ERROR : I18n.t('serverError'),
+     
+     //Auth
+     REGISTER_ACCOUNT :  I18n.t('registerAccount'),
+     REGISTER_ACCOUNT_ERROR :  I18n.t('registerAccountError'),
+
+     LOGIN_ACCOUNT :  I18n.t('loginMessage'),
+     LOGIN_ACCOUNT_ERROR :  I18n.t('loginError'),
+     LOGIN_ACCOUNT :  I18n.t('registerAccount'),
+
+     LOGOUT_ACCOUNT :  I18n.t('logOutMessage'),
+     LOGOUT_ACCOUNT_ERROR :  I18n.t('logOutError'),
+
+     DELETE_ACCOUNT :  I18n.t('deleteAccountMsj'),
+     DELETE_ACCOUNT_ERROR :  I18n.t('deleteAccountError'),
+ 
+     //Recover password user
+     RECOVER_PASSW_EMAIL :  I18n.t('recoverPasswordEmailSent'),
+     RECOVER_PASSW_ERROR_EMAIL :  I18n.t('recoverPasswordEmailError'),
+
+     RECOVER_PASSW_TOKEN :  I18n.t('recoverPasswordToken'),
+     RECOVER_PASSW_ERROR_TOKEN :  I18n.t('recoverPasswordTokenError'),     
+ 
+     // Image 
+     IMAGE_MSG :  I18n.t('imageMessage'),
+     IMAGE_MSG_ERROR :  I18n.t('imageMessageError'),
+
+     //Modify data of owner and user
+     MODIFY_DATA_MSG :  I18n.t('modifyData'),
+     MODIFY_DATA_MSG_ERROR :  I18n.t('modifyDataError'),
+ 
+     //Create restaurant
+     RESTAURANT_CREATE :  I18n.t('restaurantCreate'),
+     RESTAURANT_CREATE_ERROR :  I18n.t('restaurantCreateError'),
+ 
+     //Modify data restaurant
+     MODIFY_DATA_REST :  I18n.t('restaurantmodifyData'),
+     MODIFY_DATA_REST_ERROR :  I18n.t('restaurantmodifyDataError'),
+ 
+     //Delete restaurant
+     DELETE_REST :  I18n.t('deleteRestaurant'),
+     DELETE_REST_ERROR :  I18n.t('deleteRestaurantError'),
+ 
+     //Review restaurant
+     REVIEW_REST :  I18n.t('reviewRestaurant'),
+     REVIEW_REST_ERROR :  I18n.t('reviewRestaurantError'),
+ 
+    //Create dish
+    DISH_CREATE :  I18n.t('dishCreate'),
+    DISH_CREATE_ERROR :  I18n.t('dishCreateError'),
+ 
+    //Modify data dish
+    MODIFY_DATA_DISH :  I18n.t('dishmodifyData'),
+    MODIFY_DATA_DISH_ERROR :  I18n.t('dishmodifyDataError'),
+
+     //Category dish
+     MODIFY_CATEGORY_DISH :  I18n.t('dishmodifyCategory'),
+     MODIFY_CATEGORY_DISH_ERROR :  I18n.t('dishmodifyCategoryError'),
+
+    //Delete dish
+    DELETE_DISH :  I18n.t('deletedish'),
+    DELETE_DISH_ERROR :  I18n.t('deletedishError'),
+  
   },
+
+
 
   MIN_LENGTH_PASSWORD : 8,
   MIN_LENGTH_REVIEW_TEXT : 3,

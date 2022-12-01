@@ -8,6 +8,7 @@ import { View, ScrollView , StyleSheet , Dimensions} from 'react-native'
 import Carousal from '../../components/carousal';
 import { MyButton } from '../../components/button';
 import { DishForm } from './DishForm';
+import { Image } from 'react-native';
 import {AlertConfirm} from '../../components/AlertConfirm';
 
 const DishModifyScreenUI = ({
@@ -22,7 +23,10 @@ const DishModifyScreenUI = ({
   priceError = '',
   ingredientsError = '',
   showConfirmDelete = false,
+  pictures = [],
 
+  onUploadImgPressHandler = (event) => {},
+  onDeletePhotoPressHandler = (event) => {},
   onSavePressHandler,
   onDeletePressHandler,
   onNameChangedHandler,
@@ -35,6 +39,9 @@ const DishModifyScreenUI = ({
   onConfirmDeleteBtnHandler,
   onCancelBtnHandler,
 
+  showConfirmDeletePhoto = false,
+  onConfirmDeletePhotoHandler = () => {},
+  onCancelDeletePhotoHandler = () => {},
   props}) => {
 
   return (
@@ -49,9 +56,16 @@ const DishModifyScreenUI = ({
         onCancelBtnHandler={onCancelBtnHandler}
       >
       </AlertConfirm>
-      <Carousal></Carousal>
+      <Carousal 
+        showConfirmDeletePhoto = {showConfirmDeletePhoto}
+        data={pictures} 
+        onConfirmDeletePhotoHandler={onConfirmDeletePhotoHandler}
+        onCancelDeletePhotoHandler={onCancelDeletePhotoHandler}
+        onDeletePhotoPressHandler={onDeletePhotoPressHandler}
+      >
+      </Carousal>
       <View style={styles.iconGlobal}>
-          <Icon name = 'add' size={30} style={styles.iconPlus}></Icon>
+          <Icon name = 'add' size={30} style={styles.iconPlus} onPress={onUploadImgPressHandler}></Icon>
       </View>
       <View style={styles.global}>
 
@@ -70,7 +84,7 @@ const DishModifyScreenUI = ({
                   title= {CONSTANTS.SCREEN_TEXTS.CHOOSE_LABEL} 
                   width={ Dimensions.get("window").width*0.4}
                   height={Dimensions.get("window").height*0.1}
-                  fontSizeTitle={18}
+                  fontSizeTitle={Theme.font.SMALL_TWO}
                   ></MyButton>
 
                   <MyButton

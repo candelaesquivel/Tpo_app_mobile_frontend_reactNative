@@ -17,7 +17,7 @@ import { PriceRangesDropdown } from "../../components/PriceRangeDropdown";
 import { WeekButtons } from "../../components/WeekButton";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { convertGoogleAddress, convertGoogleRegion } from "../../../config/utilities";
 import { AlertConfirm } from "../../components/AlertConfirm";
@@ -28,8 +28,9 @@ export const EditRestaurantUI = ({
   isClosedOverwrite = false,
   restaurantTypes = [],
   priceRange = '',
-  region,
-  addressEntered,
+  region = undefined,
+  addressEntered = false,
+  pictures = [],
 
   openingTimes=[],
   closingTimes=[],
@@ -44,6 +45,12 @@ export const EditRestaurantUI = ({
   onRegionChangeHandler = (region) => {},
   onOpenTimeChangeHandler = (dayIndex, date) => {},
   onCloseTimeChangeHandler = (dayIndex, date) => {},
+
+  onUploadImgPressHandler = (event) => {},
+  showConfirmPhotoDelete = false,
+  onConfirmDeletePhotoPressHandler = (fileName) => {},
+  onCancelDeletePhotoPressHandler = (event) => {},
+  onDeletePhotoPressHandler = (event) => {},
 
   onSavePressHandler,
   onDeletePressHandler,
@@ -66,9 +73,18 @@ export const EditRestaurantUI = ({
         onCancelBtnHandler={onCancelBtnHandler}
       >
       </AlertConfirm>
-      <Carousal></Carousal>
+      
+      <Carousal
+        data={pictures}
+        showConfirmDeletePhoto={showConfirmPhotoDelete}
+        onConfirmDeletePhotoHandler={onConfirmDeletePhotoPressHandler}
+        onCancelDeletePhotoHandler={onCancelDeletePhotoPressHandler}
+        onDeletePhotoPressHandler={onDeletePhotoPressHandler}
+      >
+
+      </Carousal>
       <View style={styles.addPhotoContainer}>
-        <Icon name='add' size={30}></Icon>
+        <Icon name='add' size={30} onPress={onUploadImgPressHandler}></Icon>
       </View>
       {/* Form Inputs */}
       <View style={styles.formContainer}>
@@ -129,7 +145,15 @@ export const EditRestaurantUI = ({
               style={styles.map}
               provider={PROVIDER_GOOGLE}
               region={region}
-            />
+            >
+            <Marker
+              title={CONSTANTS.SCREEN_TEXTS.ADDRESS_LABEL}
+              coordinate={region}
+            >
+            </Marker>
+
+            </MapView>
+            
           </View>
           :
           <></>
@@ -186,14 +210,14 @@ export const EditRestaurantUI = ({
           onPress={onSavePressHandler}
           title= {CONSTANTS.SCREEN_TEXTS.SAVE_LABEL} 
           width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
+          height={Dimensions.get("window").height*0.1}
         >
         </MyButton>
         <MyButton
           onPress={onDeletePressHandler}
           title= {CONSTANTS.SCREEN_TEXTS.DELETE_LABEL} 
           width={ Dimensions.get("window").width*0.5}
-          height={Dimensions.get("window").height*0.07}
+          height={Dimensions.get("window").height*0.1}
         >
         </MyButton>
       </View>

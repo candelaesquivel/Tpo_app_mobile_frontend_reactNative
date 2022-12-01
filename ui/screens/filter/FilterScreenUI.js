@@ -113,11 +113,13 @@ const FilterScreenUI = ({
             selectedColor = {colorPalette.Orange}
               ></AirbnbRating>
         </View>
-        
-        <MyButton title={CONSTANTS.SCREEN_TEXTS.CLEAR_FILTERS_LABEL}
-          onPress={onCleanFiltersPressHandler}
-        
-        ></MyButton>
+        <View style={styles.button}>
+          <MyButton title={CONSTANTS.SCREEN_TEXTS.CLEAR_FILTERS_LABEL}
+            onPress={onCleanFiltersPressHandler}
+          
+          ></MyButton>
+        </View>
+       
 
       </View>
     )
@@ -132,7 +134,7 @@ const FilterScreenUI = ({
   words : {
     marginTop:Dimensions.get("window").width*0.1,  
     marginBottom:Dimensions.get("window").width*0.02,
-    fontSize : 19,
+    fontSize : Theme.font.SMALL_TWO,
     marginLeft : Dimensions.get("window").width*0.02,
     marginLeft : Dimensions.get("window").width*0.02,
     color : colorPalette.Black
@@ -152,20 +154,20 @@ const FilterScreenUI = ({
   },
   thumbStyleOne : { 
     height: "10%", 
-    backgroundColor: 'transparent' , 
+    backgroundColor: Theme.color.TRANSPARENT , 
     },
   
   thumbStyle : { 
     height: 12, 
     width: 12, 
-    backgroundColor:'transparent'
+    backgroundColor:Theme.color.TRANSPARENT
    },
    icon : { 
     bottom: 15,
      right: 10
     },
     buttons : {
-      borderRadius : 5,
+      borderRadius : Theme.sizes.SMALL_ROUNDED,
       height: '6%',
       backgroundColor : colorPalette.Cream, 
       width : Dimensions.get("window").width*0.8,
@@ -175,6 +177,9 @@ const FilterScreenUI = ({
     price : {
       fontSize : Theme.font.MEDIUM,
       color : colorPalette.White
+    },
+    button : {
+      marginTop : Dimensions.get("window").width*0.08
     }
   });
   export {FilterScreenUI}
