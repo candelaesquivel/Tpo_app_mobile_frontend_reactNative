@@ -134,7 +134,6 @@ function EditRestaurantScreen({navigation, route}) {
   }
 
   const onSavePress = async () => {
-    console.log('On Save Press: ');
     const restaurantData = {
       ...formik.values,
     }

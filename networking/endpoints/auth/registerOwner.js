@@ -33,8 +33,6 @@ export async function registerOwner(userData, dispatch = undefined)
     if (err.response){
       const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.REGISTER_OWNER);
 
-      console.log('Dispatch: ', dispatch);
-      console.log('Message:', msg);
       if (dispatch && msg)
         dispatch(showErrorToast(msg));
     }

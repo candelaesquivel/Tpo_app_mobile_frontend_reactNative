@@ -38,7 +38,6 @@ export async function loginGoogle(userInfo, dispatch = undefined){
     
   }).catch(err => {
 
-    console.log(err);
     if (err.response){
       const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
 

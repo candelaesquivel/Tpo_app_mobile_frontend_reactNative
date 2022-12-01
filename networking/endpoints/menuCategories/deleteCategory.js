@@ -9,8 +9,6 @@ export async function deleteCategory(restaurantId = '', category = '', dispatch 
 
   const URL = URL_SERVICES.DELETE_CATEGORY.replace('restaurantId', restaurantId);
 
-  console.log('DElete Params:', category)
-
   return axios.delete(URL, {
     data : {category : category}
   })
@@ -23,7 +21,6 @@ export async function deleteCategory(restaurantId = '', category = '', dispatch 
     }
     return response.data;
   }).catch(err => {
-    console.log(err.message);
     if (err.response){
       const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.DELETE_CATEGORY);
 

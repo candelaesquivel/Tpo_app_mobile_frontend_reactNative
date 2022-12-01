@@ -50,8 +50,6 @@ export default function FilterScreen({navigation , props}) {
     });
   }
 
-  console.log('Formik Filter Create: ', formik.values);
-  
   return (
     <FilterScreenUI
       distance={formik.values.maxDistance}

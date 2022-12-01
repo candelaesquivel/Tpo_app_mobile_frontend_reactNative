@@ -90,7 +90,6 @@ function AddDishScreen({navigation, props}) {
       else{
       }
     } catch (error) {
-      console.log('Error: ', error);
     }
   }
 

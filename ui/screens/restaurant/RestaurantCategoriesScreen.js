@@ -50,8 +50,6 @@ function RestaurantCategoriesScreen({ navigation, route, props})
     }, [isFocused, triggerSearch])
   );
 
-  console.log('Curr categories: ', categories);
-
   const onSaveCategoryPress = async (event) => {
     try {
       const newCategories = await categoriesWS.createCategory(restaurantId, formik.values.category, dispatch);
@@ -67,7 +65,6 @@ function RestaurantCategoriesScreen({ navigation, route, props})
   }
 
   const onDeleteCategoryPress = async (event) => {
-    console.log('On Delete: ', formik.values.selectedCategory)
     try{
       const newCategories = await categoriesWS.deleteCategory(restaurantId, formik.values.selectedCategory, dispatch);
       if (newCategories){

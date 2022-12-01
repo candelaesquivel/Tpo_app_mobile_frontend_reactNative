@@ -12,10 +12,10 @@ const HomeLandingUserUI = ({
     onSearchBarTextChangeHandler = (text) => {},
     props}) => {
 
-    const ListHeaderComponent = () => {
+    const ListHeaderComponent = (search = '', onSearchBarTextChangeHandler = () => {}) => {
       return (
         <MySearchBar
-          searchText = {searchText}
+          searchText = {search}
           onTextChangeHandler={onSearchBarTextChangeHandler}
         >
         </MySearchBar>
@@ -24,7 +24,7 @@ const HomeLandingUserUI = ({
 
     return (
       <RestaurantFlatListUser
-          flatListHeader={ListHeaderComponent}
+          flatListHeader={ListHeaderComponent(searchText, onSearchBarTextChangeHandler)}
           restaurants={restaurants}
           onFavoriteIconPressHandler={onFavoriteIconPressHandler}
           onPhotoPressHandler={onPhotoPressHandler}

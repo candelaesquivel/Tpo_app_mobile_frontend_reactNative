@@ -84,7 +84,6 @@ function DishModifyScreen({navigation, route, props}){
       }
       
     } catch (error) {
-      console.log('Error Update Call WS: ', error)
     }
   }
   

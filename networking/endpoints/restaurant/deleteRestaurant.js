@@ -20,7 +20,6 @@ export async function deleteRestaurant(restaurantId, dispatch = undefined){
     return response.status === 200;
 
   }).catch(err => {
-    console.log('Restaurant WS Delete Error: ', err);
 
     if (err.response){
       const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.DELETE_RESTAURANT);

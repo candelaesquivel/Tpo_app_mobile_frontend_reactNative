@@ -70,8 +70,6 @@ export default function UserProfileScreen({navigation, route, props}) {
         formik.setFieldValue('pictures', result.assets);
       }
     } catch (error) {
-      console.log('Error:');
-      console.log(error);
     }
   }
 

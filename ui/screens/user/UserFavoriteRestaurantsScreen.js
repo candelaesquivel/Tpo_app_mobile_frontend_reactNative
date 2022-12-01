@@ -46,7 +46,6 @@ function UserFavoritesRestaurantsScreen({navigation , props}) {
     dispatch(selectRestaurant(restaurantId));
     try {
       const restaurant = await restaurantWS.getRestaurantInfo(restaurantId, dispatch);
-      console.log(restaurant);
 
       if (restaurant)
         navigation.navigate(ROUTES.RESTAURANT_VIEW_USER, restaurant);

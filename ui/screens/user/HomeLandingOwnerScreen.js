@@ -49,7 +49,6 @@ function HomeOwnerUI({navigation, props}) {
       }
       
     } catch (error) {
-      console.log(error);
     }
   }
 
