@@ -32,11 +32,6 @@ const DrawerOptionsUser = (props) => {
         label={CONSTANTS.SCREEN_TEXTS.LOGOUT_LABEL}
         onPress={onLogoutPress}
       />
-      <DrawerItem
-        icon={DeleteIcon}
-        label={CONSTANTS.SCREEN_TEXTS.DELETE_ACOOUNT_LABEL}
-        onPress={onDeletePress}
-      />
     </DrawerContentScrollView>
   )
 }
