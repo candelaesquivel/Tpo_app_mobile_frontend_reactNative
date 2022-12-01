@@ -48,6 +48,30 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
 
   switch (endpointType){
 
+    case CONSTANTS.ENPOINT_TYPE.REGISTER_OWNER:{
+      messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.LOGIN_ACCOUNT},
+        {status : 201, msg : CONSTANTS.ERROR_MSGS.REGISTER_ACCOUNT},
+        {status : 400, msg : CONSTANTS.ERROR_MSGS.REGISTER_ACCOUNT_ERROR},
+        {status: 406, msg : CONSTANTS.ERROR_MSGS.EMAIL_IN_USE},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
+      ]
+
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.LOGIN_OWNER:{
+      messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.LOGIN_ACCOUNT},
+        {status : 201, msg : CONSTANTS.ERROR_MSGS.REGISTER_ACCOUNT},
+        {status : 400, msg : CONSTANTS.ERROR_MSGS.REGISTER_ACCOUNT_ERROR},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.LOGIN_PASSWORD_ERROR},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
+      ]
+
+      break
+    }
+
     case CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE:{
 
       messages = [

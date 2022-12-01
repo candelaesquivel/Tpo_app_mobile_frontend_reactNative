@@ -151,11 +151,13 @@ export  default{
     //Auth
     registerAccount : "Usuario creado exitosamente",
     registerAccountError : "No se pudo crear el usuario",
+    registerAccountEmailUsed : 'Email se encuentra en uso',
     
     loginMessage : "Login exitoso",
     loginError : "Usuario no encontrado",
     logOutMessage : "LogOut exitoso",
     logOutError : "No se pudo realizar el Logout ",
+    loginPasswordBad : 'El password es incorrecto',
 
     deleteAccountError : "No se pudo eliminar el usuario",
     deleteAccountMsj : "Usuario eliminado",

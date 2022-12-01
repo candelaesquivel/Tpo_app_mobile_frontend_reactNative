@@ -176,6 +176,8 @@ export default  {
      //Auth
      REGISTER_ACCOUNT :  I18n.t('registerAccount'),
      REGISTER_ACCOUNT_ERROR :  I18n.t('registerAccountError'),
+     EMAIL_IN_USE : I18n.t('registerAccountEmailUsed'),
+     LOGIN_PASSWORD_ERROR : I18n.t('loginPasswordBad'),
 
      SESSION_EXPIRED : I18n.t('tokenExpired'),
      NOT_AUTHORIZED : I18n.t('notAuthorized'),
@@ -183,7 +185,7 @@ export default  {
      LOGIN_ACCOUNT :  I18n.t('loginMessage'),
      LOGIN_ACCOUNT_ERROR :  I18n.t('loginError'),
      USER_NOT_FOUND : I18n.t('loginError'),
-     LOGIN_ACCOUNT :  I18n.t('registerAccount'),
+     REGISTER_ACCOUNT_SUCESS :  I18n.t('registerAccount'),
 
      LOGOUT_ACCOUNT :  I18n.t('logOutMessage'),
      LOGOUT_ACCOUNT_ERROR :  I18n.t('logOutError'),
@@ -252,6 +254,7 @@ export default  {
   ENPOINT_TYPE : {
     // Auth
     REGISTER_OWNER : 'REGISTER_OWNER',
+    LOGIN_OWNER : 'LOGIN_OWNER',
     LOGIN_GOOGLE : 'LOGIN_GOOGLE',
     LOGOUT : 'LOGOUT',
     RECOVER_PASS : 'RECOVER_PASS',

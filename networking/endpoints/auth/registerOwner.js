@@ -17,7 +17,7 @@ export async function registerOwner(userData, dispatch = undefined)
   };
   
   return axios.post(URL_SERVICES.REGISTER_OWNER, user)
-  .then(resp => {
+  .then(response => {
 
     if (response.data){
       const msg = getHttpCodeMessage(response.status, CONSTANTS.ENPOINT_TYPE.REGISTER_OWNER);
@@ -26,15 +26,15 @@ export async function registerOwner(userData, dispatch = undefined)
         dispatch(showSuccessToast(msg));
     }
 
-    if (resp.status === 201)
-      return true;
-    
-    return false;
+    return response.data;
 
   }).catch(err =>{
+    console.log(err);
     if (err.response){
       const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.REGISTER_OWNER);
 
+      console.log('Dispatch: ', dispatch);
+      console.log('Message:', msg);
       if (dispatch && msg)
         dispatch(showErrorToast(msg));
     }

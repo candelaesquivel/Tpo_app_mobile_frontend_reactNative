@@ -17,7 +17,7 @@ export async function loginOwner(userData, dispatch = undefined)
     setClientToken(token)
     
     if (response.data){
-      const msg = getHttpCodeMessage(response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
+      const msg = getHttpCodeMessage(response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_OWNER);
 
       if (dispatch && msg)
         dispatch(showSuccessToast(msg));
@@ -26,7 +26,7 @@ export async function loginOwner(userData, dispatch = undefined)
     return response.data;
   }).catch(err => {
     if (err.response){
-      const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
+      const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_OWNER);
 
       if (dispatch && msg)
         dispatch(showErrorToast(msg));

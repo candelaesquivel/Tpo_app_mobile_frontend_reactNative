@@ -36,12 +36,9 @@ export function CreateAccountOwnerScreen({navigation, props}) {
 
         if (result){
           setTimeout(() => {
-            ToastAndroid.show(CONSTANTS.SCREEN_TEXTS.ACCOUNT_CREATED, ToastAndroid.SHORT);
             navigation.navigate(ROUTES.LOGIN_OWNER);
           }, 200);
-      }else{
-
-      }
+        }
       } catch (error) {
         
       }
