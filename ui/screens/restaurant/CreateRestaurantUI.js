@@ -24,6 +24,8 @@ import { convertGoogleAddress, convertGoogleRegion } from "../../../config/utili
 
 export const CreateRestaurantUI = ({
   name,
+  nameError,
+  addressError,
   isClosedOverwrite = false,
   restaurantTypes = [],
   priceRange = '',
@@ -69,7 +71,9 @@ export const CreateRestaurantUI = ({
         <InputText
           textColor={colorPalette.Black}
           onChangeText={onNameHandler}
+          onChange={onNameHandler}
           defaultValue={name}
+          errorMessage = {nameError}
           color={colorPalette.White}
           placeholderTextColor = {colorPalette.Black}
         >
@@ -109,6 +113,7 @@ export const CreateRestaurantUI = ({
             }}
           />
         </SafeAreaView>
+        
 
         {
           addressEntered?

@@ -204,6 +204,9 @@ function CreateRestaurantScreen({navigation, props}) {
   return (
       <CreateRestaurantUI
         name={formik.values.name}
+        nameError={formik.errors.name}
+        addressError={formik.errors.address}
+
         isClosedOverwrite={formik.values.isClosedOverwrite}
         restaurantTypes={formik.values.restaurantTypes}
         priceRange={formik.values.priceRange}

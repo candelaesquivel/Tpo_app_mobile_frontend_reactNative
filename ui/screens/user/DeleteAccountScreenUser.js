@@ -52,6 +52,7 @@ function DeleteAccountScreenUser({navigation, props}){
         onPasswordChangeHandler={formik.handleChange('password')}
         onDeletePressHandler={formik.handleSubmit}
         emailError = {formik.errors.email}
+        
      ></DeleteAccountScreenUI>
     )
 }

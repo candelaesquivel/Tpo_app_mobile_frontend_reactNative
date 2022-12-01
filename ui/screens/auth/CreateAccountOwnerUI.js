@@ -34,7 +34,8 @@ props
                 defaultValue={email}
                 placeholder = {CONSTANTS.SCREEN_TEXTS.EMAIL_INPUT_LABEL} 
                 placeholderTextColor ={colorPalette.White}
-                color={colorPalette.Orange} name = 'email'
+                color={colorPalette.Orange} 
+                name = 'email'
                 onChangeText = {onEmailHandler}
                 onChange = {onEmailHandler}>
 

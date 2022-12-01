@@ -3,7 +3,7 @@ import { CONSTANTS } from '../../config';
 
 export const restaurantSchema = {
   createRestaurant : yup.object().shape({
-    name : yup.string().min(2).required(CONSTANTS.ERROR_MSGS.RESTO_NAME_REQUIRED),
+    name : yup.string().min(2 , CONSTANTS.ERROR_MSGS.MIN_NAME).required(CONSTANTS.ERROR_MSGS.RESTO_NAME_REQUIRED),
     restaurantTypes : yup.array().required(CONSTANTS.ERROR_MSGS.RESTO_FOOD_TYPE_REQUIRED),
     priceRange : yup.string().required(CONSTANTS.ERROR_MSGS.RESTO_FOOD_TYPE_REQUIRED),
     address : yup.object().shape({

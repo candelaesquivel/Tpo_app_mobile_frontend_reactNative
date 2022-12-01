@@ -17,6 +17,7 @@ export const DeleteAccountScreenUI = ({
     onDeletePressHandler,
     props}) => {
   
+    
     return (
         <View  style={styles.global}>
         <View style={styles.containerWhite}>
@@ -43,7 +44,9 @@ export const DeleteAccountScreenUI = ({
                         placeholderTextColor ={colorPalette.White}
                         color = {colorPalette.Orange}
                         defaultValue = {email}
-                        errorMesssage = {emailError}
+                        name = 'email'
+                        errorMessage = {emailError}
+                        onChange = {onEmailChangeHandler}
                         onChangeText = {onEmailChangeHandler}
                         >
                     </InputText>

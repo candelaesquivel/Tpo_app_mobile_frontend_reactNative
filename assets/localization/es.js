@@ -123,6 +123,9 @@ export  default{
     passwordRequired : 'La contraseña es requerida',
     nameShort : "El nombre debe tener como minimo 2 letras",
     nameLong : "El nombre debe tener como maximo 50 letras",
+    minName : 'El nombre debe tener mínimo 2 letras',
+    minIngredients: 'Los ingredientes deben tener mínimo 2 letras',
+    numberError : "Debe colocar un numero",
 
     dishNameRequired : 'El nombre de plato es requerido',
     dishPriceRequired : 'El precio del plato es requerido',

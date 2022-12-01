@@ -140,6 +140,10 @@ export default  {
     ERROR_NAME_SHORT :I18n.t('nameShort'),
     ERROR_NAME_LONG :I18n.t('nameLong'),
 
+    MIN_NAME : I18n.t('minName'),
+    MIN_INGREDIENTS : I18n.t('minIngredients'),
+    NUMBER_ERROR :I18n.t('numberError'),
+
     EMAIL_REQUIRED : I18n.t('emailRequired'),
     EMAIL_INVALID : I18n.t('emailInvalid'),
     PASSWORD_NOT_MATCH : I18n.t('passwordMatch'),
