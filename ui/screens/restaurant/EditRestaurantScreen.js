@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import { ROUTES } from '../..';
 import { useFormik } from 'formik';
@@ -198,6 +198,7 @@ function EditRestaurantScreen({navigation, route}) {
   return (
     <EditRestaurantUI
         name={formik.values.name}
+        address={formik.values.address.streetName + " "+formik.values.address.streetNumber }
         isClosedOverwrite={formik.values.isClosedOverwrite}
         restaurantTypes={formik.values.restaurantTypes}
         priceRange={formik.values.priceRange}

@@ -25,6 +25,7 @@ import { AlertConfirm } from "../../components/AlertConfirm";
 
 export const EditRestaurantUI = ({
   name,
+  address,
   isClosedOverwrite = false,
   restaurantTypes = [],
   priceRange = '',
@@ -106,7 +107,7 @@ export const EditRestaurantUI = ({
 
         <SafeAreaView style={styles.addressContainer}>
           <GooglePlacesAutocomplete
-            placeholder='Ingresa la dirección'
+            placeholder={address}
             fetchDetails={true}
             onPress={
               (data, details = null) => {

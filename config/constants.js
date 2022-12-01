@@ -164,6 +164,7 @@ export default  {
     RESTO_NAME_REQUIRED: I18n.t('restaurantNameRequired'),
     RESTO_FOOD_TYPE_REQUIRED : I18n.t('restaurantFoodTypeRequired'),
     RESTO_PRICE_TYPE_REQUIRED : I18n.t('restaurantPriceTypeRequired'),
+    TOKEN_INVALID  : I18n.t('tokenRequired'),
 
      // Messages backend
      INTERNET_ERROR : I18n.t('internetError'),
