@@ -172,6 +172,7 @@ export  default{
     modifyData : "Se modificó exitosamente su información",
 
     //Create restaurant
+    restaurantNotFoundError : 'No se ha encontrado el restaurante',
     restaurantCreateError : "No se puedo crear el restaurante",
     restaurantCreate : "Restaurante creado exitosamente",
 
@@ -186,6 +187,8 @@ export  default{
     //Review restaurant
     reviewRestaurantError : "No se pudo enviar el comentario",
     reviewRestaurant : "Comentario enviado",
+    reviewUserOrRestoNotFound : 'Usuario o Restaurant no encontrados',
+    reviewGetAllServerError : 'Ha ocurrido un error solicitando las reviews',
 
     //Create dish
     dishCreateError : "No se puedo crear el plato",
@@ -196,8 +199,12 @@ export  default{
     dishmodifyData : "Se modificó exitosamente la información del plato",
 
     //Category dish
+    createCategory : 'Categoria Creada correctamente',
+    createCategoryServerError : 'No se pudo crear la categoria',
     dishmodifyCategoryError : "No se pudo modificar la categoria del plato",
     dishmodifyCategory : "Categoría del plato modificada exitosamente",
+    deleteCategoryMsg : 'Categoria de platos borrada correctamente',
+    deleteCategoryServerError : 'Ha ocurrido un error borrando la categoria',
 
      //Delete dish
      deletedishError : "No se pudo eliminar el plato",

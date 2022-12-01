@@ -87,7 +87,7 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
 
     case CONSTANTS.ENPOINT_TYPE.UPDATE_USER:{
 
-      const messages = [
+      messages = [
         {status : 200, msg : CONSTANTS.ERROR_MSGS.USER_UPDATED_MSG},
         {status : 404, msg : CONSTANTS.ERROR_MSGS.USER_NOT_FOUND},
         {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
@@ -101,7 +101,7 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
 
   case CONSTANTS.ENPOINT_TYPE.CREATE_DISH:{
 
-    const messages = [
+    messages = [
       {status : 201, msg : CONSTANTS.ERROR_MSGS.DISH_CREATE},
       {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
       {status : 500, msg : CONSTANTS.ERROR_MSGS.DISH_CREATE_ERROR},
@@ -111,9 +111,101 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
     break
   }
 
+    case CONSTANTS.ENPOINT_TYPE.CREATE_RESTAURANT:{
+      messages = [
+        {status : 201, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_CREATE},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_CREATE_ERROR},
+      ]
+
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.GET_ALL_RESTAURANTS:{
+      messages = [
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
+      ]
+
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.GET_RESTAURANT_INFO:{
+      messages = [
+        {status : 404, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_NOT_FOUND},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
+      ]
+
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.UPDATE_RESTAURANT:{
+      messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_UPDATED},
+        {status : 404, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_NOT_FOUND},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_UPDATE_ERROR},
+      ]
+
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.DELETE_RESTAURANT:{
+      messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.DELETE_REST},
+        {status : 404, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_NOT_FOUND},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.DELETE_REST_ERROR},
+      ]
+
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.CREATE_CATEGORY:{
+      messages = [
+        {status : 201, msg : CONSTANTS.ERROR_MSGS.CREATE_CATEGORY},
+        {status : 404, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_NOT_FOUND},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.CREATE_CATEGORY_SERVER_ERROR},
+      ]
+
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.DELETE_CATEGORY:{
+      messages = [
+        {status : 201, msg : CONSTANTS.ERROR_MSGS.DELETE_CATEGORY},
+        {status : 404, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_NOT_FOUND},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.DELETE_CATEGORY_SERVER_ERROR},
+      ]
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.CREATE_REVIEW:{
+      messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.CREATE_REVIEW_SUCCESS},
+        {status : 404, msg : CONSTANTS.ERROR_MSGS.RESTAURANT_NOT_FOUND},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.CREATE_REVIEW_SERVER_ERROR},
+      ]
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.GET_REVIEWS:{
+      messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.CREATE_REVIEW_SUCCESS},
+        {status : 404, msg : CONSTANTS.ERROR_MSGS.REVIEW_USER_OR_RESTAURANT_NOT_FOUND},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.GET_REVIEWS_SERVER_ERROR},
+      ]
+      break
+    }
+
   case CONSTANTS.ENPOINT_TYPE.GET_RESTAURANT_DISHES:{
 
-    const messages = [
+    messages = [
       {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
       {status : 500, msg : CONSTANTS.ERROR_MSGS.DISH_CREATE_ERROR},
 
@@ -124,7 +216,7 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
 
   case CONSTANTS.ENPOINT_TYPE.GET_DISH_DETAIL:{
 
-    const messages = [
+    messages = [
       
       {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
       {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
@@ -136,7 +228,7 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
 
   case CONSTANTS.ENPOINT_TYPE.DELETE_DISH:{
 
-    const messages = [
+    messages = [
       {status : 200, msg : CONSTANTS.ERROR_MSGS.DELETE_DISH},
       {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
       {status : 500, msg : CONSTANTS.ERROR_MSGS.DELETE_DISH_ERROR},
@@ -148,7 +240,7 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
 
   case CONSTANTS.ENPOINT_TYPE.UPDATE_DISH:{
 
-    const messages = [
+    messages = [
       {status : 200, msg : CONSTANTS.ERROR_MSGS.MODIFY_DATA_DISH},
       {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
       {status : 500, msg : CONSTANTS.ERROR_MSGS.MODIFY_DATA_DISH_ERROR},

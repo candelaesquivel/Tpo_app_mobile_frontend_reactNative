@@ -204,20 +204,23 @@ export default  {
      USER_UPDATE_ERROR :  I18n.t('modifyDataError'),
  
      //Create restaurant
+     RESTAURANT_NOT_FOUND : I18n.t('restaurantNotFoundError'),
      RESTAURANT_CREATE :  I18n.t('restaurantCreate'),
      RESTAURANT_CREATE_ERROR :  I18n.t('restaurantCreateError'),
  
      //Modify data restaurant
-     MODIFY_DATA_REST :  I18n.t('restaurantmodifyData'),
-     MODIFY_DATA_REST_ERROR :  I18n.t('restaurantmodifyDataError'),
+     RESTAURANT_UPDATED :  I18n.t('restaurantmodifyData'),
+     RESTAURANT_UPDATE_ERROR :  I18n.t('restaurantmodifyDataError'),
  
      //Delete restaurant
      DELETE_REST :  I18n.t('deleteRestaurant'),
      DELETE_REST_ERROR :  I18n.t('deleteRestaurantError'),
  
-     //Review restaurant
-     REVIEW_REST :  I18n.t('reviewRestaurant'),
-     REVIEW_REST_ERROR :  I18n.t('reviewRestaurantError'),
+    //Review restaurant
+    CREATE_REVIEW_SUCCESS :  I18n.t('reviewRestaurant'),
+    CREATE_REVIEW_SERVER_ERROR :  I18n.t('reviewRestaurantError'),
+    REVIEW_USER_OR_RESTAURANT_NOT_FOUND : I18n.t('reviewUserOrRestoNotFound'),
+    GET_REVIEWS_SERVER_ERROR : I18n.t('reviewGetAllServerError'),
  
     //Create dish
     DISH_CREATE :  I18n.t('dishCreate'),
@@ -227,9 +230,13 @@ export default  {
     MODIFY_DATA_DISH :  I18n.t('dishmodifyData'),
     MODIFY_DATA_DISH_ERROR :  I18n.t('dishmodifyDataError'),
 
-     //Category dish
-     MODIFY_CATEGORY_DISH :  I18n.t('dishmodifyCategory'),
-     MODIFY_CATEGORY_DISH_ERROR :  I18n.t('dishmodifyCategoryError'),
+    //Category dish
+    CREATE_CATEGORY : I18n.t('createCategory'),
+    CREATE_CATEGORY_SERVER_ERROR : I18n.t('createCategoryServerError'),
+    CATEGORY_UPDATE :  I18n.t('dishmodifyCategory'),
+    CATEGORY_UPDATE_ERROR :  I18n.t('dishmodifyCategoryError'),
+    DELETE_CATEGORY : I18n.t('deleteCategoryMsg'),
+    DELETE_CATEGORY_SERVER_ERROR : I18n.t('deleteCategoryServerError'),
 
     //Delete dish
     DELETE_DISH :  I18n.t('deletedish'),

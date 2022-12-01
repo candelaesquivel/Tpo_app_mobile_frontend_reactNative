@@ -3,7 +3,7 @@ import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
 import { getHttpCodeMessage } from "../../../config/utilities";
 import { setClientToken } from "../../api";
-import { showErrorToast, showSuccessToast, showToast} from "../../../redux/slices/feedBackReducer";
+import { showErrorToast, showSuccessToast} from "../../../redux/slices/feedBackReducer";
 
 export async function loginGoogle(userInfo, dispatch){
 
@@ -36,7 +36,9 @@ export async function loginGoogle(userInfo, dispatch){
     
   }).catch(err => {
 
-    if (dispatch)
+    const msg = getHttpCodeMessage(res.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
+
+    if (dispatch && msg)
       dispatch(showErrorToast(msg));
 
     console.log('Error on Google Login: ', err);
