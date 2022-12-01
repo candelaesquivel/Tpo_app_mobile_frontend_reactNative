@@ -248,7 +248,12 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
     ]
 
     break
-  }}
+  }
+
+  default : 
+    break
+}
+
 
   for (let index = 0; index < messages.length; index++) {
     const element = messages[index];

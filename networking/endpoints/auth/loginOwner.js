@@ -7,12 +7,13 @@ import { showErrorToast, showSuccessToast} from "../../../redux/slices/feedBackR
 
 export async function loginOwner(userData, dispatch = undefined)
 {
+
   return axios.post(URL_SERVICES.LOGIN, {
     email : userData.email,
     password : userData.password,
-  }).then(res => {
-    res.data.role = CONSTANTS.ROLES.OWNER_ROLE;
-    const token = res.data.token;
+  }).then(response => {
+    response.data.role = CONSTANTS.ROLES.OWNER_ROLE;
+    const token = response.data.token;
     setClientToken(token)
     
     if (response.data){
@@ -22,7 +23,7 @@ export async function loginOwner(userData, dispatch = undefined)
         dispatch(showSuccessToast(msg));
     }
 
-    return res.data;
+    return response.data;
   }).catch(err => {
     if (err.response){
       const msg = getHttpCodeMessage(err.response.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
@@ -30,7 +31,10 @@ export async function loginOwner(userData, dispatch = undefined)
       if (dispatch && msg)
         dispatch(showErrorToast(msg));
     }
+    else if (err.message.includes('timeout')){
+      if (dispatch)
+        dispatch(showErrorToast(CONSTANTS.ERROR_MSGS.SERVER_ERROR));
+    }
     return null;
-  }).finally(() => {
   })
 };

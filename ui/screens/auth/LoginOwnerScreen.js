@@ -53,11 +53,6 @@ function LoginOwnerScreen({navigation, props}){
         }
 
         if (userDataResp){
-          dispatch(showToast({
-            title : 'Login',
-            message : 'Login Exitoso',
-            status : 'info',
-          }))
           dispatch(loginUser(userDataResp));
         }
         else{

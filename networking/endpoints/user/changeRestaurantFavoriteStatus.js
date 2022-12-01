@@ -26,6 +26,10 @@ export async function changeRestaurantFavoriteStatus(userId, restaurantId, dispa
       if (dispatch && msg)
         dispatch(showErrorToast(msg));
     }
+    else if (err.message.includes('timeout')){
+      if (dispatch)
+        dispatch(showErrorToast(CONSTANTS.ERROR_MSGS.SERVER_ERROR));
+    }
     return;
   });
 }

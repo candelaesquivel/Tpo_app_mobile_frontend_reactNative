@@ -28,5 +28,9 @@ export async function deleteRestaurant(restaurantId, dispatch = undefined){
       if (dispatch && msg)
         dispatch(showErrorToast(msg));
     }
+    else if (err.message.includes('timeout')){
+      if (dispatch)
+        dispatch(showErrorToast(CONSTANTS.ERROR_MSGS.SERVER_ERROR));
+    }
   });
 }

@@ -44,11 +44,6 @@ export default function UserProfileScreen({navigation, route, props}) {
         dispatch(loginUser(result));
 
         setTimeout(() => {
-          toast.show({
-            title : CONSTANTS.SCREEN_TEXTS.USER_DATA_UPDATED,
-            duration : 1500,
-          })
-
           if (userRole === CONSTANTS.ROLES.USER_ROLE)
             navigation.navigate(ROUTES.HOME_NORMAL_USER);
           else
