@@ -169,8 +169,12 @@ export default  {
      REGISTER_ACCOUNT :  I18n.t('registerAccount'),
      REGISTER_ACCOUNT_ERROR :  I18n.t('registerAccountError'),
 
+     SESSION_EXPIRED : I18n.t('tokenExpired'),
+     NOT_AUTHORIZED : I18n.t('notAuthorized'),
+
      LOGIN_ACCOUNT :  I18n.t('loginMessage'),
      LOGIN_ACCOUNT_ERROR :  I18n.t('loginError'),
+     USER_NOT_FOUND : I18n.t('loginError'),
      LOGIN_ACCOUNT :  I18n.t('registerAccount'),
 
      LOGOUT_ACCOUNT :  I18n.t('logOutMessage'),
@@ -191,8 +195,8 @@ export default  {
      IMAGE_MSG_ERROR :  I18n.t('imageMessageError'),
 
      //Modify data of owner and user
-     MODIFY_DATA_MSG :  I18n.t('modifyData'),
-     MODIFY_DATA_MSG_ERROR :  I18n.t('modifyDataError'),
+     USER_UPDATED_MSG :  I18n.t('modifyData'),
+     USER_UPDATE_ERROR :  I18n.t('modifyDataError'),
  
      //Create restaurant
      RESTAURANT_CREATE :  I18n.t('restaurantCreate'),
@@ -228,7 +232,46 @@ export default  {
   
   },
 
+  ENPOINT_TYPE : {
+    // Auth
+    REGISTER_OWNER : 'REGISTER_OWNER',
+    LOGIN_GOOGLE : 'LOGIN_GOOGLE',
+    LOGOUT : 'LOGOUT',
+    RECOVER_PASS : 'RECOVER_PASS',
+    RECOVER_TOKEN : 'RECOVER_TOKEN',
 
+    // User
+    GET_USER : 'GET_USER',
+    UPDATE_USER : 'UPDATE_USER',
+    DELETE_USER : 'DELETE_USER',
+    GET_FAVORITE_RESTAURANTS : 'GET_FAVORITE_RESTAURANTS',
+    UPDATE_FAVORITE_STATUS : 'UPDATE_FAVORITE_STATUS',
+    GET_OWNER_RESTAURANTS : 'GET_OWNER_RESTAURANTS',
+
+    // Restaurant
+    CREATE_RESTAURANT : 'CREATE_RESTAURANT',
+    GET_ALL_RESTAURANTS : 'GET_ALL_RESTAURANTS',
+    GET_RESTAURANT_INFO : 'GET_RESTAURANT_INFO',
+    UPDATE_RESTAURANT : 'UPDATE_RESTAURANT',
+    DELETE_RESTAURANT : 'DELETE_RESTAURANT',
+
+
+    // Review
+    CREATE_REVIEW : 'CREATE_REVIEW',
+    GET_REVIEWS : 'GET_REVIEWS',
+
+    // Dish
+    CREATE_DISH : 'CREATE_DISH',
+    GET_RESTAURANT_DISHES : 'GET_RESTAURANT_DISHES',
+    GET_DISH_DETAIL : 'GET_DISH_DETAIL',
+    UPDATE_DISH : 'UPDATE_DISH',
+    DELETE_DISH : 'DELETE_DISH',
+
+    // Categories
+    CREATE_CATEGORY : 'CREATE_CATEGORY',
+    GET_CATEGORIES_OF_RESTAURANT : 'GET_CATEGORIES_OF_RESTAURANT',
+    DELETE_CATEGORY : 'DELETE_CATEGORY',
+  },
 
   MIN_LENGTH_PASSWORD : 8,
   MIN_LENGTH_REVIEW_TEXT : 3,

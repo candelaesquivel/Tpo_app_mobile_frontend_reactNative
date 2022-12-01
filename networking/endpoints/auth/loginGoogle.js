@@ -1,9 +1,11 @@
 import axios from "axios";
 import { CONSTANTS } from "../../../config";
 import { URL_SERVICES } from "../../../config/config";
+import { getHttpCodeMessage } from "../../../config/utilities";
 import { setClientToken } from "../../api";
+import { showErrorToast, showSuccessToast, showToast} from "../../../redux/slices/feedBackReducer";
 
-export async function loginGoogle(userInfo){
+export async function loginGoogle(userInfo, dispatch){
 
   const googleData = {
     role : CONSTANTS.ROLES.USER_ROLE,
@@ -19,13 +21,25 @@ export async function loginGoogle(userInfo){
     },
   }
   
-  return axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, googleData).then(res => {
-    const token = res.data.token;
-    setClientToken(token)
-    return res.data;
+  return await axios.post(URL_SERVICES.BOUND_GOOGLE_DATA, googleData).then(res => {
+
+    if (res.data){
+      const token = res.data.token;
+      setClientToken(token);
+      const msg = getHttpCodeMessage(res.status, CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE);
+
+      if (dispatch)
+        dispatch(showSuccessToast(msg));
+
+      return res.data;
+    }
+    
   }).catch(err => {
-    console.log('Error on Google Login: ', err.response.data);
+
+    if (dispatch)
+      dispatch(showErrorToast(msg));
+
+    console.log('Error on Google Login: ', err);
     return null;
-  }).finally(() => {
   })
 };

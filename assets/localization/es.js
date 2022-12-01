@@ -164,7 +164,7 @@ export  default{
     imageMessageError : "No se pudo subir la imagen",
     imageMessage : "Imagen subida exitosamente",
 
-    //Modify data of owner and user
+    // User
     modifyDataError : "No se pudo modificar su información",
     modifyData : "Se modificó exitosamente su información",
 

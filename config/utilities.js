@@ -1,4 +1,5 @@
 import { Dimensions } from "react-native";
+import CONSTANTS from './constants';
 
 export function convertGoogleAddress(details = undefined) {
 
@@ -39,4 +40,70 @@ export function convertGoogleRegion(details = undefined){
   };
 
   return newRegion;
+}
+
+export function getHttpCodeMessage(statusCode = 0, endpointType){
+
+  console.log('Status Code: ', statusCode);
+
+  let messages = [];
+
+  switch (endpointType){
+
+    case CONSTANTS.ENPOINT_TYPE.LOGIN_GOOGLE:{
+
+      messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.LOGIN_ACCOUNT},
+        {status : 201, msg : CONSTANTS.ERROR_MSGS.REGISTER_ACCOUNT},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
+      ]
+
+      break
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.LOGOUT:{
+
+      messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.LOGOUT_ACCOUNT},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
+      ]
+      break
+
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.DELETE_USER:{
+
+      messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.DELETE_ACCOUNT},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 404, msg : CONSTANTS.ERROR_MSGS.USER_NOT_FOUND},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
+      ]
+
+      break
+
+    }
+
+    case CONSTANTS.ENPOINT_TYPE.UPDATE_USER:{
+
+      const messages = [
+        {status : 200, msg : CONSTANTS.ERROR_MSGS.USER_UPDATED_MSG},
+        {status : 404, msg : CONSTANTS.ERROR_MSGS.USER_NOT_FOUND},
+        {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+        {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
+      ]
+
+      break
+    }
+  }
+
+  for (let index = 0; index < messages.length; index++) {
+    const element = messages[index];
+
+    if (element.status === statusCode)
+      return element.msg;
+  }
+
+  return undefined;
 }

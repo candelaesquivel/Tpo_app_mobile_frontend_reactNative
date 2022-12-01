@@ -1,8 +1,8 @@
 // For local server development, uncomment the following line:
 const URL_API = 'http://10.0.2.2:8080/api/v1/';
-// const URL_API = "https://morfando.azurewebsites.net/api/v1/";
+//const URL_API = "https://morfando.azurewebsites.net/api/v1/";
 
-const TIMEOUT = 5000;
+const TIMEOUT = 300 * 1000;
 
 const RESTAURANT_ROUTE = URL_API + 'restaurants/';
 const USER_ROUTE = URL_API + 'users/';
