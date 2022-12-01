@@ -4,12 +4,12 @@ import RestaurantCardUser from '../components/RestaurantCardUser';
 
 export function RestaurantFlatListUser({
   restaurants = [], 
+  flatListHeader = undefined,
   onPhotoPressHandler = (restaurantId) => {}, 
   onFavoriteIconPressHandler = (restaurantId) => {}, 
   props}){
   const renderItem = ({ item }) => {
     return (
-      <View >
         <RestaurantCardUser 
           name ={item.name}
           address = {item.address}
@@ -21,12 +21,12 @@ export function RestaurantFlatListUser({
           onFavoriteIconPressHandler = {onFavoriteIconPressHandler}
           >
           </RestaurantCardUser>
-      </View>
     )
   };
 
   return (
     <FlatList
+      ListHeaderComponent={flatListHeader}
       data={restaurants}
       renderItem={renderItem}
       keyExtractor={(item) => item.name}

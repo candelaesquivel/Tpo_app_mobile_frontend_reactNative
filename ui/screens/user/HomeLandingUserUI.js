@@ -12,22 +12,23 @@ const HomeLandingUserUI = ({
     onSearchBarTextChangeHandler = (text) => {},
     props}) => {
 
-    return (
-        <View>
+    const ListHeaderComponent = () => {
+      return (
         <MySearchBar
           searchText = {searchText}
           onTextChangeHandler={onSearchBarTextChangeHandler}
         >
-
         </MySearchBar>
-        <View>
-        <RestaurantFlatListUser
-            restaurants={restaurants}
-            onFavoriteIconPressHandler={onFavoriteIconPressHandler}
-            onPhotoPressHandler={onPhotoPressHandler}
-         ></RestaurantFlatListUser>
-        </View>
-      </View>
+      )
+    }
+
+    return (
+      <RestaurantFlatListUser
+          flatListHeader={ListHeaderComponent}
+          restaurants={restaurants}
+          onFavoriteIconPressHandler={onFavoriteIconPressHandler}
+          onPhotoPressHandler={onPhotoPressHandler}
+        ></RestaurantFlatListUser>
     )
   }
   
