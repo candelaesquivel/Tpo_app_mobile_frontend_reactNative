@@ -6,7 +6,6 @@ import { EditRestaurantUI } from './EditRestaurantUI';
 import { restaurantSchema } from '../../formSchemas/restaurantSchemas';
 import { restaurantWS } from '../../../networking/endpoints';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { useEffect } from 'react';
 
 function EditRestaurantScreen({navigation, route}) {
 

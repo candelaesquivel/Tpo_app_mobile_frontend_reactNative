@@ -25,23 +25,10 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
   const [showMap , setShowMap]= useState(false);
   const [showDishes , setShowDishes]= useState(false);
 
-  const [dishes, setDishes] = useState([]);
-  const [comments, setComments] = useState([]);
-
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
 
   const restoId = useSelector((state) => state.user.restaurantSelectedId);
-
-  const fillCommentsList = async () => {
-    const newComments = await reviewWS.getReviewsOfRestaurant(restoId, dispatch);
-    setComments(newComments);
-  }
-
-  const fillDishList = async () => {
-    const newDishes = await dishesWS.getDishesFromRestaurant(restoId, dispatch);
-    setDishes(newDishes);
-  }
 
   const onSentCommentPress = (event) => {
     navigation.navigate(ROUTES.USER_SENT_COMMENT );
@@ -78,32 +65,24 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
       showMap: true,
       showComments :false,
       showDishes :false,
-      regionMap :restoData.region,
-      comments: [],
-      dishes: [], });
+      regionMap :restoData.region 
+    });
   }
   const onCommentPress = async  (event) => {
-    await fillCommentsList();
-    navigation.navigate(ROUTES.BUTTON_SCREEN, {
+      navigation.navigate(ROUTES.BUTTON_SCREEN, {
       showMap: false,
       showComments :true,
       showDishes :false,
-      regionMap :"",
-      comments: comments,
-      dishes: [], });
+      regionMap :""});
   }
   const onMenuPress = async (event) => {
-     await fillDishList();
     navigation.navigate(ROUTES.BUTTON_SCREEN, {
       showMap:false ,
       showComments :false,
       showDishes :true,
       regionMap :"",
-      comments: [],
-      dishes: dishes,
-     });
+    });
   }
-  
 
   return (
     <RestaurantProfileUserScreenUI
@@ -111,8 +90,6 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
       priceRange={restoData.priceRange}
       rating = {restoData.averageRating}
       region = {restoData.region}
-      comments={comments}
-      dishes={dishes}
       showComments={showComments}
       showMap={showMap}
       showDishes={showDishes}

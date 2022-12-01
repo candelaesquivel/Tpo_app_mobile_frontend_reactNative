@@ -6,31 +6,71 @@ import { DishFlatList } from '../../components/DishFlatList';
 import MapView, { PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import { Theme } from '../../styles/Theme';
 import { colorPalette } from '../../styles/colors';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
+import { useCallback } from 'react';
+import { reviewWS, dishesWS } from '../../../networking/endpoints';
 
 function ButtonScreen({ navigation, route, props})
  {
+    const restaurantId = useSelector(state => state.user.restaurantSelectedId);
+    const dispatch = useDispatch();
+
+    const [dishes, setDishes] = useState([]);
+    const [comments, setComments] = useState([]);
+    const isFocused = useIsFocused();
+
+    const fillCommentsList = async () => {
+      const newComments = await reviewWS.getReviewsOfRestaurant(restaurantId, dispatch);
+      setComments(newComments);
+    }
+
+    const fillDishList = async () => {
+      const newDishes = await dishesWS.getDishesFromRestaurant(restaurantId, dispatch);
+      setDishes(newDishes);
+    }
     const screenData = {
 
-        showMap : route.params ? route.params.showMap : false,
-      
-        showComments : route.params ? route.params.showComments : false,
-      
-        showDishes : route.params ? route.params.showDishes : false,
-      
-        dishes : route.params ? route.params.dishes : [],
-      
-        comments : route.params ? route.params.comments : [],
-      
-        regionMap : route.params ? route.params.regionMap :
-         {
-            latitude: -34.6018,
-            longitude: -58.424,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01
-          },
-      
-      }
+      showMap : route.params ? route.params.showMap : false,
+    
+      showComments : route.params ? route.params.showComments : false,
+    
+      showDishes : route.params ? route.params.showDishes : false,
+    
+      dishes : route.params ? route.params.dishes : [],
+    
+      comments : route.params ? route.params.comments : [],
+    
+      regionMap : route.params ? route.params.regionMap :
+       {
+          latitude: -34.6018,
+          longitude: -58.424,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01
+        },
+    
+    }
+
+    useFocusEffect(
+      useCallback(() => {
+        
+        if (screenData.showComments)
+          fillCommentsList();
+
+        if (screenData.showDishes)
+          fillDishList();
+  
+        return () => {
+          if (!isFocused){
+            setDishes([]);
+            setComments([])
+          }
+        }
+      }, [isFocused])
+    );
+
+    
 
          const MapComponent = () => {
         return (
@@ -60,7 +100,7 @@ function ButtonScreen({ navigation, route, props})
     <View  style={styles.global}>
       {
           screenData.showComments &&  <CommentUserRestaurant 
-          comments={screenData.comments}/>
+          comments={comments}/>
         }
 
         {
@@ -70,7 +110,7 @@ function ButtonScreen({ navigation, route, props})
         {
           screenData.showDishes && 
           <DishFlatList 
-          dishes={screenData.dishes}
+          dishes={dishes}
             //onDishPhotoPressHandler={onDishPhotoPress}
         > </DishFlatList>     
  }
