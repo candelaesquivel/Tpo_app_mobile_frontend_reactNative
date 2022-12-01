@@ -37,6 +37,8 @@ export default  {
     ADD_DISH : I18n.t('addDishTitle'),
     RESTAURANT_PROFILE : I18n.t('restaurantProfileTitle'),
     SENT_COMMENT : I18n.t('sentCommentTitle'),
+    COMMENTS_TITLE : I18n.t('commentsTitle'),
+    MAP_TITLE : I18n.t('mapTitle'),
     CREATE_RESTAURANT : I18n.t('createRestaurantTitle'),
     FILTERS : I18n.t('filtersTitle'),
     TOKEN : I18n.t('tokenScreen'),

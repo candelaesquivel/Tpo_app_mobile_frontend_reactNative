@@ -60,12 +60,16 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
     }
   }
 
+  console.log('Address: ', restoData.address);
+
   const onMapPress = (event) => {
     navigation.navigate(ROUTES.BUTTON_SCREEN, {
       showMap: true,
       showComments :false,
       showDishes :false,
-      regionMap :restoData.region 
+      regionMap :restoData.region,
+      address : restoData.address.streetName + ' ' + restoData.address.streetNumber + ',' 
+      + restoData.address.neighborhood + ' ' + restoData.address.city,
     });
   }
   const onCommentPress = async  (event) => {

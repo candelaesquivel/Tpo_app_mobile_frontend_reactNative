@@ -49,6 +49,8 @@ export  default{
     sentCommentTitle : 'Enviar Comentario',
     createRestaurantTitle : 'Crear Restaurante',
     filtersTitle : 'Filtros',
+    commentsTitle : 'Comentarios',
+    mapTitle : 'Direccion del Restaurante',
 
     loginLabel : 'Iniciar sesión',
     user : 'Usuario',

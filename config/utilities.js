@@ -217,7 +217,6 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
 
     case CONSTANTS.ENPOINT_TYPE.GET_REVIEWS:{
       messages = [
-        {status : 200, msg : CONSTANTS.ERROR_MSGS.CREATE_REVIEW_SUCCESS},
         {status : 404, msg : CONSTANTS.ERROR_MSGS.REVIEW_USER_OR_RESTAURANT_NOT_FOUND},
         {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
         {status : 500, msg : CONSTANTS.ERROR_MSGS.GET_REVIEWS_SERVER_ERROR},

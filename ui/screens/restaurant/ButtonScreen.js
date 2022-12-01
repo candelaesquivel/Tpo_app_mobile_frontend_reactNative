@@ -21,6 +21,8 @@ function ButtonScreen({ navigation, route, props})
     const [comments, setComments] = useState([]);
     const isFocused = useIsFocused();
 
+    
+
     const fillCommentsList = async () => {
       const newComments = await reviewWS.getReviewsOfRestaurant(restaurantId, dispatch);
       setComments(newComments);
@@ -50,6 +52,8 @@ function ButtonScreen({ navigation, route, props})
           longitudeDelta: 0.01
         },
 
+      address : route.params.address ? route.params.address : '',
+
       onDishPhotoPress : route.params ? route.params.onDishPhotoPressHandler : () => {}
     
     }
@@ -72,6 +76,22 @@ function ButtonScreen({ navigation, route, props})
       }, [isFocused])
     );
 
+    useEffect(() => {
+
+      let title = '';
+
+      if (screenData.showComments)
+        title = CONSTANTS.SCREEN_TITLES.COMMENTS_TITLE;
+      else if (screenData.showDishes)
+        title = CONSTANTS.SCREEN_TITLES.RESTAURANT_MENU;
+      else if (screenData.showMap)
+        title = CONSTANTS.SCREEN_TITLES.MAP_TITLE;
+      
+        navigation.setOptions({
+          title : title
+        });
+    }, [navigation])
+
     
 
          const MapComponent = () => {
@@ -92,8 +112,10 @@ function ButtonScreen({ navigation, route, props})
               >
               </Marker>
             </MapView>
-            
           </View>
+            <View style={{alignSelf : 'center', alignContent : 'center'}}>
+              <Text style={styles.words}>{screenData.address}</Text>
+            </View>
           </ScrollView>
           
         )
