@@ -49,6 +49,8 @@ function ButtonScreen({ navigation, route, props})
           latitudeDelta: 0.01,
           longitudeDelta: 0.01
         },
+
+      onDishPhotoPress : route.params ? route.params.onDishPhotoPressHandler : () => {}
     
     }
 
@@ -111,7 +113,7 @@ function ButtonScreen({ navigation, route, props})
           screenData.showDishes && 
           <DishFlatList 
           dishes={dishes}
-            //onDishPhotoPressHandler={onDishPhotoPress}
+          onDishPhotoPressHandler={screenData.onDishPhotoPress}
         > </DishFlatList>     
  }
     </View>

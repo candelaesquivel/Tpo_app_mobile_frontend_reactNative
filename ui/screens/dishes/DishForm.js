@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
    dropdown: {
     width :Dimensions.get("window").width*0.9,
     height :Dimensions.get("window").height*0.09,
+    marginLeft : Dimensions.get('window').width * 0.05,
     borderColor: colorPalette.Orange,
     borderRadius: Theme.sizes.SMALL_ROUNDED,
     paddingHorizontal: 10, borderWidth:1,

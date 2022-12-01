@@ -10,8 +10,9 @@ import { DishModifyScreenUI } from './DishModifyScreenUI';
 import { useFormik } from 'formik';
 import {dishSchemas} from '../../formSchemas/dishSchemas';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { Buffer } from "buffer";
-
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useCallback } from 'react';
+import { categoriesWS } from '../../../networking/endpoints';
 
 function DishModifyScreen({navigation, route, props}){
    
@@ -25,7 +26,7 @@ function DishModifyScreen({navigation, route, props}){
       discounts : route.params.discounts ? route.params.discounts : 0,
       isVegan : route.params.isVegan ? route.params.isVegan : false,
       isGlutenFree : route.params.isGlutenFree ? route.params.isGlutenFree : false,
-      category : route.params.category ? route.params.category : 'Plato Caliente',
+      category : route.params.category ? route.params.category : '',
       pictures : route.params.pictures ? route.params.pictures : [],
     },
     
@@ -38,9 +39,35 @@ function DishModifyScreen({navigation, route, props}){
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [showConfirmPhotoDelete, setShowConfirmPhotoDelete] = useState(false);
 
-
+  const [categories, setCategories] = useState([])
   const restaurantId = useSelector(state => state.user.restaurantSelectedId);
   const dispatch = useDispatch();
+  const isFocused = useIsFocused();
+
+  const fillCategoriesList = async () => {
+    try {
+      const newCategories = await categoriesWS.getCategoriesFromRestaurant(restaurantId, dispatch);
+      if (newCategories){
+        setCategories(newCategories);
+      }
+    } catch (error) {
+      
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+
+      fillCategoriesList();
+
+      return () => {
+        if (!isFocused)
+          setCategories([])
+      }
+    }, [isFocused])
+  );
+
+  
 
   const onSavePress = async () => {
 
@@ -116,8 +143,8 @@ function DishModifyScreen({navigation, route, props}){
     formik.setFieldValue('isGlutenFree', value);
   }
 
-  const onCategoryChange = ({ nativeEvent: { eventCount, target, text} }) => {
-    setDishData({...dishData, 'category' : text})
+  const onCategorySelectedChange = (item) => {
+    formik.setFieldValue('category', item);
   }
 
   const onDeletePhotoPress = async (event) => {
@@ -142,6 +169,10 @@ function DishModifyScreen({navigation, route, props}){
     }
   }
 
+  const onAddCategoryPress = (event) => {
+    navigation.navigate(ROUTES.CATEGORY_SCREEN);
+  }
+
   return (
       <DishModifyScreenUI
         name={formik.values.name}
@@ -151,7 +182,10 @@ function DishModifyScreen({navigation, route, props}){
         isVegan={formik.values.isVegan}
         isGlutenFree={formik.values.isGlutenFree}
         pictures = {formik.values.pictures}
+        category = {formik.values.category}
+        categories={categories}
 
+        onAddCategoryPressHandler={onAddCategoryPress}
         onNameChangedHandler={formik.handleChange('name')}
         onPriceChangedHandler={formik.handleChange('price')}
         onIngredientChangeHandler={onIngredientChange}
@@ -166,6 +200,8 @@ function DishModifyScreen({navigation, route, props}){
         showConfirmDelete={showConfirmDelete}
         onConfirmDeleteBtnHandler={onConfirmDeletePress}
         onCancelBtnHandler={onCancelDeletePress}
+
+        onCategorySelectedChangeHandler={onCategorySelectedChange}
 
         showConfirmDeletePhoto={showConfirmPhotoDelete}
         onConfirmDeletePhotoHandler={onConfirmDeletePhotoPress}

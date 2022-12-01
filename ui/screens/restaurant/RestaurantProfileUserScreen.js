@@ -81,6 +81,7 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
       showComments :false,
       showDishes :true,
       regionMap :"",
+      onDishPhotoPressHandler : onDishPhotoPress,
     });
   }
 

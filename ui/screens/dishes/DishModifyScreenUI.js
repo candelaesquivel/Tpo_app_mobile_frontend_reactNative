@@ -19,12 +19,16 @@ const DishModifyScreenUI = ({
   discount = 0,
   isVegan = false,
   isGlutenFree = false,
+  category = '',
   nameError = '',
   priceError = '',
   ingredientsError = '',
   showConfirmDelete = false,
   pictures = [],
+  categories = [],
 
+  onAddCategoryPressHandler=(event) => {},
+  onCategorySelectedChangeHandler=(category) => {},
   onUploadImgPressHandler = (event) => {},
   onDeletePhotoPressHandler = (event) => {},
   onSavePressHandler,
@@ -43,6 +47,13 @@ const DishModifyScreenUI = ({
   onConfirmDeletePhotoHandler = () => {},
   onCancelDeletePhotoHandler = () => {},
   props}) => {
+
+  const categoryData = categories.map((item, idx) => {
+    return {
+      label : item,
+      value : idx,
+    }
+  })
 
   return (
     <ScrollView>
@@ -70,6 +81,8 @@ const DishModifyScreenUI = ({
       <View style={styles.global}>
 
           <DishForm
+            selectedCategory={category}
+            categories={categoryData} onCategoryChangeHandler={onCategorySelectedChangeHandler}
             name={name.replace(/\b[a-z]/g,c=>c.toUpperCase())} onNameChanged={onNameChangedHandler} nameError={nameError}
             price={price} onPriceChanged={onPriceChangedHandler} priceError={priceError}
             ingredients={ingredients} onIngredientChange={onIngredientChangeHandler} ingredientsError={ingredientsError}
@@ -81,13 +94,7 @@ const DishModifyScreenUI = ({
 
           <View style={styles.buttons}>
                   <MyButton
-                  title= {CONSTANTS.SCREEN_TEXTS.CHOOSE_LABEL} 
-                  width={ Dimensions.get("window").width*0.4}
-                  height={Dimensions.get("window").height*0.1}
-                  fontSizeTitle={Theme.font.SMALL_TWO}
-                  ></MyButton>
-
-                  <MyButton
+                  onPress={onAddCategoryPressHandler}
                   title= {CONSTANTS.SCREEN_TEXTS.ADD_NEW_CATEGORY_LABEL} 
                   width={ Dimensions.get("window").width*0.5}
                   height={Dimensions.get("window").height*0.1}
