@@ -22,8 +22,8 @@ If you want to build the apk file in debug mode, execute the following commands 
 1. `mkdir android\app\src\main\assets`
 1. `npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res`
 1. `cd android`
-2. `./gradlew assembleDebug`
+2. `./gradlew assembleDebug` or `./gradlew assembleRelease`
 
-You will find the apk file in `android/app/build/outputs/apk/debug/app-debug.apk`
+You will find the apk file in `android/app/build/outputs/apk/debug/app-debug.apk` if you built the debug apk or `android\app\build\outputs\apk\release`
 
 Enjoy your app
