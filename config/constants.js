@@ -229,6 +229,8 @@ export default  {
     //Delete dish
     DELETE_DISH :  I18n.t('deletedish'),
     DELETE_DISH_ERROR :  I18n.t('deletedishError'),
+
+    
   
   },
 

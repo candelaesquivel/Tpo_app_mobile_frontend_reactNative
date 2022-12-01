@@ -96,7 +96,67 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
 
       break
     }
+  
+
+
+  case CONSTANTS.ENPOINT_TYPE.CREATE_DISH:{
+
+    const messages = [
+      {status : 201, msg : CONSTANTS.ERROR_MSGS.DISH_CREATE},
+      {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+      {status : 500, msg : CONSTANTS.ERROR_MSGS.DISH_CREATE_ERROR},
+
+    ]
+
+    break
   }
+
+  case CONSTANTS.ENPOINT_TYPE.GET_RESTAURANT_DISHES:{
+
+    const messages = [
+      {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+      {status : 500, msg : CONSTANTS.ERROR_MSGS.DISH_CREATE_ERROR},
+
+    ]
+
+    break
+  }
+
+  case CONSTANTS.ENPOINT_TYPE.GET_DISH_DETAIL:{
+
+    const messages = [
+      
+      {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+      {status : 500, msg : CONSTANTS.ERROR_MSGS.SERVER_ERROR},
+
+    ]
+
+    break
+  }
+
+  case CONSTANTS.ENPOINT_TYPE.DELETE_DISH:{
+
+    const messages = [
+      {status : 200, msg : CONSTANTS.ERROR_MSGS.DELETE_DISH},
+      {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+      {status : 500, msg : CONSTANTS.ERROR_MSGS.DELETE_DISH_ERROR},
+
+    ]
+
+    break
+  }
+
+  case CONSTANTS.ENPOINT_TYPE.UPDATE_DISH:{
+
+    const messages = [
+      {status : 200, msg : CONSTANTS.ERROR_MSGS.MODIFY_DATA_DISH},
+      {status : 401, msg : CONSTANTS.ERROR_MSGS.NOT_AUTHORIZED},
+      {status : 500, msg : CONSTANTS.ERROR_MSGS.MODIFY_DATA_DISH_ERROR},
+
+    ]
+
+    break
+  }}
 
   for (let index = 0; index < messages.length; index++) {
     const element = messages[index];
@@ -106,4 +166,4 @@ export function getHttpCodeMessage(statusCode = 0, endpointType){
   }
 
   return undefined;
-}
+  }
