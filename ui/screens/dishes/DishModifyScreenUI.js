@@ -70,7 +70,7 @@ const DishModifyScreenUI = ({
       <View style={styles.global}>
 
           <DishForm
-            name={name} onNameChanged={onNameChangedHandler} nameError={nameError}
+            name={name.replace(/\b[a-z]/g,c=>c.toUpperCase())} onNameChanged={onNameChangedHandler} nameError={nameError}
             price={price} onPriceChanged={onPriceChangedHandler} priceError={priceError}
             ingredients={ingredients} onIngredientChange={onIngredientChangeHandler} ingredientsError={ingredientsError}
             discount={discount} onDiscountChange={onDiscountChangeHandlerHandler}

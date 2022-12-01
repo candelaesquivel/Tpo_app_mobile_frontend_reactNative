@@ -49,7 +49,7 @@ function DrawerHeader({props}){
           {userPictures.length === 0 && userName[0]}
         </Avatar>
       </View>
-       <Text >{userName}</Text>
+       <Text >{userName.replace(/\b[a-z]/g,c=>c.toUpperCase())}</Text>
    
       
     </View>

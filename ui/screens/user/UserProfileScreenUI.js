@@ -24,7 +24,7 @@ const UserProfileScreenUI = ({
          errorMessage = {userNameError}
           onChangeText={onNameChangeHandler}
           color={colorPalette.White} 
-          defaultValue={userName} 
+          defaultValue={userName.replace(/\b[a-z]/g,c=>c.toUpperCase())} 
           textColor={colorPalette.Black}>
         </InputText>
   

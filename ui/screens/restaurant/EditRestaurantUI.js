@@ -94,7 +94,7 @@ export const EditRestaurantUI = ({
         <InputText
           textColor={colorPalette.Black}
           onChangeText={onNameHandler}
-          defaultValue={name}
+          defaultValue={name.replace(/\b[a-z]/g,c=>c.toUpperCase())}
           color={colorPalette.White}
           placeholderTextColor = {colorPalette.Black}
         >
