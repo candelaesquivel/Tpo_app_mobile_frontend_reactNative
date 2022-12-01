@@ -8,6 +8,7 @@ import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 export const WeekButtons = ({
   timesData = [],
   onTimeSelectedHandler = (dayIndex, date) => {},
+  hideDate = false,
   ...props
 }) => {
 
@@ -30,6 +31,9 @@ export const WeekButtons = ({
     }
   }
 
+  const onDaySelectedPress = (dayIndex) => {
+    onTimeSelectedHandler(dayIndex, undefined);
+  }
 
   const onButtonPress = (dayIndex) => {
 
@@ -37,9 +41,8 @@ export const WeekButtons = ({
       return;
 
     currDay = dayIndex;
-
+    
     const currValue = timesData[dayIndex] ? new Date(timesData[dayIndex]) : new Date();
-
     DateTimePickerAndroid.open({
       value : currValue,
       mode : 'time',
@@ -63,7 +66,12 @@ export const WeekButtons = ({
               <View key={idx}>
                 <View style={{width : 10}}></View>
                 <MyButton
-                  onPress={(e) => onButtonPress(idx)}
+                  onPress={(e) => {
+                    if (hideDate)
+                      onDaySelectedPress(idx);
+                    else
+                      onButtonPress(idx)
+                  }}
                   key={idx}
                   title={item}
                   width={40}

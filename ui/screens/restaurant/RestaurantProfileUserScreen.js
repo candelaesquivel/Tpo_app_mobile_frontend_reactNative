@@ -21,6 +21,7 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
     }
   };
 
+  const [daySelectedIndex, setDaySelectedIndex] = useState(0);
   const [showComments , setShowComments]= useState(false);
   const [showMap , setShowMap]= useState(false);
   const [showDishes , setShowDishes]= useState(false);
@@ -88,6 +89,10 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
     });
   }
 
+  const onDaySelect = (dayIndex) => {
+    setDaySelectedIndex(dayIndex);
+  }
+
   return (
     <RestaurantProfileUserScreenUI
       name = {restoData.name}
@@ -95,10 +100,14 @@ function RestaurantProfileUserScreen({navigation, route, props}) {
       rating = {restoData.averageRating}
       region = {restoData.region}
       showComments={showComments}
+      hideDate={true}
+      openDate={new Date(restoData.openingTimes[daySelectedIndex])}
+      closeDate={new Date(restoData.closingTimes[daySelectedIndex])}
       showMap={showMap}
       showDishes={showDishes}
       pictures={restoData.pictures}
       closeRest={restoData.isClosedOverwrite}
+      onTimeSelectedHandler={onDaySelect}
       //onSectionBtnPressHandler={onSectionBtnPress}
       onSentCommentPressHandler={onSentCommentPress}
       //onDishPhotoPressHandler={onDishPhotoPress}

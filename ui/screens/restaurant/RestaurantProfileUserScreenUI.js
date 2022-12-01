@@ -24,12 +24,15 @@ const RestaurantProfileUserScreenUI = ({
     latitudeDelta: 0.01,
     longitudeDelta: 0.01
   },
+  hideDate=true,
   pictures=[],
   showDishes = false,
-  hourOpen,
-  hourOpen2,
-  hourClose,
-  hourClose2,
+
+  onTimeSelectedHandler=(dayIndex) => {},
+
+  openDate = new Date(),
+  closeDate = new Date(),
+
   //onSectionBtnPressHandler,
   onSentCommentPressHandler,
  // onDishPhotoPressHandler,
@@ -40,25 +43,10 @@ const RestaurantProfileUserScreenUI = ({
   onMenuPressHandler,
   closeRest,
   ...props}) => {
-      
-      // const MapComponent = () => {
-      //   return (
-      //     <ScrollView>
-      //       <View style={styles.mapContainer}>
-      //       <Text style={styles.words}>
-      //         {CONSTANTS.SCREEN_TEXTS.MAP_LABEL}
-      //       </Text>
-      //       <MapView
-      //         style={styles.map}
-      //         provider={PROVIDER_GOOGLE}
-      //         region={region}
-      //       />
-      //     </View>
-      //     </ScrollView>
-          
-      //   )
-      // }
-   
+  
+    let openHour = openDate.getHours() + ':' + openDate.getMinutes();
+    let closeHour = closeDate.getHours() + ':' + closeDate.getMinutes();
+
     return (
       <View>
       <View style={styles.global}>
@@ -75,9 +63,10 @@ const RestaurantProfileUserScreenUI = ({
            <Text style={styles.words}>{"  -   "}{priceRange}</Text>
          </View>       
         <View style={styles.week}>
-          <WeekButtons></WeekButtons>
+          <WeekButtons hideDate={hideDate} onTimeSelectedHandler={onTimeSelectedHandler}></WeekButtons>
         </View>
-        <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.OPEN_LABEL} {hourOpen}{hourOpen2} - {hourClose}{hourClose2}</Text>
+        <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.OPEN_LABEL} {openHour}</Text>
+        <Text style={styles.words}> {CONSTANTS.SCREEN_TEXTS.CLOSE_LABEL} {closeHour}</Text>
         <View style={styles.icons}>
             <Icon 
             name='comment' 
